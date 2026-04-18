@@ -1,0 +1,4156 @@
+metadata:
+  version: '1.1'
+  total_lessons: 171
+  total_weeks: 26
+  generated: '2026-04-18'
+domains:
+- domain_id: D01
+  name: Command Line & Environment Fluency
+  weight_pct: 7
+  lesson_count: 13
+- domain_id: D02
+  name: Version Control with Git and GitHub
+  weight_pct: 6
+  lesson_count: 11
+- domain_id: D03
+  name: Programming Foundations in Python
+  weight_pct: 14
+  lesson_count: 26
+- domain_id: D04
+  name: Data Fundamentals
+  weight_pct: 6
+  lesson_count: 7
+- domain_id: D05
+  name: SQL & Data Manipulation
+  weight_pct: 9
+  lesson_count: 13
+- domain_id: D06
+  name: Local AI & Model Runtime
+  weight_pct: 8
+  lesson_count: 13
+- domain_id: D07
+  name: Prompt Engineering & Agentic Patterns
+  weight_pct: 6
+  lesson_count: 10
+- domain_id: D08
+  name: APIs & Integration
+  weight_pct: 7
+  lesson_count: 13
+- domain_id: D09
+  name: Cloud Fundamentals
+  weight_pct: 10
+  lesson_count: 20
+- domain_id: D10
+  name: Infrastructure as Code with Terraform
+  weight_pct: 8
+  lesson_count: 14
+- domain_id: D11
+  name: Security, Governance & Responsible AI
+  weight_pct: 8
+  lesson_count: 13
+- domain_id: D12
+  name: System Design & Enterprise Architecture
+  weight_pct: 11
+  lesson_count: 18
+modules:
+- module_id: M01
+  domain_id: D01
+  title: First Contact with the Terminal
+  lesson_count: 7
+  module_learning_objective: Open, navigate, and operate a terminal on the learner's own machine with confidence
+  capstone_description: A three-paragraph terminal session transcript showing the learner creating a project folder, navigating
+    into it, creating and listing files, all from the command line with no mouse.
+  capstone_lesson_id: L-007
+- module_id: M02
+  domain_id: D01
+  title: Files, Editors, and Package Managers
+  lesson_count: 6
+  module_learning_objective: Install software, edit plain-text files, and manage the operating system environment from the
+    command line
+  capstone_description: Install a package manager (Homebrew or winget), install three tools with it, then write a short README
+    explaining what each does, all without using a graphical application.
+  capstone_lesson_id: L-013
+- module_id: M03
+  domain_id: D02
+  title: Version Control First Principles
+  lesson_count: 5
+  module_learning_objective: Initialize a repository, commit changes, and understand why version control exists
+  capstone_description: A local repository with at least five commits showing a deliberate history of changes, plus a written
+    explanation of why each commit is separate.
+  capstone_lesson_id: L-018
+- module_id: M04
+  domain_id: D02
+  title: GitHub and Collaboration Flow
+  lesson_count: 6
+  module_learning_objective: Push code to GitHub, work on branches, open a pull request, and resolve a merge conflict
+  capstone_description: A public GitHub repository with a README, a feature branch merged via pull request, and a deliberately-created-and-resolved
+    merge conflict documented in the commit history.
+  capstone_lesson_id: L-024
+- module_id: M05
+  domain_id: D03
+  title: Installing Python and First Programs
+  lesson_count: 6
+  module_learning_objective: Install Python cleanly, run code in a REPL and as a script, and produce a first working program
+  capstone_description: A Python script that prints a multi-line message, reads input from the user, and writes the combined
+    result to a file , run from the terminal.
+  capstone_lesson_id: L-030
+- module_id: M06
+  domain_id: D03
+  title: Types, Control Flow, and Functions
+  lesson_count: 7
+  module_learning_objective: Use Python's core data types, conditionals, loops, and user-defined functions to solve small
+    problems
+  capstone_description: A Python program that reads a list of numbers, filters them, transforms them with a function, and
+    writes a summary to a file, structured with at least three functions.
+  capstone_lesson_id: L-037
+- module_id: M07
+  domain_id: D03
+  title: Collections, Files, and Errors
+  lesson_count: 6
+  module_learning_objective: Work with lists, dictionaries, and sets; read and write files; handle exceptions
+  capstone_description: A Python script that reads a CSV of fictional grocery items, counts items per category using a dictionary,
+    handles a missing-file error gracefully, and writes a summary CSV.
+  capstone_lesson_id: L-043
+- module_id: M08
+  domain_id: D03
+  title: Projects, Environments, and Packages
+  lesson_count: 7
+  module_learning_objective: Structure a multi-file project, use virtual environments, and install third-party packages
+  capstone_description: A multi-file Python project in a Git repository with a virtual environment, a pinned requirements.txt,
+    and at least one third-party package actually used.
+  capstone_lesson_id: L-050
+- module_id: M09
+  domain_id: D04
+  title: What Data Actually Is
+  lesson_count: 7
+  module_learning_objective: Build a working conceptual model of structured, semi-structured, and unstructured data and recognize
+    common formats
+  capstone_description: A one-page written inventory classifying ten real-world artifacts (a photo, a spreadsheet, an email,
+    a PDF, etc.) by data type, format, and likely storage choice.
+  capstone_lesson_id: L-057
+- module_id: M10
+  domain_id: D05
+  title: SQL from Zero
+  lesson_count: 7
+  module_learning_objective: Load data into a local SQLite database and write SELECT, WHERE, GROUP BY, and JOIN queries
+  capstone_description: A SQLite database loaded with a synthetic two-table dataset (customers and orders) plus a documented
+    query file answering five realistic business questions using joins and aggregations.
+  capstone_lesson_id: L-064
+- module_id: M11
+  domain_id: D05
+  title: SQL for Analysis
+  lesson_count: 6
+  module_learning_objective: Use CTEs, window functions, and subqueries to answer analytical questions
+  capstone_description: An analytical query file against the same synthetic dataset producing running totals, rankings within
+    groups, and a time-based comparison, each query commented with what it does and why.
+  capstone_lesson_id: L-070
+- module_id: M12
+  domain_id: D06
+  title: Running a Language Model on Your Laptop
+  lesson_count: 7
+  module_learning_objective: Install Ollama, run models locally, and call them from Python
+  capstone_description: A Python script that calls a local Ollama model twice, once with a system prompt, once without, and
+    writes both outputs side by side to a markdown file for comparison.
+  capstone_lesson_id: L-077
+- module_id: M13
+  domain_id: D06
+  title: Tokens, Embeddings, and the Shape of a Model
+  lesson_count: 6
+  module_learning_objective: Build working intuition about tokens, context windows, embeddings, and model sizing
+  capstone_description: A short script that tokenizes three sample texts of different lengths, measures context usage, generates
+    embeddings for ten sentences, and computes cosine similarity between them, with a written paragraph explaining what the
+    numbers mean.
+  capstone_lesson_id: L-083
+- module_id: M14
+  domain_id: D07
+  title: Prompting, Structured Output, and Tool Use
+  lesson_count: 10
+  module_learning_objective: Write reliable prompts, coerce structured output, and build a simple tool-use loop
+  capstone_description: A working prompt template library in a Python file with four prompts (extraction, classification,
+    rewriting, and summarization), each tested against five inputs, with results saved and a short analysis of where each
+    prompt fails.
+  capstone_lesson_id: L-093
+- module_id: M15
+  domain_id: D08
+  title: HTTP, REST, and Calling APIs from Python
+  lesson_count: 7
+  module_learning_objective: Understand HTTP and authenticate to real APIs from Python code
+  capstone_description: A Python script that calls a free public API (e.g., Open-Meteo weather), handles errors and rate limits,
+    caches responses to a local file, and formats the result as a human-readable report.
+  capstone_lesson_id: L-100
+- module_id: M16
+  domain_id: D08
+  title: Tool-Calling and the Model Context Protocol
+  lesson_count: 6
+  module_learning_objective: Build a tool-use loop where a local model invokes a Python function, and understand MCP conceptually
+  capstone_description: A Python program where a local Ollama model is given two tools (a calculator and a file reader), calls
+    them in response to natural-language prompts, and produces a trace log of what was called and why.
+  capstone_lesson_id: L-106
+- module_id: M17
+  domain_id: D09
+  title: What the Cloud Actually Is
+  lesson_count: 6
+  module_learning_objective: Build a working mental model of IaaS, PaaS, and SaaS, regions, and the console-vs-CLI distinction
+  capstone_description: A one-page diagram (hand-drawn or drawn with draw.io) showing the same small application deployed
+    three ways, as IaaS, PaaS, and SaaS, with the responsibility boundary marked on each.
+  capstone_lesson_id: L-112
+- module_id: M18
+  domain_id: D09
+  title: Azure as the Primary Hands-On Cloud
+  lesson_count: 7
+  module_learning_objective: Provision, use, and tear down basic compute, storage, and identity resources on Azure through
+    the free tier
+  capstone_description: An Azure resource group containing a storage account, a virtual machine, and a managed identity, all
+    created through the Azure CLI, documented in a README, and torn down cleanly at the end.
+  capstone_lesson_id: L-119
+- module_id: M19
+  domain_id: D09
+  title: AWS and Google Cloud Platform Equivalents
+  lesson_count: 7
+  module_learning_objective: Replicate the same hands-on exercises on AWS and GCP and produce a cross-cloud mapping
+  capstone_description: A three-column comparison table (Azure, AWS, GCP) covering compute, storage, networking, identity,
+    and managed AI services , with a short written narrative on where each cloud's philosophy differs.
+  capstone_lesson_id: L-126
+- module_id: M20
+  domain_id: D10
+  title: Terraform First Principles
+  lesson_count: 7
+  module_learning_objective: Install Terraform, understand the init-plan-apply-destroy cycle, and provision a first resource
+  capstone_description: A Terraform configuration that provisions a storage bucket on Azure, a Git repository with state configured,
+    and a written paragraph explaining why the state file must never be committed.
+  capstone_lesson_id: L-133
+- module_id: M21
+  domain_id: D10
+  title: Modules, State, and Multi-Cloud Patterns
+  lesson_count: 7
+  module_learning_objective: Use modules, remote state, and variables to build reusable infrastructure code
+  capstone_description: A Terraform module that provisions equivalent storage on Azure and on AWS, selected by a variable,
+    with remote state configured , plus a written explanation of what this abstracts and what it does not.
+  capstone_lesson_id: L-140
+- module_id: M22
+  domain_id: D11
+  title: Secrets, Identity, and Access
+  lesson_count: 6
+  module_learning_objective: Manage credentials safely, use environment variables and secret managers, and apply least privilege
+  capstone_description: A refactored version of an earlier project where all credentials have been moved out of code into
+    environment variables and a secret manager, with a written audit of what changed and why.
+  capstone_lesson_id: L-146
+- module_id: M23
+  domain_id: D11
+  title: 'Governing AI: PII, PHI, Bias, and the Regulatory Landscape'
+  lesson_count: 7
+  module_learning_objective: Recognize sensitive data, evaluate models for bias, and navigate the current AI regulatory landscape
+  capstone_description: A data flow diagram for a realistic healthcare AI use case, annotated with where PII and PHI exist,
+    which controls protect them, and which sections of HIPAA and the EU AI Act apply.
+  capstone_lesson_id: L-153
+- module_id: M24
+  domain_id: D12
+  title: Reading and Producing Architecture Diagrams
+  lesson_count: 6
+  module_learning_objective: Read reference architectures critically and produce a target-state diagram for a realistic AI
+    system
+  capstone_description: A target-state architecture diagram for a healthcare RAG system with labeled data flows, security
+    boundaries, and governance controls, drawn in draw.io or a similar tool and exported as SVG.
+  capstone_lesson_id: L-159
+- module_id: M25
+  domain_id: D12
+  title: Designing a Production RAG and LLMOps Pipeline
+  lesson_count: 6
+  module_learning_objective: Design a retrieval-augmented generation system and an LLMOps pipeline end-to-end
+  capstone_description: 'A two-page solution design document for a RAG system: ingestion, chunking, embedding, retrieval,
+    generation, evaluation, and LLMOps pipeline, with trade-offs explicitly called out.'
+  capstone_lesson_id: L-165
+- module_id: M26
+  domain_id: D12
+  title: Capstone, Enterprise AI Architecture Portfolio
+  lesson_count: 6
+  module_learning_objective: Synthesize everything into a principal-architect-level portfolio artifact
+  capstone_description: 'A complete architecture portfolio deliverable: executive summary, reference architecture diagram,
+    solution design document, cost model, and a five-minute recorded walkthrough explaining the design to a non-technical
+    audience.'
+  capstone_lesson_id: L-171
+lessons:
+- module_id: M01
+  domain_id: D01
+  title: Open the terminal with a keyboard shortcut
+  learning_objective: Launch a terminal application on the learner's own operating system using only the keyboard
+  prerequisite_lesson_ids: []
+  analogy_anchor: Opening the kitchen door before you cook, you can't do anything in the kitchen until you are actually in
+    it.
+  hands_on_action: Open Terminal (macOS), Windows Terminal (Windows), or GNOME Terminal (Linux) using the system keyboard
+    shortcut; leave it open.
+  verification: A terminal window is visible on screen with a blinking cursor and a prompt like 'user@machine:~$'.
+  extension: Customize the terminal window size and font size for comfortable reading.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 10
+  is_capstone: false
+  lesson_id: L-001
+  sequence_number: 1
+  week_number: 1
+  day_in_week: 1
+- module_id: M01
+  domain_id: D01
+  title: Read a prompt like a sign at a train station
+  learning_objective: 'Interpret the parts of a shell prompt: user, machine, current directory, and prompt character'
+  prerequisite_lesson_ids:
+  - L-001
+  analogy_anchor: 'A train station sign: it tells you where you are (platform), who is there (line), and where you can go
+    next (destination).'
+  hands_on_action: Look at the current prompt and write down in a note what each piece of text before the '$' or '%' represents.
+  verification: The learner can identify username, hostname, and current directory from their prompt without looking it up.
+  extension: Change the shell prompt format by editing the PS1 environment variable (preview only, deeper lesson later).
+  acronyms_used:
+  - CLI
+  - PS1
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 10
+  is_capstone: false
+  lesson_id: L-002
+  sequence_number: 2
+  week_number: 1
+  day_in_week: 2
+- module_id: M01
+  domain_id: D01
+  title: Print your first line with echo
+  learning_objective: Execute a command that produces visible output and confirm the command-response rhythm
+  prerequisite_lesson_ids:
+  - L-002
+  analogy_anchor: 'Ringing a bell: you do something, you hear something back. The terminal works the same way.'
+  hands_on_action: Type `echo Hello, world` and press Enter; observe the output; try it with quotes and without.
+  verification: The text 'Hello, world' appears on the next line and the prompt returns, ready for another command.
+  extension: Run `echo` with no arguments and observe what happens; try `echo $USER`.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-003
+  sequence_number: 3
+  week_number: 1
+  day_in_week: 3
+- module_id: M01
+  domain_id: D01
+  title: Find out where you are with pwd
+  learning_objective: Identify the current working directory using the pwd command
+  prerequisite_lesson_ids:
+  - L-003
+  analogy_anchor: Looking at the 'You Are Here' arrow on a shopping mall map, you can't plan a route without knowing your
+    starting point.
+  hands_on_action: Run `pwd`; write down the full path that is returned.
+  verification: A line of text starting with `/` (macOS/Linux) or `C:\` (Windows) is printed, showing the absolute path.
+  extension: Run `pwd` in a fresh terminal window and notice that the starting directory is usually your home directory.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-004
+  sequence_number: 4
+  week_number: 1
+  day_in_week: 4
+- module_id: M01
+  domain_id: D01
+  title: List the contents of a directory with ls
+  learning_objective: List files and directories in the current location and recognize the difference between files and folders
+  prerequisite_lesson_ids:
+  - L-004
+  analogy_anchor: Opening a file cabinet drawer to see what's inside before you start looking for a specific document.
+  hands_on_action: Run `ls` in the home directory; then run `ls -la` and notice the extra detail.
+  verification: The output shows a list of items; with `-la` it shows permissions, owner, size, and date.
+  extension: Try `ls` on another directory by passing its path as an argument.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-005
+  sequence_number: 5
+  week_number: 1
+  day_in_week: 5
+- module_id: M01
+  domain_id: D01
+  title: Move around with cd and relative paths
+  learning_objective: Change the current working directory using cd with both relative and absolute paths
+  prerequisite_lesson_ids:
+  - L-005
+  analogy_anchor: 'Walking through a house: to get to the kitchen you either say ''go to the kitchen'' (relative) or ''go
+    to 123 Main Street, kitchen'' (absolute).'
+  hands_on_action: From home, `cd Documents`, then `cd ..`, then `cd /` (or `cd C:\` on Windows); use `pwd` at each step.
+  verification: After each `cd`, `pwd` reflects the new directory; the learner can describe why.
+  extension: Use `cd -` to jump back to the previous directory.
+  acronyms_used:
+  - CD
+  - CLI
+  - OS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-006
+  sequence_number: 6
+  week_number: 1
+  day_in_week: 6
+- module_id: M01
+  domain_id: D01
+  title: Make and remove directories (capstone)
+  learning_objective: Create a practice directory, navigate into it, and list its contents, all from the command line
+  prerequisite_lesson_ids:
+  - L-006
+  analogy_anchor: 'Setting up a new filing cabinet for a new project: create the cabinet, open it, confirm it''s empty.'
+  hands_on_action: Run `mkdir ~/practice-cli`, `cd ~/practice-cli`, `ls`, then create an empty file with `touch hello.txt`
+    and list again.
+  verification: The new directory exists, contains hello.txt, and the learner can navigate in and out of it.
+  extension: Create nested directories in a single command with `mkdir -p a/b/c` and explore the result.
+  acronyms_used:
+  - CD
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-007
+  sequence_number: 7
+  week_number: 1
+  day_in_week: 7
+- module_id: M02
+  domain_id: D01
+  title: Read a file's contents with cat and less
+  learning_objective: Display the contents of a text file in the terminal using cat and page through it with less
+  prerequisite_lesson_ids:
+  - L-007
+  analogy_anchor: 'Reading a letter: cat opens it all at once, less lets you read it page by page.'
+  hands_on_action: Create a text file with `echo "line one\nline two\nline three" > notes.txt`, then read it with `cat notes.txt`
+    and `less notes.txt` (press q to quit less).
+  verification: The file's contents are displayed; the learner knows how to exit less.
+  extension: Compare cat and less on a longer file like /etc/services (macOS/Linux) and notice the difference.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-008
+  sequence_number: 8
+  week_number: 2
+  day_in_week: 1
+- module_id: M02
+  domain_id: D01
+  title: Edit a file with nano
+  learning_objective: Open, edit, and save a plain-text file using the nano terminal editor
+  prerequisite_lesson_ids:
+  - L-008
+  analogy_anchor: 'A typewriter with a help menu along the bottom: the shortcuts are always visible, you just have to read
+    them.'
+  hands_on_action: Run `nano hello.txt`, type three lines of text, save with Ctrl+O (then Enter), exit with Ctrl+X.
+  verification: The file hello.txt contains the typed text when opened again with cat.
+  extension: Edit a second file and use Ctrl+W to search within the file.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-009
+  sequence_number: 9
+  week_number: 2
+  day_in_week: 2
+- module_id: M02
+  domain_id: D01
+  title: Understand file paths, extensions, and hidden files
+  learning_objective: Distinguish absolute and relative paths, interpret file extensions, and reveal hidden files
+  prerequisite_lesson_ids:
+  - L-009
+  analogy_anchor: 'A postal address: country, city, street, house number. Remove parts from the end to get less specific.'
+  hands_on_action: Run `ls -la` in the home directory to reveal hidden files (those starting with `.`); open ~/.bashrc or
+    similar with cat.
+  verification: The learner can describe what hidden files are used for and why extensions are a convention, not a rule.
+  extension: Count how many hidden files exist in the home directory using `ls -la | wc -l`.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-010
+  sequence_number: 10
+  week_number: 2
+  day_in_week: 3
+- module_id: M02
+  domain_id: D01
+  title: Install a package manager
+  learning_objective: Install Homebrew (macOS), winget (Windows), or confirm apt (Linux) is present
+  prerequisite_lesson_ids:
+  - L-010
+  analogy_anchor: 'Setting up a delivery subscription: once it''s in place, you can order things to be installed automatically
+    instead of going to each store.'
+  hands_on_action: Follow the learner's OS-specific install path for a package manager; run the install command; verify with
+    `brew --version`, `winget --version`, or `apt --version`.
+  verification: The package manager's version number is printed when asked.
+  extension: Read the package manager's documentation home page and note how to search for a package.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-011
+  sequence_number: 11
+  week_number: 2
+  day_in_week: 4
+- module_id: M02
+  domain_id: D01
+  title: Install your first tool with a package manager
+  learning_objective: Install a terminal tool (tree, wget, or jq) through the package manager and run it
+  prerequisite_lesson_ids:
+  - L-011
+  analogy_anchor: Ordering a kitchen gadget online and using it the same day, faster than driving to the store.
+  hands_on_action: Install `tree` via the package manager; run `tree ~/practice-cli` to see a visual folder structure.
+  verification: The tree command runs and prints the directory structure in ASCII art.
+  extension: Install `jq` or `wget` with the same pattern.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-012
+  sequence_number: 12
+  week_number: 2
+  day_in_week: 5
+- module_id: M02
+  domain_id: D01
+  title: Set an environment variable and read it back (capstone)
+  learning_objective: Set and read an environment variable in the current shell session, understanding that it is scoped to
+    that session
+  prerequisite_lesson_ids:
+  - L-012
+  analogy_anchor: 'Writing a note on a whiteboard in one room: it''s useful in that room but disappears when you leave and
+    come back to a fresh whiteboard.'
+  hands_on_action: Run `export MY_NAME="<learner's name>"` (or `set MY_NAME=...` on Windows cmd), then `echo $MY_NAME`; open
+    a new terminal and confirm it's gone.
+  verification: The variable prints in the original shell and is empty in a fresh one.
+  extension: Research how to make an environment variable persistent via .bashrc or .zshrc (preview, formal lesson later).
+  acronyms_used:
+  - CLI
+  - OS
+  - PATH
+  - PR
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-013
+  sequence_number: 13
+  week_number: 2
+  day_in_week: 6
+- module_id: M03
+  domain_id: D02
+  title: Install Git and confirm the version
+  learning_objective: Install Git on the learner's system and verify it runs from the command line
+  prerequisite_lesson_ids:
+  - L-013
+  analogy_anchor: 'Buying a stopwatch for a workshop: you want to be sure the batteries work before the class starts.'
+  hands_on_action: Install Git via the package manager; run `git --version`.
+  verification: Git's version number is printed.
+  extension: Set your global user name and email with `git config --global user.name ...` and `user.email ...` (needed later
+    anyway).
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-014
+  sequence_number: 14
+  week_number: 2
+  day_in_week: 7
+- module_id: M03
+  domain_id: D02
+  title: Initialize a repository in a folder
+  learning_objective: Turn an ordinary folder into a Git repository with git init and confirm the hidden .git directory exists
+  prerequisite_lesson_ids:
+  - L-014
+  analogy_anchor: 'Putting a new project binder on the shelf: once it''s labeled and indexed, every document you add to it
+    is tracked.'
+  hands_on_action: In ~/practice-cli, run `git init`; then `ls -la` to see the new .git folder.
+  verification: The command confirms an initialized empty repository; the .git folder exists.
+  extension: Read one file inside .git (HEAD is small and harmless) just to see that it is plain text.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-015
+  sequence_number: 15
+  week_number: 3
+  day_in_week: 1
+- module_id: M03
+  domain_id: D02
+  title: Track a file with git add and git commit
+  learning_objective: Stage and commit a file to record a first version of it in the repository's history
+  prerequisite_lesson_ids:
+  - L-015
+  analogy_anchor: 'Taking a photograph of a project at a moment in time: the photo is the commit, the frame of the photo is
+    what you chose to include.'
+  hands_on_action: Create or edit a README.md, then `git add README.md`, then `git commit -m "Initial commit"`.
+  verification: The output shows one file changed and a new commit hash.
+  extension: Make a small change and do a second commit with a clearer message.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-016
+  sequence_number: 16
+  week_number: 3
+  day_in_week: 2
+- module_id: M03
+  domain_id: D02
+  title: Read the history with git log and git status
+  learning_objective: Inspect the repository's commit history and its current working-tree state
+  prerequisite_lesson_ids:
+  - L-016
+  analogy_anchor: 'A cash register''s receipt tape (log) and the display showing the current total (status): two different
+    views of the same system.'
+  hands_on_action: Run `git log`; then edit the README without committing and run `git status`.
+  verification: The learner can describe what is committed, what is staged, and what is modified but not staged.
+  extension: Use `git log --oneline --graph` to get a compact visual history.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-017
+  sequence_number: 17
+  week_number: 3
+  day_in_week: 3
+- module_id: M03
+  domain_id: D02
+  title: Undo a mistake with git restore and git reset (capstone)
+  learning_objective: 'Recover from common mistakes: discard unstaged changes, unstage a file, and amend the last commit message'
+  prerequisite_lesson_ids:
+  - L-017
+  analogy_anchor: The 'undo' button in a word processor, different levels of undo for different kinds of mistakes.
+  hands_on_action: Deliberately edit README badly, recover with `git restore README.md`; stage a file, unstage with `git restore
+    --staged`; fix the last commit message with `git commit --amend -m "Better message"`.
+  verification: All three recovery paths work and the learner can describe which to use when.
+  extension: Research what `git reset --hard` does and why it is dangerous; do not run it without understanding.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-018
+  sequence_number: 18
+  week_number: 3
+  day_in_week: 4
+- module_id: M04
+  domain_id: D02
+  title: Create a GitHub account and a first remote repository
+  learning_objective: Sign up for GitHub (if needed) and create an empty remote repository through the browser
+  prerequisite_lesson_ids:
+  - L-018
+  analogy_anchor: 'Opening a P.O. box at the post office: you have a local mailbox at home and a second address in town where
+    people can send mail.'
+  hands_on_action: Create a GitHub account (if not already), then create a new empty repository named 'practice-cli' with
+    no README or license.
+  verification: The new repository URL is visible and copied to the clipboard.
+  extension: Enable two-factor authentication on the GitHub account (strongly recommended).
+  acronyms_used:
+  - CLI
+  - GUI
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-019
+  sequence_number: 19
+  week_number: 3
+  day_in_week: 5
+- module_id: M04
+  domain_id: D02
+  title: Connect a local repository to a GitHub remote
+  learning_objective: Add a GitHub remote to a local Git repository and push the first commit
+  prerequisite_lesson_ids:
+  - L-019
+  analogy_anchor: 'Linking a local address book to a cloud backup: changes you make locally can now be synced up when you
+    choose.'
+  hands_on_action: Run `git remote add origin <url>`, then `git branch -M main`, then `git push -u origin main`.
+  verification: The learner's commits are visible on GitHub in the browser.
+  extension: Run `git remote -v` to confirm the remote is configured correctly.
+  acronyms_used:
+  - CLI
+  - GUI
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-020
+  sequence_number: 20
+  week_number: 3
+  day_in_week: 6
+- module_id: M04
+  domain_id: D02
+  title: Make a change locally, push, pull to sync
+  learning_objective: Edit a file locally, commit, push, then edit in the GitHub web interface, pull, and see the change locally
+  prerequisite_lesson_ids:
+  - L-020
+  analogy_anchor: 'Two people editing the same shared recipe card: one makes a change at home, mails the card to the other,
+    who mails it back with edits.'
+  hands_on_action: Edit README locally, commit, push; edit README on GitHub.com, commit there; `git pull` locally.
+  verification: Local and remote are back in sync, with both changes in the history.
+  extension: Look at the network graph in GitHub to see the linear history.
+  acronyms_used:
+  - CLI
+  - GUI
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-021
+  sequence_number: 21
+  week_number: 3
+  day_in_week: 7
+- module_id: M04
+  domain_id: D02
+  title: Work on a branch and open a pull request
+  learning_objective: Create a feature branch, commit to it, push it, and open a pull request against main
+  prerequisite_lesson_ids:
+  - L-021
+  analogy_anchor: Writing a draft on a separate piece of paper before pasting it into the main document, keeps the master
+    clean while you experiment.
+  hands_on_action: Run `git checkout -b add-about-section`, edit README, commit, `git push -u origin add-about-section`; open
+    a PR on GitHub.
+  verification: The PR is visible in the GitHub web UI and shows the diff.
+  extension: Merge the PR via the GitHub UI and then pull the merge commit locally.
+  acronyms_used:
+  - CLI
+  - GUI
+  - PR
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-022
+  sequence_number: 22
+  week_number: 4
+  day_in_week: 1
+- module_id: M04
+  domain_id: D02
+  title: Deliberately create and resolve a merge conflict
+  learning_objective: Produce a merge conflict intentionally and resolve it by hand-editing the conflicted file
+  prerequisite_lesson_ids:
+  - L-022
+  analogy_anchor: Two people editing the same paragraph of a paper document in parallel, when they come back together, someone
+    has to decide which version wins, or write a combined version.
+  hands_on_action: Edit the same line of README on two branches; merge one into the other and hit the conflict; open the file
+    and resolve the '<<<<<<<' markers; commit.
+  verification: The conflict is resolved, the file no longer contains conflict markers, and the merge commit is recorded.
+  extension: Read `git log --merges` to see the merge commit explicitly.
+  acronyms_used:
+  - CLI
+  - PR
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-023
+  sequence_number: 23
+  week_number: 4
+  day_in_week: 2
+- module_id: M04
+  domain_id: D02
+  title: Write a .gitignore and a useful README (capstone)
+  learning_objective: Write a practical .gitignore to exclude common junk and a README that follows standard structure
+  prerequisite_lesson_ids:
+  - L-023
+  analogy_anchor: A 'do not pack' list for a moving company plus a welcome letter for the new homeowner.
+  hands_on_action: Add a .gitignore excluding common artifacts (virtual environments, OS files, editor backups); rewrite README.md
+    with Title, What this is, How to run, License.
+  verification: Running `git status` shows the ignored files are not tracked; the README renders nicely on GitHub.
+  extension: Generate a starter .gitignore from gitignore.io for Python and the learner's OS.
+  acronyms_used:
+  - CLI
+  - OS
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-024
+  sequence_number: 24
+  week_number: 4
+  day_in_week: 3
+- module_id: M05
+  domain_id: D03
+  title: What is a programming language
+  learning_objective: Explain at a conceptual level what a programming language is, what an interpreter does, and why Python
+    is a good first language
+  prerequisite_lesson_ids:
+  - L-007
+  analogy_anchor: 'A recipe in a cookbook: the language is the written recipe; the interpreter is the cook who reads each
+    step and performs the action.'
+  hands_on_action: Read a short (1-page) explanation of what Python is and write a 3-sentence paraphrase in the learner's
+    own words.
+  verification: The learner can explain in two sentences what code does and why a language is needed.
+  extension: Read the Wikipedia lead paragraph for 'Python (programming language)' and note the year it was created.
+  acronyms_used:
+  - CLI
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-025
+  sequence_number: 25
+  week_number: 4
+  day_in_week: 4
+- module_id: M05
+  domain_id: D03
+  title: Install Python cleanly and confirm the version
+  learning_objective: Install Python 3.12+ and verify the command 'python' or 'python3' runs and prints a version number
+  prerequisite_lesson_ids:
+  - L-025
+  analogy_anchor: 'Setting up a new workbench tool: install it, then test that it turns on before you try to use it.'
+  hands_on_action: Install Python via the package manager (or python.org for Windows); run `python3 --version` (or `python
+    --version`).
+  verification: A Python version 3.12 or later is printed.
+  extension: Also install `uv` (modern Python tooling) or plan to in the environments module.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-026
+  sequence_number: 26
+  week_number: 4
+  day_in_week: 5
+- module_id: M05
+  domain_id: D03
+  title: Run your first line in the Python REPL
+  learning_objective: Start the Python interactive interpreter and evaluate a first expression
+  prerequisite_lesson_ids:
+  - L-026
+  analogy_anchor: 'A hand calculator with a display: you type, it computes, it shows the answer. The REPL is a conversational
+    calculator.'
+  hands_on_action: Run `python3`, then type `1 + 1`, then `print("Hello, Elvis")` (or similar), then exit with exit().
+  verification: Both expressions return a visible result; the learner exits cleanly.
+  extension: Try `2 ** 10` and `17 / 5` and `17 // 5` to see integer vs float division.
+  acronyms_used:
+  - CLI
+  - REPL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-027
+  sequence_number: 27
+  week_number: 4
+  day_in_week: 6
+- module_id: M05
+  domain_id: D03
+  title: Run your first Python script from a file
+  learning_objective: Write a Python script in a file, save it, and run it from the command line
+  prerequisite_lesson_ids:
+  - L-027
+  analogy_anchor: Writing down a recipe on a card vs. dictating it each time, saves you from repeating yourself.
+  hands_on_action: Create hello.py with `print("Hello from a script!")`, save, run with `python3 hello.py`.
+  verification: The script runs and prints its output.
+  extension: Add a second line that prints the current date using `from datetime import date; print(date.today())`.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-028
+  sequence_number: 28
+  week_number: 4
+  day_in_week: 7
+- module_id: M05
+  domain_id: D03
+  title: Work with variables and basic types
+  learning_objective: Assign values to variables, distinguish strings, integers, and floats, and use basic arithmetic
+  prerequisite_lesson_ids:
+  - L-028
+  analogy_anchor: 'Labeling three glass jars in a pantry: one for sugar, one for flour, one for salt. The label is the variable
+    name, what''s inside is the value.'
+  hands_on_action: Write a script that declares three variables (name as string, age as int, height_m as float) and prints
+    a formatted sentence using them.
+  verification: The script runs and prints a sentence mixing the three values correctly.
+  extension: Use an f-string like `f"Hi, {name}!"` to format the output.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-029
+  sequence_number: 29
+  week_number: 5
+  day_in_week: 1
+- module_id: M05
+  domain_id: D03
+  title: Write a script that reads input and writes a file (capstone)
+  learning_objective: Combine print, input, variables, and file writing into a complete small script
+  prerequisite_lesson_ids:
+  - L-029
+  analogy_anchor: 'A simple intake form at a doctor''s office: the receptionist asks three questions and writes the answers
+    on a card.'
+  hands_on_action: Write a script that asks for the learner's name, favorite food, and city, and writes the answers to a file
+    called me.txt.
+  verification: Running the script prompts for input; me.txt exists and contains the answers.
+  extension: Add a timestamp to the top of the file using datetime.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-030
+  sequence_number: 30
+  week_number: 5
+  day_in_week: 2
+- module_id: M06
+  domain_id: D03
+  title: Booleans and conditionals
+  learning_objective: Use True, False, comparison operators, and if/elif/else to make decisions in code
+  prerequisite_lesson_ids:
+  - L-030
+  analogy_anchor: 'A bouncer at a club door: over 21, you''re in; under 21, you''re out. The conditional is the rule the bouncer
+    applies.'
+  hands_on_action: Write a script that reads a number and prints whether it is negative, zero, or positive using if/elif/else.
+  verification: All three branches are reachable by running the script with different inputs.
+  extension: Add a fourth branch for non-numeric input using try/except (preview).
+  acronyms_used:
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-031
+  sequence_number: 31
+  week_number: 5
+  day_in_week: 3
+- module_id: M06
+  domain_id: D03
+  title: Loops with for and while
+  learning_objective: Write a for loop over a range and a while loop with a termination condition
+  prerequisite_lesson_ids:
+  - L-031
+  analogy_anchor: 'Sweeping a floor: a for loop covers every plank in sequence; a while loop keeps going until you decide
+    the floor is clean.'
+  hands_on_action: Write a script that prints the numbers 1 through 10 with a for loop, then counts down from 10 with a while
+    loop.
+  verification: Both loops produce correct output and the learner can describe when each is appropriate.
+  extension: Use `break` and `continue` in a loop and observe the difference.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-032
+  sequence_number: 32
+  week_number: 5
+  day_in_week: 4
+- module_id: M06
+  domain_id: D03
+  title: Define and call your own functions
+  learning_objective: Write a function with parameters and a return value and call it with different arguments
+  prerequisite_lesson_ids:
+  - L-032
+  analogy_anchor: 'A microwave reheat button: you press it with different dishes, the same machinery runs, you get back a
+    hot dish. The function is the button.'
+  hands_on_action: Write a function `greet(name)` that returns a greeting string; call it three times with three names and
+    print the results.
+  verification: The function works for all three calls and returns (not prints) the value.
+  extension: Add a second parameter `time_of_day` with a default value.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-033
+  sequence_number: 33
+  week_number: 5
+  day_in_week: 5
+- module_id: M06
+  domain_id: D03
+  title: Functions that work together
+  learning_objective: Compose a small program from multiple functions that pass data between themselves
+  prerequisite_lesson_ids:
+  - L-033
+  analogy_anchor: 'A kitchen assembly line: one person chops vegetables, one seasons, one cooks. Each function does one step
+    well.'
+  hands_on_action: 'Write three functions: one to ask for a number, one to check if it''s prime, one to print the result;
+    wire them in a main() function.'
+  verification: The program runs from main() and produces correct output for several inputs.
+  extension: Add a fourth function that logs each attempt to a file.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-034
+  sequence_number: 34
+  week_number: 5
+  day_in_week: 6
+- module_id: M06
+  domain_id: D03
+  title: Handle errors with try and except
+  learning_objective: Use try/except to catch and handle expected exceptions without crashing the program
+  prerequisite_lesson_ids:
+  - L-034
+  analogy_anchor: 'A safety net under a trapeze: you hope you don''t need it, but when you do, it prevents a disaster.'
+  hands_on_action: Modify a script that divides two numbers to handle ZeroDivisionError and ValueError gracefully with clear
+    messages.
+  verification: The script handles bad input without a traceback visible to the user.
+  extension: Catch the base `Exception` separately and log the details.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-035
+  sequence_number: 35
+  week_number: 5
+  day_in_week: 7
+- module_id: M06
+  domain_id: D03
+  title: Debug a broken script by reading the traceback
+  learning_objective: Read a Python traceback from bottom to top and fix the named error
+  prerequisite_lesson_ids:
+  - L-035
+  analogy_anchor: 'Reading a car''s diagnostic report: the error code at the bottom tells you the root cause, the lines above
+    are context.'
+  hands_on_action: Take a deliberately-broken script (provided), read the traceback, identify the line number and error type,
+    and fix it.
+  verification: The script runs without error after the fix and the learner can describe what the original problem was.
+  extension: Use `print()` statements to narrow down the source of a logic error (not just a crash).
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-036
+  sequence_number: 36
+  week_number: 6
+  day_in_week: 1
+- module_id: M06
+  domain_id: D03
+  title: Build a number-guessing game (capstone)
+  learning_objective: Combine input, conditionals, loops, functions, and exception handling into a complete small game
+  prerequisite_lesson_ids:
+  - L-036
+  analogy_anchor: 'A guess-the-number game at a fairground booth: the carnival worker keeps score, gives hints, and decides
+    when the game ends.'
+  hands_on_action: Write a number-guessing game with a random target, up to 7 guesses, hints (higher/lower), graceful handling
+    of non-numeric input, and a final tally.
+  verification: The game plays through a full round and handles bad input without crashing.
+  extension: Save the final score to a scores.txt file with the date and time.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-037
+  sequence_number: 37
+  week_number: 6
+  day_in_week: 2
+- module_id: M07
+  domain_id: D03
+  title: Lists, ordered collections
+  learning_objective: Create, index into, slice, append to, and iterate over a Python list
+  prerequisite_lesson_ids:
+  - L-037
+  analogy_anchor: 'A numbered shopping list: position 1 is the first item, you can add to the bottom, you can grab a slice
+    of items 3-5.'
+  hands_on_action: Write a script that builds a list of five cities, prints the first and last, reverses it, and appends a
+    sixth.
+  verification: All four operations produce correct output.
+  extension: Use list comprehension to derive a new list of city name lengths.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-038
+  sequence_number: 38
+  week_number: 6
+  day_in_week: 3
+- module_id: M07
+  domain_id: D03
+  title: Dictionaries, key-value lookups
+  learning_objective: Create a dictionary, access values by key, add and update entries, and iterate over items
+  prerequisite_lesson_ids:
+  - L-038
+  analogy_anchor: 'A hotel key rack: each room number (key) has one key (value); you can look up by room, change the key,
+    or add a new room.'
+  hands_on_action: Write a script with a dictionary of three city-to-population pairs; print one lookup, add a new city, and
+    loop over all entries.
+  verification: All operations work and the learner can describe what would happen on a missing-key lookup.
+  extension: Use `dict.get(key, default)` to handle missing keys safely.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-039
+  sequence_number: 39
+  week_number: 6
+  day_in_week: 4
+- module_id: M07
+  domain_id: D03
+  title: Sets and tuples
+  learning_objective: Use sets for uniqueness and tuples for immutable sequences; know when each is appropriate
+  prerequisite_lesson_ids:
+  - L-039
+  analogy_anchor: A set is a bag where duplicates are impossible; a tuple is an engraved plaque, once made, you don't change
+    the words.
+  hands_on_action: Write a script that removes duplicates from a list using a set, and returns a (min, max) pair as a tuple.
+  verification: The output is correct and the tuple cannot be modified (attempting raises TypeError).
+  extension: 'Try set operations: union, intersection, difference.'
+  acronyms_used: []
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-040
+  sequence_number: 40
+  week_number: 6
+  day_in_week: 5
+- module_id: M07
+  domain_id: D03
+  title: Read and write text files
+  learning_objective: Open a text file for reading or writing using the with statement and handle line-by-line processing
+  prerequisite_lesson_ids:
+  - L-040
+  analogy_anchor: 'Opening a physical filing cabinet: you commit to opening it (with), you take out or file papers, and the
+    drawer closes by itself when you step away.'
+  hands_on_action: Write a script that creates a file with 5 lines, then opens and reads them back one at a time, numbering
+    each line as it prints.
+  verification: File is created correctly and read back as expected.
+  extension: Append a line to an existing file using mode 'a'.
+  acronyms_used:
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-041
+  sequence_number: 41
+  week_number: 6
+  day_in_week: 6
+- module_id: M07
+  domain_id: D03
+  title: Read and write CSV files
+  learning_objective: Use the csv module to read a CSV into a list of rows and write a new CSV
+  prerequisite_lesson_ids:
+  - L-041
+  analogy_anchor: 'A spreadsheet is to CSV what a formal dinner is to a picnic: same food, simpler format.'
+  hands_on_action: Given a sample.csv with grocery data, write a script that reads it, prints the header, counts the rows,
+    and writes a new CSV with only rows from one category.
+  verification: The new CSV exists and contains the correct filtered rows.
+  extension: Use `csv.DictReader` to work with named columns instead of positional ones.
+  acronyms_used:
+  - CLI
+  - CSV
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-042
+  sequence_number: 42
+  week_number: 6
+  day_in_week: 7
+- module_id: M07
+  domain_id: D03
+  title: Grocery category counter (capstone)
+  learning_objective: Combine CSV reading, dictionaries, and file writing to produce a summary of a dataset
+  prerequisite_lesson_ids:
+  - L-042
+  analogy_anchor: 'A cashier at the end of a shift totaling sales by department: a lot of small transactions, a short summary
+    at the end.'
+  hands_on_action: Given a 100-row grocery CSV, write a script that counts items per category using a dictionary, handles
+    a missing-file error gracefully, and writes a summary CSV with category and count columns.
+  verification: The summary CSV exists and the counts match when checked by hand on a subset.
+  extension: Sort the summary by count descending before writing.
+  acronyms_used:
+  - CSV
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-043
+  sequence_number: 43
+  week_number: 7
+  day_in_week: 1
+- module_id: M08
+  domain_id: D03
+  title: Why virtual environments exist
+  learning_objective: Explain why virtual environments are needed and what problems they prevent
+  prerequisite_lesson_ids:
+  - L-043
+  analogy_anchor: 'Why you wear safety glasses in one workshop and an apron in another: the right environment for each job,
+    without cross-contamination.'
+  hands_on_action: Read a short explanation of dependency conflicts; write two sentences in the learner's own words describing
+    the problem.
+  verification: The learner can explain why installing everything globally creates problems.
+  extension: Research what pip's --user flag does and why it is a partial solution.
+  acronyms_used: []
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-044
+  sequence_number: 44
+  week_number: 7
+  day_in_week: 2
+- module_id: M08
+  domain_id: D03
+  title: Create a virtual environment with venv
+  learning_objective: Create, activate, deactivate, and delete a Python virtual environment using the built-in venv module
+  prerequisite_lesson_ids:
+  - L-044
+  analogy_anchor: Creating a fresh workbench for a new project, clean, uncluttered, specific to the task.
+  hands_on_action: Run `python3 -m venv .venv`, then activate with the OS-specific command, confirm with `which python` (or
+    `where python`), then `deactivate`.
+  verification: Activation shows the .venv path in front of the prompt; deactivation removes it.
+  extension: Try `uv venv` as a faster alternative and compare.
+  acronyms_used:
+  - CLI
+  - OS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-045
+  sequence_number: 45
+  week_number: 7
+  day_in_week: 3
+- module_id: M08
+  domain_id: D03
+  title: Install a package with pip
+  learning_objective: Install a third-party package inside a virtual environment with pip and confirm it can be imported
+  prerequisite_lesson_ids:
+  - L-045
+  analogy_anchor: Buying a specialty tool from the hardware store just for this one project and leaving it on this workbench
+    when you're done.
+  hands_on_action: With .venv active, run `pip install requests`, then open Python and run `import requests`.
+  verification: The package imports without error; the learner can locate it in .venv/lib/... .
+  extension: Run `pip list` to see everything installed.
+  acronyms_used:
+  - CLI
+  - REPL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-046
+  sequence_number: 46
+  week_number: 7
+  day_in_week: 4
+- module_id: M08
+  domain_id: D03
+  title: Pin dependencies with requirements.txt
+  learning_objective: Freeze installed packages to a requirements.txt and reproduce the environment from it
+  prerequisite_lesson_ids:
+  - L-046
+  analogy_anchor: Writing down the exact brands and sizes of ingredients for a recipe so someone else can make the same dish.
+  hands_on_action: Run `pip freeze > requirements.txt`; delete and recreate .venv; run `pip install -r requirements.txt`.
+  verification: The new .venv has the same packages as the old one.
+  extension: Read the requirements.txt and understand the version-pinning syntax.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-047
+  sequence_number: 47
+  week_number: 7
+  day_in_week: 5
+- module_id: M08
+  domain_id: D03
+  title: Organize code into modules
+  learning_objective: Split a program across multiple Python files and import from one into another
+  prerequisite_lesson_ids:
+  - L-047
+  analogy_anchor: 'Chapters in a book: one story told across several files, each focused on one part.'
+  hands_on_action: Refactor the grocery counter into two files (main.py and counter.py); import counter from main and run.
+  verification: The refactored program runs and produces the same result as before.
+  extension: Add a `__main__.py` guard (`if __name__ == "__main__":`).
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-048
+  sequence_number: 48
+  week_number: 7
+  day_in_week: 6
+- module_id: M08
+  domain_id: D03
+  title: 'Use a Python package: pandas for CSV handling'
+  learning_objective: Replace the hand-written CSV code with pandas and compare the two approaches
+  prerequisite_lesson_ids:
+  - L-048
+  analogy_anchor: 'Switching from a hand mixer to a stand mixer: same job, much less effort on repeated tasks.'
+  hands_on_action: Install pandas in the .venv, then rewrite the grocery counter to use `pd.read_csv` and `df.groupby`.
+  verification: The pandas version produces the same output as the hand-written version.
+  extension: Compare line counts and execution time between the two implementations.
+  acronyms_used:
+  - CLI
+  - CSV
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-049
+  sequence_number: 49
+  week_number: 7
+  day_in_week: 7
+- module_id: M08
+  domain_id: D03
+  title: Put a Python project on GitHub (capstone)
+  learning_objective: Combine a virtual environment, requirements.txt, .gitignore, README, and multi-file project into a complete
+    repository pushed to GitHub
+  prerequisite_lesson_ids:
+  - L-049
+  - L-024
+  analogy_anchor: 'Publishing a cookbook: recipes in chapters, an index, a note on the inside cover about why this book exists,
+    and the book is available for others to borrow.'
+  hands_on_action: Initialize a Git repo in the project folder, write a proper README and .gitignore (excluding .venv), commit,
+    push to a new GitHub repo named 'grocery-counter'.
+  verification: The public repo on GitHub shows the project structure and can be cloned by someone else who can run it.
+  extension: Add a LICENSE file (MIT is a reasonable choice) using GitHub's template.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-050
+  sequence_number: 50
+  week_number: 8
+  day_in_week: 1
+- module_id: M09
+  domain_id: D04
+  title: Structured, semi-structured, unstructured, the three families
+  learning_objective: Distinguish the three families of data and give a real-world example of each
+  prerequisite_lesson_ids:
+  - L-050
+  analogy_anchor: 'Filing cabinets vs. sticky notes vs. a shoebox of photos: three different ways information can be stored,
+    each with trade-offs.'
+  hands_on_action: Write a one-page note naming one example of each family from the learner's daily life and why it belongs
+    there.
+  verification: The learner can classify five new examples correctly in a short self-quiz.
+  extension: Read a short paragraph about polyglot persistence and note what it means.
+  acronyms_used: []
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-051
+  sequence_number: 51
+  week_number: 8
+  day_in_week: 2
+- module_id: M09
+  domain_id: D04
+  title: Rows, columns, types, and nulls
+  learning_objective: Describe a tabular dataset in terms of rows, columns, types, and the meaning of null or missing values
+  prerequisite_lesson_ids:
+  - L-051
+  analogy_anchor: 'A classroom attendance sheet: names down the side (rows), days across the top (columns), each cell either
+    a checkmark or a blank (value or null).'
+  hands_on_action: Open a provided CSV in a text editor and in pandas; for each column, describe its type and how many nulls
+    it has using `df.info()` and `df.isna().sum()`.
+  verification: The learner produces a correct data dictionary for a 5-column sample.
+  extension: Add a new row with missing values and run the same checks.
+  acronyms_used:
+  - CLI
+  - CSV
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-052
+  sequence_number: 52
+  week_number: 8
+  day_in_week: 3
+- module_id: M09
+  domain_id: D04
+  title: Primary keys, foreign keys, and relationships
+  learning_objective: Explain why every row needs a unique identifier and how foreign keys connect tables conceptually
+  prerequisite_lesson_ids:
+  - L-052
+  analogy_anchor: 'A library: every book has a call number (primary key); every checkout record mentions that call number
+    (foreign key).'
+  hands_on_action: Given a two-table example (customers and orders), annotate which column is the primary key of each table
+    and which is the foreign key.
+  verification: The annotation is correct and the learner can describe the relationship in one sentence.
+  extension: Find a real duplicate primary key in a provided 'bad data' CSV and describe the consequence.
+  acronyms_used:
+  - CSV
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-053
+  sequence_number: 53
+  week_number: 8
+  day_in_week: 4
+- module_id: M09
+  domain_id: D04
+  title: 'Common data formats: CSV, JSON, Parquet, Avro'
+  learning_objective: Recognize the four most common data formats, their typical use cases, and their trade-offs
+  prerequisite_lesson_ids:
+  - L-053
+  analogy_anchor: Plain paper letter (CSV), a nested form (JSON), a compressed archive (Parquet), a versioned document (Avro),
+    same content, different envelopes.
+  hands_on_action: Given a small dataset in CSV, JSON, and Parquet, compare file sizes and contents with `ls -la` and short
+    scripts.
+  verification: The learner can describe when to choose each and why Parquet is the default for analytics.
+  extension: Convert the CSV to Parquet using pandas and compare sizes.
+  acronyms_used:
+  - CLI
+  - CSV
+  - JSON
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-054
+  sequence_number: 54
+  week_number: 8
+  day_in_week: 5
+- module_id: M09
+  domain_id: D04
+  title: OLTP vs OLAP, two jobs, two designs
+  learning_objective: Distinguish transactional (OLTP) from analytical (OLAP) workloads and why they usually live in different
+    systems
+  prerequisite_lesson_ids:
+  - L-054
+  analogy_anchor: A cash register (OLTP) is designed for speed of individual transactions; the end-of-month sales report system
+    (OLAP) is designed for reading huge slices of history fast.
+  hands_on_action: Read a short comparison; write a two-sentence summary in the learner's own words.
+  verification: The learner can correctly classify five example queries as OLTP or OLAP.
+  extension: Look up what a data warehouse and a data lakehouse are and note the difference in one sentence each.
+  acronyms_used:
+  - OLTP
+  - OLAP
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-055
+  sequence_number: 55
+  week_number: 8
+  day_in_week: 6
+- module_id: M09
+  domain_id: D04
+  title: Data quality, the things that go wrong
+  learning_objective: 'Recognize the common data quality failure modes: duplicates, nulls, bad types, out-of-range values,
+    and semantic drift'
+  prerequisite_lesson_ids:
+  - L-055
+  analogy_anchor: 'Receiving a shipment: missing items (nulls), duplicate items (duplicates), the wrong sizes (bad types),
+    broken items (out-of-range), labels saying one thing when the contents are another (semantic drift).'
+  hands_on_action: Given a deliberately-messy CSV, identify at least three different data quality issues and propose one fix
+    for each.
+  verification: All three issues are caught and the proposed fixes are reasonable.
+  extension: Run a data quality profile with the `ydata-profiling` library and scan its report.
+  acronyms_used:
+  - CLI
+  - CSV
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-056
+  sequence_number: 56
+  week_number: 8
+  day_in_week: 7
+- module_id: M09
+  domain_id: D04
+  title: Classify ten artifacts from your day (capstone)
+  learning_objective: Produce a written inventory of ten real-world data artifacts classified by family, format, and likely
+    storage
+  prerequisite_lesson_ids:
+  - L-056
+  analogy_anchor: 'An architect''s daily-things audit: every photo, every spreadsheet, every PDF on the desk gets a tag.'
+  hands_on_action: Write a markdown table with ten artifacts from the learner's day (an email, a bank statement PDF, an X-ray,
+    a voicemail, a CSV export, etc.), classifying each by family, format, and suitable storage.
+  verification: The table is complete and the rationale is defensible for each entry.
+  extension: Add a column for 'sensitivity' and flag anything that would be PHI or PII.
+  acronyms_used:
+  - CSV
+  - PDF
+  - PHI
+  - PII
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-057
+  sequence_number: 57
+  week_number: 9
+  day_in_week: 1
+- module_id: M10
+  domain_id: D05
+  title: Install SQLite and open a database
+  learning_objective: Install the sqlite3 CLI and open an empty database file
+  prerequisite_lesson_ids:
+  - L-057
+  analogy_anchor: 'Getting a fresh ledger book from the supply cabinet: empty, ready to be written in, yours to experiment
+    in.'
+  hands_on_action: Install sqlite3 via the package manager; run `sqlite3 practice.db`; type `.tables` to confirm the database
+    is empty; exit with `.quit`.
+  verification: A new practice.db file exists and sqlite3 runs.
+  extension: Read the sqlite3 CLI help with `.help`.
+  acronyms_used:
+  - SQL
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-058
+  sequence_number: 58
+  week_number: 9
+  day_in_week: 2
+- module_id: M10
+  domain_id: D05
+  title: Generate a synthetic dataset in Python
+  learning_objective: Use Python to generate a two-table synthetic dataset (customers and orders) as CSV files
+  prerequisite_lesson_ids:
+  - L-058
+  analogy_anchor: Filling two notebooks with fake-but-realistic records for a test, like the data teachers use in exam questions.
+  hands_on_action: Run a provided (or authored) script using the `faker` library to produce customers.csv (500 rows) and orders.csv
+    (2000 rows) with a customer_id foreign key link.
+  verification: Both CSVs exist and the foreign key relationship is valid (every order's customer_id is present in customers).
+  extension: Increase to 5000 orders and notice how fast pandas still handles it.
+  acronyms_used:
+  - CLI
+  - CSV
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-059
+  sequence_number: 59
+  week_number: 9
+  day_in_week: 3
+- module_id: M10
+  domain_id: D05
+  title: Load CSV data into SQLite
+  learning_objective: Import both CSVs into SQLite tables using the .import command
+  prerequisite_lesson_ids:
+  - L-059
+  analogy_anchor: Transferring papers from file folders into a filing cabinet that's organized for fast retrieval.
+  hands_on_action: In sqlite3, run `.mode csv`, `.import customers.csv customers`, `.import orders.csv orders`, then `.schema`
+    to see the tables.
+  verification: Both tables exist; `SELECT COUNT(*)` returns the expected row count for each.
+  extension: Add indexes to customer_id in orders and compare query time on a large select.
+  acronyms_used:
+  - CLI
+  - CSV
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-060
+  sequence_number: 60
+  week_number: 9
+  day_in_week: 4
+- module_id: M10
+  domain_id: D05
+  title: SELECT, WHERE, ORDER BY, LIMIT
+  learning_objective: Write SELECT queries that filter, sort, and limit results
+  prerequisite_lesson_ids:
+  - L-060
+  analogy_anchor: 'A librarian''s search: give me books (SELECT) about Rome (WHERE), oldest first (ORDER BY), just the top
+    10 (LIMIT).'
+  hands_on_action: 'Write four queries: first 10 customers alphabetically; customers in California; orders over $100; top
+    5 largest orders.'
+  verification: All four return correct results.
+  extension: Use `LIKE '%sandwich%'` for a pattern match.
+  acronyms_used:
+  - CLI
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-061
+  sequence_number: 61
+  week_number: 9
+  day_in_week: 5
+- module_id: M10
+  domain_id: D05
+  title: Aggregate with GROUP BY and HAVING
+  learning_objective: Count, sum, average, and filter grouped results
+  prerequisite_lesson_ids:
+  - L-061
+  analogy_anchor: 'Counting customers at each store location: you group by location and count, then you filter to only the
+    busy ones.'
+  hands_on_action: Write queries that count orders per customer, average order value per customer, and customers with more
+    than 5 orders using HAVING.
+  verification: All three queries return correct results cross-checked against a pandas calculation.
+  extension: Try COUNT(DISTINCT) and notice when it matters.
+  acronyms_used:
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-062
+  sequence_number: 62
+  week_number: 9
+  day_in_week: 6
+- module_id: M10
+  domain_id: D05
+  title: INNER and LEFT JOIN
+  learning_objective: Join two tables with INNER JOIN and LEFT JOIN; know the difference
+  prerequisite_lesson_ids:
+  - L-062
+  analogy_anchor: 'Inviting two guest lists to the same party: inner join is the overlap (people on both lists); left join
+    is everyone from list A, plus matches from list B.'
+  hands_on_action: Write a query listing customer name and order amount with INNER JOIN; rewrite as LEFT JOIN and include
+    customers with no orders.
+  verification: Both queries run; the learner can explain which customers appear in which.
+  extension: Add a WHERE clause to find customers with no orders (LEFT JOIN + IS NULL).
+  acronyms_used:
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-063
+  sequence_number: 63
+  week_number: 9
+  day_in_week: 7
+- module_id: M10
+  domain_id: D05
+  title: Five business questions answered (capstone)
+  learning_objective: Write a documented SQL file answering five realistic business questions using joins and aggregations
+  prerequisite_lesson_ids:
+  - L-063
+  analogy_anchor: 'An analyst''s deliverable: a questions.sql file that anyone in the company can run to get the same answers.'
+  hands_on_action: 'Produce a questions.sql file answering: top 5 customers by revenue, average order value by state, customers
+    who haven''t ordered in 90 days, month-over-month order count, and the single largest order with customer details. Each
+    query is preceded by a comment explaining the question.'
+  verification: All five queries run against practice.db and produce correct results.
+  extension: Commit the questions.sql into a new GitHub repo.
+  acronyms_used:
+  - SQL
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-064
+  sequence_number: 64
+  week_number: 10
+  day_in_week: 1
+- module_id: M11
+  domain_id: D05
+  title: Subqueries and CTEs
+  learning_objective: Refactor nested queries into Common Table Expressions for readability
+  prerequisite_lesson_ids:
+  - L-064
+  analogy_anchor: Nested parentheses in a recipe vs. separating each step on its own line, same result, much easier to read
+    and edit.
+  hands_on_action: Take a 3-level nested subquery and rewrite it with WITH clauses; compare readability.
+  verification: Both versions return identical results; the CTE version is measurably shorter and clearer.
+  extension: Chain two CTEs together to express a two-step analysis.
+  acronyms_used:
+  - SQL
+  - CTE
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-065
+  sequence_number: 65
+  week_number: 10
+  day_in_week: 2
+- module_id: M11
+  domain_id: D05
+  title: Window functions, ranking within a group
+  learning_objective: Use ROW_NUMBER and RANK with PARTITION BY to rank within groups
+  prerequisite_lesson_ids:
+  - L-065
+  analogy_anchor: 'A tournament with divisions: every player has a position within their division (partition), not just an
+    overall rank.'
+  hands_on_action: Write a query ranking orders by amount within each customer using ROW_NUMBER() OVER (PARTITION BY customer_id
+    ORDER BY amount DESC).
+  verification: The query produces correct per-customer rankings; the learner knows when RANK and ROW_NUMBER differ.
+  extension: Use DENSE_RANK and compare to RANK.
+  acronyms_used:
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-066
+  sequence_number: 66
+  week_number: 10
+  day_in_week: 3
+- module_id: M11
+  domain_id: D05
+  title: Window functions, running totals and moving averages
+  learning_objective: Compute running totals and moving averages with SUM() OVER and AVG() OVER
+  prerequisite_lesson_ids:
+  - L-066
+  analogy_anchor: Watching a total on a register climb as each item is scanned, the running total is the window function on
+    each new row.
+  hands_on_action: Write a query that produces a running total of daily revenue and a 7-day moving average.
+  verification: Both calculations match a pandas cross-check.
+  extension: Compute a year-over-year comparison using LAG().
+  acronyms_used:
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-067
+  sequence_number: 67
+  week_number: 10
+  day_in_week: 4
+- module_id: M11
+  domain_id: D05
+  title: Indexes, explain plans, and a taste of performance
+  learning_objective: Read a SQLite EXPLAIN QUERY PLAN output and understand when an index helps
+  prerequisite_lesson_ids:
+  - L-067
+  analogy_anchor: The index at the back of a long book, you can flip to the right page directly instead of scanning from the
+    beginning.
+  hands_on_action: Run a query with and without an index on customer_id; read EXPLAIN QUERY PLAN output for each.
+  verification: The learner can identify whether a query used an index.
+  extension: Add an index and measure execution time with `.timer on`.
+  acronyms_used:
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-068
+  sequence_number: 68
+  week_number: 10
+  day_in_week: 5
+- module_id: M11
+  domain_id: D05
+  title: SQL from Python
+  learning_objective: Execute SQL queries from a Python script using the sqlite3 module
+  prerequisite_lesson_ids:
+  - L-068
+  analogy_anchor: Calling up the librarian on the phone to request books, you ask, they go, they come back with the results.
+  hands_on_action: Write a Python script that opens practice.db, runs three queries, and prints the results in a formatted
+    table.
+  verification: The script runs and produces correctly formatted output.
+  extension: Use pandas' `pd.read_sql_query` as an alternative and compare.
+  acronyms_used:
+  - CLI
+  - SQL
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-069
+  sequence_number: 69
+  week_number: 10
+  day_in_week: 6
+- module_id: M11
+  domain_id: D05
+  title: Analytical query portfolio (capstone)
+  learning_objective: Produce a second documented SQL file showing window functions, CTEs, and a time-based comparison against
+    the synthetic dataset
+  prerequisite_lesson_ids:
+  - L-069
+  analogy_anchor: A second analyst deliverable, this time for harder questions.
+  hands_on_action: 'Produce analysis.sql answering: rank each customer''s largest order, cumulative revenue by month, retention
+    by first-order month (cohort analysis light), and a year-over-year growth calculation. Each commented.'
+  verification: All queries run; results are cross-checked against a pandas equivalent in a companion notebook.
+  extension: Push both SQL files to a new 'sql-portfolio' GitHub repo.
+  acronyms_used:
+  - SQL
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-070
+  sequence_number: 70
+  week_number: 10
+  day_in_week: 7
+- module_id: M12
+  domain_id: D06
+  title: What a large language model actually is
+  learning_objective: Explain at a conceptual level what a large language model is, how it was trained, and what it can and
+    cannot do
+  prerequisite_lesson_ids:
+  - L-070
+  analogy_anchor: 'A very well-read but overconfident intern: has read almost everything on the internet, cannot look anything
+    up after a certain date, will happily make things up rather than admit they don''t know.'
+  hands_on_action: Read a short (1-page) explanation; write three sentences in the learner's own words naming one strength,
+    one weakness, and one limitation.
+  verification: The explanation correctly distinguishes training from inference.
+  extension: Read one paragraph about the transformer architecture; no need to master it.
+  acronyms_used:
+  - LLM
+  - AI
+  - ML
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-071
+  sequence_number: 71
+  week_number: 11
+  day_in_week: 1
+- module_id: M12
+  domain_id: D06
+  title: Install Ollama and pull a first model
+  learning_objective: Install Ollama on the learner's OS and download a small open model like llama3.2:3b
+  prerequisite_lesson_ids:
+  - L-071
+  analogy_anchor: Ordering a specific book for your home library so you can read it without going to the bookstore each time.
+  hands_on_action: Install Ollama from ollama.com; run `ollama pull llama3.2:3b`; verify with `ollama list`.
+  verification: The model is listed and the disk usage is visible.
+  extension: Pull a second model (gemma2:2b or phi3:mini) and list again.
+  acronyms_used:
+  - CLI
+  - LLM
+  - OS
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-072
+  sequence_number: 72
+  week_number: 11
+  day_in_week: 2
+- module_id: M12
+  domain_id: D06
+  title: Chat with a local model from the terminal
+  learning_objective: Send prompts to a local model via `ollama run` and observe responses
+  prerequisite_lesson_ids:
+  - L-072
+  analogy_anchor: 'Talking to a kiosk at an airport: type a question, get a text answer, no internet required once the kiosk
+    is installed.'
+  hands_on_action: Run `ollama run llama3.2:3b` and ask three questions; exit cleanly.
+  verification: The model responds to all three; the learner can describe the latency subjectively.
+  extension: Try a system prompt with `/set system "You are terse."` (or similar).
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-073
+  sequence_number: 73
+  week_number: 11
+  day_in_week: 3
+- module_id: M12
+  domain_id: D06
+  title: Call Ollama from Python
+  learning_objective: Install the Ollama Python client and call a model programmatically
+  prerequisite_lesson_ids:
+  - L-073
+  analogy_anchor: 'Replacing a manual phone call with an automated one: same conversation, but now your program is making
+    it.'
+  hands_on_action: Install `ollama` package in a venv; write a script that sends a prompt and prints the full response.
+  verification: Script runs and output matches what you'd get in the CLI.
+  extension: Enable streaming with `stream=True` and observe token-by-token output.
+  acronyms_used:
+  - API
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-074
+  sequence_number: 74
+  week_number: 11
+  day_in_week: 4
+- module_id: M12
+  domain_id: D06
+  title: System prompts vs user prompts
+  learning_objective: Use a system prompt to shape a model's persona and a user prompt to ask a specific question
+  prerequisite_lesson_ids:
+  - L-074
+  analogy_anchor: Hiring a temporary employee with a job description (system prompt) and then giving them today's task (user
+    prompt).
+  hands_on_action: Write a script that sends the same user prompt with two different system prompts and prints both outputs.
+  verification: The two outputs differ noticeably in tone and focus.
+  extension: Write a third system prompt that constrains output to JSON only, then try to parse the result.
+  acronyms_used:
+  - CLI
+  - JSON
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-075
+  sequence_number: 75
+  week_number: 11
+  day_in_week: 5
+- module_id: M12
+  domain_id: D06
+  title: Non-deterministic outputs and temperature
+  learning_objective: Observe that models produce different outputs for the same input and use the temperature parameter to
+    control randomness
+  prerequisite_lesson_ids:
+  - L-075
+  analogy_anchor: 'A jazz musician given a chord chart: same chords, different solo every time. Lower the temperature to make
+    the solo more predictable.'
+  hands_on_action: Run the same prompt 5 times at temperature 0.0 and 5 times at temperature 1.0; compare outputs.
+  verification: The learner observes that temperature 0 produces near-identical outputs; higher temperature introduces variation.
+  extension: Try top_p instead of temperature and note the alternative.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-076
+  sequence_number: 76
+  week_number: 11
+  day_in_week: 6
+- module_id: M12
+  domain_id: D06
+  title: System-prompted comparison report (capstone)
+  learning_objective: Produce a side-by-side markdown comparison of two model outputs, one with a system prompt, one without
+  prerequisite_lesson_ids:
+  - L-076
+  analogy_anchor: 'A taste-test side-by-side: label each sample, describe the difference, write a short conclusion.'
+  hands_on_action: Write a Python script that calls llama3.2:3b twice, once with a careful system prompt, once without, using
+    the same user prompt; write both outputs into comparison.md with headers.
+  verification: comparison.md is generated and the difference is visible.
+  extension: Run the same experiment with a second model (gemma2 or phi3) and compare four outputs.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-077
+  sequence_number: 77
+  week_number: 11
+  day_in_week: 7
+- module_id: M13
+  domain_id: D06
+  title: Tokens, the atoms of a model
+  learning_objective: Understand that models process text as tokens, not characters or words, and tokenize a sample
+  prerequisite_lesson_ids:
+  - L-077
+  analogy_anchor: 'A sushi roll cut into pieces: the model eats the pieces, not the whole roll. Each piece has a rough shape
+    but doesn''t always line up with word boundaries.'
+  hands_on_action: Use tiktoken (or the Ollama tokenizer) to tokenize three sample texts; print token counts and the first
+    20 tokens decoded.
+  verification: The learner can describe why 'strawberries' is often 3 tokens instead of 1.
+  extension: Compare token counts across three languages (English, Spanish, Chinese).
+  acronyms_used:
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-078
+  sequence_number: 78
+  week_number: 12
+  day_in_week: 1
+- module_id: M13
+  domain_id: D06
+  title: Context windows and their limits
+  learning_objective: Understand that a model has a finite context window and what happens when you exceed it
+  prerequisite_lesson_ids:
+  - L-078
+  analogy_anchor: 'A clipboard that only holds so many pages: add more, the oldest falls off.'
+  hands_on_action: Write a script that builds an increasingly long prompt and measures response quality degradation; check
+    Ollama's context size for your model.
+  verification: The learner can name their model's context size and describe the failure mode when exceeded.
+  extension: Research what models like Claude and GPT-4 have for context size and compare.
+  acronyms_used:
+  - CLI
+  - LLM
+  - OS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-079
+  sequence_number: 79
+  week_number: 12
+  day_in_week: 2
+- module_id: M13
+  domain_id: D06
+  title: Base, instruct, and chat models
+  learning_objective: Distinguish a base model from an instruct-tuned or chat-tuned variant
+  prerequisite_lesson_ids:
+  - L-079
+  analogy_anchor: 'A raw recording of a concert (base) vs. an album mix (instruct) vs. a radio-friendly single (chat): same
+    underlying performance, different polish for the listener.'
+  hands_on_action: Pull a base model variant (if available for the chosen family) and compare to the instruct version on the
+    same prompt.
+  verification: The learner observes the difference and can explain the role of fine-tuning.
+  extension: Read a short blog post on RLHF at a high level.
+  acronyms_used:
+  - CLI
+  - LLM
+  - RLHF
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-080
+  sequence_number: 80
+  week_number: 12
+  day_in_week: 3
+- module_id: M13
+  domain_id: D06
+  title: Generate embeddings from a local model
+  learning_objective: Produce a vector embedding of a short text using an embedding model via Ollama
+  prerequisite_lesson_ids:
+  - L-080
+  analogy_anchor: Giving every word in the dictionary a unique fingerprint based on meaning, similar meanings have similar
+    fingerprints.
+  hands_on_action: Pull `nomic-embed-text`; write a script that embeds 5 sentences and prints the vector length (should be
+    768).
+  verification: All 5 embeddings are produced and have the expected dimensionality.
+  extension: Compare the shape and magnitude of embeddings across sentences.
+  acronyms_used:
+  - CLI
+  - LLM
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-081
+  sequence_number: 81
+  week_number: 12
+  day_in_week: 4
+- module_id: M13
+  domain_id: D06
+  title: Cosine similarity, how close are two meanings
+  learning_objective: Compute cosine similarity between embeddings and interpret the number
+  prerequisite_lesson_ids:
+  - L-081
+  analogy_anchor: 'Measuring how close two addresses are on a map: the number tells you whether they''re neighbors or on opposite
+    sides of town.'
+  hands_on_action: Given 10 sentences, compute the pairwise cosine similarity matrix with numpy; identify the most and least
+    similar pair.
+  verification: The pairs identified match intuition.
+  extension: Use scikit-learn's `cosine_similarity` as an alternative.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-082
+  sequence_number: 82
+  week_number: 12
+  day_in_week: 5
+- module_id: M13
+  domain_id: D06
+  title: Token and embedding lab (capstone)
+  learning_objective: Produce a short report that tokenizes three texts, measures context usage, generates 10 embeddings,
+    and computes their similarity matrix
+  prerequisite_lesson_ids:
+  - L-082
+  analogy_anchor: 'An engineer''s first-pass lab report: here is what I measured, here is the result, here is what it means.'
+  hands_on_action: Write a Python script (or notebook) that tokenizes three provided texts, embeds 10 sentences, computes
+    similarity, and writes a markdown report with tables.
+  verification: The report is generated and commits to a new 'embeddings-lab' repo.
+  extension: Add a visualization with matplotlib (heatmap of the similarity matrix).
+  acronyms_used:
+  - CLI
+  - LLM
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-083
+  sequence_number: 83
+  week_number: 12
+  day_in_week: 6
+- module_id: M14
+  domain_id: D07
+  title: Clear prompts beat clever prompts
+  learning_objective: Write prompts with explicit context, task, and output format
+  prerequisite_lesson_ids:
+  - L-083
+  analogy_anchor: 'A good cooking instruction: ''heat 2 tbsp olive oil in a cast-iron pan over medium-high until shimmering''
+    vs. ''cook it up a bit''. Specificity wins.'
+  hands_on_action: Rewrite 3 vague prompts into explicit ones; run both versions through a local model and compare.
+  verification: The rewritten prompts produce more consistent and useful outputs.
+  extension: Draft a prompt template with named placeholders (a precursor to lesson L-093).
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-084
+  sequence_number: 84
+  week_number: 12
+  day_in_week: 7
+- module_id: M14
+  domain_id: D07
+  title: Few-shot examples, show, don't just tell
+  learning_objective: Improve a prompt by including 2-3 worked examples of input and desired output
+  prerequisite_lesson_ids:
+  - L-084
+  analogy_anchor: Showing a new hire three completed forms before asking them to fill out the fourth.
+  hands_on_action: Take a classification task; first prompt zero-shot, then add 3 examples and re-run; compare accuracy on
+    5 test cases.
+  verification: Few-shot version is measurably more consistent on the test cases.
+  extension: Try 1-shot and 5-shot and observe diminishing returns.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-085
+  sequence_number: 85
+  week_number: 13
+  day_in_week: 1
+- module_id: M14
+  domain_id: D07
+  title: Request structured output as JSON
+  learning_objective: Ask a model to return JSON and parse the result with python's json module
+  prerequisite_lesson_ids:
+  - L-085
+  analogy_anchor: Asking a waiter for your check on a specific receipt form rather than whatever notepad is handy, easier
+    for the kitchen to process later.
+  hands_on_action: Write a prompt that extracts structured fields (name, city, job title) from a free-text bio and returns
+    JSON; parse it with json.loads; handle parse failures.
+  verification: Works on 5 example bios; the script handles at least one malformed JSON case gracefully.
+  extension: Use Ollama's structured output mode (if available) to constrain output.
+  acronyms_used:
+  - CLI
+  - JSON
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-086
+  sequence_number: 86
+  week_number: 13
+  day_in_week: 2
+- module_id: M14
+  domain_id: D07
+  title: Chain-of-thought and step-by-step reasoning
+  learning_objective: Coax the model to show its reasoning before answering on multi-step problems
+  prerequisite_lesson_ids:
+  - L-086
+  analogy_anchor: Asking a student to show their work on a math problem instead of just giving the final answer, catches errors
+    and often improves the answer.
+  hands_on_action: Compare a direct prompt ("what's the answer") to a CoT prompt ("think step by step, then answer") on 3
+    multi-step word problems.
+  verification: CoT prompts produce better answers on at least 2 of 3 problems.
+  extension: Read a short summary of the original CoT paper (Wei et al. 2022) at a conceptual level.
+  acronyms_used:
+  - CLI
+  - CoT
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-087
+  sequence_number: 87
+  week_number: 13
+  day_in_week: 3
+- module_id: M14
+  domain_id: D07
+  title: Prompt evaluation with a small test set
+  learning_objective: Build a simple test harness that runs a prompt against N inputs and computes a score
+  prerequisite_lesson_ids:
+  - L-087
+  analogy_anchor: 'A quality-control sampling line in a factory: test every Nth item against a spec and track the pass rate.'
+  hands_on_action: Write a Python script that takes 10 (input, expected_output) pairs and a prompt, runs the prompt, and reports
+    accuracy.
+  verification: Script runs and reports a percentage; the learner can explain one weakness of this approach.
+  extension: Replace the exact-match check with a cosine-similarity check on embeddings of expected vs. actual.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-088
+  sequence_number: 88
+  week_number: 13
+  day_in_week: 4
+- module_id: M14
+  domain_id: D07
+  title: Prompt engineering anti-patterns
+  learning_objective: 'Recognize common prompt mistakes: contradictions, ambiguity, role confusion, and prompt injection'
+  prerequisite_lesson_ids:
+  - L-088
+  analogy_anchor: 'Common mistakes in writing a house listing: contradictions ("cozy and spacious"), ambiguity ("near transit"),
+    wrong voice (speaking as the realtor vs. the house), or letting someone else rewrite your listing (injection).'
+  hands_on_action: Given 5 deliberately-bad prompts, identify which anti-pattern each exhibits and rewrite one.
+  verification: All 5 are correctly classified; the rewrite is an improvement.
+  extension: Read an OWASP overview of LLM prompt injection at a high level.
+  acronyms_used:
+  - CLI
+  - LLM
+  - OWASP
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-089
+  sequence_number: 89
+  week_number: 13
+  day_in_week: 5
+- module_id: M14
+  domain_id: D07
+  title: Retrieval-augmented prompts at a conceptual level
+  learning_objective: Understand what retrieval-augmented generation (RAG) adds to prompting and when it helps
+  prerequisite_lesson_ids:
+  - L-089
+  analogy_anchor: 'Writing an open-book exam instead of a closed-book one: you bring your notes to the test, so you can answer
+    questions outside what you memorized.'
+  hands_on_action: Sketch a diagram of a RAG pipeline (ingestion, chunking, embedding, retrieval, generation) on paper or
+    in draw.io.
+  verification: The diagram correctly shows the data flow.
+  extension: Read a paragraph on when RAG is a worse choice than fine-tuning.
+  acronyms_used:
+  - RAG
+  - LLM
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-090
+  sequence_number: 90
+  week_number: 13
+  day_in_week: 6
+- module_id: M14
+  domain_id: D07
+  title: Tool-calling 101, let the model ask for help
+  learning_objective: Build a simple tool-calling loop where the model decides to invoke a Python function
+  prerequisite_lesson_ids:
+  - L-090
+  analogy_anchor: A chef who knows how to cook but can't use a calculator, give them a calculator when they need arithmetic.
+  hands_on_action: Write a script where the model is told about a calculator tool; send a prompt that requires arithmetic;
+    detect the tool call; execute it; send the result back.
+  verification: The round-trip works for at least two distinct arithmetic questions.
+  extension: Add a second tool (date calculator) and see if the model chooses correctly.
+  acronyms_used:
+  - API
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-091
+  sequence_number: 91
+  week_number: 13
+  day_in_week: 7
+- module_id: M14
+  domain_id: D07
+  title: Multi-step tool use
+  learning_objective: Chain multiple tool calls in a single conversation
+  prerequisite_lesson_ids:
+  - L-091
+  analogy_anchor: A recipe that requires both a scale and an oven, the chef uses each tool when needed, in the right order.
+  hands_on_action: Extend the script so the model can use the calculator twice in a single conversation to compute a more
+    complex result.
+  verification: The loop handles 2+ tool calls correctly and produces the right final answer.
+  extension: Add a max-iterations guard to prevent infinite tool loops.
+  acronyms_used:
+  - LLM
+  - API
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-092
+  sequence_number: 92
+  week_number: 14
+  day_in_week: 1
+- module_id: M14
+  domain_id: D07
+  title: Prompt template library (capstone)
+  learning_objective: 'Build a reusable Python library of four well-tested prompts: extraction, classification, rewriting,
+    summarization'
+  prerequisite_lesson_ids:
+  - L-087
+  - L-085
+  analogy_anchor: A stack of index cards with your best-performing recipes, titled and ready to reuse.
+  hands_on_action: Build prompts.py with four functions, each taking an input and returning the model's answer; test each
+    against 5 inputs; save results and failure analysis to a markdown report.
+  verification: All four prompts work on the test inputs; the report clearly identifies one weakness per prompt.
+  extension: Add a fifth prompt for translation and test on 3 language pairs.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-093
+  sequence_number: 93
+  week_number: 14
+  day_in_week: 2
+- module_id: M15
+  domain_id: D08
+  title: What is an API, in plain English
+  learning_objective: Explain in plain English what an API is and why APIs are how software talks to other software
+  prerequisite_lesson_ids:
+  - L-092
+  analogy_anchor: 'A restaurant menu plus a waiter: the menu is the API (what you can ask for), the waiter is the connection
+    (carries your request to the kitchen and brings back your food).'
+  hands_on_action: Write a 3-sentence explanation in the learner's own words.
+  verification: The learner's explanation would make sense to a non-technical friend.
+  extension: List 3 APIs the learner uses every day without knowing (weather app, Uber, Instagram).
+  acronyms_used:
+  - API
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-094
+  sequence_number: 94
+  week_number: 14
+  day_in_week: 3
+- module_id: M15
+  domain_id: D08
+  title: HTTP verbs and status codes
+  learning_objective: Recognize GET, POST, PUT, DELETE and the common status code ranges (2xx, 3xx, 4xx, 5xx)
+  prerequisite_lesson_ids:
+  - L-093
+  analogy_anchor: Postcards (GET for info), letters (POST for action), registered mail (PUT for replace), shredder (DELETE).
+    Post office receipts tell you whether the letter arrived (2xx), was forwarded (3xx), returned to you (4xx), or the post
+    office itself is having a bad day (5xx).
+  hands_on_action: Use `curl -v` to make a GET request to a public endpoint; identify method, headers, status code, and body
+    in the response.
+  verification: The learner can describe each part of a raw HTTP response.
+  extension: Make a POST with `curl -X POST -d 'hello'` against httpbin.org/post.
+  acronyms_used:
+  - API
+  - CLI
+  - HTTP
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-095
+  sequence_number: 95
+  week_number: 14
+  day_in_week: 4
+- module_id: M15
+  domain_id: D08
+  title: JSON, the lingua franca of APIs
+  learning_objective: Read and hand-write JSON; parse it in Python with json.loads; serialize with json.dumps
+  prerequisite_lesson_ids:
+  - L-094
+  analogy_anchor: 'A shipping manifest: nested items, values, totals, same structure every time so both sender and receiver
+    can read it without a meeting.'
+  hands_on_action: Given a JSON blob, write a script that parses it and extracts three specific fields from nested structures.
+  verification: The script prints the correct fields.
+  extension: Validate the JSON shape against a jsonschema (optional preview).
+  acronyms_used:
+  - CLI
+  - JSON
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-096
+  sequence_number: 96
+  week_number: 14
+  day_in_week: 5
+- module_id: M15
+  domain_id: D08
+  title: Make your first API call from Python with requests
+  learning_objective: Use the requests library to call a public API, check the status, and parse the JSON response
+  prerequisite_lesson_ids:
+  - L-095
+  analogy_anchor: 'Using a paid-envelope service: you hand them the letter, they mail it and bring back the reply. Requests
+    handles the envelope work.'
+  hands_on_action: Call Open-Meteo's free weather API for Salinas, CA; parse the current temperature; print a human-readable
+    sentence.
+  verification: The script runs and prints a sentence with the current temperature.
+  extension: Also call the forecast endpoint and print the next 3 days.
+  acronyms_used:
+  - API
+  - CLI
+  - JSON
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-097
+  sequence_number: 97
+  week_number: 14
+  day_in_week: 6
+- module_id: M15
+  domain_id: D08
+  title: 'Authentication: API keys, headers, and secrets'
+  learning_objective: Authenticate to an API using a key in a header; keep secrets out of code and out of Git
+  prerequisite_lesson_ids:
+  - L-096
+  analogy_anchor: 'A VIP wristband: you show it to the bouncer at the door, the bouncer checks the list, you get in. Don''t
+    leave your wristband lying around in public.'
+  hands_on_action: Sign up for a free API key from a weather or news service; store it in a .env file; load it with python-dotenv;
+    make an authenticated call.
+  verification: The authenticated call succeeds; .env is in .gitignore.
+  extension: Rotate the key and update the .env.
+  acronyms_used:
+  - API
+  - CLI
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-098
+  sequence_number: 98
+  week_number: 14
+  day_in_week: 7
+- module_id: M15
+  domain_id: D08
+  title: Errors, retries, and rate limits
+  learning_objective: Handle HTTP errors, implement a basic exponential-backoff retry, and respect rate limits
+  prerequisite_lesson_ids:
+  - L-097
+  analogy_anchor: 'Calling a popular restaurant for reservations: if they''re slammed, you hang up and try again later. If
+    they told you to stop calling, you stop calling.'
+  hands_on_action: Write a wrapper around requests that retries on 429 and 5xx with exponential backoff, up to 3 times, with
+    a delay.
+  verification: The retry logic is observable in logs when a test endpoint returns 500 three times then 200.
+  extension: Use the `tenacity` package as a drop-in alternative.
+  acronyms_used:
+  - API
+  - CLI
+  - HTTP
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-099
+  sequence_number: 99
+  week_number: 15
+  day_in_week: 1
+- module_id: M15
+  domain_id: D08
+  title: Weather report tool (capstone)
+  learning_objective: Build a Python script that calls a real public API, handles errors gracefully, caches responses to a
+    local file, and formats a human-readable report
+  prerequisite_lesson_ids:
+  - L-098
+  - L-097
+  analogy_anchor: 'A weather hotline service: calls the weather bureau, remembers what it heard for an hour (cache), and reads
+    it out in plain language.'
+  hands_on_action: 'Build weather.py: takes a city argument, looks up coordinates via a geocoding endpoint, calls Open-Meteo,
+    handles 404s and network errors, caches to cache.json with a timestamp, prints a formatted report.'
+  verification: The script works for 3 different cities and uses the cache on the second identical call.
+  extension: Push to a new 'weather-tool' GitHub repo with a README showing usage.
+  acronyms_used:
+  - API
+  - CLI
+  - JSON
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-100
+  sequence_number: 100
+  week_number: 15
+  day_in_week: 2
+- module_id: M16
+  domain_id: D08
+  title: The tool-use pattern, revisited
+  learning_objective: Review the tool-use pattern from M14 in the context of APIs
+  prerequisite_lesson_ids:
+  - L-099
+  analogy_anchor: 'Giving the chef a phone, not just a calculator: now the chef can call anyone in the directory, not just
+    do arithmetic.'
+  hands_on_action: Re-read the tool-use script from L-090 and identify which calls could go to an external API.
+  verification: The learner annotates the code with which lines are 'tool definitions' and which are 'tool executions'.
+  extension: Add a third tool that calls the weather API from M15.
+  acronyms_used:
+  - API
+  - LLM
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-101
+  sequence_number: 101
+  week_number: 15
+  day_in_week: 3
+- module_id: M16
+  domain_id: D08
+  title: Function calling with a local model
+  learning_objective: Use an Ollama model that supports function calling natively to pass structured tool definitions
+  prerequisite_lesson_ids:
+  - L-100
+  analogy_anchor: Ordering from a menu where every dish has a structured spec, the kitchen doesn't guess at what you meant.
+  hands_on_action: Use llama3.2 or similar with Ollama's tools parameter; define a weather tool as a JSON schema; send a natural-language
+    prompt and observe the structured tool call.
+  verification: The model produces a valid tool call; the script executes it and passes the result back.
+  extension: Define two tools and confirm the model picks the right one for each prompt.
+  acronyms_used:
+  - API
+  - CLI
+  - JSON
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-102
+  sequence_number: 102
+  week_number: 15
+  day_in_week: 4
+- module_id: M16
+  domain_id: D08
+  title: What is the Model Context Protocol
+  learning_objective: Explain what MCP is, what problem it solves, and why it has become an enterprise expectation
+  prerequisite_lesson_ids:
+  - L-101
+  analogy_anchor: 'A standard plug on the wall: before plugs were standardized, every device had its own wiring. MCP is the
+    standardized plug between models and tools.'
+  hands_on_action: Read the MCP introduction (modelcontextprotocol.io) and write a 5-sentence summary.
+  verification: 'The summary correctly names: clients, servers, resources, tools, and prompts.'
+  extension: List 3 MCP servers available in the public registry.
+  acronyms_used:
+  - MCP
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-103
+  sequence_number: 103
+  week_number: 15
+  day_in_week: 5
+- module_id: M16
+  domain_id: D08
+  title: Use an existing MCP server
+  learning_objective: Connect to a simple existing MCP server (filesystem or similar) from a client
+  prerequisite_lesson_ids:
+  - L-102
+  analogy_anchor: Plugging a keyboard into a computer that has the standard USB port, works instantly, no setup.
+  hands_on_action: Install and run a filesystem MCP server locally; connect from a client like Claude Desktop or the MCP inspector;
+    read a file.
+  verification: The file contents appear through the MCP round-trip.
+  extension: Explore the server's full tool list and try a second tool.
+  acronyms_used:
+  - MCP
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-104
+  sequence_number: 104
+  week_number: 15
+  day_in_week: 6
+- module_id: M16
+  domain_id: D08
+  title: Two-tool agent from scratch
+  learning_objective: Build a Python program where a local model is given two tools and uses them to answer a compound question
+  prerequisite_lesson_ids:
+  - L-101
+  analogy_anchor: 'A personal assistant with a calculator and an address book: you ask a single question, they use both tools
+    to answer.'
+  hands_on_action: 'Build agent.py: model + two tools (calculator, file reader); prompt requires both; script produces a correct
+    answer by chaining tool calls.'
+  verification: The answer is correct and the trace log shows both tools invoked.
+  extension: Add a third tool (the weather API) and test a three-tool question.
+  acronyms_used:
+  - API
+  - CLI
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-105
+  sequence_number: 105
+  week_number: 15
+  day_in_week: 7
+- module_id: M16
+  domain_id: D08
+  title: Agent with a traced reasoning log (capstone)
+  learning_objective: Produce an agent program that logs every tool call, its arguments, and its result to a structured trace
+    file
+  prerequisite_lesson_ids:
+  - L-103
+  analogy_anchor: 'A courtroom stenographer for the agent: everything said, every action taken, is in the record, searchable
+    and auditable.'
+  hands_on_action: Extend agent.py to write a trace.jsonl with one JSON object per tool call (timestamp, tool, input, output);
+    verify the trace is complete and correct for a 3-tool prompt.
+  verification: The trace file is valid JSONL; running the same prompt twice produces two comparable traces.
+  extension: Add a simple visualizer that prints the trace as a readable timeline.
+  acronyms_used:
+  - API
+  - CLI
+  - JSON
+  - LLM
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-106
+  sequence_number: 106
+  week_number: 16
+  day_in_week: 1
+- module_id: M17
+  domain_id: D09
+  title: Cloud vs. your laptop, the real difference
+  learning_objective: Explain in plain English what the cloud is and why organizations use it
+  prerequisite_lesson_ids:
+  - L-104
+  analogy_anchor: 'Renting a storage unit instead of keeping everything in your garage: you pay per month, you can expand
+    when you need to, someone else handles the building maintenance.'
+  hands_on_action: Write a 3-sentence plain-English definition of cloud computing.
+  verification: The definition correctly names shared, on-demand, pay-per-use.
+  extension: Read the NIST definition of cloud computing (SP 800-145) and compare.
+  acronyms_used:
+  - NIST
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-107
+  sequence_number: 107
+  week_number: 16
+  day_in_week: 2
+- module_id: M17
+  domain_id: D09
+  title: IaaS, PaaS, SaaS, three levels of abstraction
+  learning_objective: Distinguish infrastructure, platform, and software as services with one concrete example of each
+  prerequisite_lesson_ids:
+  - L-105
+  analogy_anchor: 'A pizza analogy: make your own (on-premises), take-and-bake (IaaS), delivery (PaaS), dine-in (SaaS). You
+    trade control for convenience at each step.'
+  hands_on_action: Match 9 real products (EC2, App Service, Gmail, etc.) to IaaS/PaaS/SaaS correctly.
+  verification: All 9 are correctly classified.
+  extension: Identify one product in each of Azure, AWS, and GCP at the PaaS layer.
+  acronyms_used:
+  - AWS
+  - GCP
+  - IaaS
+  - PaaS
+  - SaaS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-108
+  sequence_number: 108
+  week_number: 16
+  day_in_week: 3
+- module_id: M17
+  domain_id: D09
+  title: Regions, availability zones, and latency
+  learning_objective: Explain why geography matters for the cloud and how to pick a region
+  prerequisite_lesson_ids:
+  - L-106
+  analogy_anchor: 'Post offices: the closest branch delivers faster, and having a branch in another city means your mail keeps
+    flowing if the first one has a fire.'
+  hands_on_action: Look at Azure and AWS region maps; identify the closest region to Salinas, California and write it down.
+  verification: The learner picks a reasonable region (West US for Azure, us-west-1 or us-west-2 for AWS).
+  extension: Read about AWS Local Zones and Azure Availability Zones at a high level.
+  acronyms_used:
+  - AWS
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-109
+  sequence_number: 109
+  week_number: 16
+  day_in_week: 4
+- module_id: M17
+  domain_id: D09
+  title: Console vs. CLI vs. SDK
+  learning_objective: Recognize the three ways to operate a cloud and when each is appropriate
+  prerequisite_lesson_ids:
+  - L-107
+  analogy_anchor: 'The same bank account operated three ways: in the branch (console), by phone (CLI), by automatic bill pay
+    (SDK). Same money, different interfaces.'
+  hands_on_action: Read the Azure Portal screenshot and identify the equivalent `az` CLI command for creating a resource group.
+  verification: The learner correctly maps a console action to a CLI command.
+  extension: Look up an SDK example (Python, Azure) for the same operation.
+  acronyms_used:
+  - CLI
+  - GUI
+  - SDK
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-110
+  sequence_number: 110
+  week_number: 16
+  day_in_week: 5
+- module_id: M17
+  domain_id: D09
+  title: Shared responsibility, who is on the hook for what
+  learning_objective: Read a shared-responsibility model diagram and identify who handles which layer
+  prerequisite_lesson_ids:
+  - L-108
+  analogy_anchor: 'Renting a hotel room vs. owning a house: the hotel handles the roof, the plumbing, and the locks; you handle
+    what''s in your suitcase.'
+  hands_on_action: Study the Azure and AWS shared responsibility diagrams; list 3 things the provider handles and 3 the customer
+    handles.
+  verification: All 6 items are correctly placed.
+  extension: Look up where HIPAA compliance lives in the model and note the nuance.
+  acronyms_used:
+  - AWS
+  - HIPAA
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-111
+  sequence_number: 111
+  week_number: 16
+  day_in_week: 6
+- module_id: M17
+  domain_id: D09
+  title: Three-way deployment diagram (capstone)
+  learning_objective: Draw a one-page diagram showing the same application deployed three ways, as IaaS, PaaS, and SaaS, with
+    the responsibility boundary marked
+  prerequisite_lesson_ids:
+  - L-109
+  analogy_anchor: 'Three wedding venues for the same reception: you cook everything yourself (IaaS), the venue caters (PaaS),
+    the all-inclusive resort does it all (SaaS).'
+  hands_on_action: Use draw.io or Excalidraw to draw a 'notes app' deployed 3 ways; mark the responsibility boundary clearly;
+    export as SVG.
+  verification: The diagram is legible and the responsibility lines are in the right places.
+  extension: Add a third dimension showing cost and operational complexity per option.
+  acronyms_used:
+  - IaaS
+  - PaaS
+  - SaaS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-112
+  sequence_number: 112
+  week_number: 16
+  day_in_week: 7
+- module_id: M18
+  domain_id: D09
+  title: Create a free-tier Azure account
+  learning_objective: Sign up for an Azure free account and confirm access
+  prerequisite_lesson_ids:
+  - L-110
+  analogy_anchor: 'Opening a trial gym membership: you get in the door, try some equipment, and you can cancel before any
+    fees kick in.'
+  hands_on_action: Sign up at azure.microsoft.com/free; confirm you can sign in to portal.azure.com; check the free services
+    list.
+  verification: The Azure Portal loads and shows the subscription.
+  extension: Enable spending alerts immediately to avoid surprises.
+  acronyms_used:
+  - GUI
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-113
+  sequence_number: 113
+  week_number: 17
+  day_in_week: 1
+- module_id: M18
+  domain_id: D09
+  title: Install and authenticate the Azure CLI
+  learning_objective: Install `az` and sign in to the Azure free subscription
+  prerequisite_lesson_ids:
+  - L-111
+  analogy_anchor: 'Programming your garage door opener to your new house: one-time setup, fast access ever after.'
+  hands_on_action: Install Azure CLI via package manager; run `az login`; run `az account show` and read the subscription
+    ID.
+  verification: The CLI reports the subscription is active.
+  extension: Set a default subscription and location with `az configure`.
+  acronyms_used:
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-114
+  sequence_number: 114
+  week_number: 17
+  day_in_week: 2
+- module_id: M18
+  domain_id: D09
+  title: Resource groups, the organizing principle
+  learning_objective: Create a resource group and understand why everything goes in one
+  prerequisite_lesson_ids:
+  - L-112
+  analogy_anchor: 'A banker''s box labeled with the project name: everything related to this project goes in this box, so
+    you can find it, audit it, and discard it together.'
+  hands_on_action: Run `az group create -n rg-learning -l westus`; list with `az group list`; look at it in the portal.
+  verification: The resource group exists in both CLI and portal.
+  extension: Add a tag for cost tracking with `az group update --tags purpose=learning`.
+  acronyms_used:
+  - CLI
+  - GUI
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-115
+  sequence_number: 115
+  week_number: 17
+  day_in_week: 3
+- module_id: M18
+  domain_id: D09
+  title: Create and use a storage account
+  learning_objective: Create an Azure Storage account, upload a file, and list blobs
+  prerequisite_lesson_ids:
+  - L-113
+  analogy_anchor: 'Renting a specific shelf at the storage unit: give it a name, put things on it, come back for them later.'
+  hands_on_action: Run `az storage account create`; create a container; upload a local file with `az storage blob upload`;
+    list the blobs.
+  verification: The file is visible in the container both via CLI and portal.
+  extension: Generate a time-limited SAS URL and download the file from a browser.
+  acronyms_used:
+  - CLI
+  - GUI
+  - URL
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-116
+  sequence_number: 116
+  week_number: 17
+  day_in_week: 4
+- module_id: M18
+  domain_id: D09
+  title: Spin up and SSH into a virtual machine
+  learning_objective: Create a small Linux VM, connect to it via SSH, and run a command
+  prerequisite_lesson_ids:
+  - L-114
+  analogy_anchor: 'Renting a desktop computer in another city by the hour: pay for what you use, disconnect when done.'
+  hands_on_action: Run `az vm create` with a small B1s size; `ssh` in using the generated key; run `uname -a`.
+  verification: SSH succeeds and uname returns Linux info.
+  extension: Stop the VM to avoid charges; confirm with `az vm list`.
+  acronyms_used:
+  - CLI
+  - OS
+  - SSH
+  - VM
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-117
+  sequence_number: 117
+  week_number: 17
+  day_in_week: 5
+- module_id: M18
+  domain_id: D09
+  title: Tear down your resource group (habit from day one)
+  learning_objective: Delete the entire resource group and verify all resources are gone
+  prerequisite_lesson_ids:
+  - L-115
+  analogy_anchor: 'Cleaning out the rented storage unit at the end of the project: take everything, leave nothing behind that
+    would keep charging rent.'
+  hands_on_action: Run `az group delete -n rg-learning --yes --no-wait`; wait 10 minutes; confirm with `az group exists` returning
+    false.
+  verification: The resource group no longer exists; the cost dashboard confirms it.
+  extension: Check that any associated orphan resources (like Azure DNS zones) are also gone.
+  acronyms_used:
+  - CLI
+  - DNS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-118
+  sequence_number: 118
+  week_number: 17
+  day_in_week: 6
+- module_id: M18
+  domain_id: D09
+  title: Azure hands-on capstone
+  learning_objective: Provision a complete 3-resource environment (resource group, storage, VM) via the CLI, document it,
+    and tear it down cleanly
+  prerequisite_lesson_ids:
+  - L-116
+  analogy_anchor: 'Setting up and tearing down a pop-up shop: everything arrives in boxes, assembles in an hour, and packs
+    away the same day.'
+  hands_on_action: Write setup.sh that provisions rg + storage + VM and teardown.sh that removes everything; commit both to
+    a new repo; run end-to-end to prove it works.
+  verification: Both scripts work; cost dashboard returns to near-zero after teardown.
+  extension: Add variables and argument parsing for region and VM size.
+  acronyms_used:
+  - CLI
+  - VCS
+  - VM
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-119
+  sequence_number: 119
+  week_number: 17
+  day_in_week: 7
+- module_id: M19
+  domain_id: D09
+  title: Create a free-tier AWS account
+  learning_objective: Sign up for an AWS free-tier account and set a budget alert before doing anything else
+  prerequisite_lesson_ids:
+  - L-117
+  analogy_anchor: 'Same trial gym, different chain: same caution, different paperwork.'
+  hands_on_action: Sign up at aws.amazon.com/free; immediately configure a $1 budget alert in Billing.
+  verification: The AWS console is accessible and a budget alert email is confirmed.
+  extension: Enable MFA on the root account (strongly recommended).
+  acronyms_used:
+  - AWS
+  - GUI
+  - MFA
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-120
+  sequence_number: 120
+  week_number: 18
+  day_in_week: 1
+- module_id: M19
+  domain_id: D09
+  title: AWS CLI install and first commands
+  learning_objective: Install aws-cli, configure with access keys, and run `aws sts get-caller-identity`
+  prerequisite_lesson_ids:
+  - L-118
+  analogy_anchor: Second garage-door opener for the second house.
+  hands_on_action: Install aws-cli; create an IAM user with programmatic access; run `aws configure`; verify with get-caller-identity.
+  verification: The CLI returns the user ARN.
+  extension: List available regions with `aws ec2 describe-regions`.
+  acronyms_used:
+  - ARN
+  - AWS
+  - CLI
+  - IAM
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-121
+  sequence_number: 121
+  week_number: 18
+  day_in_week: 2
+- module_id: M19
+  domain_id: D09
+  title: AWS S3 and EC2 in one short session
+  learning_objective: Create an S3 bucket and an EC2 instance via CLI; upload a file; stop and terminate
+  prerequisite_lesson_ids:
+  - L-119
+  analogy_anchor: 'The same pop-up shop, different venue: storage shelf (S3) and a rental desk (EC2).'
+  hands_on_action: Run `aws s3 mb`, `aws s3 cp`, `aws ec2 run-instances` with a small instance; SSH in; terminate.
+  verification: All commands succeed; `aws s3 rb --force` cleans up the bucket.
+  extension: Use AWS Systems Manager Session Manager as an alternative to SSH.
+  acronyms_used:
+  - AWS
+  - CLI
+  - EC2
+  - S3
+  - SSH
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-122
+  sequence_number: 122
+  week_number: 18
+  day_in_week: 3
+- module_id: M19
+  domain_id: D09
+  title: Create a free-tier GCP account
+  learning_objective: Sign up for Google Cloud Platform free tier with a $300 credit and set a budget alert
+  prerequisite_lesson_ids:
+  - L-120
+  analogy_anchor: 'Third gym trial: by now you know the drill.'
+  hands_on_action: Sign up at cloud.google.com/free; set a budget alert; install gcloud CLI; authenticate with `gcloud auth
+    login`.
+  verification: gcloud can list projects; a budget alert is configured.
+  extension: Enable the Cloud Storage API for the default project.
+  acronyms_used:
+  - API
+  - CLI
+  - GCP
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-123
+  sequence_number: 123
+  week_number: 18
+  day_in_week: 4
+- module_id: M19
+  domain_id: D09
+  title: GCP Cloud Storage and Compute Engine
+  learning_objective: Create a GCS bucket and a small Compute Engine VM via gcloud; tear down
+  prerequisite_lesson_ids:
+  - L-121
+  analogy_anchor: Same pop-up shop, third city, third venue.
+  hands_on_action: Run `gcloud storage buckets create`, upload a file; `gcloud compute instances create` e2-micro; SSH via
+    `gcloud compute ssh`; delete.
+  verification: All commands succeed; no resources remain after teardown.
+  extension: Use `gcloud projects list` and understand the project abstraction.
+  acronyms_used:
+  - GCP
+  - SSH
+  - CLI
+  capture_mode: script_only
+  risk_level: high
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-124
+  sequence_number: 124
+  week_number: 18
+  day_in_week: 5
+- module_id: M19
+  domain_id: D09
+  title: Managed AI services on three clouds
+  learning_objective: Compare Azure OpenAI, AWS Bedrock, and GCP Vertex AI at a service level
+  prerequisite_lesson_ids:
+  - L-122
+  analogy_anchor: 'Three grocery stores with similar aisles but different brand stocking: you can buy milk at each, but the
+    store-brand is different.'
+  hands_on_action: Read the landing pages for all three; make a one-paragraph comparison of each's pitch; note which models
+    each offers.
+  verification: The comparison correctly names the key models each platform offers.
+  extension: Note which one requires an explicit access-request process and why.
+  acronyms_used:
+  - AI
+  - AWS
+  - GCP
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-125
+  sequence_number: 125
+  week_number: 18
+  day_in_week: 6
+- module_id: M19
+  domain_id: D09
+  title: Three-cloud equivalence table (capstone)
+  learning_objective: Produce a three-column comparison table covering compute, storage, networking, identity, and managed
+    AI services across Azure, AWS, and GCP
+  prerequisite_lesson_ids:
+  - L-123
+  analogy_anchor: 'A three-language phrasebook for travelers: the same concept, three ways to say it, enough to get by in
+    any of the three countries.'
+  hands_on_action: Write cloud-mapping.md with a 6x3 table and a paragraph under each row explaining the nuance; push to GitHub.
+  verification: The table is complete and accurate.
+  extension: Add a fourth column for on-premises equivalents.
+  acronyms_used:
+  - AI
+  - AWS
+  - GCP
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-126
+  sequence_number: 126
+  week_number: 18
+  day_in_week: 7
+- module_id: M20
+  domain_id: D10
+  title: What Infrastructure as Code is for
+  learning_objective: Explain in plain English why Infrastructure as Code matters and what it replaces
+  prerequisite_lesson_ids:
+  - L-124
+  analogy_anchor: 'A building blueprint vs. verbal instructions to the contractor: one is reproducible, reviewable, and versionable;
+    the other is not.'
+  hands_on_action: Write a 3-sentence explanation of IaC and what problems it solves.
+  verification: The explanation names reproducibility, reviewability, and auditability.
+  extension: Read a comparison of Terraform vs. Pulumi vs. CloudFormation at a high level.
+  acronyms_used:
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-127
+  sequence_number: 127
+  week_number: 19
+  day_in_week: 1
+- module_id: M20
+  domain_id: D10
+  title: Install Terraform and read the version
+  learning_objective: Install Terraform via the package manager and run `terraform --version`
+  prerequisite_lesson_ids:
+  - L-125
+  analogy_anchor: A new tool on the shelf; confirm it turns on before using it.
+  hands_on_action: Install terraform (or opentofu); run `terraform --version`.
+  verification: Version prints correctly.
+  extension: Also install `tflint` for future linting.
+  acronyms_used:
+  - CLI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-128
+  sequence_number: 128
+  week_number: 19
+  day_in_week: 2
+- module_id: M20
+  domain_id: D10
+  title: Your first main.tf
+  learning_objective: Write a minimal main.tf that declares a provider and one Azure resource group
+  prerequisite_lesson_ids:
+  - L-126
+  analogy_anchor: 'Writing a shopping list: one item, with enough detail that someone else could go to the store and buy exactly
+    the right thing.'
+  hands_on_action: Create a folder tf-first, write main.tf declaring azurerm provider and an azurerm_resource_group; save.
+  verification: The file parses with `terraform fmt` returning no changes and `terraform validate` passing.
+  extension: Read the azurerm provider docs page for resource_group.
+  acronyms_used:
+  - CLI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-129
+  sequence_number: 129
+  week_number: 19
+  day_in_week: 3
+- module_id: M20
+  domain_id: D10
+  title: The init-plan-apply cycle
+  learning_objective: Run the four Terraform commands (init, plan, apply, destroy) and understand what each does
+  prerequisite_lesson_ids:
+  - L-127
+  analogy_anchor: 'Delivery logistics: init is warehouse setup, plan is the invoice preview, apply is the actual shipping,
+    destroy is the return-to-sender.'
+  hands_on_action: 'From tf-first: `terraform init`; `terraform plan`; `terraform apply` (approve); observe the resource in
+    Azure; `terraform destroy`.'
+  verification: All four commands succeed; the resource group appears and disappears in the portal.
+  extension: Re-run apply and observe that Terraform reports no changes needed.
+  acronyms_used:
+  - CLI
+  - GUI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-130
+  sequence_number: 130
+  week_number: 19
+  day_in_week: 4
+- module_id: M20
+  domain_id: D10
+  title: Variables and outputs
+  learning_objective: Parameterize a Terraform config with variables and expose values with outputs
+  prerequisite_lesson_ids:
+  - L-128
+  analogy_anchor: 'Form fields on an order template: the template stays the same, you fill in the specifics each time.'
+  hands_on_action: Refactor tf-first to take location and rg_name as variables and output the resource group id; run apply
+    with and without -var overrides.
+  verification: The config works with both default and overridden values.
+  extension: Use a terraform.tfvars file as an alternative to CLI flags.
+  acronyms_used:
+  - CLI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-131
+  sequence_number: 131
+  week_number: 19
+  day_in_week: 5
+- module_id: M20
+  domain_id: D10
+  title: The state file and why it must never be in Git
+  learning_objective: Explain what terraform.tfstate contains and why it is sensitive
+  prerequisite_lesson_ids:
+  - L-129
+  analogy_anchor: 'The keyring that opens every door in the building: precious, never copied onto a postcard, never left in
+    public.'
+  hands_on_action: Look at terraform.tfstate as JSON; identify the resource metadata; add *.tfstate and .terraform.lock.hcl
+    to .gitignore.
+  verification: The learner can describe in one sentence what would go wrong if state were committed.
+  extension: Read about Terraform's sensitive value handling.
+  acronyms_used:
+  - CLI
+  - IaC
+  - JSON
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-132
+  sequence_number: 132
+  week_number: 19
+  day_in_week: 6
+- module_id: M20
+  domain_id: D10
+  title: Terraform first principles capstone
+  learning_objective: Produce a Terraform configuration that provisions a storage account on Azure with variables, outputs,
+    .gitignore, README, committed to a new Git repo
+  prerequisite_lesson_ids:
+  - L-130
+  analogy_anchor: 'Your first publishable blueprint: small, correct, reviewable, reusable.'
+  hands_on_action: 'Build tf-storage/: main.tf, variables.tf, outputs.tf, .gitignore, README.md; apply successfully; commit;
+    push.'
+  verification: Repo is on GitHub; README explains how someone else could reproduce the work.
+  extension: Add a second environment (dev, prod) via workspace or folder split.
+  acronyms_used:
+  - CLI
+  - IaC
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-133
+  sequence_number: 133
+  week_number: 19
+  day_in_week: 7
+- module_id: M21
+  domain_id: D10
+  title: What a Terraform module is
+  learning_objective: Explain what a module is and when to write one
+  prerequisite_lesson_ids:
+  - L-131
+  analogy_anchor: 'A recipe that another cookbook can cite: the module is the recipe, the calling config is the cookbook that
+    uses it.'
+  hands_on_action: Read the Terraform module docs page; sketch a 3-sentence summary.
+  verification: The learner can describe the difference between a root module and a child module.
+  extension: Look at one public module on the Terraform Registry.
+  acronyms_used:
+  - IaC
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-134
+  sequence_number: 134
+  week_number: 20
+  day_in_week: 1
+- module_id: M21
+  domain_id: D10
+  title: Refactor a config into a local module
+  learning_objective: Extract the Azure storage account configuration into a local module and call it from main.tf
+  prerequisite_lesson_ids:
+  - L-132
+  analogy_anchor: Moving a frequently-used recipe into its own card so you can reference it from three different meal plans.
+  hands_on_action: Refactor tf-storage into a modules/storage folder; call it from main.tf; apply should be a no-op.
+  verification: Apply shows no changes after refactor.
+  extension: Make the module take an optional tag map as a variable.
+  acronyms_used:
+  - CLI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-135
+  sequence_number: 135
+  week_number: 20
+  day_in_week: 2
+- module_id: M21
+  domain_id: D10
+  title: Remote state, why local state breaks teams
+  learning_objective: Explain why local state doesn't work for teams and configure an Azure Storage backend
+  prerequisite_lesson_ids:
+  - L-133
+  analogy_anchor: A single shared keyring on a hook in a shared office, vs. everyone having a personal copy that can diverge.
+  hands_on_action: Create an Azure storage container for state; configure the azurerm backend in main.tf; run `terraform init
+    -migrate-state`.
+  verification: State is now in the remote backend; local terraform.tfstate is empty or stub.
+  extension: Research state locking and why it matters.
+  acronyms_used:
+  - CLI
+  - IaC
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-136
+  sequence_number: 136
+  week_number: 20
+  day_in_week: 3
+- module_id: M21
+  domain_id: D10
+  title: The same module, but now on AWS
+  learning_objective: Write a second module that provisions an S3 bucket with equivalent interface to the Azure storage module
+  prerequisite_lesson_ids:
+  - L-134
+  analogy_anchor: 'The same recipe, translated from metric to imperial: same result, different units.'
+  hands_on_action: Create modules/s3; give it the same variable names where possible (bucket_name, tags); apply on AWS.
+  verification: S3 bucket is created with matching tags.
+  extension: Note where the abstraction leaks (Azure needs a resource group, AWS doesn't).
+  acronyms_used:
+  - AWS
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-137
+  sequence_number: 137
+  week_number: 20
+  day_in_week: 4
+- module_id: M21
+  domain_id: D10
+  title: Conditional provisioning with a cloud variable
+  learning_objective: Use a `cloud` variable plus count or for_each to choose which cloud module to invoke
+  prerequisite_lesson_ids:
+  - L-135
+  analogy_anchor: 'A light switch with two bulbs: flip the switch to choose which side lights up.'
+  hands_on_action: 'Make main.tf accept cloud=azure|aws and invoke the matching module with count = var.cloud == "azure" ?
+    1 : 0; apply on each cloud.'
+  verification: Both paths work depending on the variable.
+  extension: Read why many practitioners prefer separate configurations over a unified 'multi-cloud' config.
+  acronyms_used:
+  - AWS
+  - CLI
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-138
+  sequence_number: 138
+  week_number: 20
+  day_in_week: 5
+- module_id: M21
+  domain_id: D10
+  title: Integrate Terraform with GitHub Actions
+  learning_objective: Create a GitHub Actions workflow that runs terraform plan on pull request
+  prerequisite_lesson_ids:
+  - L-136
+  analogy_anchor: A code-review robot that previews the invoice before you approve the purchase.
+  hands_on_action: Write .github/workflows/terraform.yml running fmt/validate/plan on PR; open a PR and observe the action
+    running; read the output.
+  verification: The action runs green on a valid config and red on an intentionally-broken one.
+  extension: Protect main with a required-status-check for this workflow.
+  acronyms_used:
+  - CD
+  - CI
+  - IaC
+  - PR
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-139
+  sequence_number: 139
+  week_number: 20
+  day_in_week: 6
+- module_id: M21
+  domain_id: D10
+  title: Multi-cloud Terraform capstone
+  learning_objective: Produce a Terraform project with one module abstracting storage across Azure and AWS, remote state configured,
+    GitHub Actions running plan on PRs
+  prerequisite_lesson_ids:
+  - L-137
+  - L-136
+  analogy_anchor: 'The first real infrastructure blueprint reviewable by a team: a recipe book anyone on the team can extend.'
+  hands_on_action: Complete project published to a GitHub repo with README explaining the abstraction, the limits of the abstraction,
+    and how to run it.
+  verification: Repo is public; README is honest about what is and isn't abstracted.
+  extension: Add a Terraform Cloud remote state as an alternative to Azure Storage state.
+  acronyms_used:
+  - AWS
+  - CI
+  - IaC
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-140
+  sequence_number: 140
+  week_number: 20
+  day_in_week: 7
+- module_id: M22
+  domain_id: D11
+  title: 'The top rule: never commit a secret'
+  learning_objective: Recognize what counts as a secret and the damage from committing one to Git
+  prerequisite_lesson_ids:
+  - L-138
+  analogy_anchor: Writing your house key on a postcard. Even if you only sent it once, it is now copied by the postal system
+    and traceable.
+  hands_on_action: Read GitHub's docs on removing sensitive data; look up one real public breach caused by a committed secret.
+  verification: The learner can name 3 kinds of secret and what to do if one leaks.
+  extension: Install `git-secrets` or `gitleaks` and scan the learner's repos.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-141
+  sequence_number: 141
+  week_number: 21
+  day_in_week: 1
+- module_id: M22
+  domain_id: D11
+  title: Environment variables and .env files
+  learning_objective: Use environment variables and .env files (with python-dotenv) to keep secrets out of code
+  prerequisite_lesson_ids:
+  - L-139
+  analogy_anchor: A valet keeps the car keys in a locked box, not in the car.
+  hands_on_action: Refactor the weather-tool project (L-098) to load the API key from .env; confirm .env is in .gitignore;
+    confirm it runs.
+  verification: The code no longer contains the key and still works.
+  extension: Use `direnv` as a more automatic alternative.
+  acronyms_used:
+  - API
+  - CLI
+  - VCS
+  capture_mode: terminal_auto
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-142
+  sequence_number: 142
+  week_number: 21
+  day_in_week: 2
+- module_id: M22
+  domain_id: D11
+  title: Secret managers, the real solution
+  learning_objective: Use Azure Key Vault (or AWS Secrets Manager) to store a secret and read it from a script
+  prerequisite_lesson_ids:
+  - L-140
+  analogy_anchor: 'A bank safety deposit box: the secret lives in one place, you prove who you are to access it, the bank
+    logs every access.'
+  hands_on_action: Create an Azure Key Vault; add a secret; read it from Python with azure-identity and azure-keyvault-secrets.
+  verification: The script retrieves the secret without ever hardcoding it.
+  extension: Compare to AWS Secrets Manager and GCP Secret Manager.
+  acronyms_used:
+  - AWS
+  - CLI
+  - GCP
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-143
+  sequence_number: 143
+  week_number: 21
+  day_in_week: 3
+- module_id: M22
+  domain_id: D11
+  title: Identity, roles, and least privilege
+  learning_objective: Create a user-assigned managed identity, grant it least-privilege access, and use it
+  prerequisite_lesson_ids:
+  - L-141
+  analogy_anchor: A contractor gets a badge that opens only the rooms they need to work in, and only for this month.
+  hands_on_action: Create a managed identity; assign Reader on just one resource group; verify that trying to access another
+    resource fails.
+  verification: The allowed access works; the disallowed access is rejected.
+  extension: Read about Conditional Access and why identity is the new perimeter.
+  acronyms_used:
+  - IAM
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-144
+  sequence_number: 144
+  week_number: 21
+  day_in_week: 4
+- module_id: M22
+  domain_id: D11
+  title: Encryption in transit and at rest
+  learning_objective: Explain TLS, at-rest encryption, and key management at a conceptual level
+  prerequisite_lesson_ids:
+  - L-142
+  analogy_anchor: 'A sealed envelope in a locked mailbox on a locked truck: multiple layers, each doing one job.'
+  hands_on_action: Inspect an HTTPS cert in the browser; confirm a storage account has encryption at rest enabled in Azure.
+  verification: The learner can describe both protections and how they relate.
+  extension: Read a short explainer on BYOK (bring your own key) and CMK (customer-managed keys).
+  acronyms_used:
+  - GUI
+  - HTTPS
+  - TLS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-145
+  sequence_number: 145
+  week_number: 21
+  day_in_week: 5
+- module_id: M22
+  domain_id: D11
+  title: Credential cleanup capstone
+  learning_objective: Refactor an earlier project to eliminate hardcoded credentials, use a secret manager, and apply least-privilege
+    identity
+  prerequisite_lesson_ids:
+  - L-141
+  - L-140
+  analogy_anchor: 'A spring cleaning of the code shelves: nothing sensitive left lying around.'
+  hands_on_action: Pick the weather-tool or the Azure scripts; refactor to use a secret manager; commit; write a 1-page audit
+    describing what was fixed.
+  verification: The refactored project has no secrets in code and runs end-to-end.
+  extension: Run `gitleaks` on the whole repo history (not just HEAD) to confirm history is clean.
+  acronyms_used:
+  - CLI
+  - VCS
+  capture_mode: script_only
+  risk_level: medium
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-146
+  sequence_number: 146
+  week_number: 21
+  day_in_week: 6
+- module_id: M23
+  domain_id: D11
+  title: PII and PHI, what counts, and what doesn't
+  learning_objective: Recognize personally identifiable information (PII) and protected health information (PHI) and know
+    the baseline rules
+  prerequisite_lesson_ids:
+  - L-143
+  analogy_anchor: Which items in someone's wallet you could put on a postcard without causing harm, and which you absolutely
+    cannot.
+  hands_on_action: Given 10 fictional data elements, classify each as PII, PHI, both, or neither.
+  verification: At least 9 of 10 correctly classified.
+  extension: Read HIPAA's 18 identifiers list and note anything surprising.
+  acronyms_used:
+  - PII
+  - PHI
+  - HIPAA
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-147
+  sequence_number: 147
+  week_number: 21
+  day_in_week: 7
+- module_id: M23
+  domain_id: D11
+  title: Model bias and fairness, the basics
+  learning_objective: Recognize common sources of bias in AI models and the trade-offs between fairness metrics
+  prerequisite_lesson_ids:
+  - L-144
+  analogy_anchor: 'A driving test whose questions assume a particular kind of car: anyone who learned on a different vehicle
+    scores lower regardless of skill.'
+  hands_on_action: Read a 1-page primer on bias sources (data, label, measurement, deployment); write a 3-sentence summary.
+  verification: The summary correctly names at least two sources.
+  extension: Look at Google's What-If Tool or Fairlearn for hands-on exploration.
+  acronyms_used:
+  - AI
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-148
+  sequence_number: 148
+  week_number: 22
+  day_in_week: 1
+- module_id: M23
+  domain_id: D11
+  title: Evaluate a local model for bias on a simple test set
+  learning_objective: Run a local model against a small paired test set and observe different behavior for demographic variants
+  prerequisite_lesson_ids:
+  - L-145
+  analogy_anchor: Sending identical resumes with different names to see if the hiring manager responds differently, a classic
+    audit study.
+  hands_on_action: Prompt a local model with paired sentences that vary only in a demographic variable; collect 20 responses;
+    note differences.
+  verification: The learner observes and documents at least one concerning pattern (or argues credibly that there isn't one
+    in the sample).
+  extension: Repeat with a second demographic axis.
+  acronyms_used:
+  - CLI
+  - LLM
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-149
+  sequence_number: 149
+  week_number: 22
+  day_in_week: 2
+- module_id: M23
+  domain_id: D11
+  title: Audit logging and why it matters
+  learning_objective: Understand what an audit log is and what an AI system at a regulated organization must log
+  prerequisite_lesson_ids:
+  - L-146
+  analogy_anchor: 'The sign-in sheet at a hospital records room: who came, when, what they took, what they returned. Not optional.'
+  hands_on_action: Look at the trace.jsonl from L-104 and identify which fields could be repurposed as an audit log; add any
+    missing ones (user id, outcome).
+  verification: 'The enhanced log contains at least: timestamp, user/actor, action, inputs-redacted, outcome.'
+  extension: Read a short explainer on immutable logs and why append-only matters.
+  acronyms_used:
+  - AI
+  - JSON
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-150
+  sequence_number: 150
+  week_number: 22
+  day_in_week: 3
+- module_id: M23
+  domain_id: D11
+  title: NIST AI Risk Management Framework at a glance
+  learning_objective: Name the four functions of the NIST AI RMF (Govern, Map, Measure, Manage) and one example activity for
+    each
+  prerequisite_lesson_ids:
+  - L-147
+  analogy_anchor: 'The four corners of a safety program: decide what matters, understand the risk, measure it, manage it.'
+  hands_on_action: Read the NIST AI RMF 1.0 summary; build a 4-row table with one concrete action in each function for a healthcare
+    RAG use case.
+  verification: Each row has a defensible action.
+  extension: Read the AI RMF Playbook's Govern section at a high level.
+  acronyms_used:
+  - NIST
+  - AI
+  - RMF
+  - RAG
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-151
+  sequence_number: 151
+  week_number: 22
+  day_in_week: 4
+- module_id: M23
+  domain_id: D11
+  title: The regulatory landscape at a glance
+  learning_objective: Name the most-cited AI laws and frameworks (EU AI Act, Colorado AI Act, NIST AI RMF, HIPAA for health
+    AI) and one thing each requires
+  prerequisite_lesson_ids:
+  - L-148
+  analogy_anchor: 'A world map of the main traffic laws: you don''t need to memorize them all to know you should not run a
+    red light.'
+  hands_on_action: 'Build a 4-row markdown table: jurisdiction/framework, scope, one key requirement; keep each row to one
+    sentence.'
+  verification: All 4 rows are accurate.
+  extension: Read one recent (2026) enforcement action or fine under one of these regimes.
+  acronyms_used:
+  - AI
+  - HIPAA
+  - NIST
+  - RMF
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-152
+  sequence_number: 152
+  week_number: 22
+  day_in_week: 5
+- module_id: M23
+  domain_id: D11
+  title: Annotated healthcare AI data flow (capstone)
+  learning_objective: Produce an annotated data flow diagram for a realistic healthcare AI use case with PII, PHI, controls,
+    and regulatory citations
+  prerequisite_lesson_ids:
+  - L-149
+  analogy_anchor: A safety inspector's walkthrough of a hospital kitchen, red-flagging every surface where something bad could
+    happen and noting what controls are in place.
+  hands_on_action: Draw (draw.io or Excalidraw) a data flow for a RAG-over-clinical-notes system; annotate where PII/PHI exists,
+    which controls protect each stage, and cite which HIPAA safeguard or EU AI Act clause applies.
+  verification: The diagram is legible and each annotation is defensible.
+  extension: Write a short one-paragraph executive summary suitable for a CISO.
+  acronyms_used:
+  - AI
+  - HIPAA
+  - PHI
+  - PII
+  - RAG
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-153
+  sequence_number: 153
+  week_number: 22
+  day_in_week: 6
+- module_id: M24
+  domain_id: D12
+  title: Read a reference architecture critically
+  learning_objective: Read an existing cloud reference architecture diagram and identify data flows, trust boundaries, and
+    single points of failure
+  prerequisite_lesson_ids:
+  - L-150
+  analogy_anchor: 'Proofreading a floor plan: checking if every room has a way out, every service has access, every hazard
+    has a mitigation.'
+  hands_on_action: Take a Microsoft Azure reference architecture diagram; annotate three trust boundaries, two data flows,
+    and one SPOF.
+  verification: The annotations are defensible.
+  extension: Compare to an AWS Well-Architected reference on the same topic.
+  acronyms_used:
+  - AWS
+  - SPOF
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-154
+  sequence_number: 154
+  week_number: 22
+  day_in_week: 7
+- module_id: M24
+  domain_id: D12
+  title: Choose a diagramming tool
+  learning_objective: Install and do a quick walk-through of a chosen diagramming tool (draw.io or Excalidraw recommended)
+  prerequisite_lesson_ids:
+  - L-151
+  analogy_anchor: 'Picking a sketchpad: any clean surface will do for now, we''ll pick a finer tool later.'
+  hands_on_action: Install or open draw.io / Excalidraw; draw a rectangle, label it, export as SVG.
+  verification: The file is on disk and viewable.
+  extension: Browse the built-in shape libraries for Azure and AWS icons.
+  acronyms_used:
+  - AWS
+  - SVG
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-155
+  sequence_number: 155
+  week_number: 23
+  day_in_week: 1
+- module_id: M24
+  domain_id: D12
+  title: TOGAF BDAT, Business, Data, Application, Technology
+  learning_objective: Use TOGAF's four architecture domains to decompose an AI system
+  prerequisite_lesson_ids:
+  - L-152
+  analogy_anchor: 'The four camera angles on a crime scene: same scene, four views, each revealing different information.'
+  hands_on_action: Take a simple AI use case (fraud detection for a bank); write one paragraph describing it from each of
+    the four BDAT domains.
+  verification: All four paragraphs are distinct and relevant.
+  extension: Read the TOGAF 10 summary of each domain at a high level.
+  acronyms_used:
+  - AI
+  - BDAT
+  - TOGAF
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-156
+  sequence_number: 156
+  week_number: 23
+  day_in_week: 2
+- module_id: M24
+  domain_id: D12
+  title: Data flow first, components second
+  learning_objective: Draft an architecture diagram starting from the data flow and only adding components to support it
+  prerequisite_lesson_ids:
+  - L-153
+  analogy_anchor: Planning a kitchen around how food moves through it (prep, cook, plate, serve) instead of picking fancy
+    appliances first.
+  hands_on_action: For the healthcare RAG use case, draw the data flow arrows first (clinical note in -> chunks -> embeddings
+    -> retrieval -> generation -> response out); add components only to support those arrows.
+  verification: The diagram is component-light and flow-first.
+  extension: Add annotations showing where latency accumulates.
+  acronyms_used:
+  - RAG
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-157
+  sequence_number: 157
+  week_number: 23
+  day_in_week: 3
+- module_id: M24
+  domain_id: D12
+  title: Security boundaries and controls on the diagram
+  learning_objective: Annotate a diagram with security boundaries, encryption status, and governance controls
+  prerequisite_lesson_ids:
+  - L-154
+  analogy_anchor: 'Marking the childproof-locked drawers on a house map: you see immediately which doors need keys.'
+  hands_on_action: Extend the previous diagram with trust boundaries, TLS labels, identity principals, and PHI annotations.
+  verification: The enhanced diagram clearly marks all security-relevant elements.
+  extension: Cross-reference to the L-149 data flow.
+  acronyms_used:
+  - TLS
+  - PHI
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-158
+  sequence_number: 158
+  week_number: 23
+  day_in_week: 4
+- module_id: M24
+  domain_id: D12
+  title: Healthcare RAG target-state architecture (capstone)
+  learning_objective: Produce a publishable target-state architecture diagram for a healthcare RAG system with labeled data
+    flows, security boundaries, and governance controls
+  prerequisite_lesson_ids:
+  - L-155
+  - L-149
+  analogy_anchor: 'The first architecture artifact that would go in a promotion packet: clear, honest, defensible.'
+  hands_on_action: Export the final SVG; write a 2-paragraph prose summary explaining the design and the tradeoffs; commit
+    to an arch-portfolio repo.
+  verification: The SVG renders correctly on GitHub; the prose is plain-language.
+  extension: Produce a stripped-down 'executive' version with fewer boxes for a 5-minute conversation.
+  acronyms_used:
+  - RAG
+  - SVG
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-159
+  sequence_number: 159
+  week_number: 23
+  day_in_week: 5
+- module_id: M25
+  domain_id: D12
+  title: RAG in detail, ingestion, chunking, embedding
+  learning_objective: 'Design the ingest side of a RAG pipeline: source connectors, chunking strategy, embedding choice'
+  prerequisite_lesson_ids:
+  - L-156
+  analogy_anchor: 'Preparing an ingredient prep station: clean, cut, portion, label, before the actual cooking starts.'
+  hands_on_action: For a 50-PDF corpus, choose a chunk size and overlap, justify the choice; pick an embedding model and justify;
+    sketch the ingest flow.
+  verification: The justifications are concrete (named numbers, not 'as needed').
+  extension: Read one recent blog post on evaluating chunking strategies.
+  acronyms_used:
+  - RAG
+  - PDF
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-160
+  sequence_number: 160
+  week_number: 23
+  day_in_week: 6
+- module_id: M25
+  domain_id: D12
+  title: RAG in detail, retrieval, reranking, generation
+  learning_objective: 'Design the query side of a RAG pipeline: retrieval method, reranker, prompt assembly, and generation'
+  prerequisite_lesson_ids:
+  - L-157
+  analogy_anchor: 'Asking the sous-chef for the right ingredients mid-service: retrieval is speed, rerank is quality check,
+    generation is the actual plating.'
+  hands_on_action: For the same 50-PDF corpus, design the retrieve-rerank-generate flow; choose k for retrieval, name the
+    reranker, sketch the prompt.
+  verification: The design has clear choices and numbered trade-offs.
+  extension: Read one paper or post on the pros and cons of using a reranker.
+  acronyms_used:
+  - CLI
+  - RAG
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-161
+  sequence_number: 161
+  week_number: 23
+  day_in_week: 7
+- module_id: M25
+  domain_id: D12
+  title: RAG evaluation, how you know it works
+  learning_objective: Design a RAG evaluation plan using a gold test set and both retrieval and answer metrics
+  prerequisite_lesson_ids:
+  - L-158
+  analogy_anchor: 'A restaurant''s regular customer survey: are the right dishes coming out, are they tasting right, are people
+    coming back.'
+  hands_on_action: 'Write an evaluation plan with: 50 test questions, retrieval metrics (recall@k), answer metrics (accuracy,
+    grounding, latency), and a deployment gate (must score above X).'
+  verification: The plan is concrete and numerical.
+  extension: Read about RAGAS or Arize Phoenix as evaluation tooling.
+  acronyms_used:
+  - RAG
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-162
+  sequence_number: 162
+  week_number: 24
+  day_in_week: 1
+- module_id: M25
+  domain_id: D12
+  title: LLMOps pipeline, promoting a prompt from dev to prod
+  learning_objective: 'Design an LLMOps pipeline: prompt versioning, eval gates, deployment, and rollback'
+  prerequisite_lesson_ids:
+  - L-159
+  analogy_anchor: 'The test kitchen vs. the main kitchen: every new dish is perfected in the test kitchen and only served
+    when it passes tasting.'
+  hands_on_action: 'Sketch the pipeline: commit -> CI runs eval set -> threshold gate -> promote to staging -> canary -> full
+    prod -> monitor drift.'
+  verification: The pipeline has each stage named with its responsibility.
+  extension: Compare to Databricks' or Azure ML's managed LLMOps reference.
+  acronyms_used:
+  - CD
+  - CI
+  - CLI
+  - LLMOps
+  - ML
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-163
+  sequence_number: 163
+  week_number: 24
+  day_in_week: 2
+- module_id: M25
+  domain_id: D12
+  title: Cost, latency, and the trade-offs that matter to executives
+  learning_objective: Build a simple TCO (total cost of ownership) comparison for two RAG approaches and summarize it for
+    an executive
+  prerequisite_lesson_ids:
+  - L-160
+  analogy_anchor: 'A 1-page quote for two kitchen remodels: the cheap one, the premium one, with the real costs and real benefits
+    spelled out.'
+  hands_on_action: Build a spreadsheet with rows for embedding compute, vector store, LLM inference, engineer time, monitoring;
+    compare local-self-hosted vs. managed cloud.
+  verification: The spreadsheet has defensible numbers and a 3-sentence executive summary.
+  extension: Add a sensitivity analysis row (what if volume grows 10x).
+  acronyms_used:
+  - LLM
+  - RAG
+  - TCO
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-164
+  sequence_number: 164
+  week_number: 24
+  day_in_week: 3
+- module_id: M25
+  domain_id: D12
+  title: RAG solution design document (capstone)
+  learning_objective: 'Produce a 2-page solution design document for a healthcare RAG system: scope, architecture, trade-offs,
+    costs, governance'
+  prerequisite_lesson_ids:
+  - L-161
+  - L-158
+  analogy_anchor: 'The first document a principal architect writes that an executive actually signs off on: short, honest,
+    complete.'
+  hands_on_action: 'Write design-rag.md: scope (1 para), architecture diagram reference, 3 key trade-offs, cost summary, governance
+    summary; commit to arch-portfolio.'
+  verification: The document fits the form of a principal-architect deliverable.
+  extension: Share it for review with one colleague and incorporate their feedback.
+  acronyms_used:
+  - RAG
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-165
+  sequence_number: 165
+  week_number: 24
+  day_in_week: 4
+- module_id: M26
+  domain_id: D12
+  title: 'Scope your capstone: pick a realistic use case'
+  learning_objective: Select a realistic enterprise AI use case within the learner's sector (healthcare) that can credibly
+    be built on what has been learned
+  prerequisite_lesson_ids:
+  - L-162
+  analogy_anchor: 'Choosing which paper to submit to the big conference: pick one where you have the material and the time
+    to do it well.'
+  hands_on_action: Write a 1-paragraph use case brief (business problem, users, success metric); commit to capstone/brief.md.
+  verification: The brief is realistic and bounded.
+  extension: Get the brief reviewed by someone in the domain.
+  acronyms_used:
+  - AI
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-166
+  sequence_number: 166
+  week_number: 24
+  day_in_week: 5
+- module_id: M26
+  domain_id: D12
+  title: Executive summary, 1 page for the board
+  learning_objective: Write a 1-page executive summary that a non-technical board member could read in 3 minutes
+  prerequisite_lesson_ids:
+  - L-163
+  analogy_anchor: 'A new-drug abstract for a general newspaper: what problem, what approach, what it would cost, what it would
+    change.'
+  hands_on_action: 'Draft executive-summary.md with sections: Problem, Approach, Cost, Risks, Recommendation; keep under 500
+    words.'
+  verification: Under 500 words; plain language throughout; no unexpanded acronyms.
+  extension: Read it aloud to a non-technical person and time the read.
+  acronyms_used: []
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-167
+  sequence_number: 167
+  week_number: 24
+  day_in_week: 6
+- module_id: M26
+  domain_id: D12
+  title: Reference architecture diagram, publishable quality
+  learning_objective: Produce a final reference architecture diagram meeting the style standards from L-156
+  prerequisite_lesson_ids:
+  - L-164
+  - L-156
+  analogy_anchor: The final design drawing for the cathedral, not the sketch, the drawing that the builders use.
+  hands_on_action: Export architecture.svg; each component labeled; each connector labeled with protocol and port; trust boundaries
+    marked.
+  verification: The diagram is publishable and passes the learner's own self-review checklist.
+  extension: Produce a dark-mode and light-mode variant.
+  acronyms_used:
+  - SVG
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-168
+  sequence_number: 168
+  week_number: 24
+  day_in_week: 7
+- module_id: M26
+  domain_id: D12
+  title: Solution design document, full version
+  learning_objective: Write the full solution design document (5-8 pages) combining all prior work
+  prerequisite_lesson_ids:
+  - L-165
+  - L-162
+  analogy_anchor: 'The cathedral''s full spec binder: every room, every material, every contractor''s scope.'
+  hands_on_action: 'Write solution-design.md: overview, architecture, data flow, security, cost, governance, migration plan,
+    risks; commit.'
+  verification: The document reads coherently end to end.
+  extension: Include a decision log section with 5 key decisions and their alternatives.
+  acronyms_used:
+  - VCS
+  capture_mode: rendered_auto
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-169
+  sequence_number: 169
+  week_number: 25
+  day_in_week: 1
+- module_id: M26
+  domain_id: D12
+  title: Five-minute walkthrough, explain it to a non-technical executive
+  learning_objective: Record a 5-minute walkthrough of the architecture for a non-technical executive audience
+  prerequisite_lesson_ids:
+  - L-166
+  - L-165
+  analogy_anchor: 'The elevator pitch after three months of work: distilled, honest, clear, and short.'
+  hands_on_action: Record a 5-minute screen walkthrough using the diagram and the summary; store as walkthrough.mp4 or link
+    to unlisted YouTube.
+  verification: The recording stays under 5 minutes and uses no unexplained jargon.
+  extension: Get feedback from one non-technical listener and iterate once.
+  acronyms_used: []
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: false
+  lesson_id: L-170
+  sequence_number: 170
+  week_number: 26
+  day_in_week: 2
+- module_id: M26
+  domain_id: D12
+  title: Publish the portfolio (final capstone)
+  learning_objective: Publish the full architecture portfolio as a public GitHub repository that could serve as a job-search
+    artifact
+  prerequisite_lesson_ids:
+  - L-167
+  - L-166
+  analogy_anchor: Printing and binding the full cathedral portfolio and putting it on the shelf for every visiting architect
+    to see.
+  hands_on_action: Create enterprise-ai-architecture-portfolio repo; include README, executive summary, architecture diagram
+    (SVG), solution design document, cost model, walkthrough link; push.
+  verification: The repo is public; the README is a capable front door; each artifact is easily accessible.
+  extension: Publish a LinkedIn post linking to the repo and summarizing the journey in under 1,500 words.
+  acronyms_used:
+  - AI
+  - VCS
+  capture_mode: script_only
+  risk_level: low
+  estimated_minutes: 13
+  is_capstone: true
+  lesson_id: L-171
+  sequence_number: 171
+  week_number: 26
+  day_in_week: 3

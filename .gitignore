@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Node (if you ever add JS tooling)
+node_modules/
+npm-debug.log
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Claude / skill runtime scratch (never commit working state)
+_state/scratch/
+_state/archive/
+
+# Secrets (defense in depth; secret_scrub.py is the real defense)
+*.env
+.env.local
+*.pem
+*.key
+credentials.json
