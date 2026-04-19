@@ -15,8 +15,8 @@
       "file": "L-002-anatomy.png",
       "role": "scene",
       "description": "Anatomy diagram (PNG render for DOCX)",
-      "bytes": 68545,
-      "sha256": "817b12cda597c3c766755c9ebdaa1f50eebdf67b89ecade1b114af74d90d78c0"
+      "bytes": 33286,
+      "sha256": "f74a3eb68d60a3053009a2343339f94354c7fc96b1893af0107c0917c83ce20a"
     },
     {
       "file": "L-002-prompt-macos.svg",
@@ -29,8 +29,8 @@
       "file": "L-002-prompt-macos.png",
       "role": "scene",
       "description": "macOS Zsh prompt (PNG render for DOCX)",
-      "bytes": 67640,
-      "sha256": "79125f247b04875faf57d6bb628ec31e3e17d5c192badefbf199c6844f634e2e"
+      "bytes": 38470,
+      "sha256": "72981e1d98c69dd83efcd760a11b665791d8b13b30498c84be2827beae1a93d2"
     },
     {
       "file": "L-002-prompt-linux.svg",
@@ -43,8 +43,8 @@
       "file": "L-002-prompt-linux.png",
       "role": "scene",
       "description": "Linux Bash prompt (PNG render for DOCX)",
-      "bytes": 67829,
-      "sha256": "d1143ba0b2dfdac2c9913a26db68c8b532c7579663c64dc3a9df480b8fcb19cd"
+      "bytes": 39381,
+      "sha256": "ed4634e0c261594380cf3f5ceb6405b0b2751030a0d9648cfdf7573bed242984"
     },
     {
       "file": "L-002-prompt-windows.svg",
@@ -57,8 +57,8 @@
       "file": "L-002-prompt-windows.png",
       "role": "scene",
       "description": "Windows PowerShell prompt (PNG render for DOCX)",
-      "bytes": 71196,
-      "sha256": "8b552fb92320c2bda313f30f93b8ff585919647db22f972945bd1ba95326415a"
+      "bytes": 37194,
+      "sha256": "ee15d272ccb91e9f4ab1cf24a35636a02eeb97690152aa5b6fe05ba6755875d3"
     },
     {
       "file": "L-002-walkthrough.svg",
