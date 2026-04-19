@@ -1,0 +1,36 @@
+{
+  "lesson_id": "L-003",
+  "module_id": "M01",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "assets": [
+    {
+      "file": "L-003-terminal.svg",
+      "role": "scene",
+      "description": "Static five-exchange terminal panel",
+      "bytes": 4135,
+      "sha256": "e48fe8ded08623e06f6696f3cea3c9e45fcf044fdf490b707fa08af7ca61d6bc"
+    },
+    {
+      "file": "L-003-terminal.png",
+      "role": "scene",
+      "description": "Static terminal panel (PNG render for DOCX)",
+      "bytes": 71329,
+      "sha256": "1eebdf2ce41598c5c6c92eae1dcb4e0fb8b2f85d64abdbf21e89cb9b19b435f2"
+    },
+    {
+      "file": "L-003-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the five echo exchanges",
+      "bytes": 426331,
+      "sha256": "bcf387cb5bfb6327afae2594a3ed37ca2bf7e7422124957c5bc58308b7d84ad3"
+    },
+    {
+      "file": "L-003-transcript.md",
+      "role": "transcript",
+      "description": "Plain-text transcript for screen readers",
+      "bytes": 1028,
+      "sha256": "28f1078dbb68f7942d3c169e7fb432c1598e65cf475152cb7dc2bbcd73ffbb22"
+    }
+  ]
+}
