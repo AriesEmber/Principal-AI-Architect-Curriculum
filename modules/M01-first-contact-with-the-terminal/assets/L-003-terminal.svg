@@ -1,122 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 820" width="1500" height="820" font-family="'SF Mono','Fira Code','Consolas',monospace">
-  <defs>
-    <linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1b2029"/>
-      <stop offset="1" stop-color="#12161d"/>
-    </linearGradient>
-    <linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#012456"/>
-      <stop offset="1" stop-color="#011736"/>
-    </linearGradient>
-  </defs>
-  <rect width="1500" height="820" fill="#0b0d12"/>
-
-  <!-- Top label strip -->
-  <text x="750" y="40" text-anchor="middle" fill="#cdd5e0" font-size="18" font-weight="600">L-003 &#183; echo &#183; same five exchanges in two shells</text>
-
-  <!-- ===== Left: Bash terminal ===== -->
-  <rect x="30" y="65" width="710" height="640" rx="14" ry="14" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
-  <rect x="30" y="65" width="710" height="44" rx="14" ry="14" fill="#262c38"/>
-  <rect x="30" y="95" width="710" height="14" fill="#262c38"/>
-  <circle cx="58"  cy="87" r="7" fill="#ff5f57"/>
-  <circle cx="80"  cy="87" r="7" fill="#febc2e"/>
-  <circle cx="102" cy="87" r="7" fill="#28c840"/>
-  <text x="385" y="92" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash &#183; macOS / Linux / WSL</text>
-
-  <g font-size="18" xml:space="preserve">
-    <!-- 1. plain -->
-    <text x="55" y="150" fill="#6aa7ff">learner@laptop</text><text x="225" y="150" fill="#7e8697">:</text><text x="232" y="150" fill="#c792ea">~</text><text x="248" y="150" fill="#7e8697">$</text><text x="263" y="150" fill="#e6edf3">echo Hello, world</text>
-    <text x="55" y="178" fill="#7ee787">Hello, world</text>
-
-    <!-- 2. double quotes -->
-    <text x="55" y="216" fill="#6aa7ff">learner@laptop</text><text x="225" y="216" fill="#7e8697">:</text><text x="232" y="216" fill="#c792ea">~</text><text x="248" y="216" fill="#7e8697">$</text><text x="263" y="216" fill="#e6edf3">echo </text><text x="313" y="216" fill="#ffab70">&quot;Hello, world&quot;</text>
-    <text x="55" y="244" fill="#7ee787">Hello, world</text>
-
-    <!-- 3. single quotes -->
-    <text x="55" y="282" fill="#6aa7ff">learner@laptop</text><text x="225" y="282" fill="#7e8697">:</text><text x="232" y="282" fill="#c792ea">~</text><text x="248" y="282" fill="#7e8697">$</text><text x="263" y="282" fill="#e6edf3">echo </text><text x="313" y="282" fill="#ffab70">'Hello, world'</text>
-    <text x="55" y="310" fill="#7ee787">Hello, world</text>
-
-    <!-- 4. no args -->
-    <text x="55" y="348" fill="#6aa7ff">learner@laptop</text><text x="225" y="348" fill="#7e8697">:</text><text x="232" y="348" fill="#c792ea">~</text><text x="248" y="348" fill="#7e8697">$</text><text x="263" y="348" fill="#e6edf3">echo</text>
-    <text x="55" y="376" fill="#8b94a5">(blank line)</text>
-
-    <!-- 5. variable expansion (Bash form) -->
-    <text x="55" y="414" fill="#6aa7ff">learner@laptop</text><text x="225" y="414" fill="#7e8697">:</text><text x="232" y="414" fill="#c792ea">~</text><text x="248" y="414" fill="#7e8697">$</text><text x="263" y="414" fill="#e6edf3">echo </text><text x="313" y="414" fill="#f2cc60">$USER</text>
-    <text x="55" y="442" fill="#7ee787">learner</text>
-
-    <!-- waiting prompt -->
-    <text x="55" y="480" fill="#6aa7ff">learner@laptop</text><text x="225" y="480" fill="#7e8697">:</text><text x="232" y="480" fill="#c792ea">~</text><text x="248" y="480" fill="#7e8697">$</text>
-    <rect x="266" y="463" width="11" height="20" fill="#e6edf3">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Step labels (left column) -->
-  <g font-size="13" fill="#8b94a5">
-    <text x="555" y="150">1. No quotes</text>
-    <text x="555" y="216">2. Double quotes</text>
-    <text x="555" y="282">3. Single quotes</text>
-    <text x="555" y="348">4. No arguments</text>
-    <text x="555" y="414">5. Variable</text>
-  </g>
-
-  <!-- Bash bottom note -->
-  <rect x="30" y="650" width="710" height="55" fill="#141923"/>
-  <text x="50" y="673" fill="#9aa3b2" font-size="13">Variable namespace: flat. <tspan fill="#f2cc60">$USER</tspan>, <tspan fill="#f2cc60">$HOME</tspan>, and <tspan fill="#f2cc60">$SHELL</tspan> are looked up directly.</text>
-  <text x="50" y="693" fill="#7e8697" font-size="12">Prompt usually ends in $ (Bash) or % (Zsh).</text>
-
-  <!-- ===== Right: PowerShell terminal ===== -->
-  <rect x="760" y="65" width="710" height="640" rx="14" ry="14" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
-  <rect x="760" y="65" width="710" height="44" rx="14" ry="14" fill="#0a3a73"/>
-  <rect x="760" y="95" width="710" height="14" fill="#0a3a73"/>
-  <circle cx="788"  cy="87" r="7" fill="#ff5f57"/>
-  <circle cx="810"  cy="87" r="7" fill="#febc2e"/>
-  <circle cx="832" cy="87" r="7" fill="#28c840"/>
-  <text x="1115" y="92" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell &#183; Windows</text>
-
-  <g font-size="18" xml:space="preserve">
-    <!-- 1. plain -->
-    <text x="785" y="150" fill="#cfd9ee">PS </text><text x="813" y="150" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="150" fill="#cfd9ee">&gt;</text><text x="1000" y="150" fill="#ffffff">echo Hello, world</text>
-    <text x="785" y="178" fill="#7ee787">Hello, world</text>
-
-    <!-- 2. double quotes -->
-    <text x="785" y="216" fill="#cfd9ee">PS </text><text x="813" y="216" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="216" fill="#cfd9ee">&gt;</text><text x="1000" y="216" fill="#ffffff">echo </text><text x="1050" y="216" fill="#ffab70">&quot;Hello, world&quot;</text>
-    <text x="785" y="244" fill="#7ee787">Hello, world</text>
-
-    <!-- 3. single quotes -->
-    <text x="785" y="282" fill="#cfd9ee">PS </text><text x="813" y="282" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="282" fill="#cfd9ee">&gt;</text><text x="1000" y="282" fill="#ffffff">echo </text><text x="1050" y="282" fill="#ffab70">'Hello, world'</text>
-    <text x="785" y="310" fill="#7ee787">Hello, world</text>
-
-    <!-- 4. no args -->
-    <text x="785" y="348" fill="#cfd9ee">PS </text><text x="813" y="348" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="348" fill="#cfd9ee">&gt;</text><text x="1000" y="348" fill="#ffffff">echo</text>
-    <text x="785" y="376" fill="#8b94a5">(blank line)</text>
-
-    <!-- 5. variable expansion (PowerShell form) -->
-    <text x="785" y="414" fill="#cfd9ee">PS </text><text x="813" y="414" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="414" fill="#cfd9ee">&gt;</text><text x="1000" y="414" fill="#ffffff">echo </text><text x="1050" y="414" fill="#f2cc60">$env:USERNAME</text>
-    <text x="785" y="442" fill="#7ee787">learner</text>
-
-    <!-- waiting prompt -->
-    <text x="785" y="480" fill="#cfd9ee">PS </text><text x="813" y="480" fill="#9bb4dd">C:\Users\learner</text><text x="985" y="480" fill="#cfd9ee">&gt;</text>
-    <rect x="1003" y="463" width="11" height="20" fill="#ffffff">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Step labels (right column) -->
-  <g font-size="13" fill="#8ba3c7">
-    <text x="1290" y="150">1. No quotes</text>
-    <text x="1290" y="216">2. Double quotes</text>
-    <text x="1290" y="282">3. Single quotes</text>
-    <text x="1290" y="348">4. No arguments</text>
-    <text x="1290" y="414">5. Variable</text>
-  </g>
-
-  <!-- PowerShell bottom note -->
-  <rect x="760" y="650" width="710" height="55" fill="#031a3a"/>
-  <text x="780" y="673" fill="#cfd9ee" font-size="13">Environment variables live under the <tspan fill="#f2cc60">$env:</tspan> prefix. User vars sit in the bare <tspan fill="#f2cc60">$name</tspan> namespace.</text>
-  <text x="780" y="693" fill="#8ba3c7" font-size="12">Prompt usually starts with PS C:\... and ends in &gt;.</text>
-
-  <!-- Caption strip across full width -->
-  <rect x="30" y="725" width="1440" height="40" fill="#141923"/>
-  <text x="750" y="751" text-anchor="middle" fill="#9aa3b2" font-size="14">Steps 1 to 4 are identical across shells. Step 5 uses different syntax to look up the same value.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 570" width="1400" height="570" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<defs><linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#12161d"/></linearGradient><linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#012456"/><stop offset="1" stop-color="#011736"/></linearGradient></defs>
+<rect width="1400" height="570" fill="#0b0d12"/>
+<text x="700" y="32" text-anchor="middle" fill="#cdd5e0" font-size="18" font-weight="600">L-003 · echo · same five exchanges in two shells</text>
+<rect x="20" y="70" width="670" height="440" rx="12" ry="12" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="20" y="70" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="20" y="100" width="670" height="10" fill="#262c38"/>
+<circle cx="42" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="90" r="7" fill="#febc2e"/>
+<circle cx="82" cy="90" r="7" fill="#28c840"/>
+<text x="355" y="96" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<rect x="21" y="454" width="668" height="55" fill="#141923"/>
+<text x="36" y="474" fill="#9aa3b2" font-size="13">Variable namespace: flat. $USER, $HOME, $SHELL are looked up directly. Prompt ends in $</text>
+<text x="36" y="492" fill="#9aa3b2" font-size="13">(Bash) or % (Zsh).</text>
+<rect x="710" y="70" width="670" height="440" rx="12" ry="12" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="710" y="70" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="710" y="100" width="670" height="10" fill="#0a3a73"/>
+<circle cx="732" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="90" r="7" fill="#febc2e"/>
+<circle cx="772" cy="90" r="7" fill="#28c840"/>
+<text x="1045" y="96" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows</text>
+<rect x="711" y="454" width="668" height="55" fill="#031a3a"/>
+<text x="726" y="474" fill="#cfd9ee" font-size="13">Environment variables live under $env:. User variables sit in the bare $name namespace.</text>
+<text x="726" y="492" fill="#cfd9ee" font-size="13">Prompt ends in &gt;.</text>
+<g font-size="16" xml:space="preserve">
+<text x="42" y="146" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="146" fill="#7e8697">:</text>
+<text x="186" y="146" fill="#c792ea">~</text>
+<text x="196" y="146" fill="#7e8697">$ </text>
+<text x="215" y="146" fill="#e6edf3">echo Hello, world</text>
+<text x="42" y="174" fill="#7ee787">Hello, world</text>
+<text x="42" y="202" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="202" fill="#7e8697">:</text>
+<text x="186" y="202" fill="#c792ea">~</text>
+<text x="196" y="202" fill="#7e8697">$ </text>
+<text x="215" y="202" fill="#e6edf3">echo </text>
+<text x="263" y="202" fill="#ffab70">"Hello, world"</text>
+<text x="42" y="230" fill="#7ee787">Hello, world</text>
+<text x="42" y="258" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="258" fill="#7e8697">:</text>
+<text x="186" y="258" fill="#c792ea">~</text>
+<text x="196" y="258" fill="#7e8697">$ </text>
+<text x="215" y="258" fill="#e6edf3">echo </text>
+<text x="263" y="258" fill="#ffab70">'Hello, world'</text>
+<text x="42" y="286" fill="#7ee787">Hello, world</text>
+<text x="42" y="314" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="314" fill="#7e8697">:</text>
+<text x="186" y="314" fill="#c792ea">~</text>
+<text x="196" y="314" fill="#7e8697">$ </text>
+<text x="215" y="314" fill="#e6edf3">echo</text>
+<text x="42" y="342" fill="#8b94a5">(blank line)</text>
+<text x="42" y="370" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="370" fill="#7e8697">:</text>
+<text x="186" y="370" fill="#c792ea">~</text>
+<text x="196" y="370" fill="#7e8697">$ </text>
+<text x="215" y="370" fill="#e6edf3">echo </text>
+<text x="263" y="370" fill="#f2cc60">$USER</text>
+<text x="42" y="398" fill="#7ee787">learner</text>
+<text x="42" y="426" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="426" fill="#7e8697">:</text>
+<text x="186" y="426" fill="#c792ea">~</text>
+<text x="196" y="426" fill="#7e8697">$ </text>
+<rect x="216" y="411" width="11" height="20" fill="#e6edf3"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+<text x="732" y="146" fill="#cfd9ee">PS </text>
+<text x="761" y="146" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="146" fill="#cfd9ee">&gt; </text>
+<text x="934" y="146" fill="#ffffff">echo Hello, world</text>
+<text x="732" y="174" fill="#7ee787">Hello, world</text>
+<text x="732" y="202" fill="#cfd9ee">PS </text>
+<text x="761" y="202" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="202" fill="#cfd9ee">&gt; </text>
+<text x="934" y="202" fill="#ffffff">echo </text>
+<text x="982" y="202" fill="#ffab70">"Hello, world"</text>
+<text x="732" y="230" fill="#7ee787">Hello, world</text>
+<text x="732" y="258" fill="#cfd9ee">PS </text>
+<text x="761" y="258" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="258" fill="#cfd9ee">&gt; </text>
+<text x="934" y="258" fill="#ffffff">echo </text>
+<text x="982" y="258" fill="#ffab70">'Hello, world'</text>
+<text x="732" y="286" fill="#7ee787">Hello, world</text>
+<text x="732" y="314" fill="#cfd9ee">PS </text>
+<text x="761" y="314" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="314" fill="#cfd9ee">&gt; </text>
+<text x="934" y="314" fill="#ffffff">echo</text>
+<text x="732" y="342" fill="#8b94a5">(blank line)</text>
+<text x="732" y="370" fill="#cfd9ee">PS </text>
+<text x="761" y="370" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="370" fill="#cfd9ee">&gt; </text>
+<text x="934" y="370" fill="#ffffff">echo </text>
+<text x="982" y="370" fill="#f2cc60">$env:USERNAME</text>
+<text x="732" y="398" fill="#7ee787">learner</text>
+<text x="732" y="426" fill="#cfd9ee">PS </text>
+<text x="761" y="426" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="426" fill="#cfd9ee">&gt; </text>
+<rect x="935" y="411" width="11" height="20" fill="#ffffff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+</g>
+<g font-size="13" fill="#8b94a5">
+<text x="674" y="146" text-anchor="end">1. No quotes</text>
+<text x="1364" y="146" text-anchor="end">1. No quotes</text>
+<text x="674" y="202" text-anchor="end">2. Double quotes</text>
+<text x="1364" y="202" text-anchor="end">2. Double quotes</text>
+<text x="674" y="258" text-anchor="end">3. Single quotes</text>
+<text x="1364" y="258" text-anchor="end">3. Single quotes</text>
+<text x="674" y="314" text-anchor="end">4. No arguments</text>
+<text x="1364" y="314" text-anchor="end">4. No arguments</text>
+<text x="674" y="370" text-anchor="end">5. Variable</text>
+<text x="1364" y="370" text-anchor="end">5. Variable</text>
+</g>
+<rect x="20" y="530" width="1360" height="34" fill="#141923"/>
+<text x="700" y="554" text-anchor="middle" fill="#9aa3b2" font-size="14">Steps 1 to 4 behave identically. Step 5 uses different syntax to look up the same value.</text>
 </svg>

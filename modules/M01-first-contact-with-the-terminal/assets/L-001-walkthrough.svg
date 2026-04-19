@@ -1,205 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="walk-title walk-desc">
-  <title id="walk-title">Animated walkthrough of opening a terminal on macOS, Windows, and Linux</title>
-  <desc id="walk-desc">A four-scene looping animation. Scene one shows the macOS Spotlight search. Scene two shows the Windows 11 Start menu. Scene three shows the GNOME Activities overlay on Linux. Scene four shows the resulting terminal window with a blinking cursor. The animation auto-advances every four seconds and loops.</desc>
-  <defs>
-    <linearGradient id="wbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1B2539"/>
-      <stop offset="1" stop-color="#0A1020"/>
-    </linearGradient>
-    <style>
-      .ui { font-family: -apple-system, "Segoe UI", "Cantarell", system-ui, Arial, sans-serif; }
-      .mono { font-family: "SF Mono", "Cascadia Mono", "Ubuntu Mono", Consolas, monospace; }
-      .scene-label { fill: #FFFFFF; font-weight: 700; font-size: 16px; }
-      .scene-sub { fill: #D6E2F0; font-size: 13px; }
-    </style>
-  </defs>
-
-  <rect width="1200" height="750" fill="url(#wbg)"/>
-
-  <!-- Header strip -->
-  <rect x="0" y="0" width="1200" height="52" fill="#0A1020"/>
-  <text x="32" y="33" class="ui" fill="#FFD666" font-weight="700" font-size="15">L-001 · Walkthrough</text>
-  <text x="32" y="52" class="ui" fill="#A7C0DC" font-size="11">Open the terminal with a keyboard shortcut, four scenes, looping</text>
-  <text x="1168" y="33" class="ui" fill="#A7C0DC" font-size="11" text-anchor="end">16s loop · auto-advance · 4s per scene</text>
-
-  <!-- Progress indicator -->
-  <g transform="translate(450,36)">
-    <rect x="0" y="0" width="48" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="0" y="0" width="48" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="1;1;0.25;0.25;0.25;1" keyTimes="0;0.25;0.25;0.75;1;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="64" y="0" width="48" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="64" y="0" width="48" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;1;1;0.25;0.25" keyTimes="0;0.25;0.25;0.5;0.5;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="128" y="0" width="48" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="128" y="0" width="48" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;0.25;0.25;1;1;0.25;0.25" keyTimes="0;0.5;0.5;0.75;0.75;0.9;0.9;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="192" y="0" width="48" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="192" y="0" width="48" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;1;1" keyTimes="0;0.25;0.5;0.6;0.75;0.85;0.85;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Stage area clipping (centered, 880 x 560) -->
-  <g transform="translate(160,80)">
-    <rect x="0" y="0" width="880" height="620" rx="14" fill="#0F1423" stroke="#FFFFFF" stroke-opacity="0.08"/>
-
-    <!-- SCENE 1: macOS Spotlight (visible 0-4s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;1;1;0;0;0;0;0" keyTimes="0;0.0625;0.2;0.25;0.5;0.75;0.9;1" dur="16s" repeatCount="indefinite"/>
-
-      <!-- Faux desktop -->
-      <rect x="20" y="20" width="840" height="580" rx="10" fill="#163155"/>
-      <rect x="20" y="20" width="840" height="24" rx="10" fill="#0A1020" fill-opacity="0.8"/>
-      <rect x="20" y="36" width="840" height="8" fill="#0A1020" fill-opacity="0.8"/>
-      <text x="40" y="36" class="ui" font-size="11" font-weight="600" fill="#FFFFFF">Finder</text>
-      <text x="820" y="36" class="ui" font-size="11" fill="#FFFFFF" text-anchor="end">Mon 9:41 AM</text>
-
-      <!-- Spotlight -->
-      <rect x="140" y="160" width="600" height="76" rx="14" fill="#F5F5F7"/>
-      <circle cx="180" cy="198" r="11" fill="none" stroke="#6F6F78" stroke-width="2.5"/>
-      <line x1="189" y1="206" x2="198" y2="215" stroke="#6F6F78" stroke-width="2.5" stroke-linecap="round"/>
-      <text x="220" y="208" class="ui" font-size="26" fill="#1F2328">terminal</text>
-      <rect x="340" y="184" width="2" height="28" fill="#1F2328">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-      <!-- Highlighted result -->
-      <rect x="140" y="236" width="600" height="60" fill="#D1E4FF"/>
-      <rect x="154" y="246" width="40" height="40" rx="8" fill="#1E1E1E"/>
-      <text x="165" y="273" class="mono" font-size="18" fill="#50E8B3" font-weight="700">&gt;_</text>
-      <text x="208" y="263" class="ui" font-size="15" font-weight="600" fill="#1F2328">Terminal</text>
-      <text x="208" y="281" class="ui" font-size="11" fill="#4B5563">Application: /Applications/Utilities/Terminal.app</text>
-
-      <!-- Keys -->
-      <g transform="translate(250,450)">
-        <rect x="0" y="0" width="80" height="56" rx="10" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="40" y="38" class="ui" font-size="28" font-weight="700" text-anchor="middle" fill="#1F2328">⌘</text>
-        <text x="102" y="38" class="ui" font-size="26" font-weight="700" fill="#FFFFFF">+</text>
-        <rect x="132" y="0" width="160" height="56" rx="10" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="212" y="36" class="ui" font-size="18" font-weight="600" text-anchor="middle" fill="#1F2328">space</text>
-      </g>
-
-      <!-- Label -->
-      <text x="440" y="560" class="scene-label" text-anchor="middle">Scene 1: macOS</text>
-      <text x="440" y="582" class="scene-sub" text-anchor="middle">Cmd + Space · type "terminal" · Return</text>
-    </g>
-
-    <!-- SCENE 2: Windows (visible 4-8s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;1;1;0;0;0" keyTimes="0;0.24;0.26;0.28;0.47;0.5;0.75;1" dur="16s" repeatCount="indefinite"/>
-
-      <rect x="20" y="20" width="840" height="580" rx="10" fill="#1C3B61"/>
-      <rect x="20" y="560" width="840" height="40" rx="10" fill="#0A1020" fill-opacity="0.8"/>
-      <rect x="20" y="560" width="840" height="20" fill="#0A1020" fill-opacity="0.8"/>
-
-      <!-- Start menu -->
-      <rect x="260" y="60" width="360" height="460" rx="10" fill="#1C1C1C"/>
-      <rect x="280" y="80" width="320" height="34" rx="6" fill="#2A2A2A" stroke="#4B4B4B"/>
-      <circle cx="298" cy="97" r="7" fill="none" stroke="#9AA0A6" stroke-width="2"/>
-      <text x="316" y="102" class="ui" font-size="13" fill="#FFFFFF">terminal</text>
-      <rect x="376" y="88" width="2" height="18" fill="#FFFFFF">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <text x="280" y="140" class="ui" font-size="10" fill="#BDBDBD" font-weight="700">BEST MATCH</text>
-      <rect x="280" y="148" width="320" height="56" rx="6" fill="#2F5FA8"/>
-      <rect x="294" y="160" width="32" height="32" rx="5" fill="#1E1E1E"/>
-      <text x="301" y="182" class="mono" font-size="14" fill="#50E8B3" font-weight="700">&gt;_</text>
-      <text x="338" y="172" class="ui" font-size="13" font-weight="600" fill="#FFFFFF">Terminal</text>
-      <text x="338" y="190" class="ui" font-size="11" fill="#D6E2F0">App</text>
-
-      <!-- Key visual -->
-      <g transform="translate(270,450)">
-        <rect x="0" y="0" width="70" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="35" y="34" class="ui" font-size="22" font-weight="700" text-anchor="middle" fill="#1F2328">⊞</text>
-        <text x="84" y="34" class="ui" font-size="22" font-weight="700" fill="#FFFFFF">+</text>
-        <rect x="104" y="0" width="200" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="204" y="34" class="ui" font-size="16" font-weight="600" text-anchor="middle" fill="#1F2328">type "terminal"</text>
-      </g>
-
-      <text x="440" y="560" class="scene-label" text-anchor="middle">Scene 2: Windows 11</text>
-      <text x="440" y="582" class="scene-sub" text-anchor="middle">Windows key · type "terminal" · Enter</text>
-    </g>
-
-    <!-- SCENE 3: Linux (visible 8-12s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;1;1;0;0" keyTimes="0;0.24;0.49;0.5;0.52;0.53;0.74;0.76;1" dur="16s" repeatCount="indefinite"/>
-
-      <rect x="20" y="20" width="840" height="580" rx="10" fill="#2D1F3D"/>
-      <rect x="20" y="20" width="840" height="24" rx="10" fill="#0A0514" fill-opacity="0.95"/>
-      <rect x="20" y="36" width="840" height="8" fill="#0A0514" fill-opacity="0.95"/>
-      <text x="40" y="36" class="ui" font-size="11" font-weight="600" fill="#FFFFFF">Activities</text>
-      <text x="440" y="36" class="ui" font-size="11" fill="#FFFFFF" text-anchor="middle">09:41</text>
-
-      <!-- Search bar -->
-      <rect x="220" y="90" width="440" height="46" rx="23" fill="#FFFFFF"/>
-      <circle cx="252" cy="113" r="9" fill="none" stroke="#6F6F78" stroke-width="2"/>
-      <text x="276" y="120" class="ui" font-size="17" fill="#1F2328">terminal</text>
-      <rect x="362" y="101" width="2" height="22" fill="#1F2328">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <!-- Terminal tile highlighted -->
-      <g transform="translate(300,200)">
-        <rect x="0" y="0" width="120" height="120" rx="16" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFD666" stroke-width="2"/>
-        <rect x="22" y="22" width="76" height="58" rx="8" fill="#1E1E1E"/>
-        <text x="38" y="58" class="mono" font-size="22" fill="#50E8B3" font-weight="700">&gt;_</text>
-        <text x="60" y="104" class="ui" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Terminal</text>
-      </g>
-      <g transform="translate(440,200)">
-        <rect x="0" y="0" width="120" height="120" rx="16" fill="#FFFFFF" fill-opacity="0.05"/>
-        <text x="60" y="104" class="ui" font-size="13" fill="#CCC9D9" text-anchor="middle">Files</text>
-      </g>
-
-      <!-- Keys -->
-      <g transform="translate(260,450)">
-        <rect x="0" y="0" width="70" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="35" y="32" class="ui" font-size="14" font-weight="600" text-anchor="middle" fill="#1F2328">Ctrl</text>
-        <text x="82" y="32" class="ui" font-size="22" font-weight="700" fill="#FFFFFF">+</text>
-        <rect x="100" y="0" width="70" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="135" y="32" class="ui" font-size="14" font-weight="600" text-anchor="middle" fill="#1F2328">Alt</text>
-        <text x="182" y="32" class="ui" font-size="22" font-weight="700" fill="#FFFFFF">+</text>
-        <rect x="200" y="0" width="50" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.95"/>
-        <text x="225" y="32" class="ui" font-size="16" font-weight="700" text-anchor="middle" fill="#1F2328">T</text>
-      </g>
-
-      <text x="440" y="560" class="scene-label" text-anchor="middle">Scene 3: Linux (GNOME)</text>
-      <text x="440" y="582" class="scene-sub" text-anchor="middle">Super · type "terminal" · Enter · or Ctrl + Alt + T</text>
-    </g>
-
-    <!-- SCENE 4: Terminal Window (visible 12-16s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1;0" keyTimes="0;0.24;0.49;0.5;0.74;0.75;0.76;0.78;0.78;0.98;1" dur="16s" repeatCount="indefinite"/>
-
-      <rect x="20" y="20" width="840" height="580" rx="10" fill="#0F1423"/>
-      <rect x="120" y="100" width="640" height="420" rx="12" fill="#1B1B1F" stroke="#3A3A40"/>
-      <rect x="120" y="100" width="640" height="30" rx="12" fill="#2A2A2E"/>
-      <rect x="120" y="118" width="640" height="12" fill="#2A2A2E"/>
-      <circle cx="144" cy="115" r="6" fill="#FF5F57"/>
-      <circle cx="162" cy="115" r="6" fill="#FEBC2E"/>
-      <circle cx="180" cy="115" r="6" fill="#28C840"/>
-      <text x="440" y="119" class="ui" font-size="12" fill="#D0D0D8" text-anchor="middle" font-weight="600">Terminal</text>
-
-      <rect x="120" y="130" width="640" height="390" fill="#15151A"/>
-      <text x="150" y="180" class="mono" font-size="14" fill="#6F7A8C">Last login: Mon Apr 20 09:41:12 on console</text>
-      <text x="150" y="220" class="mono" font-size="16" fill="#50E8B3" font-weight="700">learner@laptop</text>
-      <text x="294" y="220" class="mono" font-size="16" fill="#D0D0D8">:</text>
-      <text x="304" y="220" class="mono" font-size="16" fill="#5FA3D1" font-weight="700">~</text>
-      <text x="320" y="220" class="mono" font-size="16" fill="#D0D0D8">$ </text>
-      <rect x="340" y="208" width="11" height="16" fill="#D0D0D8">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <text x="440" y="560" class="scene-label" text-anchor="middle">Scene 4: The terminal is ready</text>
-      <text x="440" y="582" class="scene-sub" text-anchor="middle">Prompt shown, cursor blinking, terminal is listening.</text>
-    </g>
-  </g>
-
-  <!-- Footer -->
-  <text x="600" y="728" class="ui" font-size="12" fill="#FFFFFF" fill-opacity="0.65" text-anchor="middle">
-    Four scenes stitched together · SVG animation loops indefinitely
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 540" width="1400" height="540" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<rect width="1400" height="540" fill="#0b0d12"/>
+<text x="700" y="40" text-anchor="middle" fill="#cdd5e0" font-size="19" font-weight="600" font-family="-apple-system,Arial,sans-serif">L-001 · open the terminal · same keystroke, two platforms</text>
+<rect x="20" y="80" width="670" height="390" rx="12" ry="12" fill="#1b2029" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="20" y="80" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="20" y="110" width="670" height="10" fill="#262c38"/>
+<circle cx="42" cy="100" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="100" r="7" fill="#febc2e"/>
+<circle cx="82" cy="100" r="7" fill="#28c840"/>
+<text x="355" y="106" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<text x="80" y="275" font-size="20" fill="#6aa7ff">learner@laptop</text><text x="250" y="275" font-size="20" fill="#7e8697">:</text><text x="260" y="275" font-size="20" fill="#c792ea">~</text><text x="272" y="275" font-size="20" fill="#7e8697">$</text>
+<rect x="710" y="80" width="670" height="390" rx="12" ry="12" fill="#012456" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="710" y="80" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="710" y="110" width="670" height="10" fill="#0a3a73"/>
+<circle cx="732" cy="100" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="100" r="7" fill="#febc2e"/>
+<circle cx="772" cy="100" r="7" fill="#28c840"/>
+<text x="1045" y="106" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows Terminal</text>
+<text x="770" y="275" font-size="20" fill="#cfd9ee">PS </text><text x="805" y="275" font-size="20" fill="#9bb4dd">C:\Users\learner</text><text x="995" y="275" font-size="20" fill="#cfd9ee">&gt;</text>
+<rect x="20" y="490" width="1360" height="40" fill="#141923"/>
+<text x="700" y="518" text-anchor="middle" fill="#9aa3b2" font-size="14" font-family="-apple-system,Arial,sans-serif">Press Command+Space (macOS), Super (Linux), or Windows key, type &quot;terminal&quot;, and hit Enter.</text>
 </svg>

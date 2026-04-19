@@ -7,30 +7,30 @@
     {
       "file": "L-007-terminal.svg",
       "role": "scene",
-      "description": "Static ten-exchange terminal panel plus PowerShell equivalent",
-      "bytes": 6518,
-      "sha256": "7990050f6c092907bf881919df6dcfe13cb3175653ff3ed7029b45486771959f"
+      "description": "Side-by-side Bash | PowerShell panel of the capstone's nine exchanges (pwd, mkdir, ls, cd, touch/New-Item, cd .., rm -r / Remove-Item -Recurse, ls)",
+      "bytes": 10371,
+      "sha256": "c5b96b68a718787dfb5a41c208f672c95fff2bbabbb19c1ad897067c39596b7e"
     },
     {
       "file": "L-007-terminal.png",
       "role": "scene",
-      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
-      "bytes": 131845,
-      "sha256": "337cfc1cda4316c597409d8d88aa76f1f270fa293ced77aaa2ef312f092562b2"
+      "description": "Side-by-side Bash | PowerShell panel of the capstone's nine exchanges (pwd, mkdir, ls, cd, touch/New-Item, cd .., rm -r / Remove-Item -Recurse, ls)",
+      "bytes": 120843,
+      "sha256": "bc01a351ecc9260aaf089011d692900a31bebbee13691ebeb4288f545b33c26e"
     },
     {
       "file": "L-007-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the ten exchanges",
-      "bytes": 1434229,
-      "sha256": "7c0716346938259ce3976ac13b7ff848ea08c5068f0fbeda639b4e3497466ece"
+      "description": "Typewriter animation of the capstone exchanges in Bash and PowerShell",
+      "bytes": 1674138,
+      "sha256": "2de55918f351f532bd195187e698411747c2aebebaf7b8f99f34b45f5ed81df3"
     },
     {
       "file": "L-007-transcript.md",
       "role": "transcript",
       "description": "Plain-text transcript for screen readers",
-      "bytes": 2580,
-      "sha256": "356271255c9b1792bebdabab540b6ba7b22127ae18fc5e0492e268e7529023bc"
+      "bytes": 2643,
+      "sha256": "7db2b9b80ba64c931351307cb023469058073084b19443f19dd2b89fe6d4b52f"
     }
   ]
 }

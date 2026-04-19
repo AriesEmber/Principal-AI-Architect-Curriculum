@@ -1,197 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="walk-title walk-desc">
-  <title id="walk-title">Animated walkthrough of the four parts of a shell prompt on three operating systems</title>
-  <desc id="walk-desc">A four-scene looping animation. Scene one is a generic labeled prompt showing the four parts: username, machine name, current directory, and prompt character. Scene two is the same parts highlighted on a macOS Zsh prompt. Scene three is the Linux Bash prompt. Scene four is the Windows PowerShell prompt, which collapses to two parts. Each scene holds for four seconds and the animation loops.</desc>
-  <defs>
-    <linearGradient id="wbg2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1B2539"/>
-      <stop offset="1" stop-color="#0A1020"/>
-    </linearGradient>
-    <style>
-      .ui { font-family: -apple-system, "Segoe UI", "Cantarell", system-ui, Arial, sans-serif; }
-      .mono { font-family: "SF Mono", "Cascadia Mono", "Ubuntu Mono", Consolas, monospace; }
-    </style>
-  </defs>
-
-  <rect width="1200" height="750" fill="url(#wbg2)"/>
-
-  <!-- Header -->
-  <rect x="0" y="0" width="1200" height="52" fill="#0A1020"/>
-  <text x="32" y="33" class="ui" fill="#FFD666" font-weight="700" font-size="15">L-002 · Walkthrough</text>
-  <text x="32" y="48" class="ui" fill="#A7C0DC" font-size="11">The four parts of a shell prompt, across three operating systems</text>
-  <text x="1168" y="33" class="ui" fill="#A7C0DC" font-size="11" text-anchor="end">16s loop · auto-advance · 4s per scene</text>
-
-  <!-- Progress indicator -->
-  <g transform="translate(450,36)">
-    <rect x="0" y="0" width="60" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="0" y="0" width="60" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="1;1;0.25;0.25;0.25;0.25" keyTimes="0;0.25;0.25;0.5;0.75;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="70" y="0" width="60" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="70" y="0" width="60" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;1;1;0.25;0.25" keyTimes="0;0.25;0.25;0.5;0.5;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="140" y="0" width="60" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="140" y="0" width="60" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;0.25;0.25;1;1;0.25;0.25" keyTimes="0;0.5;0.5;0.75;0.75;0.85;0.85;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="210" y="0" width="60" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.2"/>
-    <rect x="210" y="0" width="60" height="6" rx="3" fill="#FFD666">
-      <animate attributeName="opacity" values="0.25;0.25;0.25;0.25;0.25;0.25;1;1" keyTimes="0;0.25;0.5;0.6;0.75;0.85;0.85;1" dur="16s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Stage -->
-  <g transform="translate(160,80)">
-    <rect x="0" y="0" width="880" height="620" rx="14" fill="#0F1423" stroke="#FFFFFF" stroke-opacity="0.08"/>
-
-    <!-- SCENE 1: Anatomy diagram (0-4s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;1;1;0;0;0;0;0" keyTimes="0;0.0625;0.2;0.25;0.5;0.75;0.9;1" dur="16s" repeatCount="indefinite"/>
-      <text x="440" y="60" class="ui" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">A generic shell prompt, labeled</text>
-      <text x="440" y="84" class="ui" font-size="12" fill="#A9B8CC" text-anchor="middle">Read it left to right. Each chunk answers one question.</text>
-
-      <!-- Prompt row -->
-      <rect x="100" y="160" width="680" height="120" rx="10" fill="#1B1B1F" stroke="#3A3A40"/>
-      <text x="130" y="235" class="mono" font-size="26" font-weight="700" fill="#50E8B3">learner</text>
-      <text x="228" y="235" class="mono" font-size="26" fill="#D0D0D8">@</text>
-      <text x="246" y="235" class="mono" font-size="26" font-weight="700" fill="#F99E9E">laptop</text>
-      <text x="338" y="235" class="mono" font-size="26" fill="#D0D0D8">:</text>
-      <text x="350" y="235" class="mono" font-size="26" font-weight="700" fill="#5FA3D1">~/projects</text>
-      <text x="504" y="235" class="mono" font-size="26" font-weight="700" fill="#FFD666">$</text>
-      <rect x="526" y="215" width="14" height="24" fill="#D0D0D8">
-        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <!-- Four labels below -->
-      <g>
-        <rect x="90" y="340" width="180" height="80" rx="8" fill="#0F0A18" stroke="#50E8B3" stroke-width="1.5"/>
-        <text x="180" y="368" class="ui" font-size="13" font-weight="700" fill="#50E8B3" text-anchor="middle">Who you are</text>
-        <text x="180" y="392" class="ui" font-size="12" fill="#FFFFFF" text-anchor="middle">username</text>
-        <text x="180" y="410" class="ui" font-size="11" fill="#D6E2F0" text-anchor="middle">whoami</text>
-      </g>
-      <g>
-        <rect x="290" y="340" width="180" height="80" rx="8" fill="#0F0A18" stroke="#F99E9E" stroke-width="1.5"/>
-        <text x="380" y="368" class="ui" font-size="13" font-weight="700" fill="#F99E9E" text-anchor="middle">Which machine</text>
-        <text x="380" y="392" class="ui" font-size="12" fill="#FFFFFF" text-anchor="middle">hostname</text>
-        <text x="380" y="410" class="ui" font-size="11" fill="#D6E2F0" text-anchor="middle">hostname</text>
-      </g>
-      <g>
-        <rect x="490" y="340" width="180" height="80" rx="8" fill="#0F0A18" stroke="#5FA3D1" stroke-width="1.5"/>
-        <text x="580" y="368" class="ui" font-size="13" font-weight="700" fill="#5FA3D1" text-anchor="middle">Where you are</text>
-        <text x="580" y="392" class="ui" font-size="12" fill="#FFFFFF" text-anchor="middle">directory</text>
-        <text x="580" y="410" class="ui" font-size="11" fill="#D6E2F0" text-anchor="middle">pwd</text>
-      </g>
-      <g>
-        <rect x="690" y="340" width="180" height="80" rx="8" fill="#0F0A18" stroke="#FFD666" stroke-width="1.5"/>
-        <text x="780" y="368" class="ui" font-size="13" font-weight="700" fill="#FFD666" text-anchor="middle">Ready to type</text>
-        <text x="780" y="392" class="ui" font-size="12" fill="#FFFFFF" text-anchor="middle">prompt character</text>
-        <text x="780" y="410" class="ui" font-size="11" fill="#D6E2F0" text-anchor="middle">$ % &gt;</text>
-      </g>
-
-      <!-- Connecting lines -->
-      <path d="M 170 245 Q 170 310 180 340" stroke="#50E8B3" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-      <path d="M 275 245 Q 320 310 380 340" stroke="#F99E9E" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-      <path d="M 420 245 Q 500 310 580 340" stroke="#5FA3D1" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-      <path d="M 512 245 Q 650 310 780 340" stroke="#FFD666" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-
-      <text x="440" y="480" class="ui" font-size="13" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">Same four questions on every system. Only the wording changes.</text>
-    </g>
-
-    <!-- SCENE 2: macOS zsh (4-8s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;1;1;0;0" keyTimes="0;0.2;0.2;0.25;0.3125;0.45;0.5;1" dur="16s" repeatCount="indefinite"/>
-      <text x="440" y="60" class="ui" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">macOS, default shell is Zsh</text>
-      <text x="440" y="84" class="ui" font-size="12" fill="#A9B8CC" text-anchor="middle">Four tokens: learner, MacBook dash Pro, tilde, percent.</text>
-
-      <!-- Terminal -->
-      <rect x="60" y="160" width="760" height="160" rx="10" fill="#1B1B1F" stroke="#3A3A40"/>
-      <rect x="60" y="160" width="760" height="28" rx="10" fill="#2A2A2D"/>
-      <circle cx="82" cy="174" r="6" fill="#FF5F57"/>
-      <circle cx="100" cy="174" r="6" fill="#FEBC2E"/>
-      <circle cx="118" cy="174" r="6" fill="#28C840"/>
-      <text x="440" y="179" class="ui" font-size="11" fill="#D0D0D8" text-anchor="middle">learner : zsh</text>
-      <text x="90" y="222" class="mono" font-size="13" fill="#6F7A8C">Last login: Mon Apr 20 09:41:12</text>
-      <text x="90" y="272" class="mono" font-size="22" font-weight="700" fill="#50E8B3">learner</text>
-      <text x="173" y="272" class="mono" font-size="22" fill="#D0D0D8">@</text>
-      <text x="188" y="272" class="mono" font-size="22" font-weight="700" fill="#F99E9E">MacBook-Pro</text>
-      <text x="340" y="272" class="mono" font-size="22" fill="#D0D0D8"> </text>
-      <text x="350" y="272" class="mono" font-size="22" font-weight="700" fill="#5FA3D1">~</text>
-      <text x="365" y="272" class="mono" font-size="22" fill="#D0D0D8"> </text>
-      <text x="375" y="272" class="mono" font-size="22" font-weight="700" fill="#FFD666">%</text>
-      <rect x="398" y="255" width="12" height="20" fill="#D0D0D8">
-        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <!-- Color-keyed legend -->
-      <g transform="translate(90,380)">
-        <rect x="0" y="0" width="16" height="16" fill="#50E8B3"/><text x="24" y="13" class="ui" font-size="13" fill="#FFFFFF">learner (username)</text>
-        <rect x="200" y="0" width="16" height="16" fill="#F99E9E"/><text x="224" y="13" class="ui" font-size="13" fill="#FFFFFF">MacBook-Pro (machine)</text>
-        <rect x="460" y="0" width="16" height="16" fill="#5FA3D1"/><text x="484" y="13" class="ui" font-size="13" fill="#FFFFFF">~ (home directory)</text>
-        <rect x="650" y="0" width="16" height="16" fill="#FFD666"/><text x="674" y="13" class="ui" font-size="13" fill="#FFFFFF">% (Zsh prompt)</text>
-      </g>
-
-      <text x="440" y="460" class="ui" font-size="13" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">Spaces separate the tokens. Zsh shows only the deepest folder by default.</text>
-    </g>
-
-    <!-- SCENE 3: Linux bash (8-12s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" keyTimes="0;0.3;0.5;0.5;0.5;0.5;0.5625;0.7;0.75" dur="16s" repeatCount="indefinite"/>
-      <text x="440" y="60" class="ui" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">Linux (Ubuntu), default shell is Bash</text>
-      <text x="440" y="84" class="ui" font-size="12" fill="#A9B8CC" text-anchor="middle">Tokens packed tighter: at, colon, dollar.</text>
-
-      <rect x="60" y="160" width="760" height="160" rx="10" fill="#300A24" stroke="#4A1E3E"/>
-      <rect x="60" y="160" width="760" height="28" rx="10" fill="#3B1532"/>
-      <text x="440" y="179" class="ui" font-size="11" fill="#E3E1DC" text-anchor="middle">learner@laptop: ~/projects</text>
-      <text x="90" y="260" class="mono" font-size="22" font-weight="700" fill="#50E8B3">learner</text>
-      <text x="173" y="260" class="mono" font-size="22" fill="#EEE8D5">@</text>
-      <text x="188" y="260" class="mono" font-size="22" font-weight="700" fill="#F99E9E">laptop</text>
-      <text x="264" y="260" class="mono" font-size="22" fill="#EEE8D5">:</text>
-      <text x="274" y="260" class="mono" font-size="22" font-weight="700" fill="#5FA3D1">~/projects</text>
-      <text x="406" y="260" class="mono" font-size="22" font-weight="700" fill="#FFD666">$</text>
-      <rect x="426" y="243" width="12" height="20" fill="#EEE8D5">
-        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <g transform="translate(90,380)">
-        <rect x="0" y="0" width="16" height="16" fill="#50E8B3"/><text x="24" y="13" class="ui" font-size="13" fill="#FFFFFF">learner (username)</text>
-        <rect x="200" y="0" width="16" height="16" fill="#F99E9E"/><text x="224" y="13" class="ui" font-size="13" fill="#FFFFFF">laptop (hostname)</text>
-        <rect x="420" y="0" width="16" height="16" fill="#5FA3D1"/><text x="444" y="13" class="ui" font-size="13" fill="#FFFFFF">~/projects (directory)</text>
-        <rect x="650" y="0" width="16" height="16" fill="#FFD666"/><text x="674" y="13" class="ui" font-size="13" fill="#FFFFFF">$ (Bash prompt)</text>
-      </g>
-
-      <text x="440" y="460" class="ui" font-size="13" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">Colon separates the machine from the directory. Dollar ends the line.</text>
-    </g>
-
-    <!-- SCENE 4: Windows PowerShell (12-16s) -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1" keyTimes="0;0.2;0.3;0.45;0.5;0.7;0.75;0.8;0.8125;1" dur="16s" repeatCount="indefinite"/>
-      <text x="440" y="60" class="ui" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">Windows 11, default profile is PowerShell</text>
-      <text x="440" y="84" class="ui" font-size="12" fill="#A9B8CC" text-anchor="middle">Only two visible tokens. Username and hostname exist, just hidden.</text>
-
-      <rect x="60" y="160" width="760" height="160" rx="4" fill="#0C0C0C" stroke="#2A2A2A"/>
-      <rect x="60" y="160" width="760" height="28" fill="#202020"/>
-      <rect x="80" y="166" width="10" height="16" fill="#0078D4"/>
-      <text x="440" y="179" class="ui" font-size="11" fill="#F0F0F0" text-anchor="middle">PowerShell : Windows Terminal</text>
-      <text x="90" y="240" class="mono" font-size="13" fill="#C8C8C8">PowerShell 7.4.1</text>
-      <text x="90" y="290" class="mono" font-size="22" font-weight="700" fill="#C39BFF">PS</text>
-      <text x="124" y="290" class="mono" font-size="22" fill="#C8C8C8"> </text>
-      <text x="134" y="290" class="mono" font-size="22" font-weight="700" fill="#5FA3D1">C:\Users\learner</text>
-      <text x="356" y="290" class="mono" font-size="22" font-weight="700" fill="#FFD666">&gt;</text>
-      <rect x="376" y="272" width="12" height="20" fill="#C8C8C8">
-        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
-
-      <g transform="translate(90,380)">
-        <rect x="0" y="0" width="16" height="16" fill="#C39BFF"/><text x="24" y="13" class="ui" font-size="13" fill="#FFFFFF">PS (shell indicator)</text>
-        <rect x="220" y="0" width="16" height="16" fill="#5FA3D1"/><text x="244" y="13" class="ui" font-size="13" fill="#FFFFFF">C:\Users\learner (directory)</text>
-        <rect x="550" y="0" width="16" height="16" fill="#FFD666"/><text x="574" y="13" class="ui" font-size="13" fill="#FFFFFF">&gt; (prompt character)</text>
-      </g>
-
-      <text x="440" y="460" class="ui" font-size="13" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">Run whoami and hostname to see the missing two pieces.</text>
-    </g>
-  </g>
-
-  <!-- Footer -->
-  <text x="600" y="728" class="ui" font-size="12" fill="#FFFFFF" fill-opacity="0.6" text-anchor="middle">L-002 · Read a prompt like a sign at a train station · Principal AI Architect Curriculum</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 440" width="1400" height="440" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<defs><linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#12161d"/></linearGradient><linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#012456"/><stop offset="1" stop-color="#011736"/></linearGradient></defs>
+<rect width="1400" height="440" fill="#0b0d12"/>
+<text x="700" y="40" text-anchor="middle" fill="#cdd5e0" font-size="19" font-weight="600" font-family="-apple-system,Arial,sans-serif">L-002 · the prompt is a sign · Bash vs PowerShell</text>
+<rect x="20" y="80" width="670" height="290" rx="12" ry="12" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="20" y="80" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="20" y="110" width="670" height="10" fill="#262c38"/>
+<circle cx="42" cy="100" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="100" r="7" fill="#febc2e"/>
+<circle cx="82" cy="100" r="7" fill="#28c840"/>
+<text x="355" y="106" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<rect x="710" y="80" width="670" height="290" rx="12" ry="12" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="710" y="80" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="710" y="110" width="670" height="10" fill="#0a3a73"/>
+<circle cx="732" cy="100" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="100" r="7" fill="#febc2e"/>
+<circle cx="772" cy="100" r="7" fill="#28c840"/>
+<text x="1045" y="106" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows</text>
+<g font-size="28"><text x="60" y="212" fill="#6aa7ff">learner</text><text x="186" y="212" fill="#7e8697">@</text><text x="208" y="212" fill="#f99e9e">laptop</text><text x="310" y="212" fill="#7e8697">:</text><text x="326" y="212" fill="#c792ea">~/projects</text><text x="508" y="212" fill="#ffd666">$</text></g>
+<g font-size="28"><text x="750" y="212" fill="#cfd9ee">PS</text><text x="804" y="212" fill="#9bb4dd">C:\Users\learner</text><text x="1090" y="212" fill="#ffd666">&gt;</text></g>
+<rect x="20" y="390" width="1360" height="40" fill="#141923"/>
+<text x="700" y="418" text-anchor="middle" fill="#9aa3b2" font-size="14" font-family="-apple-system,Arial,sans-serif">Both prompts answer: who, where, and what comes next. Bash packs user@machine:path$; PowerShell compresses to PS path &gt;.</text>
 </svg>

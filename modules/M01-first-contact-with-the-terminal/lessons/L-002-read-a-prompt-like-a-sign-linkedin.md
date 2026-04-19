@@ -4,7 +4,7 @@ This is Day 2 of a 171-lesson path I am taking publicly, from zero to a Principa
 
 The analogy I use is a train station. A sign on a station platform does three quiet jobs. It tells you where you are (platform number), who is there with you (which line), and that a train is about to depart (the destination). The prompt on your terminal does the same three jobs, plus one more. Once you can point at each piece and name what it is, the Command-Line Interface (CLI) stops looking like a riddle and starts looking like a sign.
 
-![Animated walkthrough of the four parts of a shell prompt on macOS, Linux, and Windows](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-002-walkthrough.gif)
+![Side-by-side walkthrough of the shell prompt, Bash on the left with four callouts and PowerShell on the right with three](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-002-walkthrough.gif)
 
 **The four questions every prompt answers**
 

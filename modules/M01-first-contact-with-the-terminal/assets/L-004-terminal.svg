@@ -1,64 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="'SF Mono','Fira Code','Consolas',monospace">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1b2029"/>
-      <stop offset="1" stop-color="#12161d"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="750" fill="#0b0d12"/>
-  <!-- Terminal window frame -->
-  <rect x="60" y="60" width="1080" height="630" rx="14" ry="14" fill="url(#bg)" stroke="#2a3140" stroke-width="1.5"/>
-  <!-- Title bar -->
-  <rect x="60" y="60" width="1080" height="44" rx="14" ry="14" fill="#262c38"/>
-  <rect x="60" y="90" width="1080" height="14" fill="#262c38"/>
-  <!-- Traffic-light dots -->
-  <circle cx="88"  cy="82" r="7" fill="#ff5f57"/>
-  <circle cx="110" cy="82" r="7" fill="#febc2e"/>
-  <circle cx="132" cy="82" r="7" fill="#28c840"/>
-  <!-- Title -->
-  <text x="600" y="87" text-anchor="middle" fill="#9aa3b2" font-size="14">L-004 &#183; pwd &#183; bash</text>
-
-  <!-- Body text -->
-  <g font-size="22" xml:space="preserve">
-    <!-- 1. plain pwd -->
-    <text x="95" y="150" fill="#6aa7ff">learner@laptop</text><text x="290" y="150" fill="#7e8697">:</text><text x="300" y="150" fill="#c792ea">~</text><text x="318" y="150" fill="#7e8697">$</text><text x="335" y="150" fill="#e6edf3">pwd</text>
-    <text x="95" y="182" fill="#7ee787">/home/learner</text>
-
-    <!-- 2. fresh terminal, same answer -->
-    <text x="95" y="226" fill="#6aa7ff">learner@laptop</text><text x="290" y="226" fill="#7e8697">:</text><text x="300" y="226" fill="#c792ea">~</text><text x="318" y="226" fill="#7e8697">$</text><text x="335" y="226" fill="#e6edf3">pwd</text>
-    <text x="95" y="258" fill="#7ee787">/home/learner</text>
-
-    <!-- 3. pwd -L (logical path, default) -->
-    <text x="95" y="302" fill="#6aa7ff">learner@laptop</text><text x="290" y="302" fill="#7e8697">:</text><text x="300" y="302" fill="#c792ea">~</text><text x="318" y="302" fill="#7e8697">$</text><text x="335" y="302" fill="#e6edf3">pwd </text><text x="394" y="302" fill="#f2cc60">-L</text>
-    <text x="95" y="334" fill="#7ee787">/home/learner</text>
-
-    <!-- 4. pwd -P (physical path, resolves symlinks) -->
-    <text x="95" y="378" fill="#6aa7ff">learner@laptop</text><text x="290" y="378" fill="#7e8697">:</text><text x="300" y="378" fill="#c792ea">~</text><text x="318" y="378" fill="#7e8697">$</text><text x="335" y="378" fill="#e6edf3">pwd </text><text x="394" y="378" fill="#f2cc60">-P</text>
-    <text x="95" y="410" fill="#7ee787">/home/learner</text>
-
-    <!-- 5. PowerShell alias check (separate example, shown as a different prompt) -->
-    <text x="95" y="454" fill="#6aa7ff">PS</text><text x="128" y="454" fill="#c792ea">C:\Users\learner</text><text x="376" y="454" fill="#7e8697">&gt;</text><text x="395" y="454" fill="#e6edf3">Get-Command pwd</text>
-    <text x="95" y="486" fill="#7ee787">CommandType     Name    Source</text>
-    <text x="95" y="514" fill="#7ee787">-----------     ----    ------</text>
-    <text x="95" y="542" fill="#7ee787">Alias           pwd &#8594; Get-Location</text>
-
-    <!-- waiting prompt -->
-    <text x="95" y="590" fill="#6aa7ff">learner@laptop</text><text x="290" y="590" fill="#7e8697">:</text><text x="300" y="590" fill="#c792ea">~</text><text x="318" y="590" fill="#7e8697">$</text>
-    <rect x="338" y="571" width="12" height="22" fill="#e6edf3">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Footnotes -->
-  <g font-size="16" fill="#8b94a5">
-    <text x="800" y="150">1. Plain pwd</text>
-    <text x="800" y="226">2. Fresh terminal, same home</text>
-    <text x="800" y="302">3. Logical path (default)</text>
-    <text x="800" y="378">4. Physical path (resolves symlinks)</text>
-    <text x="800" y="454">5. PowerShell alias check</text>
-  </g>
-
-  <!-- Caption strip -->
-  <rect x="60" y="650" width="1080" height="40" fill="#141923"/>
-  <text x="600" y="676" text-anchor="middle" fill="#9aa3b2" font-size="16">pwd prints the absolute path of the current working directory. Every fresh terminal starts in the home directory.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 514" width="1400" height="514" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<defs><linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#12161d"/></linearGradient><linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#012456"/><stop offset="1" stop-color="#011736"/></linearGradient></defs>
+<rect width="1400" height="514" fill="#0b0d12"/>
+<text x="700" y="32" text-anchor="middle" fill="#cdd5e0" font-size="18" font-weight="600">L-004 · pwd · where am I, in two shells</text>
+<rect x="20" y="70" width="670" height="384" rx="12" ry="12" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="20" y="70" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="20" y="100" width="670" height="10" fill="#262c38"/>
+<circle cx="42" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="90" r="7" fill="#febc2e"/>
+<circle cx="82" cy="90" r="7" fill="#28c840"/>
+<text x="355" y="96" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<rect x="21" y="398" width="668" height="55" fill="#141923"/>
+<text x="36" y="418" fill="#9aa3b2" font-size="13">pwd is built into Bash and Zsh. -L prints the logical path, -P resolves symbolic links.</text>
+<rect x="710" y="70" width="670" height="384" rx="12" ry="12" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="710" y="70" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="710" y="100" width="670" height="10" fill="#0a3a73"/>
+<circle cx="732" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="90" r="7" fill="#febc2e"/>
+<circle cx="772" cy="90" r="7" fill="#28c840"/>
+<text x="1045" y="96" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows</text>
+<rect x="711" y="398" width="668" height="55" fill="#031a3a"/>
+<text x="726" y="418" fill="#cfd9ee" font-size="13">pwd is an alias for Get-Location. $PWD holds the current location object. Both print the</text>
+<text x="726" y="436" fill="#cfd9ee" font-size="13">same path.</text>
+<g font-size="16" xml:space="preserve">
+<text x="42" y="146" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="146" fill="#7e8697">:</text>
+<text x="186" y="146" fill="#c792ea">~</text>
+<text x="196" y="146" fill="#7e8697">$ </text>
+<text x="215" y="146" fill="#e6edf3">pwd</text>
+<text x="42" y="174" fill="#7ee787">/home/learner</text>
+<text x="42" y="202" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="202" fill="#7e8697">:</text>
+<text x="186" y="202" fill="#c792ea">~</text>
+<text x="196" y="202" fill="#7e8697">$ </text>
+<text x="215" y="202" fill="#e6edf3">pwd -L</text>
+<text x="42" y="230" fill="#7ee787">/home/learner</text>
+<text x="42" y="258" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="258" fill="#7e8697">:</text>
+<text x="186" y="258" fill="#c792ea">~</text>
+<text x="196" y="258" fill="#7e8697">$ </text>
+<text x="215" y="258" fill="#e6edf3">type pwd</text>
+<text x="42" y="286" fill="#7ee787">pwd is a shell builtin</text>
+<text x="42" y="314" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="314" fill="#7e8697">:</text>
+<text x="186" y="314" fill="#c792ea">~</text>
+<text x="196" y="314" fill="#7e8697">$ </text>
+<text x="215" y="314" fill="#e6edf3">pwd</text>
+<text x="42" y="342" fill="#7ee787">/home/learner</text>
+<text x="42" y="370" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="370" fill="#7e8697">:</text>
+<text x="186" y="370" fill="#c792ea">~</text>
+<text x="196" y="370" fill="#7e8697">$ </text>
+<rect x="216" y="355" width="11" height="20" fill="#e6edf3"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+<text x="732" y="146" fill="#cfd9ee">PS </text>
+<text x="761" y="146" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="146" fill="#cfd9ee">&gt; </text>
+<text x="934" y="146" fill="#ffffff">pwd</text>
+<text x="732" y="174" fill="#7ee787">C:\Users\learner</text>
+<text x="732" y="202" fill="#cfd9ee">PS </text>
+<text x="761" y="202" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="202" fill="#cfd9ee">&gt; </text>
+<text x="934" y="202" fill="#ffffff">Get-Location</text>
+<text x="732" y="230" fill="#7ee787">C:\Users\learner</text>
+<text x="732" y="258" fill="#cfd9ee">PS </text>
+<text x="761" y="258" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="258" fill="#cfd9ee">&gt; </text>
+<text x="934" y="258" fill="#ffffff">Get-Command pwd</text>
+<text x="732" y="286" fill="#7ee787">Alias  pwd -&gt; Get-Location</text>
+<text x="732" y="314" fill="#cfd9ee">PS </text>
+<text x="761" y="314" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="314" fill="#cfd9ee">&gt; </text>
+<text x="934" y="314" fill="#ffffff">pwd</text>
+<text x="732" y="342" fill="#7ee787">C:\Users\learner</text>
+<text x="732" y="370" fill="#cfd9ee">PS </text>
+<text x="761" y="370" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="370" fill="#cfd9ee">&gt; </text>
+<rect x="935" y="355" width="11" height="20" fill="#ffffff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+</g>
+<g font-size="13" fill="#8b94a5">
+<text x="674" y="146" text-anchor="end">1. Ask where you are</text>
+<text x="1364" y="146" text-anchor="end">1. Ask where you are</text>
+<text x="674" y="202" text-anchor="end">2. Logical vs physical</text>
+<text x="1364" y="202" text-anchor="end">2. Logical vs physical</text>
+<text x="674" y="258" text-anchor="end">3. Confirm the builtin</text>
+<text x="1364" y="258" text-anchor="end">3. Confirm the builtin</text>
+<text x="674" y="314" text-anchor="end">4. Open a second window</text>
+<text x="1364" y="314" text-anchor="end">4. Open a second window</text>
+</g>
+<rect x="20" y="474" width="1360" height="34" fill="#141923"/>
+<text x="700" y="498" text-anchor="middle" fill="#9aa3b2" font-size="14">pwd prints the current working directory. Identical in Bash. In PowerShell, pwd is an alias for Get-Location.</text>
 </svg>

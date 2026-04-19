@@ -18,17 +18,18 @@ The dispatch is the sole control path. Do not fall through, do not combine, do n
 
 ## Handler: `terminal_auto`
 
-**What this handler does.** Executes the lesson's commands in Claude's sandbox, captures the transcript, scrubs secrets, and renders a terminal-style animated GIF plus a static transcript for embedding.
+**What this handler does.** Produces a two-column Bash + PowerShell animated GIF, a matching static PNG, a hand-generated SVG source, and a static transcript, all from a single config passed into the shared renderer.
 
 **Steps.**
 
-1. **Create a reproducible script** at `_state/scratch/L-###/demo.sh` (or `.py` for Python REPL lessons). Script contains exactly the commands the learner will run, with no extras.
-2. **Set up a sandbox environment** — fresh temp directory, clean state, no stale env vars. For Python REPL lessons, use `python3 -i` or a driver script that simulates REPL turns.
-3. **Run the script** with `bash -x` (so commands are echoed) or via Python's REPL simulator. Capture stdout + stderr.
-4. **Post-process the transcript.** Trim pre-command noise (shell init messages), normalize prompt strings to a clean `$`, and apply `scripts/secret_scrub.py` regex pass.
-5. **Render the terminal GIF** using `asciinema-agg` or a pure-SVG animated terminal (see `scripts/terminal_capture.py`). Target: 600px wide, 400px tall, 10 fps, under 2 MB per GIF. If the transcript is too long for one GIF, split into multiple (`L-###-terminal-01.gif`, `L-###-terminal-02.gif`).
-6. **Also render a static transcript** as `L-###-transcript.md` with fenced code blocks and annotated comments for screen-reader accessibility (GIFs are inaccessible to screen readers).
-7. **Commit assets** to `modules/M##-<slug>/assets/`. Both the script and the rendered outputs check in — the script is reproducible; the renders are the embeddable assets.
+1. **Build a lesson config** at `_state/scratch/L-###-v2/build.py`. The config is a `LessonConfig` with an `exchanges` list — each exchange carries a `left` (Bash) `Side` and a `right` (PowerShell) `Side`, so the two shells are specified in lockstep. Look at `_state/scratch/L-004-v2/build.py` for a short example and `_state/scratch/L-007-v2/build.py` for a long (capstone) example.
+2. **Import the shared renderer** from `_skill/scripts/side_by_side.py`. It emits GIF + PNG + SVG from one call (`build_all(cfg, asset_dir, file_stem=...)`). Do not write per-lesson rendering code; use the library.
+3. **Post-process the transcript.** Trim pre-command noise (shell init messages), normalize prompt strings to a clean `$` for Bash and `>` for PowerShell, and apply `scripts/secret_scrub.py` regex pass.
+4. **Tune the GIF size if it exceeds 2 MB.** `build_all` accepts `typing_step` (default 1 — skip every N frames when typing long commands) and `colors` (default 64 — palette size). Capstone lessons typically need `typing_step=3, colors=20` to stay under the cap.
+5. **Render a static transcript** as `L-###-transcript.md` with fenced code blocks for both Bash and PowerShell for screen-reader accessibility (GIFs are inaccessible to screen readers).
+6. **Commit assets** to `modules/M##-<slug>/assets/`. Both the build script and the rendered outputs check in — the script is reproducible; the renders are the embeddable assets.
+
+**What the shared renderer guarantees.** Canvas height is computed from the exchange count so no trailing whitespace ever ships (Gate 12). GIF, PNG, and SVG share identical colour tokens, layout, and captions — they cannot drift. Step labels on the right edge of each window correspond one-to-one across columns.
 
 **Secret scrubbing.** Every transcript is piped through `scripts/secret_scrub.py` before rendering. The scrubber replaces matches of:
 

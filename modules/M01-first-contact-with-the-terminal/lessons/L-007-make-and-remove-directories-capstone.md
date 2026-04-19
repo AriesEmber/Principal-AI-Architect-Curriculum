@@ -16,7 +16,7 @@ acronyms_expanded: [CD, CLI, OS]
 
 Picture setting up a new filing cabinet for a new project. You slide a fresh cabinet into place, pull the top drawer open, confirm the drawer is empty, and drop a single note inside. Later, when the project is over, you shred the whole cabinet and its contents in one motion. Six days of this curriculum so far have been about knowing where you stand and how to move. Today is the first day you create something of your own. You are about to build a directory, put a file in it, and take the whole thing back down, using six commands: `pwd`, `ls`, `cd`, `mkdir`, `touch`, and `rm`. That is the full vocabulary of week one, combined for the first time in one flow.
 
-![Animated typewriter walkthrough of the ten-exchange capstone](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
+![Side-by-side typewriter walkthrough of the nine-exchange capstone, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
 
 ## What you will do
 
@@ -126,7 +126,7 @@ Desktop  Documents  Downloads
 
 `practice-cli` is gone. The cabinet has been shredded. That is all six week-one commands, strung together in one flow.
 
-![Static panel of the ten exchanges plus the PowerShell equivalent](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
+![Side-by-side static panel of the nine capstone exchanges in Bash (left) and PowerShell (right)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
 
 ## Check it worked
 

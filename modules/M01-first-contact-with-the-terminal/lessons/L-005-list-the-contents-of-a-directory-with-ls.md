@@ -16,7 +16,7 @@ acronyms_expanded: [CLI, OS]
 
 Every office has a file cabinet with drawers. A drawer sits closed most of the time, holding its contents out of sight. Pulling the drawer open is the cheapest gesture in the room: no paper is read, no folder is removed, you are just looking at what is in there before you reach for anything. Your terminal has the same gesture. It is a two-letter command called `ls`, short for list, and it is how a Command-Line Interface (CLI) learner answers the sibling question to "where am I?": what is in here with me. You are about to open the drawer.
 
-![Animated typewriter walkthrough of the four ls exchanges](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.gif)
+![Side-by-side typewriter walkthrough of four ls exchanges, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.gif)
 
 ## What you will do
 
@@ -108,7 +108,7 @@ Alias           ls -> Get-ChildItem
 
 `dir` is also an alias for the same command. The column format of the output is slightly different from the bash version (PowerShell shows `Mode`, `LastWriteTime`, `Length`, `Name`), but the question being asked is identical.
 
-![Static panel showing the four ls exchanges and the PowerShell alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.png)
+![Side-by-side static panel of the four ls exchanges in Bash (left) and PowerShell (right), including the alias binding check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.png)
 
 ## Check it worked
 

@@ -16,7 +16,7 @@ acronyms_expanded: [AI, CLI, OS]
 
 Think of the terminal as the kitchen of your computer. The door is closed most of the time. You can see the rest of the house, the windows and menus and apps, but the kitchen is sealed. Nothing gets cooked in there until someone actually opens the door and walks in. Every professional who works with servers, cloud infrastructure, or Artificial Intelligence (AI) systems spends their day in that kitchen. The first skill, before any command or syntax, is opening the door. You are about to do exactly that, using only your keyboard, on whichever Operating System (OS) you use.
 
-![Animated walkthrough of opening a terminal on macOS, Windows, and Linux](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-001-walkthrough.gif)
+![Side-by-side walkthrough of opening a terminal, Bash (macOS Spotlight / Linux GNOME) on the left and PowerShell (Windows 11 Start) on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-001-walkthrough.gif)
 
 ## What you will do
 

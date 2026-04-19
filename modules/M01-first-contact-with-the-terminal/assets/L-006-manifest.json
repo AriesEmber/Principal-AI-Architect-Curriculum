@@ -7,30 +7,30 @@
     {
       "file": "L-006-terminal.svg",
       "role": "scene",
-      "description": "Static five-exchange terminal panel (pwd, cd Documents, cd .., cd /, cd ~) plus PowerShell equivalent",
-      "bytes": 5497,
-      "sha256": "de16e8fe5fb465a3a08dccdf723ed84c0711b39b796b623147a950c64f877c33"
+      "description": "Side-by-side Bash | PowerShell panel of the five cd exchanges with prompt-path tracking",
+      "bytes": 7194,
+      "sha256": "25fb6edc3e7f5291c665c053cd4317e8c72e479ebf11925b4bf397879c786bcd"
     },
     {
       "file": "L-006-terminal.png",
       "role": "scene",
-      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
-      "bytes": 96803,
-      "sha256": "fe2bc0148caf705e80192b17acf6a69a82875f5e41de54031e80c807b1eb7adb"
+      "description": "Side-by-side Bash | PowerShell panel of the five cd exchanges with prompt-path tracking",
+      "bytes": 77667,
+      "sha256": "7d597e5554952e331182dbedcd625c2ebc144cb45c016b28803945821b111c06"
     },
     {
       "file": "L-006-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the five cd exchanges",
-      "bytes": 931421,
-      "sha256": "ae862d79a6e3ddbc2851fc02e9a160ee85eb004d61682cf687b2fddad9ca01a6"
+      "description": "Typewriter animation of the five cd exchanges in Bash and PowerShell",
+      "bytes": 1126744,
+      "sha256": "3c3c8b393debc09e512d7cceb522116ab7222b636e22e44342ef140aaba78115"
     },
     {
       "file": "L-006-transcript.md",
       "role": "transcript",
       "description": "Plain-text transcript for screen readers",
-      "bytes": 2029,
-      "sha256": "45ecd1e260ba38346ab696deb08f7fcdbf8f309c57d87b82b2df4cd9668fb22e"
+      "bytes": 2095,
+      "sha256": "900368f7c5c313efa331670f2141444cc5ab6599ce5c0ebb428203f2248c89db"
     }
   ]
 }

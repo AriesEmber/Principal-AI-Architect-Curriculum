@@ -16,7 +16,7 @@ acronyms_expanded: [CLI, OS]
 
 Every shopping mall has a floor map with a red dot on it and the words "You Are Here." The dot is useless on its own. What it gives you is the one piece of information you need to plan any route at all: where you stand before you move. Your terminal has the same dot. It is a four-letter command called `pwd`, short for print working directory, and it is the first thing a Command-Line Interface (CLI) learner reaches for when they are not sure where they are. You are about to ask it for the dot.
 
-![Animated typewriter walkthrough of four pwd exchanges in a fresh terminal](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.gif)
+![Side-by-side typewriter walkthrough of four pwd exchanges, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.gif)
 
 ## What you will do
 
@@ -103,7 +103,7 @@ Get-Command pwd
 
 The output names `pwd` as an alias and `Get-Location` as the real command. The answer it gives is identical.
 
-![Static panel showing four pwd exchanges and the PowerShell alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.png)
+![Side-by-side static panel of the four pwd exchanges in Bash (left) and PowerShell (right), including the alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.png)
 
 ## Check it worked
 
