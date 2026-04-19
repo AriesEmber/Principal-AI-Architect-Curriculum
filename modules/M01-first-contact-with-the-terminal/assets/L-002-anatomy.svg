@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="anat-title anat-desc">
+<svg viewBox="68 22 1034 692" width="1034" height="692" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="anat-title anat-desc">
   <title id="anat-title">The four parts of a shell prompt labeled with callouts</title>
   <desc id="anat-desc">A single large prompt line reading "learner at laptop colon tilde slash projects dollar", with four callout boxes naming each part: username, machine name, current directory, and prompt character.</desc>
   <defs>

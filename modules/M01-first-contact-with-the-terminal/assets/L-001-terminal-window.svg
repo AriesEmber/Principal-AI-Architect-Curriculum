@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="term-title term-desc">
+<svg viewBox="118 108 964 598" width="964" height="598" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="term-title term-desc">
   <title id="term-title">An open terminal window with a prompt and a blinking cursor</title>
   <desc id="term-desc">A simplified terminal window in a dark style. The title bar shows window controls. The content area shows a single prompt line with a blinking cursor to indicate the terminal is ready to accept a command.</desc>
   <defs>
