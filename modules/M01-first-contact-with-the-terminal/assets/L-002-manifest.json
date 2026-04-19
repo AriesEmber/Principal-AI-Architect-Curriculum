@@ -1,0 +1,78 @@
+{
+  "lesson_id": "L-002",
+  "module_id": "M01",
+  "capture_mode": "script_only",
+  "capture_mode_handler": "mock_ui",
+  "assets": [
+    {
+      "file": "L-002-anatomy.svg",
+      "role": "scene",
+      "description": "Generic shell prompt anatomy with four callouts",
+      "bytes": 6402,
+      "sha256": "77d65a7e15cbbcedff21c642297cd7426d53cd2f5aa2befc6cf9e73dd0f683e0"
+    },
+    {
+      "file": "L-002-anatomy.png",
+      "role": "scene",
+      "description": "Anatomy diagram (PNG render for DOCX)",
+      "bytes": 68545,
+      "sha256": "817b12cda597c3c766755c9ebdaa1f50eebdf67b89ecade1b114af74d90d78c0"
+    },
+    {
+      "file": "L-002-prompt-macos.svg",
+      "role": "scene",
+      "description": "macOS Zsh prompt annotated with four callouts",
+      "bytes": 6345,
+      "sha256": "793d0621ae35d8dfa17fd4991377236eb1c7c477a8fca3c7f491375ef683b0a3"
+    },
+    {
+      "file": "L-002-prompt-macos.png",
+      "role": "scene",
+      "description": "macOS Zsh prompt (PNG render for DOCX)",
+      "bytes": 67640,
+      "sha256": "79125f247b04875faf57d6bb628ec31e3e17d5c192badefbf199c6844f634e2e"
+    },
+    {
+      "file": "L-002-prompt-linux.svg",
+      "role": "scene",
+      "description": "Linux Bash prompt annotated with four callouts",
+      "bytes": 6303,
+      "sha256": "04c0face0a3e9f72abcb55db89fbfc5caeb42b3749c7f6d62a3058d8613215cc"
+    },
+    {
+      "file": "L-002-prompt-linux.png",
+      "role": "scene",
+      "description": "Linux Bash prompt (PNG render for DOCX)",
+      "bytes": 67829,
+      "sha256": "d1143ba0b2dfdac2c9913a26db68c8b532c7579663c64dc3a9df480b8fcb19cd"
+    },
+    {
+      "file": "L-002-prompt-windows.svg",
+      "role": "scene",
+      "description": "Windows PowerShell prompt annotated with three callouts and a note",
+      "bytes": 7068,
+      "sha256": "a1400d12ddad4eb2267a31d286b2f6900c3fcaf4f0c144b603bab553e9870b3c"
+    },
+    {
+      "file": "L-002-prompt-windows.png",
+      "role": "scene",
+      "description": "Windows PowerShell prompt (PNG render for DOCX)",
+      "bytes": 71196,
+      "sha256": "8b552fb92320c2bda313f30f93b8ff585919647db22f972945bd1ba95326415a"
+    },
+    {
+      "file": "L-002-walkthrough.svg",
+      "role": "animation",
+      "description": "Four-scene animated SVG walkthrough, 16s loop",
+      "bytes": 14999,
+      "sha256": "c766613db1c31a69d959d417ed76dfff64f0db1390efc250f2af282a4649f94d"
+    },
+    {
+      "file": "L-002-walkthrough.gif",
+      "role": "animation",
+      "description": "Four-scene animated GIF walkthrough, 16s loop",
+      "bytes": 320827,
+      "sha256": "0a12a79bdb72415bb31c9f0b4456664d5e4e419f7ad6d2b8d9144f16d5c4f92c"
+    }
+  ]
+}
