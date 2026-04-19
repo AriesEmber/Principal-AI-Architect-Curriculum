@@ -1,0 +1,36 @@
+{
+  "lesson_id": "L-007",
+  "module_id": "M01",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "assets": [
+    {
+      "file": "L-007-terminal.svg",
+      "role": "scene",
+      "description": "Static ten-exchange terminal panel plus PowerShell equivalent",
+      "bytes": 6518,
+      "sha256": "7990050f6c092907bf881919df6dcfe13cb3175653ff3ed7029b45486771959f"
+    },
+    {
+      "file": "L-007-terminal.png",
+      "role": "scene",
+      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
+      "bytes": 131845,
+      "sha256": "337cfc1cda4316c597409d8d88aa76f1f270fa293ced77aaa2ef312f092562b2"
+    },
+    {
+      "file": "L-007-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the ten exchanges",
+      "bytes": 1434229,
+      "sha256": "7c0716346938259ce3976ac13b7ff848ea08c5068f0fbeda639b4e3497466ece"
+    },
+    {
+      "file": "L-007-transcript.md",
+      "role": "transcript",
+      "description": "Plain-text transcript for screen readers",
+      "bytes": 2580,
+      "sha256": "356271255c9b1792bebdabab540b6ba7b22127ae18fc5e0492e268e7529023bc"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" width="1200" height="1000" font-family="'SF Mono','Fira Code','Consolas',monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2029"/>
+      <stop offset="1" stop-color="#12161d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1000" fill="#0b0d12"/>
+  <!-- Terminal window frame -->
+  <rect x="60" y="60" width="1080" height="880" rx="14" ry="14" fill="url(#bg)" stroke="#2a3140" stroke-width="1.5"/>
+  <!-- Title bar -->
+  <rect x="60" y="60" width="1080" height="44" rx="14" ry="14" fill="#262c38"/>
+  <rect x="60" y="90" width="1080" height="14" fill="#262c38"/>
+  <!-- Traffic-light dots -->
+  <circle cx="88"  cy="82" r="7" fill="#ff5f57"/>
+  <circle cx="110" cy="82" r="7" fill="#febc2e"/>
+  <circle cx="132" cy="82" r="7" fill="#28c840"/>
+  <!-- Title -->
+  <text x="600" y="87" text-anchor="middle" fill="#9aa3b2" font-size="14">L-007 &#183; make and remove directories &#183; bash</text>
+
+  <!-- Body text -->
+  <g font-size="20" xml:space="preserve">
+    <!-- 1. pwd -->
+    <text x="95" y="145" fill="#6aa7ff">learner@laptop</text><text x="283" y="145" fill="#7e8697">:</text><text x="293" y="145" fill="#c792ea">~</text><text x="310" y="145" fill="#7e8697">$</text><text x="327" y="145" fill="#e6edf3">pwd</text>
+    <text x="95" y="174" fill="#7ee787">/home/learner</text>
+
+    <!-- 2. mkdir practice-cli -->
+    <text x="95" y="214" fill="#6aa7ff">learner@laptop</text><text x="283" y="214" fill="#7e8697">:</text><text x="293" y="214" fill="#c792ea">~</text><text x="310" y="214" fill="#7e8697">$</text><text x="327" y="214" fill="#e6edf3">mkdir </text><text x="395" y="214" fill="#f2cc60">practice-cli</text>
+
+    <!-- 3. ls in home -->
+    <text x="95" y="254" fill="#6aa7ff">learner@laptop</text><text x="283" y="254" fill="#7e8697">:</text><text x="293" y="254" fill="#c792ea">~</text><text x="310" y="254" fill="#7e8697">$</text><text x="327" y="254" fill="#e6edf3">ls</text>
+    <text x="95" y="283" fill="#7ee787">Desktop  Documents  Downloads  practice-cli</text>
+
+    <!-- 4. cd practice-cli -->
+    <text x="95" y="323" fill="#6aa7ff">learner@laptop</text><text x="283" y="323" fill="#7e8697">:</text><text x="293" y="323" fill="#c792ea">~</text><text x="310" y="323" fill="#7e8697">$</text><text x="327" y="323" fill="#e6edf3">cd </text><text x="360" y="323" fill="#f2cc60">practice-cli</text>
+
+    <!-- 5. ls empty -->
+    <text x="95" y="363" fill="#6aa7ff">learner@laptop</text><text x="283" y="363" fill="#7e8697">:</text><text x="293" y="363" fill="#c792ea">~/practice-cli</text><text x="435" y="363" fill="#7e8697">$</text><text x="452" y="363" fill="#e6edf3">ls</text>
+    <text x="95" y="392" fill="#8b94a5">(empty)</text>
+
+    <!-- 6. touch hello.txt -->
+    <text x="95" y="432" fill="#6aa7ff">learner@laptop</text><text x="283" y="432" fill="#7e8697">:</text><text x="293" y="432" fill="#c792ea">~/practice-cli</text><text x="435" y="432" fill="#7e8697">$</text><text x="452" y="432" fill="#e6edf3">touch </text><text x="520" y="432" fill="#f2cc60">hello.txt</text>
+
+    <!-- 7. ls with hello.txt -->
+    <text x="95" y="472" fill="#6aa7ff">learner@laptop</text><text x="283" y="472" fill="#7e8697">:</text><text x="293" y="472" fill="#c792ea">~/practice-cli</text><text x="435" y="472" fill="#7e8697">$</text><text x="452" y="472" fill="#e6edf3">ls</text>
+    <text x="95" y="501" fill="#7ee787">hello.txt</text>
+
+    <!-- 8. cd .. -->
+    <text x="95" y="541" fill="#6aa7ff">learner@laptop</text><text x="283" y="541" fill="#7e8697">:</text><text x="293" y="541" fill="#c792ea">~/practice-cli</text><text x="435" y="541" fill="#7e8697">$</text><text x="452" y="541" fill="#e6edf3">cd </text><text x="485" y="541" fill="#f2cc60">..</text>
+
+    <!-- 9. rm -r practice-cli -->
+    <text x="95" y="581" fill="#6aa7ff">learner@laptop</text><text x="283" y="581" fill="#7e8697">:</text><text x="293" y="581" fill="#c792ea">~</text><text x="310" y="581" fill="#7e8697">$</text><text x="327" y="581" fill="#e6edf3">rm -r </text><text x="395" y="581" fill="#f2cc60">practice-cli</text>
+
+    <!-- 10. ls after removal -->
+    <text x="95" y="621" fill="#6aa7ff">learner@laptop</text><text x="283" y="621" fill="#7e8697">:</text><text x="293" y="621" fill="#c792ea">~</text><text x="310" y="621" fill="#7e8697">$</text><text x="327" y="621" fill="#e6edf3">ls</text>
+    <text x="95" y="650" fill="#7ee787">Desktop  Documents  Downloads</text>
+
+    <!-- PowerShell equivalent summary -->
+    <text x="95" y="700" fill="#6aa7ff">PS</text><text x="128" y="700" fill="#c792ea">C:\Users\learner</text><text x="374" y="700" fill="#7e8697">&gt;</text><text x="393" y="700" fill="#e6edf3">mkdir practice-cli; cd practice-cli; ni hello.txt; cd ..; rm -r practice-cli</text>
+    <text x="95" y="729" fill="#8b94a5">(same moves on Windows PowerShell: ni = New-Item, a built-in stand-in for touch)</text>
+
+    <!-- waiting prompt -->
+    <text x="95" y="785" fill="#6aa7ff">learner@laptop</text><text x="283" y="785" fill="#7e8697">:</text><text x="293" y="785" fill="#c792ea">~</text><text x="310" y="785" fill="#7e8697">$</text>
+    <rect x="332" y="767" width="11" height="22" fill="#e6edf3">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Footnotes (right side) -->
+  <g font-size="15" fill="#8b94a5">
+    <text x="870" y="145">1. pwd: confirm start</text>
+    <text x="870" y="214">2. mkdir: create folder</text>
+    <text x="870" y="254">3. ls: see it appeared</text>
+    <text x="870" y="323">4. cd: walk into it</text>
+    <text x="870" y="363">5. ls: empty inside</text>
+    <text x="870" y="432">6. touch: make empty file</text>
+    <text x="870" y="472">7. ls: file present</text>
+    <text x="870" y="541">8. cd ..: walk back up</text>
+    <text x="870" y="581">9. rm -r: remove folder + contents</text>
+    <text x="870" y="621">10. ls: confirm it is gone</text>
+    <text x="870" y="700">11. PowerShell equivalent</text>
+  </g>
+
+  <!-- Caption strip -->
+  <rect x="60" y="880" width="1080" height="60" fill="#141923"/>
+  <text x="600" y="906" text-anchor="middle" fill="#9aa3b2" font-size="16">The week-one capstone: pwd + ls + cd + mkdir + touch + rm. Create a project folder, drop a file in, clean it up.</text>
+  <text x="600" y="928" text-anchor="middle" fill="#7e8697" font-size="14">rm -r is permanent. No recycle bin. Read the line before you press enter.</text>
+</svg>
