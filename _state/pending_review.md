@@ -20,6 +20,16 @@ Each entry follows this structure:
 
 ## Open items
 
+### [2026-04-19] L-006 — gate 10 reading-time sanity
+
+**Lesson:** Move around with cd and relative paths
+**Flagged at:** quality_gates
+**Severity:** warning
+**Issue:** Computed reading time 37.2 minutes vs spine estimate 13 minutes; delta 24.2 minutes exceeds the 5-minute band.
+**Evidence:** `gate10_reading_time_min=37.2, gate10_spine_est=13, code_blocks=16`. Same Gate 10 heuristic issue documented for L-003: 2 minutes per fenced code block is an over-count for one-line `cd` / `pwd` exchanges that run in under 15 seconds each. Fourteen of the sixteen blocks are single-line commands or their immediate output.
+**Suggested fix:** No article change needed. Same recalibration recommendation as L-003: weight single-command blocks at 15 seconds, multi-line at 2 minutes. Lesson ships per the soft-warning rule.
+**Status:** open
+
 ### [2026-04-19] L-003 — gate 10 reading-time sanity
 
 **Lesson:** Print your first line with echo

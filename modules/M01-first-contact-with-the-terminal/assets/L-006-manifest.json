@@ -1,0 +1,36 @@
+{
+  "lesson_id": "L-006",
+  "module_id": "M01",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "assets": [
+    {
+      "file": "L-006-terminal.svg",
+      "role": "scene",
+      "description": "Static five-exchange terminal panel (pwd, cd Documents, cd .., cd /, cd ~) plus PowerShell equivalent",
+      "bytes": 5497,
+      "sha256": "de16e8fe5fb465a3a08dccdf723ed84c0711b39b796b623147a950c64f877c33"
+    },
+    {
+      "file": "L-006-terminal.png",
+      "role": "scene",
+      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
+      "bytes": 96803,
+      "sha256": "fe2bc0148caf705e80192b17acf6a69a82875f5e41de54031e80c807b1eb7adb"
+    },
+    {
+      "file": "L-006-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the five cd exchanges",
+      "bytes": 931421,
+      "sha256": "ae862d79a6e3ddbc2851fc02e9a160ee85eb004d61682cf687b2fddad9ca01a6"
+    },
+    {
+      "file": "L-006-transcript.md",
+      "role": "transcript",
+      "description": "Plain-text transcript for screen readers",
+      "bytes": 2029,
+      "sha256": "45ecd1e260ba38346ab696deb08f7fcdbf8f309c57d87b82b2df4cd9668fb22e"
+    }
+  ]
+}
