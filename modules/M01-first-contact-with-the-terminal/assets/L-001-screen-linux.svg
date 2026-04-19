@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1200 750" width="1200" height="750" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="lin-title lin-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="lin-title lin-desc">
   <title id="lin-title">GNOME Activities overlay with "terminal" typed</title>
   <desc id="lin-desc">A Linux GNOME desktop with the Activities overlay open, the word terminal typed into the search bar at the top, and the Terminal application highlighted in the results. An annotation shows the Ctrl plus Alt plus T shortcut as a common alternative.</desc>
   <defs>

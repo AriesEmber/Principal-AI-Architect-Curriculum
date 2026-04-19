@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1200 746" width="1200" height="746" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="macos-title macos-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="macos-title macos-desc">
   <title id="macos-title">macOS Spotlight search with "terminal" typed</title>
   <desc id="macos-desc">A macOS desktop with the Spotlight search panel open, the word terminal typed into the search box, and the Terminal application highlighted as the top result. An annotation calls out the keyboard shortcut Command plus Space.</desc>
   <defs>

@@ -15,8 +15,8 @@
       "file": "L-001-screen-macos.png",
       "role": "scene",
       "description": "macOS Spotlight search (PNG render for DOCX)",
-      "bytes": 51930,
-      "sha256": "187227aa5aefde1df9a85120389157425651a7ae1f9a5785250a621af74a67f1"
+      "bytes": 25929,
+      "sha256": "47228796c8c228f7dca1b5569cb522e28b036de4cf664559fe9b2625ed1ab7d3"
     },
     {
       "file": "L-001-screen-windows.svg",
@@ -29,8 +29,8 @@
       "file": "L-001-screen-windows.png",
       "role": "scene",
       "description": "Windows 11 Start menu (PNG render for DOCX)",
-      "bytes": 203317,
-      "sha256": "e555677982c61333be900ff7d63ec83f6d06d39be77a201ab8e11ef5f8cf2dc8"
+      "bytes": 32382,
+      "sha256": "c0cfb76dec4877509e43bae89a73b23f5ee09f7ca8a78268b47edf98c576aa6d"
     },
     {
       "file": "L-001-screen-linux.svg",
@@ -43,8 +43,8 @@
       "file": "L-001-screen-linux.png",
       "role": "scene",
       "description": "GNOME Activities overlay (PNG render for DOCX)",
-      "bytes": 50600,
-      "sha256": "a6b0339e23f93344de31cf723a7342f5498f8aacaafceb47b810556dc7e0ba52"
+      "bytes": 28814,
+      "sha256": "aae9f50088cc99a13ef67a72bdbda58a326e9186939e02181068eb7f3a7ff8e5"
     },
     {
       "file": "L-001-terminal-window.svg",
@@ -57,8 +57,8 @@
       "file": "L-001-terminal-window.png",
       "role": "scene",
       "description": "Terminal window (PNG render for DOCX)",
-      "bytes": 35741,
-      "sha256": "d865bdb88da01e8df20dea9e6ee780d6e857ead4bbd979d47e3801039a7e3a70"
+      "bytes": 24554,
+      "sha256": "0dcaa8f83feaa1fb591456d7e205d4d7277b3dfd58fa56e8e8d61830e17b18bc"
     },
     {
       "file": "L-001-walkthrough.svg",
