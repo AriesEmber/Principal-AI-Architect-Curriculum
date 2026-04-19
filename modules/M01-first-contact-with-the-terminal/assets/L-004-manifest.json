@@ -1,0 +1,36 @@
+{
+  "lesson_id": "L-004",
+  "module_id": "M01",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "assets": [
+    {
+      "file": "L-004-terminal.svg",
+      "role": "scene",
+      "description": "Static five-exchange terminal panel (four pwd exchanges plus PowerShell alias check)",
+      "bytes": 4171,
+      "sha256": "f9139fb78ca442bdd6a037565a5da51c332d472777a651270b6534b369808d89"
+    },
+    {
+      "file": "L-004-terminal.png",
+      "role": "scene",
+      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
+      "bytes": 78283,
+      "sha256": "b47bfcb71a27b3503dd01cd597694e43dde9fe63cde0b1252e162b4e52e7d4a0"
+    },
+    {
+      "file": "L-004-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the four pwd exchanges",
+      "bytes": 274971,
+      "sha256": "9178a5d5099ea477f49de1c2ec3a990b9e9c2ab0678786ca1be69297d5dd13d1"
+    },
+    {
+      "file": "L-004-transcript.md",
+      "role": "transcript",
+      "description": "Plain-text transcript for screen readers",
+      "bytes": 1394,
+      "sha256": "ce3ba7c56718e6b5e416f1be2c136cb5d76956663f5ce593dee715ef462a1f76"
+    }
+  ]
+}

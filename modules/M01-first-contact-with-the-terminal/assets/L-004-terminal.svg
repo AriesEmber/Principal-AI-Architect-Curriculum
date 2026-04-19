@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="'SF Mono','Fira Code','Consolas',monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2029"/>
+      <stop offset="1" stop-color="#12161d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="#0b0d12"/>
+  <!-- Terminal window frame -->
+  <rect x="60" y="60" width="1080" height="630" rx="14" ry="14" fill="url(#bg)" stroke="#2a3140" stroke-width="1.5"/>
+  <!-- Title bar -->
+  <rect x="60" y="60" width="1080" height="44" rx="14" ry="14" fill="#262c38"/>
+  <rect x="60" y="90" width="1080" height="14" fill="#262c38"/>
+  <!-- Traffic-light dots -->
+  <circle cx="88"  cy="82" r="7" fill="#ff5f57"/>
+  <circle cx="110" cy="82" r="7" fill="#febc2e"/>
+  <circle cx="132" cy="82" r="7" fill="#28c840"/>
+  <!-- Title -->
+  <text x="600" y="87" text-anchor="middle" fill="#9aa3b2" font-size="14">L-004 &#183; pwd &#183; bash</text>
+
+  <!-- Body text -->
+  <g font-size="22" xml:space="preserve">
+    <!-- 1. plain pwd -->
+    <text x="95" y="150" fill="#6aa7ff">learner@laptop</text><text x="290" y="150" fill="#7e8697">:</text><text x="300" y="150" fill="#c792ea">~</text><text x="318" y="150" fill="#7e8697">$</text><text x="335" y="150" fill="#e6edf3">pwd</text>
+    <text x="95" y="182" fill="#7ee787">/home/learner</text>
+
+    <!-- 2. fresh terminal, same answer -->
+    <text x="95" y="226" fill="#6aa7ff">learner@laptop</text><text x="290" y="226" fill="#7e8697">:</text><text x="300" y="226" fill="#c792ea">~</text><text x="318" y="226" fill="#7e8697">$</text><text x="335" y="226" fill="#e6edf3">pwd</text>
+    <text x="95" y="258" fill="#7ee787">/home/learner</text>
+
+    <!-- 3. pwd -L (logical path, default) -->
+    <text x="95" y="302" fill="#6aa7ff">learner@laptop</text><text x="290" y="302" fill="#7e8697">:</text><text x="300" y="302" fill="#c792ea">~</text><text x="318" y="302" fill="#7e8697">$</text><text x="335" y="302" fill="#e6edf3">pwd </text><text x="394" y="302" fill="#f2cc60">-L</text>
+    <text x="95" y="334" fill="#7ee787">/home/learner</text>
+
+    <!-- 4. pwd -P (physical path, resolves symlinks) -->
+    <text x="95" y="378" fill="#6aa7ff">learner@laptop</text><text x="290" y="378" fill="#7e8697">:</text><text x="300" y="378" fill="#c792ea">~</text><text x="318" y="378" fill="#7e8697">$</text><text x="335" y="378" fill="#e6edf3">pwd </text><text x="394" y="378" fill="#f2cc60">-P</text>
+    <text x="95" y="410" fill="#7ee787">/home/learner</text>
+
+    <!-- 5. PowerShell alias check (separate example, shown as a different prompt) -->
+    <text x="95" y="454" fill="#6aa7ff">PS</text><text x="128" y="454" fill="#c792ea">C:\Users\learner</text><text x="376" y="454" fill="#7e8697">&gt;</text><text x="395" y="454" fill="#e6edf3">Get-Command pwd</text>
+    <text x="95" y="486" fill="#7ee787">CommandType     Name    Source</text>
+    <text x="95" y="514" fill="#7ee787">-----------     ----    ------</text>
+    <text x="95" y="542" fill="#7ee787">Alias           pwd &#8594; Get-Location</text>
+
+    <!-- waiting prompt -->
+    <text x="95" y="590" fill="#6aa7ff">learner@laptop</text><text x="290" y="590" fill="#7e8697">:</text><text x="300" y="590" fill="#c792ea">~</text><text x="318" y="590" fill="#7e8697">$</text>
+    <rect x="338" y="571" width="12" height="22" fill="#e6edf3">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Footnotes -->
+  <g font-size="16" fill="#8b94a5">
+    <text x="800" y="150">1. Plain pwd</text>
+    <text x="800" y="226">2. Fresh terminal, same home</text>
+    <text x="800" y="302">3. Logical path (default)</text>
+    <text x="800" y="378">4. Physical path (resolves symlinks)</text>
+    <text x="800" y="454">5. PowerShell alias check</text>
+  </g>
+
+  <!-- Caption strip -->
+  <rect x="60" y="650" width="1080" height="40" fill="#141923"/>
+  <text x="600" y="676" text-anchor="middle" fill="#9aa3b2" font-size="16">pwd prints the absolute path of the current working directory. Every fresh terminal starts in the home directory.</text>
+</svg>
