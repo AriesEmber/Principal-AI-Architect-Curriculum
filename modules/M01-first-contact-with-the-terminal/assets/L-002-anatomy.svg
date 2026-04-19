@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="anat-title anat-desc">
+  <title id="anat-title">The four parts of a shell prompt labeled with callouts</title>
+  <desc id="anat-desc">A single large prompt line reading "learner at laptop colon tilde slash projects dollar", with four callout boxes naming each part: username, machine name, current directory, and prompt character.</desc>
+  <defs>
+    <linearGradient id="bgAnat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1F2B40"/>
+      <stop offset="1" stop-color="#0C1421"/>
+    </linearGradient>
+    <linearGradient id="titleBarAnat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2E33"/>
+      <stop offset="1" stop-color="#1E1E22"/>
+    </linearGradient>
+    <filter id="shadowA" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="8"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .ui { font-family: -apple-system, "Segoe UI", "Cantarell", system-ui, Arial, sans-serif; }
+      .mono { font-family: "SF Mono", "Cascadia Mono", "Ubuntu Mono", Consolas, "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgAnat)"/>
+
+  <!-- Title -->
+  <text x="600" y="68" class="ui" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">The four parts of a shell prompt</text>
+  <text x="600" y="98" class="ui" font-size="15" fill="#A9B8CC" text-anchor="middle">Read it left to right, like a sign at a train station.</text>
+
+  <!-- Terminal window containing the prompt -->
+  <g filter="url(#shadowA)">
+    <rect x="140" y="300" width="920" height="180" rx="14" fill="#1B1B1F" stroke="#3A3A40"/>
+    <rect x="140" y="300" width="920" height="34" rx="14" fill="url(#titleBarAnat)"/>
+    <rect x="140" y="318" width="920" height="16" fill="url(#titleBarAnat)"/>
+    <circle cx="168" cy="317" r="7" fill="#FF5F57"/>
+    <circle cx="188" cy="317" r="7" fill="#FEBC2E"/>
+    <circle cx="208" cy="317" r="7" fill="#28C840"/>
+    <text x="600" y="322" class="ui" font-size="13" fill="#D0D0D8" text-anchor="middle" font-weight="600">Terminal</text>
+
+    <!-- Prompt text, spaced for callouts. x coords below are referenced by the callouts. -->
+    <text x="200" y="410" class="mono" font-size="32" font-weight="700" fill="#50E8B3">learner</text>
+    <text x="328" y="410" class="mono" font-size="32" fill="#D0D0D8">@</text>
+    <text x="350" y="410" class="mono" font-size="32" font-weight="700" fill="#F99E9E">laptop</text>
+    <text x="460" y="410" class="mono" font-size="32" fill="#D0D0D8">:</text>
+    <text x="478" y="410" class="mono" font-size="32" font-weight="700" fill="#5FA3D1">~/projects</text>
+    <text x="680" y="410" class="mono" font-size="32" font-weight="700" fill="#FFD666">$</text>
+    <text x="698" y="410" class="mono" font-size="32" fill="#D0D0D8"> </text>
+    <rect x="712" y="384" width="18" height="30" fill="#D0D0D8">
+      <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Callouts: 4 boxes on two sides -->
+  <!-- Callout 1: username (top left, points down to learner) -->
+  <g>
+    <rect x="90" y="170" width="260" height="88" rx="10" fill="#0F0A18" fill-opacity="0.95" stroke="#50E8B3" stroke-width="1.8"/>
+    <text x="108" y="200" class="ui" font-size="15" font-weight="700" fill="#50E8B3">1. Username</text>
+    <text x="108" y="224" class="ui" font-size="12" fill="#FFFFFF">Who you are to the system.</text>
+    <text x="108" y="242" class="ui" font-size="12" fill="#D6E2F0">Same name you log in with.</text>
+    <path d="M 230 258 Q 230 300 235 400" stroke="#50E8B3" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+    <circle cx="235" cy="400" r="4" fill="#50E8B3"/>
+  </g>
+
+  <!-- Callout 2: machine name (top right, points down to laptop) -->
+  <g>
+    <rect x="420" y="170" width="260" height="88" rx="10" fill="#0F0A18" fill-opacity="0.95" stroke="#F99E9E" stroke-width="1.8"/>
+    <text x="438" y="200" class="ui" font-size="15" font-weight="700" fill="#F99E9E">2. Machine name</text>
+    <text x="438" y="224" class="ui" font-size="12" fill="#FFFFFF">Which computer you are on.</text>
+    <text x="438" y="242" class="ui" font-size="12" fill="#D6E2F0">Matters when you log into servers.</text>
+    <path d="M 540 258 Q 540 320 398 400" stroke="#F99E9E" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+    <circle cx="398" cy="400" r="4" fill="#F99E9E"/>
+  </g>
+
+  <!-- Callout 3: current directory (bottom left, points up) -->
+  <g>
+    <rect x="140" y="540" width="320" height="88" rx="10" fill="#0F0A18" fill-opacity="0.95" stroke="#5FA3D1" stroke-width="1.8"/>
+    <text x="158" y="570" class="ui" font-size="15" font-weight="700" fill="#5FA3D1">3. Current directory</text>
+    <text x="158" y="594" class="ui" font-size="12" fill="#FFFFFF">Where you are in the filesystem.</text>
+    <text x="158" y="612" class="ui" font-size="12" fill="#D6E2F0">~ is shorthand for your home folder.</text>
+    <path d="M 300 540 Q 320 500 540 420" stroke="#5FA3D1" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+    <circle cx="540" cy="420" r="4" fill="#5FA3D1"/>
+  </g>
+
+  <!-- Callout 4: prompt character (bottom right, points up to $) -->
+  <g>
+    <rect x="760" y="540" width="320" height="88" rx="10" fill="#0F0A18" fill-opacity="0.95" stroke="#FFD666" stroke-width="1.8"/>
+    <text x="778" y="570" class="ui" font-size="15" font-weight="700" fill="#FFD666">4. Prompt character</text>
+    <text x="778" y="594" class="ui" font-size="12" fill="#FFFFFF">Shell is ready for your next command.</text>
+    <text x="778" y="612" class="ui" font-size="12" fill="#D6E2F0">$ bash, % zsh, &gt; PowerShell.</text>
+    <path d="M 800 540 Q 770 490 700 420" stroke="#FFD666" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+    <circle cx="700" cy="420" r="4" fill="#FFD666"/>
+  </g>
+
+  <!-- Footer hint -->
+  <text x="600" y="688" class="ui" font-size="13" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">Once you can name the four parts, the prompt stops being a mystery and starts being a map.</text>
+</svg>
