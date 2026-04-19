@@ -62,6 +62,33 @@ The opening paragraph of every lesson you write should:
 - Hand the reader a concrete preview of what they will do
 - Avoid em dashes, banned words, and throat-clearing
 
+## The shell-assumption rule
+
+Any lesson that asks the reader to type a shell command must declare which shells the command works in. There are two acceptable patterns:
+
+1. **Cross-shell parity.** Show the command in Bash and PowerShell forms (Zsh follows Bash for almost everything, so a single Bash form covers both). Use the pattern from L-003: a single block when behavior is identical across shells, two clearly labeled columns when it differs. Step labels read "(Bash, Zsh, PowerShell behave identically)" or "(different in each shell)" so the reader knows which case they are in *before* they type.
+
+2. **Declared restriction.** If the lesson is genuinely shell-specific (for example, a lesson about Bash arrays or PowerShell objects has no PowerShell or Bash equivalent worth teaching at that level), declare it in the frontmatter:
+
+   ```yaml
+   shells_supported: [bash, zsh]
+   ```
+
+   And name the restriction in the "Before you start" section, with a one-line escape hatch for readers on the other shell ("If you are in PowerShell, install Windows Subsystem for Linux from L-N to follow this lesson, or skip ahead to L-M which covers the PowerShell equivalent").
+
+The default is cross-shell parity. Restriction is the exception, and must be justified in the lesson's outline before the assembly phase begins.
+
+**Constructs that trigger the rule.**
+
+- Any `$VAR` reference (Bash variable expansion is `$VAR`; PowerShell distinguishes `$VAR` from `$env:VAR` and a Bash example silently fails on PowerShell).
+- Any environment-variable read (`$HOME`, `$SHELL`, `$PATH`, `$USER` and friends — same problem as above).
+- Any pipeline involving `|` where the receiving program differs (Bash pipes raw bytes; PowerShell pipes structured objects).
+- Any command-substitution syntax (`` `cmd` `` or `$(cmd)` in Bash; `$(cmd)` works in PowerShell too but parses differently — be explicit).
+- Any shell-specific operator (`&&`, `||`, `;` chaining; PowerShell 7+ supports these but PowerShell 5.1, still default on stock Windows 10, does not).
+- Any glob (`*.txt` works in both, but `*` expansion timing differs between shells, especially when piped to commands that re-glob).
+
+**Why this rule exists.** L-003 v1 asserted "every command below works identically on all three" shells in its prerequisites, then used `$USER` in step 5. A real reader on Windows PowerShell got a blank line, assumed they typed something wrong, and stalled on the third lesson of the curriculum. The lesson was retired and rewritten with side-by-side columns. The fix was small; missing the same case on twenty more lessons would not have been.
+
 ## The "point of no return" rule
 
 Lessons with `risk_level: medium` or `risk_level: high` involve credentials, payments, or destructive actions. Before any command in the Step-by-step section that deletes something, exposes a credential, or incurs cost, insert a block:

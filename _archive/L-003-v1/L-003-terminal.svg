@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="'SF Mono','Fira Code','Consolas',monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2029"/>
+      <stop offset="1" stop-color="#12161d"/>
+    </linearGradient>
+    <filter id="soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" fill="#0b0d12"/>
+  <!-- Terminal window frame -->
+  <rect x="60" y="60" width="1080" height="630" rx="14" ry="14" fill="url(#bg)" stroke="#2a3140" stroke-width="1.5"/>
+  <!-- Title bar -->
+  <rect x="60" y="60" width="1080" height="44" rx="14" ry="14" fill="#262c38"/>
+  <rect x="60" y="90" width="1080" height="14" fill="#262c38"/>
+  <!-- Traffic-light dots -->
+  <circle cx="88"  cy="82" r="7" fill="#ff5f57"/>
+  <circle cx="110" cy="82" r="7" fill="#febc2e"/>
+  <circle cx="132" cy="82" r="7" fill="#28c840"/>
+  <!-- Title -->
+  <text x="600" y="87" text-anchor="middle" fill="#9aa3b2" font-size="14">L-003 &#183; echo &#183; bash</text>
+
+  <!-- Body text -->
+  <!-- Color scheme: prompt dim, command bright white, comment muted, output cyan-green, cursor accent -->
+  <g font-size="22" xml:space="preserve">
+    <!-- 1. plain -->
+    <text x="95" y="150" fill="#6aa7ff">learner@laptop</text><text x="290" y="150" fill="#7e8697">:</text><text x="300" y="150" fill="#c792ea">~</text><text x="318" y="150" fill="#7e8697">$</text><text x="335" y="150" fill="#e6edf3">echo Hello, world</text>
+    <text x="95" y="182" fill="#7ee787">Hello, world</text>
+
+    <!-- 2. double quotes -->
+    <text x="95" y="226" fill="#6aa7ff">learner@laptop</text><text x="290" y="226" fill="#7e8697">:</text><text x="300" y="226" fill="#c792ea">~</text><text x="318" y="226" fill="#7e8697">$</text><text x="335" y="226" fill="#e6edf3">echo </text><text x="398" y="226" fill="#ffab70">&quot;Hello, world&quot;</text>
+    <text x="95" y="258" fill="#7ee787">Hello, world</text>
+
+    <!-- 3. single quotes -->
+    <text x="95" y="302" fill="#6aa7ff">learner@laptop</text><text x="290" y="302" fill="#7e8697">:</text><text x="300" y="302" fill="#c792ea">~</text><text x="318" y="302" fill="#7e8697">$</text><text x="335" y="302" fill="#e6edf3">echo </text><text x="398" y="302" fill="#ffab70">'Hello, world'</text>
+    <text x="95" y="334" fill="#7ee787">Hello, world</text>
+
+    <!-- 4. no args -->
+    <text x="95" y="378" fill="#6aa7ff">learner@laptop</text><text x="290" y="378" fill="#7e8697">:</text><text x="300" y="378" fill="#c792ea">~</text><text x="318" y="378" fill="#7e8697">$</text><text x="335" y="378" fill="#e6edf3">echo</text>
+    <text x="95" y="410" fill="#7ee787">(blank line)</text>
+
+    <!-- 5. variable expansion -->
+    <text x="95" y="454" fill="#6aa7ff">learner@laptop</text><text x="290" y="454" fill="#7e8697">:</text><text x="300" y="454" fill="#c792ea">~</text><text x="318" y="454" fill="#7e8697">$</text><text x="335" y="454" fill="#e6edf3">echo </text><text x="398" y="454" fill="#f2cc60">$USER</text>
+    <text x="95" y="486" fill="#7ee787">learner</text>
+
+    <!-- waiting prompt -->
+    <text x="95" y="530" fill="#6aa7ff">learner@laptop</text><text x="290" y="530" fill="#7e8697">:</text><text x="300" y="530" fill="#c792ea">~</text><text x="318" y="530" fill="#7e8697">$</text>
+    <rect x="338" y="511" width="12" height="22" fill="#e6edf3">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Footnotes -->
+  <g font-size="16" fill="#8b94a5">
+    <text x="850" y="150">1. No quotes</text>
+    <text x="850" y="226">2. Double quotes</text>
+    <text x="850" y="302">3. Single quotes</text>
+    <text x="850" y="378">4. No arguments</text>
+    <text x="850" y="454">5. Variable expansion</text>
+  </g>
+
+  <!-- Caption strip -->
+  <rect x="60" y="650" width="1080" height="40" fill="#141923"/>
+  <text x="600" y="676" text-anchor="middle" fill="#9aa3b2" font-size="16">Five echo exchanges. The prompt returns after each command, ready for the next.</text>
+</svg>

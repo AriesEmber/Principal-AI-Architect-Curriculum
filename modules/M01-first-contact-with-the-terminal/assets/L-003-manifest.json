@@ -3,34 +3,37 @@
   "module_id": "M01",
   "capture_mode": "terminal_auto",
   "capture_mode_handler": "terminal_auto",
+  "revision": 2,
+  "revises": "L-003-v1",
+  "revision_reason": "Added Bash, Zsh, and PowerShell parity for variable-expansion steps; v1 falsely claimed identical behavior across all three shells.",
   "assets": [
     {
       "file": "L-003-terminal.svg",
       "role": "scene",
-      "description": "Static five-exchange terminal panel",
-      "bytes": 4135,
-      "sha256": "e48fe8ded08623e06f6696f3cea3c9e45fcf044fdf490b707fa08af7ca61d6bc"
+      "description": "Side-by-side static panel: Bash on the left, PowerShell on the right, both showing the five echo exchanges",
+      "bytes": 8121,
+      "sha256": "cd07db03684d1749a72344fcea0365029add17933710a65276ea41833d07e16d"
     },
     {
       "file": "L-003-terminal.png",
       "role": "scene",
-      "description": "Static terminal panel (PNG render for DOCX)",
-      "bytes": 71329,
-      "sha256": "1eebdf2ce41598c5c6c92eae1dcb4e0fb8b2f85d64abdbf21e89cb9b19b435f2"
+      "description": "Static side-by-side terminal panel (PNG render of SVG, used by DOCX)",
+      "bytes": 112843,
+      "sha256": "f7ab43ab317ef49ad0ab67205c1f54b6731b1371e30dbd33b652a81e3a3cc2d4"
     },
     {
       "file": "L-003-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the five echo exchanges",
-      "bytes": 426331,
-      "sha256": "bcf387cb5bfb6327afae2594a3ed37ca2bf7e7422124957c5bc58308b7d84ad3"
+      "description": "Typewriter animation of the five echo exchanges typed in parallel in Bash and PowerShell",
+      "bytes": 1627967,
+      "sha256": "b76bec95a537da6c469e9bed9df9769128c9daeb9612581e95a623b02dc6d77e"
     },
     {
       "file": "L-003-transcript.md",
       "role": "transcript",
-      "description": "Plain-text transcript for screen readers",
-      "bytes": 1028,
-      "sha256": "28f1078dbb68f7942d3c169e7fb432c1598e65cf475152cb7dc2bbcd73ffbb22"
+      "description": "Plain-text transcript of both shells for screen readers",
+      "bytes": 1722,
+      "sha256": "b3accd0457ea9f2f45290c929b2b1300845116fa25e4c82de2209ffa20c98067"
     }
   ]
 }

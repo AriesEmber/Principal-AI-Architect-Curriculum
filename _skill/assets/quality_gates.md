@@ -110,7 +110,26 @@ And both have each required section (check for section headers on canonical; che
 
 **Fail action.** Halt. Partial output is not acceptable.
 
-## Gate 10: Reading-time sanity check
+## Gate 10: Shell-assumption check
+
+**Check.** For any lesson whose body contains a fenced ```` ```bash ```` , ```` ```sh ```` , ```` ```zsh ```` , or ```` ```powershell ```` block, scan for shell-specific constructs that need cross-shell treatment. Specifically look for:
+
+- `$VAR` style variable references (Bash form) without a paired `$env:VAR` block (PowerShell form), or vice versa.
+- Environment-variable reads like `$HOME`, `$SHELL`, `$USER`, `$PATH` without a paired `$env:USERPROFILE`, `$env:COMSPEC`, `$env:USERNAME`, `$env:PATH`.
+- Command substitution (`` `cmd` ``, `$(cmd)`) or chaining operators (`&&`, `||`) without a note about PowerShell-version differences.
+
+If any such construct appears, the lesson must satisfy one of two conditions:
+
+1. The lesson body shows the matched construct in both Bash and PowerShell forms (the L-003 v2 two-column pattern is the reference implementation).
+2. The frontmatter declares `shells_supported:` with an explicit list, and the "Before you start" section names the restriction.
+
+**Fail action.** Halt. Write the unmatched construct(s) to `pending_review.md` with line numbers and a one-line suggested PowerShell equivalent.
+
+**Why this gate exists.** L-003 v1 falsely asserted cross-shell parity, then used `$USER`, which silently fails on PowerShell. A reader on Windows hit a blank line on the third lesson of the curriculum and stalled. The fix was small; missing the same case across more lessons would not have been. The full design-phase rule lives in `design_phase.md` under "The shell-assumption rule."
+
+**Automation.** Partial. A regex scan can flag the constructs; deciding whether the cross-shell treatment is correct still needs a human (or careful authoring discipline). Until the scan is wired in, treat this as an authoring discipline gate: the design-phase outline must call out shell-affected steps, and the assembly phase must produce paired columns or a declared restriction.
+
+## Gate 11: Reading-time sanity check
 
 **Check.** Compute estimated reading time from word count (standard 220 wpm for technical prose) and compare to the spine's `estimated_minutes`. Include time for hands-on action (assume 2 minutes per command block) and extension.
 
@@ -122,18 +141,19 @@ And both have each required section (check for section headers on canonical; che
 
 ## Gate sequence summary
 
-1. Banned words — hard halt
-2. Acronym expansion — hard halt
-3. Analogy discipline — hard halt
-4. Length targets — hard halt
-5. Asset integrity — hard halt
-6. Secret scrub — hard halt
-7. Frontmatter-spine consistency — hard halt
-8. Prerequisite-state consistency — hard halt
-9. Dual-variant completeness — hard halt
-10. Reading-time sanity — soft warning
+1. Banned words, hard halt
+2. Acronym expansion, hard halt
+3. Analogy discipline, hard halt
+4. Length targets, hard halt
+5. Asset integrity, hard halt
+6. Secret scrub, hard halt
+7. Frontmatter-spine consistency, hard halt
+8. Prerequisite-state consistency, hard halt
+9. Dual-variant completeness, hard halt
+10. Shell-assumption check, hard halt
+11. Reading-time sanity, soft warning
 
-All gates except #10 will stop a lesson from shipping. The tenth calibrates the curriculum over time without blocking publication.
+All gates except #11 will stop a lesson from shipping. The eleventh calibrates the curriculum over time without blocking publication.
 
 ## When a gate fails
 
