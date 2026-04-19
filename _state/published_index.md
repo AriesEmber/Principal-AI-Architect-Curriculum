@@ -12,13 +12,13 @@ This file tracks which lessons have been published to `main`. The `lesson-author
 - L-### | M## | D## | <title> | <published date ISO8601> | <commit SHA>
 -->
 
-<!-- First lesson published will appear here after merge -->
+- L-001 | M01 | D01 | Open the terminal with a keyboard shortcut | 2026-04-19 | 6366f52
 
 ## Curriculum completion
 
 - Total lessons in curriculum: 171
-- Published: 0
-- Remaining: 171
-- Completion: 0.0%
+- Published: 1
+- Remaining: 170
+- Completion: 0.6%
 
 (The skill updates the three counts above after each publication.)
