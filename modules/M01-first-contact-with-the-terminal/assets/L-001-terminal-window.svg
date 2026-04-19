@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="term-title term-desc">
+  <title id="term-title">An open terminal window with a prompt and a blinking cursor</title>
+  <desc id="term-desc">A simplified terminal window in a dark style. The title bar shows window controls. The content area shows a single prompt line with a blinking cursor to indicate the terminal is ready to accept a command.</desc>
+  <defs>
+    <linearGradient id="bgSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1F2B40"/>
+      <stop offset="1" stop-color="#0C1421"/>
+    </linearGradient>
+    <linearGradient id="titleBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2E33"/>
+      <stop offset="1" stop-color="#1E1E22"/>
+    </linearGradient>
+    <filter id="shadowT" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="0" dy="10"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .ui { font-family: -apple-system, "Segoe UI", "Cantarell", system-ui, Arial, sans-serif; }
+      .mono { font-family: "SF Mono", "Cascadia Mono", "Ubuntu Mono", Consolas, "Courier New", monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgSoft)"/>
+
+  <!-- Terminal window -->
+  <g filter="url(#shadowT)">
+    <rect x="140" y="130" width="920" height="490" rx="14" fill="#1B1B1F" stroke="#3A3A40"/>
+
+    <!-- Title bar -->
+    <rect x="140" y="130" width="920" height="36" rx="14" fill="url(#titleBar)"/>
+    <rect x="140" y="150" width="920" height="16" fill="url(#titleBar)"/>
+    <!-- Traffic light style buttons (generic) -->
+    <circle cx="168" cy="148" r="7" fill="#FF5F57"/>
+    <circle cx="188" cy="148" r="7" fill="#FEBC2E"/>
+    <circle cx="208" cy="148" r="7" fill="#28C840"/>
+    <text x="600" y="152" class="ui" font-size="13" fill="#D0D0D8" text-anchor="middle" font-weight="600">Terminal: learner@laptop</text>
+
+    <!-- Content -->
+    <rect x="140" y="166" width="920" height="454" fill="#15151A"/>
+
+    <!-- Welcome banner -->
+    <text x="180" y="220" class="mono" font-size="15" fill="#6F7A8C">Last login: Mon Apr 20 09:41:12 on console</text>
+
+    <!-- Prompt -->
+    <text x="180" y="270" class="mono" font-size="18" fill="#50E8B3" font-weight="700">learner@laptop</text>
+    <text x="342" y="270" class="mono" font-size="18" fill="#D0D0D8">:</text>
+    <text x="354" y="270" class="mono" font-size="18" fill="#5FA3D1" font-weight="700">~</text>
+    <text x="372" y="270" class="mono" font-size="18" fill="#D0D0D8">$ </text>
+    <!-- Blinking block cursor -->
+    <rect x="396" y="256" width="12" height="18" fill="#D0D0D8">
+      <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Helper annotation inside the window -->
+    <g>
+      <path d="M 408 265 Q 520 300 600 380" stroke="#FFD666" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+      <circle cx="402" cy="265" r="4" fill="#FFD666"/>
+      <rect x="600" y="380" width="380" height="84" rx="10" fill="#0F0A18" fill-opacity="0.95" stroke="#FFD666" stroke-width="1.5"/>
+      <text x="616" y="406" class="ui" font-size="13" font-weight="700" fill="#FFFFFF">The blinking block is the cursor.</text>
+      <text x="616" y="426" class="ui" font-size="12" fill="#FFFFFF">It means the terminal is listening.</text>
+      <text x="616" y="445" class="ui" font-size="12" fill="#D6E2F0">The text to its left is the prompt,</text>
+      <text x="616" y="460" class="ui" font-size="12" fill="#D6E2F0">you decode that in the next lesson.</text>
+    </g>
+  </g>
+
+  <!-- Caption -->
+  <text x="600" y="680" class="ui" font-size="14" fill="#FFFFFF" fill-opacity="0.8" text-anchor="middle">A terminal window after launch, the cursor is blinking, ready for input.</text>
+</svg>

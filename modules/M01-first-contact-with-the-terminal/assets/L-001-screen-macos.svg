@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="macos-title macos-desc">
+  <title id="macos-title">macOS Spotlight search with "terminal" typed</title>
+  <desc id="macos-desc">A macOS desktop with the Spotlight search panel open, the word terminal typed into the search box, and the Terminal application highlighted as the top result. An annotation calls out the keyboard shortcut Command plus Space.</desc>
+  <defs>
+    <linearGradient id="macDesk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E5A8A"/>
+      <stop offset="1" stop-color="#0F2A44"/>
+    </linearGradient>
+    <linearGradient id="spotlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFAFB"/>
+      <stop offset="1" stop-color="#EDEDEF"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="0" dy="8"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .ui { font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace; }
+      .anno { font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; fill: #FFFFFF; }
+    </style>
+  </defs>
+
+  <!-- Desktop background -->
+  <rect width="1200" height="750" fill="url(#macDesk)"/>
+
+  <!-- Menu bar -->
+  <rect x="0" y="0" width="1200" height="28" fill="#1C1C1E" fill-opacity="0.55"/>
+  <circle cx="22" cy="14" r="7" fill="#FFFFFF" fill-opacity="0.9"/>
+  <text x="46" y="18" class="ui" font-size="12" font-weight="700" fill="#FFFFFF">Finder</text>
+  <text x="100" y="18" class="ui" font-size="12" fill="#FFFFFF" fill-opacity="0.85">File  Edit  View  Go  Window  Help</text>
+  <text x="1080" y="18" class="ui" font-size="12" fill="#FFFFFF" fill-opacity="0.85">Mon 9:41 AM</text>
+
+  <!-- Spotlight panel -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="170" width="600" height="76" rx="14" fill="url(#spotlight)"/>
+    <!-- Search icon -->
+    <circle cx="340" cy="208" r="11" fill="none" stroke="#6F6F78" stroke-width="2.5"/>
+    <line x1="349" y1="216" x2="358" y2="225" stroke="#6F6F78" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Query text -->
+    <text x="380" y="218" class="ui" font-size="30" fill="#1F2328">terminal</text>
+    <!-- Blinking caret -->
+    <rect x="510" y="192" width="2" height="34" fill="#1F2328">
+      <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.5;1;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Result row -->
+    <rect x="300" y="246" width="600" height="64" rx="0" fill="#D1E4FF"/>
+    <rect x="314" y="258" width="40" height="40" rx="8" fill="#1E1E1E"/>
+    <text x="325" y="285" class="mono" font-size="18" fill="#50E8B3" font-weight="700">&gt;_</text>
+    <text x="368" y="275" class="ui" font-size="16" font-weight="600" fill="#1F2328">Terminal</text>
+    <text x="368" y="295" class="ui" font-size="12" fill="#4B5563">Application: /Applications/Utilities/Terminal.app</text>
+
+    <!-- Bottom filler results -->
+    <rect x="300" y="310" width="600" height="40" rx="0" fill="#FAFAFB"/>
+    <rect x="314" y="322" width="28" height="16" rx="4" fill="#1E1E1E" fill-opacity="0.12"/>
+    <text x="352" y="335" class="ui" font-size="13" fill="#4B5563">iTerm2 · Application</text>
+
+    <rect x="300" y="350" width="600" height="40" rx="0" fill="#FAFAFB"/>
+    <rect x="314" y="362" width="28" height="16" rx="4" fill="#1E1E1E" fill-opacity="0.12"/>
+    <text x="352" y="375" class="ui" font-size="13" fill="#4B5563">Terminal Services · Documentation</text>
+
+    <!-- Rounded bottom mask -->
+    <path d="M 300 390 L 300 396 Q 300 410 314 410 L 886 410 Q 900 410 900 396 L 900 390 Z" fill="#FAFAFB"/>
+  </g>
+
+  <!-- Keyboard shortcut visual -->
+  <g transform="translate(880,470)">
+    <rect x="0" y="0" width="80" height="60" rx="10" fill="#FFFFFF" fill-opacity="0.95"/>
+    <text x="40" y="42" class="ui" font-size="34" font-weight="600" text-anchor="middle" fill="#1F2328">⌘</text>
+    <text x="105" y="40" class="ui" font-size="30" font-weight="700" fill="#FFFFFF">+</text>
+    <rect x="140" y="0" width="160" height="60" rx="10" fill="#FFFFFF" fill-opacity="0.95"/>
+    <text x="220" y="40" class="ui" font-size="20" font-weight="600" text-anchor="middle" fill="#1F2328">space</text>
+  </g>
+
+  <!-- Annotation -->
+  <g>
+    <path d="M 920 270 Q 1000 300 1030 370" stroke="#FFD666" stroke-width="2.5" fill="none" stroke-dasharray="4 4"/>
+    <circle cx="920" cy="270" r="5" fill="#FFD666"/>
+    <rect x="960" y="380" width="220" height="70" rx="10" fill="#1C1C1E" fill-opacity="0.85" stroke="#FFD666" stroke-width="1.5"/>
+    <text x="975" y="408" class="anno" font-size="13" font-weight="700">Step 1: macOS</text>
+    <text x="975" y="427" class="anno" font-size="12">Press Command + Space,</text>
+    <text x="975" y="442" class="anno" font-size="12">type terminal, press Return.</text>
+  </g>
+
+  <!-- Footer label -->
+  <text x="600" y="720" class="ui" font-size="14" fill="#FFFFFF" fill-opacity="0.75" text-anchor="middle">macOS Spotlight search, opening the Terminal application with the keyboard</text>
+</svg>

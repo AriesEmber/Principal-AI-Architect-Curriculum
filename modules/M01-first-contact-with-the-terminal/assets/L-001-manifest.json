@@ -1,0 +1,78 @@
+{
+  "lesson_id": "L-001",
+  "module_id": "M01",
+  "capture_mode": "script_only",
+  "capture_mode_handler": "mock_ui",
+  "assets": [
+    {
+      "file": "L-001-screen-macos.svg",
+      "role": "scene",
+      "description": "macOS Spotlight search annotated screen",
+      "bytes": 5511,
+      "sha256": "35ca77ef3df307d5bd498db271a0c5fe83570fc3d35b7bafe2847b9fcf0757da"
+    },
+    {
+      "file": "L-001-screen-macos.png",
+      "role": "scene",
+      "description": "macOS Spotlight search (PNG render for DOCX)",
+      "bytes": 52288,
+      "sha256": "0e69e515e95c3d348dbf6003c3fa5610021dfa2d947c7b233eb6fabb696b54ee"
+    },
+    {
+      "file": "L-001-screen-windows.svg",
+      "role": "scene",
+      "description": "Windows 11 Start menu annotated screen",
+      "bytes": 6402,
+      "sha256": "9d4d0f41497289e9ecd196e02932b826db4a70686a2df3bebb9c2768f8f1ba69"
+    },
+    {
+      "file": "L-001-screen-windows.png",
+      "role": "scene",
+      "description": "Windows 11 Start menu (PNG render for DOCX)",
+      "bytes": 347781,
+      "sha256": "af082de700de1a2881bd3e7e095f1121380fd5352622f4b39ea5d22b39313d15"
+    },
+    {
+      "file": "L-001-screen-linux.svg",
+      "role": "scene",
+      "description": "GNOME Activities overlay annotated screen",
+      "bytes": 7000,
+      "sha256": "58172dbbafb4c6820347529cca1aefc6711ec7a079bdfd560ec4afeeb63397ac"
+    },
+    {
+      "file": "L-001-screen-linux.png",
+      "role": "scene",
+      "description": "GNOME Activities overlay (PNG render for DOCX)",
+      "bytes": 55210,
+      "sha256": "29732ce9d6e21ede261fba623cc95f73f91c4a08fd84b49e39848c296c7d5de8"
+    },
+    {
+      "file": "L-001-terminal-window.svg",
+      "role": "scene",
+      "description": "Terminal window with prompt and blinking cursor",
+      "bytes": 4130,
+      "sha256": "3ca040df2d68e4c6e833c75ad70685e559557f724bf1e045af4546a6d4a73f2d"
+    },
+    {
+      "file": "L-001-terminal-window.png",
+      "role": "scene",
+      "description": "Terminal window (PNG render for DOCX)",
+      "bytes": 51343,
+      "sha256": "a601ffd578f141337aeb9666dd5a88826b336c87c297be662c371a216173c172"
+    },
+    {
+      "file": "L-001-walkthrough.svg",
+      "role": "animation",
+      "description": "Four-scene animated SVG walkthrough, 16s loop",
+      "bytes": 13492,
+      "sha256": "7e87259eca2dfefbc4d6a745f9dac84e4a0e2e2afccadaaff8b74533cba6d4d1"
+    },
+    {
+      "file": "L-001-walkthrough.gif",
+      "role": "animation",
+      "description": "Four-scene animated GIF walkthrough, 14s loop",
+      "bytes": 368101,
+      "sha256": "6578e14cb3c6793fc5c0f7dc900f85e19c195c316ca0da0e527bb4f300b15034"
+    }
+  ]
+}
