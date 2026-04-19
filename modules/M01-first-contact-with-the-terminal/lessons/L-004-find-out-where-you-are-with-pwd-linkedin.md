@@ -4,7 +4,7 @@ This is Day 4 of a 171-lesson path I am taking publicly, from zero to a Principa
 
 The analogy I use is the red dot on a shopping-mall map. The dot is useless on its own. What it gives you is the one piece of information you need to plan any route at all: where you stand before you move. Your terminal has the same dot, and the command that shows it is `pwd`, short for print working directory.
 
-![Animated typewriter walkthrough of four pwd exchanges in a fresh terminal](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.gif)
+![Side-by-side typewriter walkthrough of four pwd exchanges, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.gif)
 
 **What actually happens**
 
@@ -20,7 +20,7 @@ Every running program on your computer has a current working directory attached 
 
 On Windows PowerShell, `pwd` is not a separate program. It is an alias for `Get-Location`. `Get-Command pwd` will show you that. The command-response rhythm and the absolute-path answer are identical.
 
-![Static panel showing four pwd exchanges and the PowerShell alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.png)
+![Side-by-side static panel of the four pwd exchanges in Bash (left) and PowerShell (right), including the alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-004-terminal.png)
 
 **Why this is the first command in every troubleshooting guide**
 

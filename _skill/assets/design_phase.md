@@ -89,6 +89,17 @@ The default is cross-shell parity. Restriction is the exception, and must be jus
 
 **Why this rule exists.** L-003 v1 asserted "every command below works identically on all three" shells in its prerequisites, then used `$USER` in step 5. A real reader on Windows PowerShell got a blank line, assumed they typed something wrong, and stalled on the third lesson of the curriculum. The lesson was retired and rewritten with side-by-side columns. The fix was small; missing the same case on twenty more lessons would not have been.
 
+## The side-by-side asset rule
+
+When a lesson contains shell commands, the *animated* and *static* assets must also carry the cross-shell story. Not just the article prose. The reader is skimming the GIF on LinkedIn, not reading the body.
+
+1. **Every shell-touching GIF is a two-column Bash + PowerShell walkthrough.** Bash on the left (covering macOS, Linux, WSL), PowerShell on the right (covering Windows). Matching exchanges render at the same vertical position so the reader reads across. Use the shared renderer at `_skill/scripts/side_by_side.py`; do not hand-author per-lesson rendering code.
+2. **Every shell-touching lesson ships a matching static PNG.** The PNG is the final visible state of the GIF (all exchanges typed and replied, trailing prompt blinking). Readers who don't wait for the GIF to loop should still see the full sequence.
+3. **Canvas height is sized to content.** Trailing whitespace below the caption strip fails the build (Gate 12). Picking a fixed height and hoping the content fits is not acceptable — the renderer computes the height from the exchange list.
+4. **Lessons that are not shell-based** (concept diagrams, pure-text tables, architecture renders) are exempt from the two-column requirement but still must be trimmed to content.
+
+The reference implementation is L-003 v2 and its six siblings (L-001, L-002, L-004–L-007), rebuilt on 2026-04-19. Every new lesson that touches a shell should inherit this stack.
+
 ## The "point of no return" rule
 
 Lessons with `risk_level: medium` or `risk_level: high` involve credentials, payments, or destructive actions. Before any command in the Step-by-step section that deletes something, exposes a credential, or incurs cost, insert a block:

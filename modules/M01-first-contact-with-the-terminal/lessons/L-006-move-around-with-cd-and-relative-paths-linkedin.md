@@ -4,7 +4,7 @@ This is Day 6 of a 171-lesson path I am taking publicly, from zero to a Principa
 
 The analogy I use is a house. If someone in the hallway asks where the kitchen is, you say "go to the kitchen." If the same person calls from across town, you have to say "go to 123 Main Street, then the kitchen." Same destination, different starting point, different directions. The terminal works the same way, and the command for walking is `cd`, short for change directory (CD).
 
-![Animated typewriter walkthrough of the five cd exchanges](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.gif)
+![Side-by-side typewriter walkthrough of five cd exchanges, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.gif)
 
 **Relative paths start where you stand**
 
@@ -36,7 +36,7 @@ $ pwd
 
 Relative paths are for short moves. Absolute paths are for jumps across the system, or for anything that needs to work the same way from any starting directory. Every production script you will ever read uses absolute paths for files that matter, for exactly this reason.
 
-![Static panel of the five cd exchanges plus the PowerShell equivalent](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.png)
+![Side-by-side static panel of the five cd exchanges in Bash (left) and PowerShell (right)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.png)
 
 **The three shortcuts worth memorizing today**
 

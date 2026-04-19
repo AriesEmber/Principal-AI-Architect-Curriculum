@@ -16,7 +16,7 @@ acronyms_expanded: [CLI, OS, PS1]
 
 A sign at a train station does three quiet jobs. It tells you where you are (the platform), who is there with you (the line or carriage), and that a train is about to depart (the next destination). The prompt on your terminal does the same three jobs. It is a status bar disguised as a handful of symbols. Once you can point at each piece and name what it is, the Command-Line Interface (CLI) stops looking like a riddle and starts looking like a sign. You are about to walk over to your prompt, label the parts, and write them down.
 
-![Animated walkthrough of the four parts of a shell prompt on macOS, Linux, and Windows](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-002-walkthrough.gif)
+![Side-by-side walkthrough of the shell prompt, Bash on the left with four callouts (username, machine, directory, prompt character) and PowerShell on the right with three callouts (shell indicator, directory, prompt character)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-002-walkthrough.gif)
 
 ## What you will do
 

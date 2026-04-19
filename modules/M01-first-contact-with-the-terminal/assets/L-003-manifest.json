@@ -10,23 +10,23 @@
     {
       "file": "L-003-terminal.svg",
       "role": "scene",
-      "description": "Side-by-side static panel: Bash on the left, PowerShell on the right, both showing the five echo exchanges",
-      "bytes": 8121,
-      "sha256": "cd07db03684d1749a72344fcea0365029add17933710a65276ea41833d07e16d"
+      "description": "Side-by-side Bash | PowerShell panel showing the five echo exchanges in both shells",
+      "bytes": 7160,
+      "sha256": "3d3a9b8f98a9e481fad3642886069ea9166134a524c9231e6f65b6d790150e79"
     },
     {
       "file": "L-003-terminal.png",
       "role": "scene",
-      "description": "Static side-by-side terminal panel (PNG render of SVG, used by DOCX)",
-      "bytes": 112843,
-      "sha256": "f7ab43ab317ef49ad0ab67205c1f54b6731b1371e30dbd33b652a81e3a3cc2d4"
+      "description": "Side-by-side Bash | PowerShell panel showing the five echo exchanges in both shells",
+      "bytes": 79672,
+      "sha256": "371065015746089a9830a93acf1117e8f03b97a70af01e1425a7b072b0622712"
     },
     {
       "file": "L-003-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the five echo exchanges typed in parallel in Bash and PowerShell",
-      "bytes": 1627967,
-      "sha256": "b76bec95a537da6c469e9bed9df9769128c9daeb9612581e95a623b02dc6d77e"
+      "description": "Typewriter animation of the five echo exchanges in Bash (left) and PowerShell (right)",
+      "bytes": 1372120,
+      "sha256": "03c05a308ed910d3c0202c8e6aadbc97c48b818eb01148cdd3278a9e1d06dff4"
     },
     {
       "file": "L-003-transcript.md",

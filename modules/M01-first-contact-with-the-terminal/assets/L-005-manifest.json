@@ -7,30 +7,30 @@
     {
       "file": "L-005-terminal.svg",
       "role": "scene",
-      "description": "Static four-exchange terminal panel (ls, ls -la, ls /, PowerShell alias)",
-      "bytes": 4422,
-      "sha256": "57fe8f18dcf9b4263af76bbe1b2f7404f99bbc16ec3438de0c7bcc8fcf26ece7"
+      "description": "Side-by-side Bash | PowerShell panel of the four ls exchanges (including the PowerShell alias binding)",
+      "bytes": 6409,
+      "sha256": "824edb83049b52a3586ff76ce25a1e8c24de210f830a4adf8035631614cace88"
     },
     {
       "file": "L-005-terminal.png",
       "role": "scene",
-      "description": "Static terminal panel (PNG render of the SVG for DOCX)",
-      "bytes": 104729,
-      "sha256": "f475646d81a6781189cb03fed35f3dc7ed0f36f4694b17b98abb6d377a73c416"
+      "description": "Side-by-side Bash | PowerShell panel of the four ls exchanges (including the PowerShell alias binding)",
+      "bytes": 73364,
+      "sha256": "a0622e4b81398dab0d67b85d253d6569f5fd544fa6d40506320c064ea4821e44"
     },
     {
       "file": "L-005-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the four ls exchanges",
-      "bytes": 577226,
-      "sha256": "316b190d1aef54212f8e9d7b625ea679cca7f6cf6ada2c6f6171ee3221474b8e"
+      "description": "Typewriter animation of the four ls exchanges in Bash and PowerShell",
+      "bytes": 1395934,
+      "sha256": "cf778a572ef9c6d4b95f3ba7b79b3a29a69295abc6be3d8f4dc2a49fb32ac0f3"
     },
     {
       "file": "L-005-transcript.md",
       "role": "transcript",
       "description": "Plain-text transcript for screen readers",
-      "bytes": 2107,
-      "sha256": "b6fa4ef288942c3d9a6809db97b1243128e3a706777032986564bdabf78f628f"
+      "bytes": 2144,
+      "sha256": "a2c3f230146f073eedca619d2ff67a15e4dcc2068f4ae3eddc17f3e95d4d4135"
     }
   ]
 }

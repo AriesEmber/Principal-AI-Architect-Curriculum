@@ -8,8 +8,8 @@
       "file": "L-002-anatomy.svg",
       "role": "scene",
       "description": "Generic shell prompt anatomy with four callouts",
-      "bytes": 6402,
-      "sha256": "77d65a7e15cbbcedff21c642297cd7426d53cd2f5aa2befc6cf9e73dd0f683e0"
+      "bytes": 6500,
+      "sha256": "cf0ae61aba3b7b882d875fb9745a31fbbe7f5e404ca36af72aea58c288b48528"
     },
     {
       "file": "L-002-anatomy.png",
@@ -22,8 +22,8 @@
       "file": "L-002-prompt-macos.svg",
       "role": "scene",
       "description": "macOS Zsh prompt annotated with four callouts",
-      "bytes": 6345,
-      "sha256": "793d0621ae35d8dfa17fd4991377236eb1c7c477a8fca3c7f491375ef683b0a3"
+      "bytes": 6446,
+      "sha256": "4eeb2beeb8b304e1c5b42e54c2f0e64e0ff52dbc57042dfc0d3edc81e5943309"
     },
     {
       "file": "L-002-prompt-macos.png",
@@ -36,8 +36,8 @@
       "file": "L-002-prompt-linux.svg",
       "role": "scene",
       "description": "Linux Bash prompt annotated with four callouts",
-      "bytes": 6303,
-      "sha256": "04c0face0a3e9f72abcb55db89fbfc5caeb42b3749c7f6d62a3058d8613215cc"
+      "bytes": 6402,
+      "sha256": "84b61de25b373530a76ce360b34c2400c5a6306413401bc793f346edc58c9ba0"
     },
     {
       "file": "L-002-prompt-linux.png",
@@ -50,8 +50,8 @@
       "file": "L-002-prompt-windows.svg",
       "role": "scene",
       "description": "Windows PowerShell prompt annotated with three callouts and a note",
-      "bytes": 7068,
-      "sha256": "a1400d12ddad4eb2267a31d286b2f6900c3fcaf4f0c144b603bab553e9870b3c"
+      "bytes": 7180,
+      "sha256": "4ad83d689d4b97f4fde6646319ee31caebfc0f98f3b4f623967ec8d527beeca4"
     },
     {
       "file": "L-002-prompt-windows.png",
@@ -62,17 +62,24 @@
     },
     {
       "file": "L-002-walkthrough.svg",
-      "role": "animation",
-      "description": "Four-scene animated SVG walkthrough, 16s loop",
-      "bytes": 14999,
-      "sha256": "c766613db1c31a69d959d417ed76dfff64f0db1390efc250f2af282a4649f94d"
+      "role": "walkthrough",
+      "description": "Two-column Bash | PowerShell prompt anatomy SVG",
+      "bytes": 2553,
+      "sha256": "5794a53e9c4cf7ad2a4b52a9dca04f2f1b7779b1aab0f0b47e7558e7c765c7cb"
     },
     {
       "file": "L-002-walkthrough.gif",
-      "role": "animation",
-      "description": "Four-scene animated GIF walkthrough, 16s loop",
-      "bytes": 320827,
-      "sha256": "0a12a79bdb72415bb31c9f0b4456664d5e4e419f7ad6d2b8d9144f16d5c4f92c"
+      "role": "walkthrough",
+      "description": "Two-column Bash | PowerShell prompt anatomy GIF (callouts fade in)",
+      "bytes": 102665,
+      "sha256": "5b8464ac420b197bc95a7524b148f409326f9257cf8f9f1d11fcfb1ef7016b15"
+    },
+    {
+      "file": "L-002-walkthrough.png",
+      "role": "walkthrough",
+      "description": "Static final-frame panel matching the walkthrough GIF",
+      "bytes": 38660,
+      "sha256": "91d0ced8f36328176b04d0255c5d5b107e18815d3661d45f8d2908bbb559de99"
     }
   ]
 }

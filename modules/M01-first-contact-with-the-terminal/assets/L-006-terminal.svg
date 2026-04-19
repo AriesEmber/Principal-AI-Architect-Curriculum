@@ -1,71 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820" font-family="'SF Mono','Fira Code','Consolas',monospace">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1b2029"/>
-      <stop offset="1" stop-color="#12161d"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="820" fill="#0b0d12"/>
-  <!-- Terminal window frame -->
-  <rect x="60" y="60" width="1080" height="700" rx="14" ry="14" fill="url(#bg)" stroke="#2a3140" stroke-width="1.5"/>
-  <!-- Title bar -->
-  <rect x="60" y="60" width="1080" height="44" rx="14" ry="14" fill="#262c38"/>
-  <rect x="60" y="90" width="1080" height="14" fill="#262c38"/>
-  <!-- Traffic-light dots -->
-  <circle cx="88"  cy="82" r="7" fill="#ff5f57"/>
-  <circle cx="110" cy="82" r="7" fill="#febc2e"/>
-  <circle cx="132" cy="82" r="7" fill="#28c840"/>
-  <!-- Title -->
-  <text x="600" y="87" text-anchor="middle" fill="#9aa3b2" font-size="14">L-006 &#183; cd &#183; bash</text>
-
-  <!-- Body text -->
-  <g font-size="20" xml:space="preserve">
-    <!-- 1. pwd before moving -->
-    <text x="95" y="145" fill="#6aa7ff">learner@laptop</text><text x="283" y="145" fill="#7e8697">:</text><text x="293" y="145" fill="#c792ea">~</text><text x="310" y="145" fill="#7e8697">$</text><text x="327" y="145" fill="#e6edf3">pwd</text>
-    <text x="95" y="174" fill="#7ee787">/home/learner</text>
-
-    <!-- 2. cd Documents (relative) -->
-    <text x="95" y="214" fill="#6aa7ff">learner@laptop</text><text x="283" y="214" fill="#7e8697">:</text><text x="293" y="214" fill="#c792ea">~</text><text x="310" y="214" fill="#7e8697">$</text><text x="327" y="214" fill="#e6edf3">cd </text><text x="360" y="214" fill="#f2cc60">Documents</text>
-    <text x="95" y="243" fill="#6aa7ff">learner@laptop</text><text x="283" y="243" fill="#7e8697">:</text><text x="293" y="243" fill="#c792ea">~/Documents</text><text x="410" y="243" fill="#7e8697">$</text><text x="427" y="243" fill="#e6edf3">pwd</text>
-    <text x="95" y="272" fill="#7ee787">/home/learner/Documents</text>
-
-    <!-- 3. cd .. (relative, up one) -->
-    <text x="95" y="312" fill="#6aa7ff">learner@laptop</text><text x="283" y="312" fill="#7e8697">:</text><text x="293" y="312" fill="#c792ea">~/Documents</text><text x="410" y="312" fill="#7e8697">$</text><text x="427" y="312" fill="#e6edf3">cd </text><text x="460" y="312" fill="#f2cc60">..</text>
-    <text x="95" y="341" fill="#6aa7ff">learner@laptop</text><text x="283" y="341" fill="#7e8697">:</text><text x="293" y="341" fill="#c792ea">~</text><text x="310" y="341" fill="#7e8697">$</text><text x="327" y="341" fill="#e6edf3">pwd</text>
-    <text x="95" y="370" fill="#7ee787">/home/learner</text>
-
-    <!-- 4. cd / (absolute) -->
-    <text x="95" y="410" fill="#6aa7ff">learner@laptop</text><text x="283" y="410" fill="#7e8697">:</text><text x="293" y="410" fill="#c792ea">~</text><text x="310" y="410" fill="#7e8697">$</text><text x="327" y="410" fill="#e6edf3">cd </text><text x="360" y="410" fill="#f2cc60">/</text>
-    <text x="95" y="439" fill="#6aa7ff">learner@laptop</text><text x="283" y="439" fill="#7e8697">:</text><text x="293" y="439" fill="#c792ea">/</text><text x="300" y="439" fill="#7e8697">$</text><text x="317" y="439" fill="#e6edf3">pwd</text>
-    <text x="95" y="468" fill="#7ee787">/</text>
-
-    <!-- 5. cd ~ (back home) -->
-    <text x="95" y="508" fill="#6aa7ff">learner@laptop</text><text x="283" y="508" fill="#7e8697">:</text><text x="293" y="508" fill="#c792ea">/</text><text x="300" y="508" fill="#7e8697">$</text><text x="317" y="508" fill="#e6edf3">cd </text><text x="350" y="508" fill="#f2cc60">~</text>
-    <text x="95" y="537" fill="#6aa7ff">learner@laptop</text><text x="283" y="537" fill="#7e8697">:</text><text x="293" y="537" fill="#c792ea">~</text><text x="310" y="537" fill="#7e8697">$</text><text x="327" y="537" fill="#e6edf3">pwd</text>
-    <text x="95" y="566" fill="#7ee787">/home/learner</text>
-
-    <!-- 6. PowerShell equivalent one-liner summary -->
-    <text x="95" y="606" fill="#6aa7ff">PS</text><text x="128" y="606" fill="#c792ea">C:\Users\learner</text><text x="374" y="606" fill="#7e8697">&gt;</text><text x="393" y="606" fill="#e6edf3">cd Documents; cd ..; cd C:\; cd ~</text>
-    <text x="95" y="635" fill="#8b94a5">(same moves, Windows path separators; cd alone also returns home)</text>
-
-    <!-- waiting prompt -->
-    <text x="95" y="685" fill="#6aa7ff">learner@laptop</text><text x="283" y="685" fill="#7e8697">:</text><text x="293" y="685" fill="#c792ea">~</text><text x="310" y="685" fill="#7e8697">$</text>
-    <rect x="332" y="667" width="11" height="22" fill="#e6edf3">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-
-  <!-- Footnotes (right side) -->
-  <g font-size="15" fill="#8b94a5">
-    <text x="860" y="145">1. pwd: confirm start</text>
-    <text x="860" y="214">2. cd Documents (relative)</text>
-    <text x="860" y="312">3. cd .. (up one)</text>
-    <text x="860" y="410">4. cd / (absolute root)</text>
-    <text x="860" y="508">5. cd ~ (home, absolute)</text>
-    <text x="860" y="606">6. PowerShell equivalent</text>
-  </g>
-
-  <!-- Caption strip -->
-  <rect x="60" y="720" width="1080" height="40" fill="#141923"/>
-  <text x="600" y="746" text-anchor="middle" fill="#9aa3b2" font-size="16">cd walks the shell to a new directory. Relative paths start from where you stand; absolute paths start from the filesystem root.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 570" width="1400" height="570" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<defs><linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#12161d"/></linearGradient><linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#012456"/><stop offset="1" stop-color="#011736"/></linearGradient></defs>
+<rect width="1400" height="570" fill="#0b0d12"/>
+<text x="700" y="32" text-anchor="middle" fill="#cdd5e0" font-size="18" font-weight="600">L-006 · cd · move around with relative paths</text>
+<rect x="20" y="70" width="670" height="440" rx="12" ry="12" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="20" y="70" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="20" y="100" width="670" height="10" fill="#262c38"/>
+<circle cx="42" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="90" r="7" fill="#febc2e"/>
+<circle cx="82" cy="90" r="7" fill="#28c840"/>
+<text x="355" y="96" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<rect x="21" y="454" width="668" height="55" fill="#141923"/>
+<text x="36" y="474" fill="#9aa3b2" font-size="13">In Bash, cd is a shell builtin. $OLDPWD remembers the previous directory, and cd - returns</text>
+<text x="36" y="492" fill="#9aa3b2" font-size="13">to it.</text>
+<rect x="710" y="70" width="670" height="440" rx="12" ry="12" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="710" y="70" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="710" y="100" width="670" height="10" fill="#0a3a73"/>
+<circle cx="732" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="90" r="7" fill="#febc2e"/>
+<circle cx="772" cy="90" r="7" fill="#28c840"/>
+<text x="1045" y="96" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows</text>
+<rect x="711" y="454" width="668" height="55" fill="#031a3a"/>
+<text x="726" y="474" fill="#cfd9ee" font-size="13">In PowerShell, cd aliases Set-Location. Push-Location/Pop-Location give you a directory</text>
+<text x="726" y="492" fill="#cfd9ee" font-size="13">stack for round trips.</text>
+<g font-size="16" xml:space="preserve">
+<text x="42" y="146" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="146" fill="#7e8697">:</text>
+<text x="186" y="146" fill="#c792ea">~</text>
+<text x="196" y="146" fill="#7e8697">$ </text>
+<text x="215" y="146" fill="#e6edf3">pwd</text>
+<text x="42" y="174" fill="#7ee787">/home/learner</text>
+<text x="42" y="202" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="202" fill="#7e8697">:</text>
+<text x="186" y="202" fill="#c792ea">~</text>
+<text x="196" y="202" fill="#7e8697">$ </text>
+<text x="215" y="202" fill="#e6edf3">cd </text>
+<text x="244" y="202" fill="#ffab70">Documents</text>
+<text x="42" y="230" fill="#8b94a5">(no output)</text>
+<text x="42" y="258" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="258" fill="#7e8697">:</text>
+<text x="186" y="258" fill="#c792ea">~</text>
+<text x="196" y="258" fill="#7e8697">$ </text>
+<text x="215" y="258" fill="#e6edf3">pwd</text>
+<text x="42" y="286" fill="#7ee787">/home/learner/Documents</text>
+<text x="42" y="314" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="314" fill="#7e8697">:</text>
+<text x="186" y="314" fill="#c792ea">~</text>
+<text x="196" y="314" fill="#7e8697">$ </text>
+<text x="215" y="314" fill="#e6edf3">cd </text>
+<text x="244" y="314" fill="#ffab70">..</text>
+<text x="42" y="342" fill="#8b94a5">(no output)</text>
+<text x="42" y="370" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="370" fill="#7e8697">:</text>
+<text x="186" y="370" fill="#c792ea">~</text>
+<text x="196" y="370" fill="#7e8697">$ </text>
+<text x="215" y="370" fill="#e6edf3">cd </text>
+<text x="244" y="370" fill="#ffab70">~</text>
+<text x="42" y="398" fill="#8b94a5">(no output)</text>
+<text x="42" y="426" fill="#6aa7ff">learner@laptop</text>
+<text x="176" y="426" fill="#7e8697">:</text>
+<text x="186" y="426" fill="#c792ea">~</text>
+<text x="196" y="426" fill="#7e8697">$ </text>
+<rect x="216" y="411" width="11" height="20" fill="#e6edf3"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+<text x="732" y="146" fill="#cfd9ee">PS </text>
+<text x="761" y="146" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="146" fill="#cfd9ee">&gt; </text>
+<text x="934" y="146" fill="#ffffff">pwd</text>
+<text x="732" y="174" fill="#7ee787">C:\Users\learner</text>
+<text x="732" y="202" fill="#cfd9ee">PS </text>
+<text x="761" y="202" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="202" fill="#cfd9ee">&gt; </text>
+<text x="934" y="202" fill="#ffffff">cd </text>
+<text x="963" y="202" fill="#ffab70">Documents</text>
+<text x="732" y="230" fill="#8b94a5">(no output)</text>
+<text x="732" y="258" fill="#cfd9ee">PS </text>
+<text x="761" y="258" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="258" fill="#cfd9ee">&gt; </text>
+<text x="934" y="258" fill="#ffffff">pwd</text>
+<text x="732" y="286" fill="#7ee787">C:\Users\learner\Documents</text>
+<text x="732" y="314" fill="#cfd9ee">PS </text>
+<text x="761" y="314" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="314" fill="#cfd9ee">&gt; </text>
+<text x="934" y="314" fill="#ffffff">cd </text>
+<text x="963" y="314" fill="#ffab70">..</text>
+<text x="732" y="342" fill="#8b94a5">(no output)</text>
+<text x="732" y="370" fill="#cfd9ee">PS </text>
+<text x="761" y="370" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="370" fill="#cfd9ee">&gt; </text>
+<text x="934" y="370" fill="#ffffff">cd </text>
+<text x="963" y="370" fill="#ffab70">~</text>
+<text x="732" y="398" fill="#8b94a5">(no output)</text>
+<text x="732" y="426" fill="#cfd9ee">PS </text>
+<text x="761" y="426" fill="#9bb4dd">C:\Users\learner</text>
+<text x="915" y="426" fill="#cfd9ee">&gt; </text>
+<rect x="935" y="411" width="11" height="20" fill="#ffffff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+</g>
+<g font-size="13" fill="#8b94a5">
+<text x="674" y="146" text-anchor="end">1. Confirm where you stand</text>
+<text x="1364" y="146" text-anchor="end">1. Confirm where you stand</text>
+<text x="674" y="202" text-anchor="end">2. Walk into a subdirectory</text>
+<text x="1364" y="202" text-anchor="end">2. Walk into a subdirectory</text>
+<text x="674" y="258" text-anchor="end">3. Confirm the move</text>
+<text x="1364" y="258" text-anchor="end">3. Confirm the move</text>
+<text x="674" y="314" text-anchor="end">4. Walk back up one level</text>
+<text x="1364" y="314" text-anchor="end">4. Walk back up one level</text>
+<text x="674" y="370" text-anchor="end">5. Return home</text>
+<text x="1364" y="370" text-anchor="end">5. Return home</text>
+</g>
+<rect x="20" y="530" width="1360" height="34" fill="#141923"/>
+<text x="700" y="554" text-anchor="middle" fill="#9aa3b2" font-size="14">cd works the same way in both shells for relative paths, .., and ~. The prompt updates to show where you are.</text>
 </svg>

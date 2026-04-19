@@ -62,17 +62,24 @@
     },
     {
       "file": "L-001-walkthrough.svg",
-      "role": "animation",
-      "description": "Four-scene animated SVG walkthrough, 16s loop",
-      "bytes": 13492,
-      "sha256": "7e87259eca2dfefbc4d6a745f9dac84e4a0e2e2afccadaaff8b74533cba6d4d1"
+      "role": "walkthrough",
+      "description": "Two-column Bash | PowerShell walkthrough SVG",
+      "bytes": 2189,
+      "sha256": "38ee01c7941e0f4aa0de63de9a1ddb24d76fdfb849fdd61f62a8c65d566e9211"
     },
     {
       "file": "L-001-walkthrough.gif",
-      "role": "animation",
-      "description": "Four-scene animated GIF walkthrough, 14s loop",
-      "bytes": 368101,
-      "sha256": "6578e14cb3c6793fc5c0f7dc900f85e19c195c316ca0da0e527bb4f300b15034"
+      "role": "walkthrough",
+      "description": "Two-column Bash | PowerShell walkthrough GIF",
+      "bytes": 74939,
+      "sha256": "ca9ca9a23addb00313efbfeceb4eb5998ddbb36b8fdb0aaed53f96f82faadd4f"
+    },
+    {
+      "file": "L-001-walkthrough.png",
+      "role": "walkthrough",
+      "description": "Static final-frame panel matching the walkthrough GIF",
+      "bytes": 44895,
+      "sha256": "c585a999971af20219947b613c76e44eee8213473bd4e24e1803cfe3220c853b"
     }
   ]
 }

@@ -4,7 +4,7 @@ This is Day 7 of a 171-lesson path I am taking publicly, from zero to a Principa
 
 The analogy I use is a filing cabinet. Slide it in. Pull the drawer. Drop a note. Push it back. Shred the whole thing when the project is over. The terminal has one verb for each of those motions, and by the end of today you will know them all.
 
-![Animated typewriter walkthrough of the ten-exchange capstone](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
+![Side-by-side typewriter walkthrough of the nine-exchange capstone, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
 
 **The six commands in one flow**
 
@@ -46,7 +46,7 @@ Read that carefully because it matters: `rm -r` does not move files to a recycle
 
 The mental habit that keeps you safe: never type `rm -r` against a path you did not just create yourself, and always run `ls` first to see what is actually there before you delete.
 
-![Static panel of the ten exchanges plus the PowerShell equivalent](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
+![Side-by-side static panel of the nine capstone exchanges in Bash (left) and PowerShell (right)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
 
 **The symmetry is the lesson**
 

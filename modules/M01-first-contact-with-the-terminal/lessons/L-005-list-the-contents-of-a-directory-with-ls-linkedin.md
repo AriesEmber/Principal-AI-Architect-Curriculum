@@ -4,7 +4,7 @@ This is Day 5 of a 171-lesson path I am taking publicly, from zero to a Principa
 
 The analogy I use is a file cabinet drawer. A drawer sits closed most of the time, holding its contents out of sight. Pulling the drawer open is the cheapest gesture in the room: no paper is read, no folder is removed, you are just looking at what is in there before you reach for anything. Your terminal's drawer-open gesture is `ls`, two letters short for list.
 
-![Animated typewriter walkthrough of the four ls exchanges](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.gif)
+![Side-by-side typewriter walkthrough of four ls exchanges, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.gif)
 
 **What ls actually does**
 
@@ -25,7 +25,7 @@ drwxr-xr-x 12 learner learner 4096 Apr 18 10:15 .
 
 The first row is a directory. The second is a file. The rest of the row is the same shape; only the leading letter is different.
 
-![Static panel showing the four ls exchanges and the PowerShell alias check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.png)
+![Side-by-side static panel of the four ls exchanges in Bash (left) and PowerShell (right), including the alias binding check](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-005-terminal.png)
 
 **Same command, different target**
 

@@ -16,7 +16,7 @@ acronyms_expanded: [CD, CLI, OS]
 
 Picture yourself standing in the hallway of a house. Someone asks where the kitchen is and you say, "go to the kitchen." That answer works because you are both already inside the house. If the same person calls you from across town, the answer has to change. Now you have to say, "go to 123 Main Street, then to the kitchen." Same destination, different starting point, different directions. Your terminal works the same way. When you say "go to Documents," the Command-Line Interface (CLI) uses your current directory as the starting point. When you say "go to the root of the disk," you give the full address from the front door of the operating system (OS). You are about to give your terminal both kinds of directions, with a two-letter command called `cd`, short for change directory (CD).
 
-![Animated typewriter walkthrough of the five cd exchanges](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.gif)
+![Side-by-side typewriter walkthrough of five cd exchanges, Bash on the left and PowerShell on the right, prompt path updating in lockstep](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.gif)
 
 ## What you will do
 
@@ -126,7 +126,7 @@ pwd
 
 You are home again, having walked there with an absolute path. That is five moves, three flavors of path, one command.
 
-![Static panel of the five cd exchanges plus the PowerShell equivalent](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.png)
+![Side-by-side static panel of the five cd exchanges in Bash (left) and PowerShell (right)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-006-terminal.png)
 
 ## Check it worked
 

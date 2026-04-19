@@ -137,6 +137,25 @@ If any such construct appears, the lesson must satisfy one of two conditions:
 
 **Automation.** Full.
 
+## Gate 12: Side-by-side rendering and no-whitespace framing
+
+**Check.** Every animated GIF, static PNG, and SVG that shows shell or terminal behaviour must:
+
+1. **Render two shells in parallel columns.** Bash on the left (covering macOS, Linux, and WSL) and PowerShell on the right (covering Windows). Both columns show the same exchange at the same vertical position, so the reader can read across rather than having to pause and flip mental contexts. The L-003 v2 assets are the reference implementation; `_skill/scripts/side_by_side.py` is the shared renderer.
+2. **Ship a matching still PNG alongside the GIF.** The PNG must show the final visible state of the GIF (all commands typed, all output revealed, trailing prompt with cursor). Readers who skip the animation should not have to start the GIF to see the full sequence.
+3. **Carry no trailing whitespace on the canvas.** The GIF and PNG canvas heights must be sized to the content. Acceptable tail padding is ≤ 20 px below the caption strip. A blank band at the bottom of either asset fails the gate.
+4. **Hold the GIF under 2 MB.** This was implicit in Gate 5; Gate 12 names it so the renderer must tune `typing_step` and palette `colors` whenever a new asset crosses the cap.
+
+**Lessons that do not render shell behaviour at all** (pure concept diagrams, rendered-auto matrices that have no shell dimension) are exempt from condition 1 — they still must satisfy conditions 2, 3, and 4.
+
+**Fail action.** Halt. Write the failing asset path, the dimensions, the measured bottom-whitespace band, and the GIF file size to `pending_review.md`. The draft branch may still be pushed so the author can see the render; do not open the pull request.
+
+**Why this gate exists.** After L-003 v2 shipped its two-column Bash + PowerShell GIF with the canvas trimmed to exactly the content, Elvis flagged the same standard as the minimum bar for every other lesson. L-001 through L-007 v1 each violated one or both conditions (either single-shell or had a tall empty strip below the caption); all seven were rebuilt on 2026-04-19 to pass this gate. Any new shell-touching lesson that does not go through the shared renderer must meet the same spec.
+
+**Automation.** Partial.
+- Conditions 2, 3, and 4 can be checked mechanically. `scripts/asset_check.py` already verifies file existence and size; extend it to scan the bottom row of every GIF/PNG and confirm that more than half of the pixels in that row match the page background (meaning it is the caption strip or content), not the background rectangle alone (meaning it is empty canvas).
+- Condition 1 is a discipline check for now: any asset that embeds shell commands must be built with the shared renderer or declared exempt in the manifest with a `"shell_exempt": true` field plus a one-line justification.
+
 ---
 
 ## Gate sequence summary
@@ -152,6 +171,7 @@ If any such construct appears, the lesson must satisfy one of two conditions:
 9. Dual-variant completeness, hard halt
 10. Shell-assumption check, hard halt
 11. Reading-time sanity, soft warning
+12. Side-by-side + no-whitespace, hard halt
 
 All gates except #11 will stop a lesson from shipping. The eleventh calibrates the curriculum over time without blocking publication.
 
