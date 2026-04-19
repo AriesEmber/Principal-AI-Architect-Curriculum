@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="58 24 1044 712" width="1044" height="712" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mac-title mac-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="mac-title mac-desc">
   <title id="mac-title">Annotated macOS zsh prompt showing username, machine name, current directory, and prompt character</title>
   <desc id="mac-desc">A macOS Terminal window with a zsh prompt reading "learner at MacBook dash Pro space tilde space percent". Four callouts label the username, machine name, current directory, and the percent sign that zsh uses as the prompt character.</desc>
   <defs>
