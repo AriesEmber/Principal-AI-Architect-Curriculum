@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="lin-title lin-desc">
+<svg viewBox="58 24 1044 712" width="1044" height="712" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="lin-title lin-desc">
   <title id="lin-title">Annotated Linux bash prompt with four callouts</title>
   <desc id="lin-desc">A GNOME Terminal window with a bash prompt reading "learner at laptop colon tilde slash projects dollar". Four callouts label the username, machine name, current directory, and the dollar sign that bash uses as the prompt character.</desc>
   <defs>

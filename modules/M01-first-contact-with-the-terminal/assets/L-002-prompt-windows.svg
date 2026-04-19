@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="win-title win-desc">
+<svg viewBox="58 24 1044 712" width="1044" height="712" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="win-title win-desc">
   <title id="win-title">Annotated Windows PowerShell prompt with three callouts</title>
   <desc id="win-desc">A Windows Terminal window running PowerShell with a prompt reading "PS space C colon backslash Users backslash learner greater-than". Three callouts label the shell indicator, the current directory, and the greater-than sign that PowerShell uses as the prompt character.</desc>
   <defs>

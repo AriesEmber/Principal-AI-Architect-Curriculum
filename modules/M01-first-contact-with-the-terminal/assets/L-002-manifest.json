@@ -8,57 +8,57 @@
       "file": "L-002-anatomy.svg",
       "role": "scene",
       "description": "Generic shell prompt anatomy with four callouts",
-      "bytes": 6500,
-      "sha256": "cf0ae61aba3b7b882d875fb9745a31fbbe7f5e404ca36af72aea58c288b48528"
+      "bytes": 6528,
+      "sha256": "187136284f0a9470195cf2841ac654b338de72a5a1d2d2afed2d789facd074ba"
     },
     {
       "file": "L-002-anatomy.png",
       "role": "scene",
       "description": "Anatomy diagram (PNG render for DOCX)",
-      "bytes": 68545,
-      "sha256": "817b12cda597c3c766755c9ebdaa1f50eebdf67b89ecade1b114af74d90d78c0"
+      "bytes": 66292,
+      "sha256": "38d8c91c7af29232319cb498282b1c79673aa411cf7e408ac840a30d6a9a94d6"
     },
     {
       "file": "L-002-prompt-macos.svg",
       "role": "scene",
       "description": "macOS Zsh prompt annotated with four callouts",
-      "bytes": 6446,
-      "sha256": "4eeb2beeb8b304e1c5b42e54c2f0e64e0ff52dbc57042dfc0d3edc81e5943309"
+      "bytes": 6474,
+      "sha256": "a1fc5a306169d7d9ea6715a2190103e20cdcf0c39f23ab552c63d7f9e405aed9"
     },
     {
       "file": "L-002-prompt-macos.png",
       "role": "scene",
       "description": "macOS Zsh prompt (PNG render for DOCX)",
-      "bytes": 67640,
-      "sha256": "79125f247b04875faf57d6bb628ec31e3e17d5c192badefbf199c6844f634e2e"
+      "bytes": 67546,
+      "sha256": "8033514835d0e9eb193ad362bc7503116955157e9a971e269820dd9fab4cd9f3"
     },
     {
       "file": "L-002-prompt-linux.svg",
       "role": "scene",
       "description": "Linux Bash prompt annotated with four callouts",
-      "bytes": 6402,
-      "sha256": "84b61de25b373530a76ce360b34c2400c5a6306413401bc793f346edc58c9ba0"
+      "bytes": 6430,
+      "sha256": "33889726fe7168f3fa970e4e2085e81d0927313cf1dcd5e2d92057724ebf5e1c"
     },
     {
       "file": "L-002-prompt-linux.png",
       "role": "scene",
       "description": "Linux Bash prompt (PNG render for DOCX)",
-      "bytes": 67829,
-      "sha256": "d1143ba0b2dfdac2c9913a26db68c8b532c7579663c64dc3a9df480b8fcb19cd"
+      "bytes": 67732,
+      "sha256": "d2a764b8cfb8279a1cd874335bd9f9af3acee7970bd8f37a618be4aa507cadfa"
     },
     {
       "file": "L-002-prompt-windows.svg",
       "role": "scene",
       "description": "Windows PowerShell prompt annotated with three callouts and a note",
-      "bytes": 7180,
-      "sha256": "4ad83d689d4b97f4fde6646319ee31caebfc0f98f3b4f623967ec8d527beeca4"
+      "bytes": 7208,
+      "sha256": "fb5535f1c255b55e3149f73634896486c14ed6f97bb7b9ba503aab7f0297312d"
     },
     {
       "file": "L-002-prompt-windows.png",
       "role": "scene",
       "description": "Windows PowerShell prompt (PNG render for DOCX)",
-      "bytes": 71196,
-      "sha256": "8b552fb92320c2bda313f30f93b8ff585919647db22f972945bd1ba95326415a"
+      "bytes": 72664,
+      "sha256": "8de7367397ffa7c70d43d0af65944d4ce4948211b360ef740f5494946e6c1a65"
     },
     {
       "file": "L-002-walkthrough.svg",
