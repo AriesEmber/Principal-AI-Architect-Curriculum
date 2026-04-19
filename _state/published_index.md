@@ -16,12 +16,13 @@ This file tracks which lessons have been published to `main`. The `lesson-author
 - L-002 | M01 | D01 | Read a prompt like a sign at a train station | 2026-04-18 | 7759e1d
 - L-003 | M01 | D01 | Print your first line with echo | 2026-04-18 | 407973b
 - L-004 | M01 | D01 | Find out where you are with pwd | 2026-04-18 | e381674
+- L-005 | M01 | D01 | List the contents of a directory with ls | 2026-04-18 | 1cb4e40
 
 ## Curriculum completion
 
 - Total lessons in curriculum: 171
-- Published: 4
-- Remaining: 167
-- Completion: 2.3%
+- Published: 5
+- Remaining: 166
+- Completion: 2.9%
 
 (The skill updates the three counts above after each publication.)
