@@ -25,9 +25,9 @@
     {
       "file": "L-007-terminal.gif",
       "role": "animation",
-      "description": "Typewriter animation of the 10-exchange capstone, PowerShell-primary, including the failed-delete error and recovery",
-      "bytes": 1748496,
-      "sha256": "7f9c139fbf305e4ab8e266f3535839f53cc9468d9542ec40a94ab284d6a0c48c"
+      "description": "Typewriter animation of the 10-exchange capstone, PowerShell-primary, including the failed-delete error row (red) and recovery. Rendered with disposal=1 and a 48-colour adaptive palette sampled from the final frame so content persists correctly and the red error row is preserved.",
+      "bytes": 84518,
+      "sha256": "95a69608feabf3f01b1f1eef5b06dd2bb91e27a0d62a9e5585cba7c36aaad1fa"
     },
     {
       "file": "L-007-transcript.md",

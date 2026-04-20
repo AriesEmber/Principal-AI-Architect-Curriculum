@@ -577,20 +577,33 @@ class SideBySideRenderer:
         frames, durations = self.build_frames(
             typing_step=typing_step, frame_ms=frame_ms
         )
-        palette_frame = frames[0].convert(
+        # Build the palette from a frame that actually contains every colour
+        # the animation will use (the final hold has every command, every
+        # output colour, and the error-row red). Sampling from frames[0]
+        # picked up only the empty-window chrome and mapped later red/green
+        # segments to the nearest boring palette entry, which made the GIF
+        # read as washed-out.
+        palette_source = frames[-1]
+        palette_frame = palette_source.convert(
             "P", palette=Image.Palette.ADAPTIVE, colors=colors
         )
         pframes = [
             f.quantize(colors=colors, palette=palette_frame, dither=Image.Dither.NONE)
             for f in frames
         ]
+        # disposal=1 ("leave frame as-is") is the correct mode for a
+        # typewriter animation where each frame is already a full composite
+        # of the scene at that moment. disposal=2 ("restore to background")
+        # combined with optimize=True made viewers clear previously typed
+        # commands to the background colour between frames, which is what
+        # produced the "empty windows with step labels" rendering.
         pframes[0].save(
             out_path,
             save_all=True,
             append_images=pframes[1:],
             duration=durations,
             loop=0,
-            disposal=2,
+            disposal=1,
             optimize=True,
         )
 
