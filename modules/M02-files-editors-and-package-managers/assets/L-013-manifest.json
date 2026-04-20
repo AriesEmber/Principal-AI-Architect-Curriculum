@@ -1,0 +1,37 @@
+{
+  "lesson_id": "L-013",
+  "module_id": "M02",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "primary_shell": "powershell",
+  "assets": [
+    {
+      "file": "L-013-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side PowerShell (left, primary) and Bash (right) panel showing the 6 exchanges: confirm MY_NAME is empty, set it ($env:MY_NAME = \"Elvis\" on PowerShell, export MY_NAME=\"Elvis\" on Bash), read it back, use it in a greeting, list the single env var (Get-ChildItem Env:MY_NAME / printenv MY_NAME), then show a fresh terminal window returning a blank value",
+      "bytes": 9151,
+      "sha256": "b3d1bf6e872768ae6751d68ea4fef0ecfd93553bc864752d5c053309f4aa58de"
+    },
+    {
+      "file": "L-013-terminal.png",
+      "role": "scene",
+      "description": "PNG render of the same 6-exchange side-by-side panel. PowerShell is the primary (left) shell and uses $env:MY_NAME end-to-end. The Bash column uses export and printenv to underline the shell-variable vs environment-variable distinction. The final exchange in both columns is drawn in a fresh window so the reader sees the capstone payoff (the whiteboard is wiped) at a glance",
+      "bytes": 117183,
+      "sha256": "ca28894a7649161fbadd6c4b15b9d9bed8608d4b88a99f85a057d994bf6fc81c"
+    },
+    {
+      "file": "L-013-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the 6-exchange PowerShell-primary walkthrough, rendered with a 48-colour adaptive palette and typing_step=2 to stay well under the 2 MB gate",
+      "bytes": 82637,
+      "sha256": "ba918b2ce66d85c669273efb2fd926a6b1fe808a2a9be330fc01fe21792adcbd"
+    },
+    {
+      "file": "L-013-transcript.md",
+      "role": "transcript",
+      "description": "PowerShell-first screen-reader transcript of the 6-exchange session with the explicit fresh-window break between exchanges 5 and 6, plus a cross-shell takeaway that explains the shell-variable vs environment-variable distinction and names the .bashrc / $PROFILE persistence path covered in Going further",
+      "bytes": 2229,
+      "sha256": "994bd04c8f6575443c35fb535e47008c89079a110ebe56288034d25104c0ea53"
+    }
+  ]
+}
