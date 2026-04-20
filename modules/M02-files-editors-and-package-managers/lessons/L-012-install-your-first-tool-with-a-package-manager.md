@@ -162,29 +162,65 @@ Three ideas carry forward from this lesson.
 
 ## Going further
 
-Install one more tool with the same pattern to confirm the loop is real. Pick `jq`, which you will use later to read Uniform Resource Locator (URL) responses that return JavaScript Object Notation (JSON):
+Install one more tool with the same pattern to confirm the loop is real. Pick `jq`, which you will use later to read Uniform Resource Locator (URL) responses that return JavaScript Object Notation (JSON).
+
+### On Windows (PowerShell)
 
 ```powershell
 winget install -e --id jqlang.jq
 ```
 
-```bash
-brew install jq
-```
+Watch the install output. Unlike `GnuWin32.Tree`, this installer *does* extend `PATH`, and winget tells you so with the line `Path environment variable modified; restart your shell to use the new value.` That restart is not optional. Your current PowerShell session cached `PATH` at the moment it opened, so `jq` will not resolve in this window no matter how long you wait.
 
-On Debian-family Linux or WSL, use `sudo apt install jq`. Then verify and try it on a tiny JSON document:
+**Close the PowerShell window completely, open a new one, then run:**
 
 ```powershell
 jq --version
 '{"greeting":"hi","count":3}' | jq .
 ```
 
+Expected output is `jq-1.8.1` (or newer) followed by a pretty-printed version of the input with one key per line. In PowerShell, the single-quoted JSON on the left of the pipe is a literal string, which `jq` reads as its input document.
+
+If `jq` is still "not recognized" after you open a new window, ask Windows where the installer put the binary:
+
+```powershell
+where.exe jq
+```
+
+Expected output is the full path, usually `C:\Users\you\AppData\Local\Microsoft\WinGet\Links\jq.exe`. You can confirm the install by calling that path directly:
+
+```powershell
+& "$env:LOCALAPPDATA\Microsoft\WinGet\Links\jq.exe" --version
+```
+
+The `&` is PowerShell's call operator; it runs the quoted path as a program. If `where.exe` prints nothing, the install did not finish — re-run the `winget install` line and read its output for an error before continuing.
+
+### On macOS (Terminal)
+
+```bash
+brew install jq
+```
+
+Homebrew drops `jq` onto the existing `PATH`, so no shell restart is required. Verify and try it on a tiny JSON document in the same window:
+
 ```bash
 jq --version
 echo '{"greeting":"hi","count":3}' | jq .
 ```
 
-Both print `jq-1.7.1` (or newer) and a pretty-printed version of the input. You just installed, verified, and used a second tool in three commands. The pattern does not change as the tools get larger; later in the curriculum the same three steps install Python, Git, and the Terraform binary.
+Expected output is `jq-1.7.1` (or newer) followed by the pretty-printed JSON.
+
+### On Debian-family Linux (and the Windows Subsystem for Linux)
+
+```bash
+sudo apt install jq
+```
+
+Then the same `jq --version` and `echo ... | jq .` pair from the macOS block works identically.
+
+---
+
+You just installed, verified, and used a second tool in a handful of commands. The pattern does not change as the tools get larger; later in the curriculum the same three steps install Python, Git, and the Terraform binary.
 
 ## What's next
 
