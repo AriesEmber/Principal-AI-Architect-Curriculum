@@ -20,20 +20,31 @@ Each entry follows this structure:
 
 ## Open items
 
-### [2026-04-20] Housekeeping — published_index.md out of date (L-010 + L-011 missing)
+### [2026-04-20] Housekeeping — published_index.md out of date (L-010, L-011, L-012 missing)
 
-**Lesson:** L-010, L-011 (and L-012 will land on top of these)
-**Flagged at:** research phase (selection sanity check for L-011, re-flagged for L-012)
+**Lesson:** L-010, L-011, L-012 (and L-013 will land on top of these)
+**Flagged at:** research phase (selection sanity check for L-011, re-flagged for L-012, re-flagged for L-013)
 **Severity:** warning
-**Issue:** `_state/published_index.md` still lists L-009 as the most recent publication, but L-010 was merged into `main` as commit `ce07351` via PR #16 on 2026-04-20 and L-011 was merged as commit `4892f72` on 2026-04-20 as well. Neither index append ran after the merges, so Gate 8 cannot verify the L-011 prerequisite for L-012 against the index alone. The prerequisite is in fact satisfied: L-011 is present on `main` under `modules/M02-.../lessons/L-011-install-a-package-manager.md`, referenced in the curriculum spine, and shipped with its `_deliverables/L-011-post.docx`.
-**Evidence:** `git log --oneline main -- _state/published_index.md` shows the last content change was `91104ae chore: record L-007 publication in published_index`. L-008, L-009, L-010, and L-011 merges all landed without an index append. See `4892f72` for the most recent merge ahead of this run.
-**Suggested fix:** One housekeeping commit on `main` that appends three lines to `_state/published_index.md`, mirroring the existing format, and updates the three completion counts at the bottom to `12` / `159` / `7.0%` once L-012 lands:
+**Issue:** `_state/published_index.md` still lists L-009 as the most recent publication, but L-010 (`ce07351`), L-011 (`4892f72`), and L-012 (`d59db0d`, plus fix-up commits `b985aa5` and `53b733a`) have all merged into `main`. Gate 8 cannot verify the L-012 prerequisite for L-013 against the index alone; the prerequisite is in fact satisfied on `main` (see the L-012 lesson file and the L-012 entry in the production log).
+**Evidence:** `git log --oneline main -- _state/published_index.md` shows the last content change was `91104ae chore: record L-007 publication in published_index`. L-008, L-009, L-010, L-011, and L-012 merges all landed without an index append.
+**Suggested fix:** One housekeeping commit on `main` that appends four lines to `_state/published_index.md` (L-010, L-011, L-012, and L-013 once this PR merges), mirroring the existing format, and updates the three completion counts at the bottom to `13` / `158` / `7.6%` once L-013 lands:
 ```
 - L-010 | M02 | D01 | Understand file paths, extensions, and hidden files | 2026-04-20 | ce07351
 - L-011 | M02 | D01 | Install a package manager | 2026-04-20 | 4892f72
-- L-012 | M02 | D01 | Install your first tool with a package manager | <merge date> | <merge SHA>
+- L-012 | M02 | D01 | Install your first tool with a package manager | 2026-04-20 | d59db0d
+- L-013 | M02 | D01 | Set an environment variable and read it back (capstone) | <merge date> | <merge SHA>
 ```
-The L-012 run proceeded because the prerequisite is verifiably satisfied by the repo state even if the index lags.
+The L-013 run proceeded because the prerequisite is verifiably satisfied by the repo state even if the index lags.
+**Status:** open
+
+### [2026-04-20] L-013 — gate 11 reading-time sanity
+
+**Lesson:** Set an environment variable and read it back (capstone)
+**Flagged at:** quality_gates
+**Severity:** warning
+**Issue:** Computed reading time ~22.8 minutes (GH) vs spine estimate 13 minutes; delta +9.8 minutes exceeds the 5-minute band on the over side. LinkedIn variant is 4.4 minutes, delta -8.6 minutes on the under side (expected; LinkedIn is a derived digest and is not expected to match the hands-on spine estimate).
+**Evidence:** `gate11_code_blocks_gh=14, prose_word_count_gh=1945, prose_minutes=8.8, hands_on_minutes=14`. Same Gate 11 heuristic issue documented for L-003, L-006, L-007, L-008, L-009, and L-012: 2 minutes per fenced code block is an over-count for one-line `echo $env:MY_NAME` / `export MY_NAME=...` / `printenv MY_NAME` exchanges that run in under 10 seconds each. All seven paired blocks on the GH side are single-line commands; only the "open a new window" step consumes more than 30 seconds of reader time.
+**Suggested fix:** No article change needed. Same recalibration recommendation as prior lessons: weight single-command blocks at 15 seconds, multi-line at 2 minutes. Lesson ships per the soft-warning rule.
 **Status:** open
 
 ### [2026-04-20] L-012 — gate 11 reading-time sanity

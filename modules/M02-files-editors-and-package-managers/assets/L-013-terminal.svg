@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 738" width="1400" height="738" font-family="'SF Mono','Fira Code','Consolas',monospace">
+<defs><linearGradient id="bashbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#12161d"/></linearGradient><linearGradient id="psbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#012456"/><stop offset="1" stop-color="#011736"/></linearGradient></defs>
+<rect width="1400" height="738" fill="#0b0d12"/>
+<text x="700" y="32" text-anchor="middle" fill="#cdd5e0" font-size="18" font-weight="600">L-013 · set an environment variable and read it back — PowerShell + Bash</text>
+<rect x="20" y="70" width="670" height="608" rx="12" ry="12" fill="url(#psbg)" stroke="#1c4d8c" stroke-width="1.5"/>
+<rect x="20" y="70" width="670" height="40" rx="12" ry="12" fill="#0a3a73"/>
+<rect x="20" y="100" width="670" height="10" fill="#0a3a73"/>
+<circle cx="42" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="62" cy="90" r="7" fill="#febc2e"/>
+<circle cx="82" cy="90" r="7" fill="#28c840"/>
+<text x="355" y="96" text-anchor="middle" fill="#cfd9ee" font-size="13">PowerShell · Windows</text>
+<rect x="21" y="622" width="668" height="55" fill="#031a3a"/>
+<text x="36" y="642" fill="#cfd9ee" font-size="13">PowerShell (Windows 11): $env:MY_NAME writes to the current process environment. Close the</text>
+<text x="36" y="660" fill="#cfd9ee" font-size="13">window and the value is gone; L-013's Going further shows how to persist it.</text>
+<rect x="710" y="70" width="670" height="608" rx="12" ry="12" fill="url(#bashbg)" stroke="#2a3140" stroke-width="1.5"/>
+<rect x="710" y="70" width="670" height="40" rx="12" ry="12" fill="#262c38"/>
+<rect x="710" y="100" width="670" height="10" fill="#262c38"/>
+<circle cx="732" cy="90" r="7" fill="#ff5f57"/>
+<circle cx="752" cy="90" r="7" fill="#febc2e"/>
+<circle cx="772" cy="90" r="7" fill="#28c840"/>
+<text x="1045" y="96" text-anchor="middle" fill="#9aa3b2" font-size="13">Bash · macOS / Linux / WSL</text>
+<rect x="711" y="622" width="668" height="55" fill="#141923"/>
+<text x="726" y="642" fill="#9aa3b2" font-size="13">Bash (macOS / Linux / WSL): export promotes a shell variable to an environment variable</text>
+<text x="726" y="660" fill="#9aa3b2" font-size="13">that child processes inherit. A fresh login shell starts clean.</text>
+<g font-size="16" xml:space="preserve">
+<text x="42" y="146" fill="#cfd9ee">PS </text>
+<text x="71" y="146" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="146" fill="#cfd9ee">&gt; </text>
+<text x="244" y="146" fill="#ffffff">echo </text>
+<text x="292" y="146" fill="#f2cc60">$env:MY_NAME</text>
+<text x="42" y="174" fill="#8b94a5"></text>
+<text x="42" y="202" fill="#8b94a5">(no variable yet; blank line)</text>
+<text x="42" y="230" fill="#cfd9ee">PS </text>
+<text x="71" y="230" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="230" fill="#cfd9ee">&gt; </text>
+<text x="244" y="230" fill="#f2cc60">$env:MY_NAME </text>
+<text x="369" y="230" fill="#ffffff">= </text>
+<text x="388" y="230" fill="#ffab70">"Elvis"</text>
+<text x="42" y="258" fill="#8b94a5">(assignment; no output)</text>
+<text x="42" y="286" fill="#cfd9ee">PS </text>
+<text x="71" y="286" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="286" fill="#cfd9ee">&gt; </text>
+<text x="244" y="286" fill="#ffffff">echo </text>
+<text x="292" y="286" fill="#f2cc60">$env:MY_NAME</text>
+<text x="42" y="314" fill="#7ee787">Elvis</text>
+<text x="42" y="342" fill="#cfd9ee">PS </text>
+<text x="71" y="342" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="342" fill="#cfd9ee">&gt; </text>
+<text x="244" y="342" fill="#ffffff">echo </text>
+<text x="292" y="342" fill="#ffab70">"Hello, $env:MY_NAME"</text>
+<text x="42" y="370" fill="#7ee787">Hello, Elvis</text>
+<text x="42" y="398" fill="#cfd9ee">PS </text>
+<text x="71" y="398" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="398" fill="#cfd9ee">&gt; </text>
+<text x="244" y="398" fill="#ffffff">Get-ChildItem </text>
+<text x="378" y="398" fill="#f2cc60">Env:MY_NAME</text>
+<text x="42" y="426" fill="#8b94a5">Name     Value</text>
+<text x="42" y="454" fill="#8b94a5">----     -----</text>
+<text x="42" y="482" fill="#7ee787">MY_NAME  Elvis</text>
+<text x="42" y="510" fill="#cfd9ee">PS </text>
+<text x="71" y="510" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="510" fill="#cfd9ee">&gt; </text>
+<text x="244" y="510" fill="#ffffff">echo </text>
+<text x="292" y="510" fill="#f2cc60">$env:MY_NAME</text>
+<text x="407" y="510" fill="#8b94a5">  # new window</text>
+<text x="42" y="538" fill="#8b94a5"></text>
+<text x="42" y="566" fill="#8b94a5">(blank again; the value was session-only)</text>
+<text x="42" y="594" fill="#cfd9ee">PS </text>
+<text x="71" y="594" fill="#9bb4dd">C:\Users\learner</text>
+<text x="225" y="594" fill="#cfd9ee">&gt; </text>
+<rect x="245" y="579" width="11" height="20" fill="#ffffff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+<text x="732" y="146" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="146" fill="#7e8697">:</text>
+<text x="876" y="146" fill="#c792ea">~</text>
+<text x="886" y="146" fill="#7e8697">$ </text>
+<text x="905" y="146" fill="#e6edf3">echo </text>
+<text x="953" y="146" fill="#f2cc60">"$MY_NAME"</text>
+<text x="732" y="174" fill="#8b94a5"></text>
+<text x="732" y="202" fill="#8b94a5">(no variable yet; blank line)</text>
+<text x="732" y="230" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="230" fill="#7e8697">:</text>
+<text x="876" y="230" fill="#c792ea">~</text>
+<text x="886" y="230" fill="#7e8697">$ </text>
+<text x="905" y="230" fill="#e6edf3">export </text>
+<text x="972" y="230" fill="#f2cc60">MY_NAME=</text>
+<text x="1049" y="230" fill="#ffab70">"Elvis"</text>
+<text x="732" y="258" fill="#8b94a5">(assignment; no output)</text>
+<text x="732" y="286" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="286" fill="#7e8697">:</text>
+<text x="876" y="286" fill="#c792ea">~</text>
+<text x="886" y="286" fill="#7e8697">$ </text>
+<text x="905" y="286" fill="#e6edf3">echo </text>
+<text x="953" y="286" fill="#f2cc60">"$MY_NAME"</text>
+<text x="732" y="314" fill="#7ee787">Elvis</text>
+<text x="732" y="342" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="342" fill="#7e8697">:</text>
+<text x="876" y="342" fill="#c792ea">~</text>
+<text x="886" y="342" fill="#7e8697">$ </text>
+<text x="905" y="342" fill="#e6edf3">echo </text>
+<text x="953" y="342" fill="#ffab70">"Hello, $MY_NAME"</text>
+<text x="732" y="370" fill="#7ee787">Hello, Elvis</text>
+<text x="732" y="398" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="398" fill="#7e8697">:</text>
+<text x="876" y="398" fill="#c792ea">~</text>
+<text x="886" y="398" fill="#7e8697">$ </text>
+<text x="905" y="398" fill="#e6edf3">printenv </text>
+<text x="991" y="398" fill="#f2cc60">MY_NAME</text>
+<text x="732" y="426" fill="#7ee787">Elvis</text>
+<text x="732" y="454" fill="#8b94a5">(printenv only prints exported vars)</text>
+<text x="732" y="510" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="510" fill="#7e8697">:</text>
+<text x="876" y="510" fill="#c792ea">~</text>
+<text x="886" y="510" fill="#7e8697">$ </text>
+<text x="905" y="510" fill="#e6edf3">echo </text>
+<text x="953" y="510" fill="#f2cc60">"$MY_NAME"</text>
+<text x="1049" y="510" fill="#8b94a5">  # new window</text>
+<text x="732" y="538" fill="#8b94a5"></text>
+<text x="732" y="566" fill="#8b94a5">(blank again; the value was session-only)</text>
+<text x="732" y="594" fill="#6aa7ff">learner@laptop</text>
+<text x="866" y="594" fill="#7e8697">:</text>
+<text x="876" y="594" fill="#c792ea">~</text>
+<text x="886" y="594" fill="#7e8697">$ </text>
+<rect x="906" y="579" width="11" height="20" fill="#e6edf3"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>
+</g>
+<g font-size="13" fill="#8b94a5">
+<text x="674" y="146" text-anchor="end">1. Clean slate</text>
+<text x="1364" y="146" text-anchor="end">1. Clean slate</text>
+<text x="674" y="230" text-anchor="end">2. Set MY_NAME</text>
+<text x="1364" y="230" text-anchor="end">2. Set MY_NAME</text>
+<text x="674" y="286" text-anchor="end">3. Read it back</text>
+<text x="1364" y="286" text-anchor="end">3. Read it back</text>
+<text x="674" y="342" text-anchor="end">4. Use in a greeting</text>
+<text x="1364" y="342" text-anchor="end">4. Use in a greeting</text>
+<text x="674" y="398" text-anchor="end">5. List one env var</text>
+<text x="1364" y="398" text-anchor="end">5. List one env var</text>
+<text x="674" y="510" text-anchor="end">6. Fresh window</text>
+<text x="1364" y="510" text-anchor="end">6. Fresh window</text>
+</g>
+<rect x="20" y="698" width="1360" height="34" fill="#141923"/>
+<text x="700" y="722" text-anchor="middle" fill="#9aa3b2" font-size="14">Six exchanges. Confirm the variable is empty, set MY_NAME, read it back, use it in a greeting, list it in the process environment, then open a fresh terminal and see it gone.</text>
+</svg>
