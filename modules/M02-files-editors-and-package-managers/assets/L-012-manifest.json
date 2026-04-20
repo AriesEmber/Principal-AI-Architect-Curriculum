@@ -29,9 +29,9 @@
     {
       "file": "L-012-transcript.md",
       "role": "transcript",
-      "description": "PowerShell-first screen-reader transcript of the full 6-exchange session, plus the cross-shell takeaway that names why tree.exe is required on Windows when the built-in tree.com in System32 also exists on PATH",
-      "bytes": 2546,
-      "sha256": "6941cce3a38c7ce57138db39ca6087749eb4d2c681533ed4ae14e672dd12096d"
+      "description": "PowerShell-first screen-reader transcript of the 6-exchange session using the article's PATH-independent Windows commands (winget list for install verification, built-in tree /f for the outline), with a preamble that names how the transcript differs from the rendered visuals and a cross-shell takeaway that explains why Windows leans on the built-in tree.com when GnuWin32's bin folder is absent from PATH",
+      "bytes": 3620,
+      "sha256": "86db51ac97413d18adc43a87ac06f09a3d45577da345f7d836e815aa9ac93dd2"
     }
   ]
 }

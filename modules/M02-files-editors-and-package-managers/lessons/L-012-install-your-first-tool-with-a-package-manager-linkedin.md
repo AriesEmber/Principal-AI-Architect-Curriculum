@@ -5,9 +5,9 @@ Through data, cloud, MLOps, and applied GenAI systems.
 
 Day 12 of 171. Module 2: Files, Editors, and Package Managers (Day 5).
 
-The tool is `tree`. Its job is to print one root, its sub-folders, and the files under each, as an American Standard Code for Information Interchange (ASCII) outline. Six steps on the Command-Line Interface (CLI): confirm the package manager, install `tree`, verify the new command, make a small sample folder, drop a file inside it, and run `tree`.
+The tool is `tree`. Its job is to print one root, its sub-folders, and the files under each, as an American Standard Code for Information Interchange (ASCII) outline. Six steps on the Command-Line Interface (CLI): confirm the package manager, install `tree`, verify the package landed, make a small sample folder, drop a file inside it, and run `tree` on it.
 
-![Side-by-side PowerShell (left, primary) and Bash (right) walkthrough. Six exchanges: confirm the package manager, install tree via winget or brew, verify the install with tree.exe or tree --version, make a practice-cli folder with a src subfolder, drop a README.md inside, run tree on the result](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M02-files-editors-and-package-managers/assets/L-012-terminal.gif)
+![Side-by-side PowerShell (left, primary) and Bash (right) walkthrough. Six exchanges: confirm the package manager, install tree via winget or brew, verify the install (winget list on Windows, tree --version on macOS), make a practice-cli folder with a src subfolder, drop a README.md inside, run tree on the result. The PowerShell column in the visual shows the GnuWin32 tree.exe once PATH is extended (covered in L-013); the live walkthrough in this post uses Windows' built-in tree /f, which is always on PATH](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M02-files-editors-and-package-managers/assets/L-012-terminal.gif)
 
 **The analogy**
 
@@ -21,7 +21,7 @@ On Windows 11 (PowerShell), `tree` ships as a GNU's Not Unix (GNU) port named `G
 winget install -e --id GnuWin32.Tree
 ```
 
-The `-e` flag forces an exact match on the package ID instead of a substring search. Close that PowerShell window after it finishes and open a fresh one; the installer adds a new folder to the `PATH` environment variable (PATH), which is the list of folders your shell searches when you type a command name, and a new shell is the simplest way to pick the change up.
+The `-e` flag forces an exact match on the package ID instead of a substring search. Expect three or four lines ending in `Successfully installed`.
 
 On macOS (Terminal), the command is:
 
@@ -33,13 +33,13 @@ On Debian-family Linux or the Windows Subsystem for Linux (WSL), use `sudo apt i
 
 **One cross-platform detail worth knowing**
 
-On Windows, typing `tree` on its own still runs the built-in `tree.com` in `C:\Windows\System32`, because that folder comes earlier on `PATH` than the new GnuWin32 folder. The built-in is a minimal MS-DOS-era version. The GNU port is the one we just installed. To pick it up, name the binary as `tree.exe`:
+On Windows, the GnuWin32 installer drops `tree.exe` under `C:\Program Files (x86)\GnuWin32\bin`, but does not always add that folder to the `PATH` environment variable (PATH) — the list of folders your shell searches when you type a command name — so typing `tree.exe` can still return `not recognized`. A PATH-independent way to confirm the install landed is to ask the package manager directly:
 
 ```powershell
-tree.exe --version
+winget list GnuWin32.Tree
 ```
 
-On macOS and Linux, there is no second tree, so `tree --version` is enough. This is the first time `PATH` ordering matters in the curriculum. Tomorrow's lesson (L-013) takes environment variables apart, starting with one you create yourself.
+For today's folder view, reach for the `tree` that Windows already ships: a minimal MS-DOS-era `tree.com` in `C:\Windows\System32`, always on `PATH`. It hides files by default, but a one-letter switch (`/f`) makes it print them. On macOS and Linux, there is no second tree to worry about, so `tree --version` and `tree` are enough. Tomorrow's lesson (L-013) takes environment variables apart and shows how to extend `PATH` so the GnuWin32 `tree.exe` resolves by its bare name too.
 
 **The tiny sample and the payoff**
 
@@ -47,7 +47,7 @@ Two more commands build something for `tree` to draw:
 
 ```powershell
 mkdir practice-cli\src
-"hi" > practice-cli\README.md
+Set-Content -Path practice-cli\README.md -Value "hi"
 ```
 
 ```bash
@@ -55,7 +55,7 @@ mkdir -p practice-cli/src
 echo hi > practice-cli/README.md
 ```
 
-Then run `tree` on it. The GNU binary prints:
+Then run `tree` on it. On macOS or Linux, `tree practice-cli` prints:
 
 ```text
 practice-cli
@@ -65,13 +65,22 @@ practice-cli
 1 directory, 1 file
 ```
 
-(On the Windows GNU port the branches render as `|--` and `` `-- `` instead of `├──` and `└──`; the meaning is identical.)
+On Windows, `tree /f practice-cli` prints a volume header and the same layout using the console's box-drawing glyphs:
+
+```text
+C:\USERS\YOU\PRACTICE-CLI
+│   README.md
+│
+└───src
+```
+
+(The `/f` switch is the one that tells the built-in to include files; without it, only `src` shows up and `README.md` appears to be missing.)
 
 That is the whole payoff. Every `├──` is a peer entry; every `└──` is the last entry in a folder. There is no information in the picture that is not on disk, so once you read a tree fluently you can picture a whole project as a small drawing. Most open-source `README.md` files paste a tree of the repository near the top for exactly this reason.
 
 **What you are actually watching happen**
 
-A `brew install tree` or `winget install GnuWin32.Tree` is three steps in one command. The manager looks up the name in its curated repository, downloads the build that matches your operating system (OS) and processor, and places the binary in a folder the OS already has on `PATH`. Before package managers were the default on every platform, those three steps were a browser download, an installer wizard, and usually a `PATH` edit. Every step was a place a version mismatch or a wrong architecture could eat an afternoon. One line, one answer, one version: that is the whole reason package managers won.
+A `brew install tree` or `winget install GnuWin32.Tree` is three steps in one command. The manager looks up the name in its curated repository, downloads the build that matches your operating system (OS) and processor, and places the binary on disk. On Homebrew the third step also extends `PATH` so the new name resolves immediately. On older Windows packages like GnuWin32 the `PATH` edit is still yours to make (covered in L-013). Before package managers were the default on every platform, all three steps were a browser download, an installer wizard, and usually a manual `PATH` edit. Every step was a place a version mismatch or a wrong architecture could eat an afternoon. One line, one answer, one version: that is the whole reason package managers won.
 
 There is also a trust story underneath. Installing from a random website means trusting one website, one download, one time. Installing through a package manager means trusting a curated repository with maintainers, a review process, and cryptographic signatures. Microsoft's `winget-pkgs`, Homebrew's `homebrew-core`, and the Debian archive each publish their review process and let you audit the source of any package before you install. You usually will not audit, and you do not have to. But when a security advisory lands a month from now, you can name exactly which repository the binary came from. That audit trail is the feature that matters more than speed.
 
