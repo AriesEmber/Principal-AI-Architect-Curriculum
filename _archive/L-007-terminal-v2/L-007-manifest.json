@@ -1,0 +1,36 @@
+{
+  "lesson_id": "L-007",
+  "module_id": "M01",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "assets": [
+    {
+      "file": "L-007-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side Bash | PowerShell panel of the capstone's nine exchanges (pwd, mkdir, ls, cd, touch/New-Item, cd .., rm -r / Remove-Item -Recurse, ls)",
+      "bytes": 10371,
+      "sha256": "c5b96b68a718787dfb5a41c208f672c95fff2bbabbb19c1ad897067c39596b7e"
+    },
+    {
+      "file": "L-007-terminal.png",
+      "role": "scene",
+      "description": "Side-by-side Bash | PowerShell panel of the capstone's nine exchanges (pwd, mkdir, ls, cd, touch/New-Item, cd .., rm -r / Remove-Item -Recurse, ls)",
+      "bytes": 120843,
+      "sha256": "bc01a351ecc9260aaf089011d692900a31bebbee13691ebeb4288f545b33c26e"
+    },
+    {
+      "file": "L-007-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the capstone exchanges in Bash and PowerShell",
+      "bytes": 1674138,
+      "sha256": "2de55918f351f532bd195187e698411747c2aebebaf7b8f99f34b45f5ed81df3"
+    },
+    {
+      "file": "L-007-transcript.md",
+      "role": "transcript",
+      "description": "Plain-text transcript for screen readers",
+      "bytes": 2643,
+      "sha256": "7db2b9b80ba64c931351307cb023469058073084b19443f19dd2b89fe6d4b52f"
+    }
+  ]
+}
