@@ -1,0 +1,37 @@
+{
+  "lesson_id": "L-009",
+  "module_id": "M02",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "primary_shell": "powershell",
+  "assets": [
+    {
+      "file": "L-009-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side PowerShell (left, primary) and Bash (right, alternate) panel showing the 5 exchanges: launch nano, type three lines, save with Ctrl+O, press Enter then Ctrl+X, read back with cat",
+      "bytes": 9287,
+      "sha256": "7168ad57f0c1975f863e75b963a1412b682ffd8dbc4e415af0b1834fffe48caf"
+    },
+    {
+      "file": "L-009-terminal.png",
+      "role": "scene",
+      "description": "PNG render of the same 5-exchange side-by-side panel. Nano UI lines (title strip, help strip, Modified marker, File Name to Write prompt, Wrote 3 lines confirmation) are rendered inline in the output area of each exchange",
+      "bytes": 128966,
+      "sha256": "424438f83c5208ec0df25b3a81ffcad05e30727b087d3a2f6e9275e8754fdada"
+    },
+    {
+      "file": "L-009-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the 5-exchange PowerShell-primary walkthrough including the nano launch, the typing pass, the save prompt, the exit sequence, and the cat verify. Rendered with a 48-colour adaptive palette and typing_step=2",
+      "bytes": 75985,
+      "sha256": "a815256b7e9e0c9be7ca9c661700a0cc3e4fcadd0cac5508f681681619fd9997"
+    },
+    {
+      "file": "L-009-transcript.md",
+      "role": "transcript",
+      "description": "PowerShell-first screen-reader transcript with the full nano session (open, type, save with Ctrl+O plus Enter, exit with Ctrl+X, cat verify) plus the one-time winget install note for Windows 11",
+      "bytes": 4856,
+      "sha256": "f9e3c097fbebc12fd63785ae9726aff34a399bcd9af78055818aee412cb812aa"
+    }
+  ]
+}
