@@ -1,6 +1,11 @@
 The first time I opened a forty-thousand-line log file with `cat`, it scrolled past so fast I could not read a single word. The right tool was the one I had not learned yet: a pager. Today's lesson is `cat` and `less`, the two verbs every terminal user needs for reading files, plus the `q` keystroke that gets you out of a pager without panic-closing the window.
 
-This is Day 8 of a 171-lesson path from zero to a Principal Artificial Intelligence (AI) Architect role. First day of module 2. Six exchanges: build a short file, dump it with `cat`, build a longer file, open it in a pager, press `q` to quit, then clean up. The pager is `more` on Windows PowerShell and `less` on macOS, Linux, or the Windows Subsystem for Linux (WSL).
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 8 of 171. Module 2: Files, Editors, and Package Managers (Day 1).
+
+Six exchanges: build a short file, dump it with `cat`, build a longer file, open it in a pager, press `q` to quit, then clean up. The pager is `more` on Windows PowerShell and `less` on macOS, Linux, or the Windows Subsystem for Linux (WSL).
 
 The analogy is the letter in your mailbox. You can unfold the whole thing and read it in one glance. You can also hold it at the top, read a page, slide it down, read the next page, and stop whenever you like. `cat` is the whole-letter read. A pager is the page-at-a-time read.
 

@@ -1,6 +1,11 @@
 For months I typed into a terminal without noticing that the characters to the left of my cursor were trying to tell me something. Then someone pointed at four tokens and the whole line clicked.
 
-This is Day 2 of a 171-lesson path I am taking publicly, from zero to a Principal Artificial Intelligence Architect role. Week one is the command line. Today is ten minutes of pure observation. No commands that change anything, no installs, no sign-ups. Just learning to read a sign that you already have in front of you.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 2 of 171. Module 1: First Contact with the Terminal (Day 2).
+
+Today is ten minutes of pure observation. No commands that change anything, no installs, no sign-ups. Just learning to read a sign that you already have in front of you.
 
 The analogy I use is a train station. A sign on a station platform does three quiet jobs. It tells you where you are (platform number), who is there with you (which line), and that a train is about to depart (the destination). The prompt on your terminal does the same three jobs, plus one more. Once you can point at each piece and name what it is, the Command-Line Interface (CLI) stops looking like a riddle and starts looking like a sign.
 

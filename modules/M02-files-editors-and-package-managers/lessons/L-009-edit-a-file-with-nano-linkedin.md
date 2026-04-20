@@ -1,6 +1,11 @@
 The first terminal editor I tried asked me to memorise forty keystrokes before I could save a file. The second one printed its shortcuts at the bottom of the screen. Three minutes later I was editing. Today's lesson is that second editor, `nano`, and the two keystrokes you actually need: `Ctrl+O` to save and `Ctrl+X` to exit.
 
-This is Day 9 of a 171-lesson path from zero to a Principal Artificial Intelligence (AI) Architect role. Second day of module 2. Five exchanges: open nano on `hello.txt`, type three lines, save with `Ctrl+O` and `Enter`, exit with `Ctrl+X`, then read the file back with `cat`. The same keystrokes work on Windows PowerShell, macOS, Linux, and the Windows Subsystem for Linux (WSL).
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 9 of 171. Module 2: Files, Editors, and Package Managers (Day 2).
+
+Five exchanges: open nano on `hello.txt`, type three lines, save with `Ctrl+O` and `Enter`, exit with `Ctrl+X`, then read the file back with `cat`. The same keystrokes work on Windows PowerShell, macOS, Linux, and the Windows Subsystem for Linux (WSL).
 
 The analogy is a typewriter with a help menu along the bottom edge. Every shortcut the machine understands is printed right there on the carriage. You do not have to remember the shortcuts. You only have to read them. That is nano's whole personality. Unlike vi or emacs, which expect you to memorise their commands before you can edit a file, nano prints the commands on the screen.
 
