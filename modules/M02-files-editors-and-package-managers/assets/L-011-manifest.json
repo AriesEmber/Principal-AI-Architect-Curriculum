@@ -1,0 +1,73 @@
+{
+  "lesson_id": "L-011",
+  "module_id": "M02",
+  "capture_mode": "script_only",
+  "capture_mode_handler": "mock_ui",
+  "shell_exempt": true,
+  "shell_exempt_reason": "Three-column OS-branched layout, not shell-branched. The three OS paths use different package managers (winget on Windows, Homebrew on macOS, apt on Linux), so the two-column Bash vs PowerShell pattern does not apply.",
+  "assets": [
+    {
+      "file": "L-011-screen-windows.svg",
+      "role": "scene",
+      "description": "Windows PowerShell showing winget --version and its output",
+      "bytes": 2297,
+      "sha256": "1aef53afd3fdb4808409820139769bbaef4d6bbacdadfd1d6bd48bd1f14bb1e1"
+    },
+    {
+      "file": "L-011-screen-windows.png",
+      "role": "scene",
+      "description": "Windows PowerShell (PNG render for DOCX)",
+      "bytes": 22437,
+      "sha256": "48a46cfeefa99f643b1b0de970da1cb3b4180439df419b46dac229a12b98426b"
+    },
+    {
+      "file": "L-011-screen-macos.svg",
+      "role": "scene",
+      "description": "macOS Terminal showing the Homebrew installer trace and brew --version",
+      "bytes": 4481,
+      "sha256": "f520e6cfc6cdbd810c5e71de1e6e77ba94eed19f1923f01f2fea0869d438f2a9"
+    },
+    {
+      "file": "L-011-screen-macos.png",
+      "role": "scene",
+      "description": "macOS Terminal (PNG render for DOCX)",
+      "bytes": 48769,
+      "sha256": "61d895e3792d077d17adbaa77d0a36577081e6a220c07f9473f6a74859d83d3f"
+    },
+    {
+      "file": "L-011-screen-linux.svg",
+      "role": "scene",
+      "description": "Linux Terminal showing apt --version output",
+      "bytes": 2900,
+      "sha256": "d2265d0afbb0141ef4fd22a905fd61a2915df651a0a01b291967b60b4a5e1f31"
+    },
+    {
+      "file": "L-011-screen-linux.png",
+      "role": "scene",
+      "description": "Linux Terminal (PNG render for DOCX)",
+      "bytes": 23485,
+      "sha256": "cd17d5d73063e06cadce606c1ac7993ede4641eb87319a9792e454f1dcee7ee3"
+    },
+    {
+      "file": "L-011-walkthrough.svg",
+      "role": "walkthrough",
+      "description": "Three-column OS walkthrough SVG (Windows PowerShell, macOS, Linux) - final frame",
+      "bytes": 6824,
+      "sha256": "fb72151c67e5ad4dec47d54ade2ca6b643c217f4e3c2fd2c517b2c74c9a920c2"
+    },
+    {
+      "file": "L-011-walkthrough.gif",
+      "role": "walkthrough",
+      "description": "Three-column OS walkthrough GIF: waiting prompt, command typed, version output",
+      "bytes": 54987,
+      "sha256": "e4f5b3d97b54dfb74fb68d7a670d827dcd76f965ca20b6bb7065c40e37d2bef2"
+    },
+    {
+      "file": "L-011-walkthrough.png",
+      "role": "walkthrough",
+      "description": "Static final-frame panel matching the walkthrough GIF",
+      "bytes": 36486,
+      "sha256": "eb5b57851ffd5a00e7d021d65460dabb252d2cc3f0b5419bcc60dcb164921fe3"
+    }
+  ]
+}

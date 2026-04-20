@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 368" width="1100" height="368" role="img" aria-label="Linux (Debian/Ubuntu) · confirm apt is present - apt ships with every Debian-family distribution. Confirm and move on.">
+<style>.ui{font-family:-apple-system,"Segoe UI",Arial,sans-serif;}.mono{font-family:"SF Mono",Consolas,"Courier New",monospace;}</style>
+<rect width="1100" height="368" fill="#0b0d12"/>
+<text x="550" y="42" text-anchor="middle" class="ui" font-size="22" font-weight="700" fill="#ecf1fa">Linux (Debian/Ubuntu) · confirm apt is present</text>
+<text x="550" y="66" text-anchor="middle" class="ui" font-size="14" fill="#aebcd0">apt ships with every Debian-family distribution. Confirm and move on.</text>
+<rect x="40" y="100" width="1020" height="196" rx="10" ry="10" fill="#1b1b1f"/>
+<rect x="40" y="100" width="1020" height="36" rx="10" ry="10" fill="#2e2e33"/>
+<rect x="40" y="128" width="1020" height="8" fill="#2e2e33"/>
+<circle cx="60" cy="118" r="6" fill="#ff5f57"/>
+<circle cx="78" cy="118" r="6" fill="#febc2e"/>
+<circle cx="96" cy="118" r="6" fill="#28c840"/>
+<text x="550" y="123" text-anchor="middle" class="ui" font-size="13" fill="#d0d0d8">Terminal (bash)</text>
+<text x="68.0" y="174" class="mono" font-size="18" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="143.6" y="174" class="mono" font-size="18" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="154.4" y="174" class="mono" font-size="18" fill="#f99e9e" xml:space="preserve">ubuntu</text>
+<text x="219.2" y="174" class="mono" font-size="18" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="230.0" y="174" class="mono" font-size="18" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="240.8" y="174" class="mono" font-size="18" fill="#ffd666" xml:space="preserve"> $ </text>
+<text x="273.2" y="174" class="mono" font-size="18" fill="#e6edf3" xml:space="preserve">apt --version</text>
+<text x="68.0" y="202" class="mono" font-size="18" fill="#7ee787" xml:space="preserve">apt 2.7.14 (amd64)</text>
+<text x="68.0" y="258" class="mono" font-size="18" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="143.6" y="258" class="mono" font-size="18" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="154.4" y="258" class="mono" font-size="18" fill="#f99e9e" xml:space="preserve">ubuntu</text>
+<text x="219.2" y="258" class="mono" font-size="18" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="230.0" y="258" class="mono" font-size="18" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="240.8" y="258" class="mono" font-size="18" fill="#ffd666" xml:space="preserve"> $ </text>
+<rect x="40" y="320" width="1020" height="36" fill="#141923"/>
+<text x="550" y="344" text-anchor="middle" class="ui" font-size="13" fill="#9aa3b2">Debian and Ubuntu ship apt. Confirm the version; no install step needed on the Debian family.</text>
+</svg>

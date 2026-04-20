@@ -20,6 +20,21 @@ Each entry follows this structure:
 
 ## Open items
 
+### [2026-04-20] Housekeeping — published_index.md out of date
+
+**Lesson:** L-010 (and now L-011)
+**Flagged at:** research phase (selection sanity check for L-011)
+**Severity:** warning
+**Issue:** `_state/published_index.md` still lists L-009 as the most recent publication, but L-010 was merged into `main` as commit `ce07351` via PR #16 on 2026-04-20. The index append for L-010 did not run after that merge, which means Gate 8 cannot verify the L-010 prerequisite for L-011 against the index alone. The prerequisite is in fact satisfied: L-010 is present on `main` under `modules/M02-.../lessons/` and is referenced in the curriculum spine.
+**Evidence:** `git log --oneline main -- _state/published_index.md` shows the last content change was `91104ae chore: record L-007 publication in published_index`. L-008, L-009, and L-010 merges all landed without an index append (the L-009 entry at line 23 predates the L-010 merge). See also commit `b51091a` (Merge PR #16 from AriesEmber/drafts/L-010).
+**Suggested fix:** One housekeeping commit on `main` that appends three lines to `_state/published_index.md`, mirroring the existing format:
+```
+- L-010 | M02 | D01 | Understand file paths, extensions, and hidden files | 2026-04-20 | ce07351
+- L-011 | M02 | D01 | Install a package manager | <merge date> | <merge SHA>
+```
+and updates the completion counts at the bottom. The L-011 run proceeded because the prerequisite is verifiably satisfied by the repo state even if the index lags.
+**Status:** open
+
 ### [2026-04-19] L-009 — gate 11 reading-time sanity
 
 **Lesson:** Edit a file with nano
