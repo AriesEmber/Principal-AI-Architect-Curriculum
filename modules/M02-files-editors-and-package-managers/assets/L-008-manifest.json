@@ -1,0 +1,37 @@
+{
+  "lesson_id": "L-008",
+  "module_id": "M02",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "primary_shell": "powershell",
+  "assets": [
+    {
+      "file": "L-008-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side PowerShell (left, primary) and Bash (right, alternate) panel showing the 6 exchanges: write short notes.txt, dump with cat, build a 30-line notes-long.txt, open with more/less, quit with q, clean up",
+      "bytes": 9142,
+      "sha256": "9d5e087258ee83f1b43fc29976ddae9f1841ad779692738f9a382ed3cf88b381"
+    },
+    {
+      "file": "L-008-terminal.png",
+      "role": "scene",
+      "description": "PNG render of the same 6-exchange side-by-side panel, showing the pager row with -- More -- (PowerShell) and : (Bash) markers",
+      "bytes": 100811,
+      "sha256": "770c89d202de3e5c7f2a137647edc8b08a24c4f6e80eeb3fd393c6a9edbcae06"
+    },
+    {
+      "file": "L-008-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the 6-exchange PowerShell-primary walkthrough including the pager-open row, the quit-with-q row, and the final cleanup. Rendered with a 48-colour adaptive palette and typing_step=2",
+      "bytes": 77067,
+      "sha256": "e1c5c6a0da6274b6c8291b82719791a15c16f1917c939aa65cf1ab239838d3bc"
+    },
+    {
+      "file": "L-008-transcript.md",
+      "role": "transcript",
+      "description": "PowerShell-first screen-reader transcript with the full pager output, the quit-with-q note, and the pager-behaviour difference between Windows more.com and Bash less",
+      "bytes": 4012,
+      "sha256": "dcf31aeef5b74ca8a41e7659a10171dfe3d0f3b34701a435cb3b714ee0b3e7a2"
+    }
+  ]
+}
