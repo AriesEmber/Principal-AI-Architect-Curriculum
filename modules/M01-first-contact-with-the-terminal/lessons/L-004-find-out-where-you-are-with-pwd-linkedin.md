@@ -1,6 +1,11 @@
 The first time I opened a terminal to do real work, I spent about a minute staring at the prompt before it occurred to me that I had no idea what folder I was in. It turns out there is a four-letter command that answers that question and nothing else, and it is the most-used command I still run on any day.
 
-This is Day 4 of a 171-lesson path I am taking publicly, from zero to a Principal Artificial Intelligence (AI) Architect role. Week one is the command line. Today is the "You Are Here" command. Ten minutes, zero risk, zero files changed.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 4 of 171. Module 1: First Contact with the Terminal (Day 4).
+
+Today is the "You Are Here" command. Ten minutes, zero risk, zero files changed.
 
 The analogy I use is the red dot on a shopping-mall map. The dot is useless on its own. What it gives you is the one piece of information you need to plan any route at all: where you stand before you move. Your terminal has the same dot, and the command that shows it is `pwd`, short for print working directory.
 

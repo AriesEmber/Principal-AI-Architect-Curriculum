@@ -1,6 +1,11 @@
 The first time I tried to "open the terminal" I wasted ten minutes hunting through menus. Three keystrokes would have done it.
 
-This is Day 1 of a 171-lesson path I am taking publicly, from zero to a Principal Artificial Intelligence (AI) Architect role. Week one is the command line. Lesson one is the keyboard shortcut that opens the terminal on any operating system you are likely to have in front of you. It is ten minutes of work. It is the single highest-payoff keyboard motion in the whole field, and I skipped past it for years because I thought "learning the terminal" started with commands.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 1 of 171. Module 1: First Contact with the Terminal (Day 1).
+
+Lesson one is the keyboard shortcut that opens the terminal on any operating system you are likely to have in front of you. It is ten minutes of work. It is the single highest-payoff keyboard motion in the whole field, and I skipped past it for years because I thought "learning the terminal" started with commands.
 
 Here is the analogy I keep coming back to. The terminal is the kitchen of your computer. The door is closed most of the time. You can see the rest of the house, the windows and menus and apps, but the kitchen is sealed. Nothing gets cooked in there until someone actually opens the door. Every professional who works with servers, cloud infrastructure, or AI systems spends their day in that kitchen. The first skill, before any command or syntax, is opening the door.
 

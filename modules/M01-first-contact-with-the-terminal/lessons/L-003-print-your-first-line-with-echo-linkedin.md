@@ -1,6 +1,11 @@
 I almost shipped a broken Day-3 lesson this week. The thing that caught it was being my own first reader.
 
-I am building a 171-lesson public path from zero to a Principal Artificial Intelligence (AI) Architect role. Before each lesson goes live, I sit at my own machine and follow it. On Day 3 (the first real command in the curriculum: `echo`), I followed my own steps inside Windows PowerShell, typed the example for printing my username, and got a blank line back. The lesson said the commands would work the same in any shell. They do not.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 3 of 171. Module 1: First Contact with the Terminal (Day 3).
+
+Before each lesson goes live, I sit at my own machine and follow it. On Day 3 (the first real command in the curriculum: `echo`), I followed my own steps inside Windows PowerShell, typed the example for printing my username, and got a blank line back. The lesson said the commands would work the same in any shell. They do not.
 
 Here is what the lesson teaches, what I missed the first time, and the small fix that makes the next 168 lessons safer.
 

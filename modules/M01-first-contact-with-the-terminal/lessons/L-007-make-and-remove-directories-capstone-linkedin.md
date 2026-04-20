@@ -1,6 +1,11 @@
 The first time I tried to delete the practice folder I had just made, Windows PowerShell threw a red wall of text at me and refused. Two lessons into a curriculum I am taking publicly, I had already hit the single most confusing moment of the first month of terminal use: you cannot delete the directory you are currently standing in. Nobody had told me that. The fix is two keystrokes. The rule is one sentence. Today's lesson is that rule, the two-keystroke fix, and the six commands that together give you the full vocabulary for shaping a file tree from the Command-Line Interface (CLI).
 
-This is Day 7 of a 171-lesson path from zero to a Principal Artificial Intelligence (AI) Architect role. Today is the week-one capstone. Ten exchanges, one round trip: make a directory, put a file in it, try to delete the directory from inside (watch it fail), step out, delete it for real.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 7 of 171. Module 1: First Contact with the Terminal (Day 7, capstone).
+
+Ten exchanges, one round trip: make a directory, put a file in it, try to delete the directory from inside (watch it fail), step out, delete it for real.
 
 The analogy I use is a filing cabinet. Slide it into place. Pull the drawer. Drop a note. Then try to shred the cabinet while you are still standing inside it. The shredder refuses. You step out, try again, and the cabinet is gone. Every shell on every operating system enforces this one rule the same way, and it is the first rule most new learners discover the hard way.
 

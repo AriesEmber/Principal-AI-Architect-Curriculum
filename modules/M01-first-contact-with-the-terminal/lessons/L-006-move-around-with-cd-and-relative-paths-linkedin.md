@@ -1,6 +1,11 @@
 The first time I tried to move between folders from a terminal, I typed the full path to a folder that was right next to me. It worked, and it also took twice as long as it should have. Then someone showed me `cd Documents`, with no slash and no full path, and I realized the shell had a whole second mode I had been ignoring.
 
-This is Day 6 of a 171-lesson path I am taking publicly, from zero to a Principal Artificial Intelligence (AI) Architect role. Week one is the command line. Today is how the shell walks, and why every command you will ever run on a command line takes one of two kinds of address.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 6 of 171. Module 1: First Contact with the Terminal (Day 6).
+
+Today is how the shell walks, and why every command you will ever run on a command line takes one of two kinds of address.
 
 The analogy I use is a house. If someone in the hallway asks where the kitchen is, you say "go to the kitchen." If the same person calls from across town, you have to say "go to 123 Main Street, then the kitchen." Same destination, different starting point, different directions. The terminal works the same way, and the command for walking is `cd`, short for change directory (CD).
 

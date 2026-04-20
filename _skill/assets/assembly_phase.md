@@ -128,6 +128,32 @@ Add these:
 - **A visible link to the GitHub version at the bottom.** "Full lesson with the full commands and exercises: <link>"
 - **3-5 hashtags** at the end, specific not generic. Examples: `#HealthcareAI`, `#SolutionsArchitecture`, `#LearnToCode`, `#AIArchitect`. Avoid `#AI`, `#Tech`, `#Innovation`.
 
+**Opening banner — exact format, no exceptions.**
+
+Every LinkedIn article opens with this four-line block. It sits at the very top of the file, before any personal framing or lesson-specific prose:
+
+```markdown
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day [N] of 171. Module [X]: [Module Title] ([descriptor]).
+
+```
+
+Variables:
+
+- `[N]` is the cumulative lesson number from the spine's `sequence_number` (1, 2, ..., 171).
+- `[X]` is the module number without leading zero (1, 2, ..., 26).
+- `[Module Title]` is the spine's `modules[M##].title`, verbatim (title case as the spine has it).
+- `[descriptor]` is `Day M` where M is the within-module day (1, 2, ..., last day of the module). If the lesson is the module's capstone (`is_capstone: true` in the spine), use `Day M, capstone` instead.
+
+Rules:
+
+- No em-dashes inside the banner. Use periods, colons, or parentheses.
+- The title line and subtitle line sit on their own lines (hard line break after the title, not a space).
+- Do not re-introduce role-specific language ("Principal AI Architect role", etc.) anywhere in the LinkedIn variant — the banner replaced that phrasing.
+- The personal framing sentence (the "what surprised me" line) follows the banner, separated by a blank line.
+
 **Formatting differences from GitHub.**
 
 - LinkedIn does not render Markdown headers (`#`, `##`, `###`). Use **bold text** for section labels instead.

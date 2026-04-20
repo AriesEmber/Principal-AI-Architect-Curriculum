@@ -1,6 +1,11 @@
 The terminal has exactly two commands for the question every beginner actually asks in their first ten minutes: where am I, and what is here? Yesterday I showed the first one, `pwd`. Today is the second one, `ls`, and it is the command I still type the most on any given day of real work.
 
-This is Day 5 of a 171-lesson path I am taking publicly, from zero to a Principal Artificial Intelligence (AI) Architect role. Week one is the command line. Today is the "what is here?" command. Thirteen minutes, zero risk, zero files changed.
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 5 of 171. Module 1: First Contact with the Terminal (Day 5).
+
+Today is the "what is here?" command. Thirteen minutes, zero risk, zero files changed.
 
 The analogy I use is a file cabinet drawer. A drawer sits closed most of the time, holding its contents out of sight. Pulling the drawer open is the cheapest gesture in the room: no paper is read, no folder is removed, you are just looking at what is in there before you reach for anything. Your terminal's drawer-open gesture is `ls`, two letters short for list.
 

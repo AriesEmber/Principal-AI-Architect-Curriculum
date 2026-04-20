@@ -1,6 +1,11 @@
 The first time I moved a project folder between my laptop and a remote machine, half my scripts broke because they had absolute paths baked into them. The fix was one rule: treat a path like a postal address, and know which form to write for which job. Today's lesson is that rule, plus two others: what a file extension actually means, and why `ls` on one machine shows different files than `ls` on another.
 
-This is Day 10 of a 171-lesson path from zero to a Principal Artificial Intelligence (AI) Architect role. Module 2, Day 3. Seven exchanges in the terminal: print your home path, write `note.txt`, read it with a short name and a long name, rename it to `note.md`, read it again, then list the directory with hidden files revealed. Works the same on Windows PowerShell, macOS, Linux, and the Windows Subsystem for Linux (WSL).
+**From zero technical knowledge to AI literacy.**
+Through data, cloud, MLOps, and applied GenAI systems.
+
+Day 10 of 171. Module 2: Files, Editors, and Package Managers (Day 3).
+
+Seven exchanges in the terminal: print your home path, write `note.txt`, read it with a short name and a long name, rename it to `note.md`, read it again, then list the directory with hidden files revealed. Works the same on Windows PowerShell, macOS, Linux, and the Windows Subsystem for Linux (WSL).
 
 The analogy is a postal address. A full address has a country, a city, a street, and a house number. Each part narrows the search. Drop parts from the end and you describe something less specific. A file path works the same way. The drive letter or root is the country. The deepest folder is the street. The filename is the house number. Every file has this kind of address, and there are two conventional ways to write it down.
 
