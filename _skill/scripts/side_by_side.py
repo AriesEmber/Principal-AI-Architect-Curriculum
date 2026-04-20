@@ -1,15 +1,27 @@
-"""Shared side-by-side Bash/PowerShell renderer.
+"""Shared side-by-side PowerShell/Bash renderer.
 
-Used by L-003-v2 and reused for L-004..L-007. Produces three artifacts from
-one configuration:
+Produces three artifacts from one configuration:
 
   * ``L-###-terminal.gif`` - animated typewriter demo (Pillow, palette quantised)
   * ``L-###-terminal.png`` - static panel that matches the final GIF frame, trimmed
     to content (no trailing whitespace)
   * ``L-###-terminal.svg`` - hand-authored SVG mirroring the static panel
 
-All three artifacts share identical colour tokens, layout, and captions, so
-the GIF and the still read as the same picture.
+``LessonConfig.primary_shell`` decides which shell gets the left column.
+Default is ``"powershell"`` so Windows learners see their own environment
+first. When set to ``"bash"`` the renderer falls back to the pre-2026-04-19
+left=Bash/right=PowerShell orientation.
+
+When ``primary_shell == "powershell"``:
+  * ``Exchange.left`` is the PowerShell side (drawn left, PS styling)
+  * ``Exchange.right`` is the Bash side (drawn right, Bash styling)
+
+When ``primary_shell == "bash"``:
+  * ``Exchange.left`` is the Bash side (drawn left, Bash styling)
+  * ``Exchange.right`` is the PowerShell side (drawn right, PS styling)
+
+Build scripts must populate ``Exchange.left`` / ``Exchange.right`` to match
+the ``primary_shell`` they declared.
 """
 
 from __future__ import annotations
@@ -107,6 +119,7 @@ class LessonConfig:
     note: Note
     bash_title: str = "Bash \u00b7 macOS / Linux / WSL"
     ps_title: str = "PowerShell \u00b7 Windows"
+    primary_shell: str = "powershell"
     # final-frame renderer hooks: extra trailing rows to draw in either column.
     # Used when one side "keeps going" after the last paired exchange.
 
@@ -205,6 +218,7 @@ class SideBySideRenderer:
         *,
         is_ps: bool,
         title: str,
+        is_right: bool,
     ) -> None:
         draw = ImageDraw.Draw(im)
         fill = PS_WIN if is_ps else BASH_WIN
@@ -252,7 +266,7 @@ class SideBySideRenderer:
             [x + 1, note_top, x + self.WIN_W - 1, self.WIN_Y + self.WIN_H - 1],
             fill=note_fill,
         )
-        note_text = self.cfg.note.right_text if is_ps else self.cfg.note.left_text
+        note_text = self.cfg.note.right_text if is_right else self.cfg.note.left_text
         self._draw_wrapped_note(draw, x + 16, note_top + 10, note_text, is_ps=is_ps)
 
     def _draw_wrapped_note(
@@ -296,6 +310,32 @@ class SideBySideRenderer:
             Segment("> ", PS_PROMPT_GT),
         ]
 
+    @property
+    def _left_is_ps(self) -> bool:
+        return self.cfg.primary_shell == "powershell"
+
+    def _left_prompt_segs(self) -> list[Segment]:
+        return self._ps_prompt_segs() if self._left_is_ps else self._bash_prompt_segs()
+
+    def _right_prompt_segs(self) -> list[Segment]:
+        return self._bash_prompt_segs() if self._left_is_ps else self._ps_prompt_segs()
+
+    @property
+    def _left_title(self) -> str:
+        return self.cfg.ps_title if self._left_is_ps else self.cfg.bash_title
+
+    @property
+    def _right_title(self) -> str:
+        return self.cfg.bash_title if self._left_is_ps else self.cfg.ps_title
+
+    @property
+    def _left_text_color(self) -> tuple[int, int, int]:
+        return TEXT_PS if self._left_is_ps else TEXT_BASH
+
+    @property
+    def _right_text_color(self) -> tuple[int, int, int]:
+        return TEXT_BASH if self._left_is_ps else TEXT_PS
+
     def _draw_segments(
         self,
         draw: ImageDraw.ImageDraw,
@@ -335,8 +375,8 @@ class SideBySideRenderer:
             fill=(205, 213, 224),
         )
 
-        self._draw_window(im, self.LEFT_X, is_ps=False, title=self.cfg.bash_title)
-        self._draw_window(im, self.RIGHT_X, is_ps=True, title=self.cfg.ps_title)
+        self._draw_window(im, self.LEFT_X, is_ps=self._left_is_ps, title=self._left_title, is_right=False)
+        self._draw_window(im, self.RIGHT_X, is_ps=not self._left_is_ps, title=self._right_title, is_right=True)
 
         body_top = self.WIN_Y + self.layout.title_h + self.layout.body_pad_y
 
@@ -345,13 +385,13 @@ class SideBySideRenderer:
                 self.LEFT_X + self.layout.body_pad_x,
                 visible_left,
                 typing_left,
-                TEXT_BASH,
+                self._left_text_color,
             ),
             (
                 self.RIGHT_X + self.layout.body_pad_x,
                 visible_right,
                 typing_right,
-                TEXT_PS,
+                self._right_text_color,
             ),
         ):
             for segs, yi in visible:
@@ -444,8 +484,8 @@ class SideBySideRenderer:
         visible_right: list = []
         yi = 0
 
-        bash_prompt = self._bash_prompt_segs()
-        ps_prompt = self._ps_prompt_segs()
+        left_prompt = self._left_prompt_segs()
+        right_prompt = self._right_prompt_segs()
 
         # Opening hold
         frames.append(self._render_frame(visible_left, visible_right, None, None, True))
@@ -468,8 +508,8 @@ class SideBySideRenderer:
                     self._render_frame(
                         visible_left,
                         visible_right,
-                        (bash_prompt, ex.left.cmd, li, yi),
-                        (ps_prompt, ex.right.cmd, ri, yi),
+                        (left_prompt, ex.left.cmd, li, yi),
+                        (right_prompt, ex.right.cmd, ri, yi),
                         show_cursor=(i == maxc),
                     )
                 )
@@ -480,16 +520,16 @@ class SideBySideRenderer:
                 self._render_frame(
                     visible_left,
                     visible_right,
-                    (bash_prompt, ex.left.cmd, lc, yi),
-                    (ps_prompt, ex.right.cmd, rc, yi),
+                    (left_prompt, ex.left.cmd, lc, yi),
+                    (right_prompt, ex.right.cmd, rc, yi),
                     show_cursor=True,
                 )
             )
             durations.append(260)
 
             # Commit command lines
-            visible_left.append((bash_prompt + ex.left.cmd, yi))
-            visible_right.append((ps_prompt + ex.right.cmd, yi))
+            visible_left.append((left_prompt + ex.left.cmd, yi))
+            visible_right.append((right_prompt + ex.right.cmd, yi))
             yi += 1
 
             # Reveal outputs synchronously
@@ -518,8 +558,8 @@ class SideBySideRenderer:
             self._render_frame(
                 visible_left,
                 visible_right,
-                (bash_prompt, [], 0, yi),
-                (ps_prompt, [], 0, yi),
+                (left_prompt, [], 0, yi),
+                (right_prompt, [], 0, yi),
                 True,
             )
         )
@@ -559,11 +599,11 @@ class SideBySideRenderer:
         visible_left: list = []
         visible_right: list = []
         yi = 0
-        bash_prompt = self._bash_prompt_segs()
-        ps_prompt = self._ps_prompt_segs()
+        left_prompt = self._left_prompt_segs()
+        right_prompt = self._right_prompt_segs()
         for ex in self.cfg.exchanges:
-            visible_left.append((bash_prompt + ex.left.cmd, yi))
-            visible_right.append((ps_prompt + ex.right.cmd, yi))
+            visible_left.append((left_prompt + ex.left.cmd, yi))
+            visible_right.append((right_prompt + ex.right.cmd, yi))
             yi += 1
             max_out = max(len(ex.left.out), len(ex.right.out))
             for k in range(max_out):
@@ -575,8 +615,8 @@ class SideBySideRenderer:
         frame = self._render_frame(
             visible_left,
             visible_right,
-            (bash_prompt, [], 0, yi),
-            (ps_prompt, [], 0, yi),
+            (left_prompt, [], 0, yi),
+            (right_prompt, [], 0, yi),
             show_cursor=True,
         )
         frame.save(out_path, "PNG")
@@ -614,28 +654,31 @@ class SideBySideRenderer:
         )
 
         # Windows
-        for is_ps, x, title, bg_id, title_fill, border, title_fg, note_fill in (
-            (
-                False,
-                self.LEFT_X,
-                self.cfg.bash_title,
-                "bashbg",
-                hex_of(BASH_TITLE),
-                hex_of(BASH_BORDER),
-                hex_of(BASH_TITLE_FG),
-                hex_of(BASH_NOTE),
-            ),
-            (
-                True,
-                self.RIGHT_X,
-                self.cfg.ps_title,
-                "psbg",
-                hex_of(PS_TITLE),
-                hex_of(PS_BORDER),
-                hex_of(PS_TITLE_FG),
-                hex_of(PS_NOTE),
-            ),
+        bash_tuple = (
+            False,
+            self.cfg.bash_title,
+            "bashbg",
+            hex_of(BASH_TITLE),
+            hex_of(BASH_BORDER),
+            hex_of(BASH_TITLE_FG),
+            hex_of(BASH_NOTE),
+        )
+        ps_tuple = (
+            True,
+            self.cfg.ps_title,
+            "psbg",
+            hex_of(PS_TITLE),
+            hex_of(PS_BORDER),
+            hex_of(PS_TITLE_FG),
+            hex_of(PS_NOTE),
+        )
+        left_style = ps_tuple if self._left_is_ps else bash_tuple
+        right_style = bash_tuple if self._left_is_ps else ps_tuple
+        for x, style, is_right in (
+            (self.LEFT_X, left_style, False),
+            (self.RIGHT_X, right_style, True),
         ):
+            is_ps, title, bg_id, title_fill, border, title_fg, note_fill = style
             w = self.WIN_W
             y = self.WIN_Y
             h = self.WIN_H
@@ -669,7 +712,7 @@ class SideBySideRenderer:
                 f'height="{self.layout.note_h - 1}" fill="{note_fill}"/>'
             )
             note_text = (
-                self.cfg.note.right_text if is_ps else self.cfg.note.left_text
+                self.cfg.note.right_text if is_right else self.cfg.note.left_text
             )
             # Simple wrap identical to the Pillow one; compute offsets by measuring
             # character widths (approximate with 8px for the small font).
@@ -690,11 +733,11 @@ class SideBySideRenderer:
         visible_left: list = []
         visible_right: list = []
         yi = 0
-        bash_prompt = self._bash_prompt_segs()
-        ps_prompt = self._ps_prompt_segs()
+        left_prompt = self._left_prompt_segs()
+        right_prompt = self._right_prompt_segs()
         for ex in self.cfg.exchanges:
-            visible_left.append(("cmd", bash_prompt + ex.left.cmd, yi))
-            visible_right.append(("cmd", ps_prompt + ex.right.cmd, yi))
+            visible_left.append(("cmd", left_prompt + ex.left.cmd, yi))
+            visible_right.append(("cmd", right_prompt + ex.right.cmd, yi))
             yi += 1
             max_out = max(len(ex.left.out), len(ex.right.out))
             for k in range(max_out):
@@ -705,16 +748,24 @@ class SideBySideRenderer:
                 yi += 1
 
         parts.append(f'<g font-size="{self.layout.font_size}" xml:space="preserve">')
-        for origin_x, visible, cursor_color in (
-            (self.LEFT_X + self.layout.body_pad_x, visible_left, hex_of(TEXT_BASH)),
-            (self.RIGHT_X + self.layout.body_pad_x, visible_right, hex_of(TEXT_PS)),
+        for origin_x, visible, prompt_segs, cursor_color in (
+            (
+                self.LEFT_X + self.layout.body_pad_x,
+                visible_left,
+                left_prompt,
+                hex_of(self._left_text_color),
+            ),
+            (
+                self.RIGHT_X + self.layout.body_pad_x,
+                visible_right,
+                right_prompt,
+                hex_of(self._right_text_color),
+            ),
         ):
             for kind, segs, row_yi in visible:
                 y = body_top + row_yi * self.layout.line_h + 18
                 parts.extend(self._svg_line(origin_x, y, segs))
             # Trailing prompt + blinking cursor
-            is_ps = origin_x == self.RIGHT_X + self.layout.body_pad_x
-            prompt_segs = ps_prompt if is_ps else bash_prompt
             y = body_top + yi * self.layout.line_h + 18
             cur_x_parts, cur_x_end = self._svg_prompt_with_cursor(
                 origin_x, y, prompt_segs, cursor_color

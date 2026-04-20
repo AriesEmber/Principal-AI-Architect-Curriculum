@@ -10,27 +10,45 @@ estimated_minutes: 13
 capture_mode: terminal_auto
 risk_level: low
 is_capstone: true
-published_at: 2026-04-18T00:00:00Z
-acronyms_expanded: [CD, CLI, OS]
+published_at: 2026-04-19T00:00:00Z
+revision: 3
+revises: L-007-v2
+revision_reason: "PowerShell primary (left); v2 led with bash and omitted the cannot-delete-cwd rule"
+primary_shell: powershell
+acronyms_expanded: [CD, CLI, CWD, OS]
 ---
 
-Picture setting up a new filing cabinet for a new project. You slide a fresh cabinet into place, pull the top drawer open, confirm the drawer is empty, and drop a single note inside. Later, when the project is over, you shred the whole cabinet and its contents in one motion. Six days of this curriculum so far have been about knowing where you stand and how to move. Today is the first day you create something of your own. You are about to build a directory, put a file in it, and take the whole thing back down, using six commands: `pwd`, `ls`, `cd`, `mkdir`, `touch`, and `rm`. That is the full vocabulary of week one, combined for the first time in one flow.
+Picture setting up a new filing cabinet for a new project. You slide a fresh cabinet into place, pull the top drawer open, confirm the drawer is empty, and drop a single note inside. Later, when the project is over, you try to shred the cabinet while you are still standing inside it. The shredder refuses. You step out, try again, and the cabinet is gone. Six days of this curriculum have been about knowing where you stand and how to move. Today is the first day you create something of your own, hit the one rule the shell has about destruction, and learn the two-keystroke recovery.
 
-![Side-by-side typewriter walkthrough of the nine-exchange capstone, Bash on the left and PowerShell on the right](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
+![Side-by-side PowerShell (left, primary) and Bash (right) walkthrough of the capstone. Steps 1-6 build the directory and drop a file; step 7 shows the failed delete from inside the folder; step 8 is cd .. as the fix; steps 9 and 10 remove the tree and confirm it is gone](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.gif)
 
 ## What you will do
 
-Make a new directory called `practice-cli` in your home folder, walk into it, confirm it is empty, drop a blank text file inside, walk back out, and delete the whole directory.
+Make a new directory called `practice-cli` in your home folder, walk into it, drop a blank text file inside, try to delete the directory from inside (this will fail on purpose), step back out with `cd ..`, and delete the directory.
 
 ## Before you start
 
-You need an open terminal and a home directory. Four prior lessons give you everything else. [L-004: Find out where you are with pwd](./L-004-find-out-where-you-are-with-pwd.md) taught you how to confirm you are at home. [L-005: List the contents of a directory with ls](./L-005-list-the-contents-of-a-directory-with-ls.md) taught you how to look around. [L-006: Move around with cd and relative paths](./L-006-move-around-with-cd-and-relative-paths.md) taught you how to walk into a folder and back out. This lesson adds the last two verbs you need to do real work: make and remove.
+You need Windows 11 with PowerShell open, or macOS or Linux with a Bash or Zsh terminal open. Four prior lessons give you everything else. [L-004: Find out where you are with pwd](./L-004-find-out-where-you-are-with-pwd.md) taught you how to confirm you are at home. [L-005: List the contents of a directory with ls](./L-005-list-the-contents-of-a-directory-with-ls.md) taught you how to look around. [L-006: Move around with cd and relative paths](./L-006-move-around-with-cd-and-relative-paths.md) taught you how to walk into a folder and back out. This lesson adds the last two verbs you need to do real work, and the one rule of the Command-Line Interface (CLI) that trips every new learner at least once.
 
-Before the first command, run `pwd` once and confirm it reports your home directory. If it does not, run `cd` with no argument to return home. The whole lesson assumes home as the starting point.
+Before the first command, run `pwd` once and confirm it reports your home directory. On Windows PowerShell that looks like `C:\Users\<yourname>`. On macOS it looks like `/Users/<yourname>`. On Linux it looks like `/home/<yourname>`. If you are anywhere else, run `cd` (Bash) or `cd ~` (PowerShell) to return home. The whole lesson assumes home as the starting point.
 
 ## Step by step
 
+The PowerShell command is shown first in every step because PowerShell is the default shell on Windows 11. The Bash/Zsh equivalent follows each PowerShell block for readers on macOS, Linux, or the Windows Subsystem for Linux (WSL).
+
 ### 1. Confirm where you stand
+
+```powershell
+pwd
+```
+
+```text
+Path
+----
+C:\Users\learner
+```
+
+Bash/Zsh equivalent:
 
 ```bash
 pwd
@@ -40,55 +58,61 @@ pwd
 /home/learner
 ```
 
-macOS will show `/Users/learner` instead, and Windows PowerShell will show `C:\Users\learner`. Any of those is the correct starting line. The path is what every command in this lesson works relative to.
+The exact path depends on your account name and your operating system (OS). Any home-directory path is the correct starting line.
 
 ### 2. Make a new directory
+
+```powershell
+mkdir practice-cli
+```
+
+PowerShell's `mkdir` is an alias for `New-Item -ItemType Directory`. It prints a confirmation line showing the mode, the last-write time, and the new directory's name.
+
+Bash/Zsh equivalent:
 
 ```bash
 mkdir practice-cli
 ```
 
-`mkdir` stands for "make directory." The name after it is the folder you are creating, and because the name has no leading slash the shell creates it inside the current directory. The command is silent on success, just like `cd` was.
+Bash's `mkdir` is a separate program, not an alias, and it is silent on success. The name after `mkdir` is the folder you are creating, and because the name has no leading slash the shell creates it inside the current directory.
 
 ### 3. Confirm the directory exists
 
-```bash
+```powershell
 ls
 ```
 
-```text
-Desktop  Documents  Downloads  practice-cli
-```
-
-Your exact listing will differ, but `practice-cli` should be in it. If it is not, re-read the `mkdir` line for a typo and run it again. `mkdir` on an existing folder will error; on a new name it will quietly create the folder.
+Your listing should include `practice-cli` among whatever folders your home directory already had. On PowerShell, `ls` is an alias for `Get-ChildItem`; on Bash it is a separate program. Both produce the same answer here.
 
 ### 4. Walk into the new directory
 
-```bash
+```powershell
 cd practice-cli
 ```
 
-The prompt's path segment changes from `~` to `~/practice-cli`. That is the Command-Line Interface (CLI) showing you the change directory (CD) move worked.
+The prompt path changes from `C:\Users\learner` to `C:\Users\learner\practice-cli`. That is the shell showing you the change-directory (CD) move worked. On Bash the prompt path segment changes from `~` to `~/practice-cli`.
 
-### 5. Look around inside
+### 5. Create an empty file
 
-```bash
-ls
+This is the one step where PowerShell and Bash use different verbs.
+
+```powershell
+ni hello.txt
 ```
 
-No output. The folder you just made is empty; `ls` prints nothing when there is nothing to list. This silence is normal and expected, not a bug.
+`ni` is PowerShell's alias for `New-Item`. Typed out, the full form is `New-Item hello.txt` or `New-Item -ItemType File hello.txt`. PowerShell prints a confirmation row showing the mode, the last-write time, the file size (zero bytes), and the file name.
 
-### 6. Create an empty file
+Bash/Zsh equivalent:
 
 ```bash
 touch hello.txt
 ```
 
-`touch` is a single-word command that was originally designed to update a file's last-modified timestamp. It has a side effect: if the file does not exist, `touch` creates it, empty. That side effect is why every professional uses `touch` as the one-keyword way to make an empty file.
+`touch` was originally designed to update a file's last-modified timestamp. Its side effect is that if the file does not exist, `touch` creates it, empty. PowerShell does not ship a `touch` command. If you type `touch hello.txt` on Windows PowerShell you will get `The term 'touch' is not recognized`, which is the first gotcha Windows learners hit when they follow along with a Bash-only tutorial.
 
-### 7. Confirm the file exists
+### 6. Confirm the file exists
 
-```bash
+```powershell
 ls
 ```
 
@@ -96,59 +120,113 @@ ls
 hello.txt
 ```
 
-One file, zero bytes, ready to edit later. This is the state of every real project folder you will ever make: a directory with some number of files and sub-directories inside it. You just built the minimum version.
+One file, zero bytes, ready to edit later. This is the state of every real project folder you will ever make: a directory with some number of files inside it. You just built the minimum version.
 
-### 8. Walk back up
+### 7. Try to remove the directory from inside (this fails)
 
-```bash
-cd ..
+Do not skip this step. The error you are about to trigger is the single most common "why doesn't this work?" moment in the first month of using a terminal, and seeing it once removes the mystery forever.
+
+You are currently standing inside `practice-cli`. Run this anyway:
+
+```powershell
+Remove-Item -Recurse practice-cli
 ```
 
-The two dots take you up one level, back to your home directory. The prompt's path segment returns to `~`.
+PowerShell responds with a long red error that ends with:
 
-### 9. Remove the directory and its contents
+```text
+Remove-Item : Cannot find path 'C:\Users\learner\practice-cli\practice-cli' because it does not exist.
+```
+
+Bash/Zsh equivalent (same failure, different wording):
 
 ```bash
 rm -r practice-cli
 ```
 
-`rm` means remove. The `-r` flag means recursive: remove the named directory and everything inside it, walking down through every sub-directory on the way. Silent on success.
+```text
+rm: cannot remove 'practice-cli': No such file or directory
+```
 
-There is one piece of this command worth reading twice. `rm -r` does not move files to a recycle bin. It deletes them. On macOS and Linux the deletion is permanent unless you are using a filesystem with snapshot support. On Windows PowerShell the equivalent (`Remove-Item -Recurse`) behaves the same way. Type the target carefully, and never run `rm -r` against a path you did not just create yourself in this lesson.
+Read the error on the PowerShell side one more time. The path the shell tried to delete was `C:\Users\learner\practice-cli\practice-cli`. That is `practice-cli` *inside* `practice-cli`. The shell did exactly what you told it to, which was "find a folder named `practice-cli` starting from the current working directory (CWD) and delete it." Your current working directory was already `practice-cli`, so the shell appended the name you passed and looked one level deeper. Nothing was there, so it reported a path-not-found error.
+
+The rule this step teaches: **you cannot remove the directory you are currently standing in by its name.** The shell resolves a bare name like `practice-cli` against the current directory, and the current directory is already `practice-cli`. Every shell on every operating system enforces this rule the same way. It is not a Windows quirk, not a PowerShell quirk, and not a permissions issue.
+
+### 8. Step out of the directory
+
+The fix is one command, the same on every shell:
+
+```powershell
+cd ..
+```
 
 ```bash
+cd ..
+```
+
+Now your current working directory is back to home. The name `practice-cli` now resolves to `C:\Users\learner\practice-cli` (or `/home/learner/practice-cli`), which is a real folder.
+
+### 9. Remove the directory and its contents
+
+```powershell
+Remove-Item -Recurse practice-cli
+```
+
+`Remove-Item` is the PowerShell cmdlet for deletion, and `-Recurse` tells it to walk into every sub-directory and remove every file on the way down before removing the top-level directory itself. Silent on success.
+
+Bash/Zsh equivalent:
+
+```bash
+rm -r practice-cli
+```
+
+`rm` means remove, and the `-r` flag means recursive. Same behavior, shorter name.
+
+There is one piece of both commands worth reading twice: neither moves files to a recycle bin. They delete them. On macOS and Linux the deletion is permanent unless your filesystem has snapshot support. On Windows PowerShell with a standard NTFS filesystem the deletion is also permanent; the Recycle Bin only receives files that you delete through the graphical shell (File Explorer), not through PowerShell. Type the target carefully, and never run `Remove-Item -Recurse` or `rm -r` against a path you did not just create yourself in this lesson.
+
+### 10. Confirm the directory is gone
+
+```powershell
 ls
 ```
 
-```text
-Desktop  Documents  Downloads
-```
+`practice-cli` is gone. The cabinet has been shredded, after you stepped out of it. That is all six week-one commands, plus the one rule about the current working directory, strung together in one flow.
 
-`practice-cli` is gone. The cabinet has been shredded. That is all six week-one commands, strung together in one flow.
-
-![Side-by-side static panel of the nine capstone exchanges in Bash (left) and PowerShell (right)](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
+![Side-by-side static panel of the ten capstone exchanges in PowerShell (left, primary) and Bash (right, alternate), with the failed step 7 shown in red](https://raw.githubusercontent.com/AriesEmber/Principal-AI-Architect-Curriculum/main/modules/M01-first-contact-with-the-terminal/assets/L-007-terminal.png)
 
 ## Check it worked
 
-At the end of the sequence, `ls` in your home directory should not show `practice-cli`. If it does, the `rm -r` line did not run or hit a typo. Run it again.
+At the end of the sequence, `ls` in your home directory should not show `practice-cli`. If it does, the `Remove-Item -Recurse` line at step 9 did not run cleanly. Run `pwd` to see where you are. If you are not at home, run `cd ~` (PowerShell) or `cd` with no argument (Bash), then run `Remove-Item -Recurse practice-cli` or `rm -r practice-cli` again.
 
-If you see `rm: cannot remove 'practice-cli': No such file or directory`, you were not standing in your home directory when you ran the removal. Run `pwd` to see where you are. If it says anything other than home, run `cd` with no argument and try the removal again.
+If you ran step 7 and saw the error but then typed `cd ..` followed by `Remove-Item -Recurse practice-cli` and got another path-not-found error, you probably overshot: you may now be two levels above the directory. Run `pwd` and walk back to home with `cd ~` before retrying.
 
-If you see `mkdir: cannot create directory 'practice-cli': File exists` on step 2, a folder by that name is already there from a prior attempt. Remove it first with `rm -r practice-cli` and start over, or pick a different name like `practice-cli-2` for this run.
-
-The shell is case-sensitive on macOS and Linux. `practice-cli` and `Practice-CLI` are two different directories. Windows is case-insensitive, so either works there. If you are on a team that mixes platforms, always lowercase your directory names; it avoids a class of surprises.
+If you see `mkdir : An item with the specified name ... already exists` on step 2, a folder by that name is already there from a prior attempt. Remove it first (from home, not from inside it) with `Remove-Item -Recurse practice-cli` on PowerShell or `rm -r practice-cli` on Bash, then start over.
 
 ## What just happened
 
-Six commands, one round trip. `pwd` reports where you are standing. `ls` reports what is in the current directory. `cd` changes the current directory. `mkdir` creates a new directory. `touch` creates an empty file. `rm -r` deletes a directory and everything in it. That is the complete vocabulary for navigating and shaping a file tree from a command line.
+Six commands, one round trip, one failure, one recovery. `pwd` reports where you are standing. `ls` reports what is in the current directory. `cd` changes the current directory. `mkdir` creates a new directory. `ni` (PowerShell) or `touch` (Bash) creates an empty file. `Remove-Item -Recurse` (PowerShell) or `rm -r` (Bash) deletes a directory and everything in it. That is the complete vocabulary for navigating and shaping a file tree from a CLI.
 
-Two of the commands create (`mkdir`, `touch`). One destroys (`rm`). Three observe and move (`pwd`, `ls`, `cd`). The symmetry is useful to remember: for every create verb there is a corresponding destroy verb. The other half of `mkdir` is `rmdir`, which removes an empty directory. The other half of `touch` (for the purpose of removing the file it created) is plain `rm` without the `-r` flag. `rm -r` is the hammer version that handles both directories and files and their contents in one command; most of the time it is the only removal command you need.
+Two of the commands create (`mkdir`, `ni` / `touch`). One destroys (`Remove-Item -Recurse` / `rm -r`). Three observe and move (`pwd`, `ls`, `cd`). The symmetry is useful to remember: for every create verb there is a corresponding destroy verb.
 
-The filing-cabinet image holds up through the whole lesson because every step maps to a physical action: mkdir slides the cabinet in, cd pulls the drawer open, ls looks inside, touch drops a note, cd .. pushes the drawer back, rm -r shreds the cabinet and everything in it. Once those mappings are in your hands, the shell stops feeling like a puzzle and starts feeling like a set of tools that match the mental model you already had for organizing paper.
+The one rule that step 7 taught is bigger than this lesson. Any command that takes a path argument resolves that path against the current working directory unless you give it an absolute path. That is why `cd practice-cli` works from home, and why `Remove-Item -Recurse practice-cli` fails from inside `practice-cli`. The next module teaches absolute paths, relative paths, and the dot-and-double-dot notation that makes all of this explicit. For now, the takeaway is simpler: if a path-based command fails with "cannot find path" or "No such file or directory" and you can see the thing with your own eyes, you are almost always in the wrong directory. Run `pwd` and go from there.
 
 ## Going further
 
-The `mkdir` command has a flag called `-p` (short for "parents") that creates a whole chain of directories in one go. Try this in your home folder:
+The PowerShell `mkdir` and the Bash `mkdir` both accept a flag that creates a whole chain of directories in one go. On PowerShell that flag is `-Force` combined with a nested path:
+
+```powershell
+mkdir -Force work\2026\april
+cd work\2026\april
+pwd
+```
+
+```text
+Path
+----
+C:\Users\learner\work\2026\april
+```
+
+On Bash the flag is `-p` (short for "parents"):
 
 ```bash
 mkdir -p work/2026/april
@@ -156,13 +234,14 @@ cd work/2026/april
 pwd
 ```
 
-```text
-/home/learner/work/2026/april
+Three levels of nesting, one command. Without the flag, creating `work/2026/april` when `work` does not exist yet would fail because the intermediate directories do not exist. The flag is also silent when the directories already exist, which is why every shell script that creates directories uses it by default.
+
+Clean up afterward with one remove from the top of the branch, run from home:
+
+```powershell
+cd ~
+Remove-Item -Recurse work
 ```
-
-Three levels of nesting, one command. Without `-p`, running `mkdir work/2026/april` would fail because the intermediate directories do not exist yet. The `-p` flag also makes the command silent-on-success when the directory already exists, which is why every shell script you will ever read that creates directories uses `-p` by default. It is safe to run twice.
-
-Clean up afterward with one `rm -r` at the top of the branch:
 
 ```bash
 cd ~
@@ -173,4 +252,4 @@ Everything under `work/`, including `2026/april/`, is removed in one pass. That 
 
 ## What's next
 
-Next is [L-008: Read a file's contents with cat and less](./L-008-read-a-files-contents-with-cat-and-less.md). You just made an empty file with `touch`; the next lesson is how to open a file that has something in it and read what is inside, which is the first operating system (OS) skill most learners recognize from daily life.
+Next is [L-008: Read a file's contents with cat and less](./L-008-read-a-files-contents-with-cat-and-less.md). You just made an empty file with `ni` or `touch`; the next lesson is how to open a file that has something in it and read what is inside, which is the first OS skill most learners recognize from daily life.

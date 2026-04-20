@@ -18,12 +18,12 @@ The dispatch is the sole control path. Do not fall through, do not combine, do n
 
 ## Handler: `terminal_auto`
 
-**What this handler does.** Produces a two-column Bash + PowerShell animated GIF, a matching static PNG, a hand-generated SVG source, and a static transcript, all from a single config passed into the shared renderer.
+**What this handler does.** Produces a two-column PowerShell + Bash animated GIF, a matching static PNG, a hand-generated SVG source, and a static transcript, all from a single config passed into the shared renderer. PowerShell is the primary (left) shell by default.
 
 **Steps.**
 
-1. **Build a lesson config** at `_state/scratch/L-###-v2/build.py`. The config is a `LessonConfig` with an `exchanges` list — each exchange carries a `left` (Bash) `Side` and a `right` (PowerShell) `Side`, so the two shells are specified in lockstep. Look at `_state/scratch/L-004-v2/build.py` for a short example and `_state/scratch/L-007-v2/build.py` for a long (capstone) example.
-2. **Import the shared renderer** from `_skill/scripts/side_by_side.py`. It emits GIF + PNG + SVG from one call (`build_all(cfg, asset_dir, file_stem=...)`). Do not write per-lesson rendering code; use the library.
+1. **Build a lesson config** at `_state/scratch/L-###-v3/build.py` (or the next available `-v#` if this is a re-authoring). The config is a `LessonConfig` with an `exchanges` list. Set `primary_shell="powershell"` (the default) to get PowerShell on the left and Bash on the right; each exchange then carries a `left` (PowerShell) `Side` and a `right` (Bash) `Side`. Set `primary_shell="bash"` only when re-rendering a pre-2026-04-19 asset to keep column parity with previously merged images. Look at `_state/scratch/L-007-v3/build.py` for a capstone-length PowerShell-primary example; `_state/scratch/L-004-v2/build.py` remains on disk as a historical Bash-primary example.
+2. **Import the shared renderer** from `_skill/scripts/side_by_side.py` (or its near-copy at `_state/scratch/common/side_by_side.py`, which build scripts import via `sys.path`). It emits GIF + PNG + SVG from one call (`build_all(cfg, asset_dir, file_stem=...)`). Do not write per-lesson rendering code; use the library. The renderer reads `LessonConfig.primary_shell` and applies window styling, prompt prefixes, title strings, and note-strip placement accordingly.
 3. **Post-process the transcript.** Trim pre-command noise (shell init messages), normalize prompt strings to a clean `$` for Bash and `>` for PowerShell, and apply `scripts/secret_scrub.py` regex pass.
 4. **Tune the GIF size if it exceeds 2 MB.** `build_all` accepts `typing_step` (default 1 — skip every N frames when typing long commands) and `colors` (default 64 — palette size). Capstone lessons typically need `typing_step=3, colors=20` to stay under the cap.
 5. **Render a static transcript** as `L-###-transcript.md` with fenced code blocks for both Bash and PowerShell for screen-reader accessibility (GIFs are inaccessible to screen readers).
