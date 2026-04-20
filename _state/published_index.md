@@ -18,12 +18,13 @@ This file tracks which lessons have been published to `main`. The `lesson-author
 - L-004 | M01 | D01 | Find out where you are with pwd | 2026-04-18 | e381674
 - L-005 | M01 | D01 | List the contents of a directory with ls | 2026-04-18 | 1cb4e40
 - L-006 | M01 | D01 | Move around with cd and relative paths | 2026-04-18 | 3bf1544
+- L-007 | M01 | D01 | Make and remove directories (capstone) | 2026-04-19 | 2cb4581
 
 ## Curriculum completion
 
 - Total lessons in curriculum: 171
-- Published: 6
-- Remaining: 165
-- Completion: 3.5%
+- Published: 7
+- Remaining: 164
+- Completion: 4.1%
 
 (The skill updates the three counts above after each publication.)
