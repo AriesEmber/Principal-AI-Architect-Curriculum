@@ -96,13 +96,15 @@ winget install -e --id jqlang.jq
 brew install jq
 ```
 
-Then try it on a tiny document:
+**Windows heads-up:** `winget` prints `Path environment variable modified; restart your shell to use the new value.` after this one finishes. That restart is not optional — your current PowerShell cached `PATH` at startup and will not see `jq` until you close and reopen the window. On macOS, Homebrew drops `jq` straight onto the live `PATH`, so no restart is needed. (On Debian-family Linux or WSL, `sudo apt install jq` instead.)
+
+Then, in a fresh PowerShell window on Windows (or the same Terminal on Mac or Linux), try it on a tiny document:
 
 ```bash
 echo '{"greeting":"hi","count":3}' | jq .
 ```
 
-You just installed, verified, and used a second tool in three commands. The pattern does not change as the tools get larger; later in the curriculum the same three steps install Python, Git, and the Terraform binary.
+You just installed, verified, and used a second tool in a handful of commands. The pattern does not change as the tools get larger; later in the curriculum the same three steps install Python, Git, and the Terraform binary.
 
 Full lesson with the full command list, the three-things-should-be-true verification, and the cross-shell troubleshooting paths: https://github.com/AriesEmber/Principal-AI-Architect-Curriculum/blob/main/modules/M02-files-editors-and-package-managers/lessons/L-012-install-your-first-tool-with-a-package-manager.md
 
