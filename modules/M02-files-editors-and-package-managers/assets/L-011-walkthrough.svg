@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 402" width="1500" height="402" role="img" aria-label="L-011 walkthrough: install a package manager on Windows, macOS, or Linux">
+<style>.ui{font-family:-apple-system,"Segoe UI",Arial,sans-serif;}.mono{font-family:"SF Mono",Consolas,"Courier New",monospace;}</style>
+<rect width="1500" height="402" fill="#0b0d12"/>
+<text x="750" y="42" text-anchor="middle" class="ui" font-size="20" font-weight="700" fill="#ecf1fa">L-011 · install a package manager · three operating systems, one minute each</text>
+<rect x="20" y="86" width="473" height="250" rx="10" ry="10" fill="#0c2456"/>
+<rect x="20" y="86" width="473" height="32" rx="10" ry="10" fill="#171717"/>
+<rect x="20" y="110" width="473" height="8" fill="#171717"/>
+<circle cx="36" cy="102" r="5" fill="#ff5f57"/>
+<circle cx="50" cy="102" r="5" fill="#febc2e"/>
+<circle cx="64" cy="102" r="5" fill="#28c840"/>
+<text x="256" y="107" text-anchor="middle" class="ui" font-size="12" fill="#d0d0d8">Windows 11 · PowerShell</text>
+<text x="40.0" y="149" class="mono" font-size="16" fill="#c993ea" xml:space="preserve">PS </text>
+<text x="68.8" y="149" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">C:\Users\learner</text>
+<text x="222.4" y="149" class="mono" font-size="16" fill="#ffd666" xml:space="preserve">&gt; </text>
+<text x="241.6" y="149" class="mono" font-size="16" fill="#ffffff" xml:space="preserve">winget --version</text>
+<text x="40.0" y="175" class="mono" font-size="16" fill="#7ee787" xml:space="preserve">v1.10.320</text>
+<text x="40.0" y="227" class="mono" font-size="16" fill="#c993ea" xml:space="preserve">PS </text>
+<text x="68.8" y="227" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">C:\Users\learner</text>
+<text x="222.4" y="227" class="mono" font-size="16" fill="#ffd666" xml:space="preserve">&gt; </text>
+<rect x="513" y="86" width="473" height="250" rx="10" ry="10" fill="#1b1b1f"/>
+<rect x="513" y="86" width="473" height="32" rx="10" ry="10" fill="#2e2e33"/>
+<rect x="513" y="110" width="473" height="8" fill="#2e2e33"/>
+<circle cx="529" cy="102" r="5" fill="#ff5f57"/>
+<circle cx="543" cy="102" r="5" fill="#febc2e"/>
+<circle cx="557" cy="102" r="5" fill="#28c840"/>
+<text x="749" y="107" text-anchor="middle" class="ui" font-size="12" fill="#d0d0d8">macOS · Terminal (Bash/Zsh)</text>
+<text x="533.0" y="149" class="mono" font-size="16" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="600.2" y="149" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="609.8" y="149" class="mono" font-size="16" fill="#f99e9e" xml:space="preserve">mac</text>
+<text x="638.6" y="149" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="648.2" y="149" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="657.8" y="149" class="mono" font-size="16" fill="#ffd666" xml:space="preserve"> $ </text>
+<text x="686.6" y="149" class="mono" font-size="16" fill="#e6edf3" xml:space="preserve">/bin/bash -c ...install.sh</text>
+<text x="533.0" y="175" class="mono" font-size="16" fill="#7ee787" xml:space="preserve">==&gt; Installation successful!</text>
+<text x="533.0" y="227" class="mono" font-size="16" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="600.2" y="227" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="609.8" y="227" class="mono" font-size="16" fill="#f99e9e" xml:space="preserve">mac</text>
+<text x="638.6" y="227" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="648.2" y="227" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="657.8" y="227" class="mono" font-size="16" fill="#ffd666" xml:space="preserve"> $ </text>
+<text x="686.6" y="227" class="mono" font-size="16" fill="#e6edf3" xml:space="preserve">brew --version</text>
+<text x="533.0" y="253" class="mono" font-size="16" fill="#7ee787" xml:space="preserve">Homebrew 4.2.13</text>
+<text x="533.0" y="305" class="mono" font-size="16" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="600.2" y="305" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="609.8" y="305" class="mono" font-size="16" fill="#f99e9e" xml:space="preserve">mac</text>
+<text x="638.6" y="305" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="648.2" y="305" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="657.8" y="305" class="mono" font-size="16" fill="#ffd666" xml:space="preserve"> $ </text>
+<rect x="1006" y="86" width="473" height="250" rx="10" ry="10" fill="#1b1b1f"/>
+<rect x="1006" y="86" width="473" height="32" rx="10" ry="10" fill="#2e2e33"/>
+<rect x="1006" y="110" width="473" height="8" fill="#2e2e33"/>
+<circle cx="1022" cy="102" r="5" fill="#ff5f57"/>
+<circle cx="1036" cy="102" r="5" fill="#febc2e"/>
+<circle cx="1050" cy="102" r="5" fill="#28c840"/>
+<text x="1242" y="107" text-anchor="middle" class="ui" font-size="12" fill="#d0d0d8">Linux (Debian/Ubuntu) · Terminal</text>
+<text x="1026.0" y="149" class="mono" font-size="16" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="1093.2" y="149" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="1102.8" y="149" class="mono" font-size="16" fill="#f99e9e" xml:space="preserve">ubuntu</text>
+<text x="1160.4" y="149" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="1170.0" y="149" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="1179.6" y="149" class="mono" font-size="16" fill="#ffd666" xml:space="preserve"> $ </text>
+<text x="1208.4" y="149" class="mono" font-size="16" fill="#e6edf3" xml:space="preserve">apt --version</text>
+<text x="1026.0" y="175" class="mono" font-size="16" fill="#7ee787" xml:space="preserve">apt 2.7.14 (amd64)</text>
+<text x="1026.0" y="227" class="mono" font-size="16" fill="#50e8b3" xml:space="preserve">learner</text>
+<text x="1093.2" y="227" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">@</text>
+<text x="1102.8" y="227" class="mono" font-size="16" fill="#f99e9e" xml:space="preserve">ubuntu</text>
+<text x="1160.4" y="227" class="mono" font-size="16" fill="#d0d0d8" xml:space="preserve">:</text>
+<text x="1170.0" y="227" class="mono" font-size="16" fill="#5fa3d1" xml:space="preserve">~</text>
+<text x="1179.6" y="227" class="mono" font-size="16" fill="#ffd666" xml:space="preserve"> $ </text>
+<rect x="20" y="356" width="1460" height="36" fill="#141923"/>
+<text x="750" y="380" text-anchor="middle" class="ui" font-size="13" fill="#9aa3b2">Scene 3. Each manager prints its version. Subscription is live.</text>
+</svg>
