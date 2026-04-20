@@ -20,6 +20,16 @@ Each entry follows this structure:
 
 ## Open items
 
+### [2026-04-19] L-008 — gate 11 reading-time sanity
+
+**Lesson:** Read a file's contents with cat and less
+**Flagged at:** quality_gates
+**Severity:** warning
+**Issue:** Computed reading time ~34 minutes vs spine estimate 13 minutes; delta 21 minutes exceeds the 5-minute band.
+**Evidence:** `gate11_code_blocks=14, prose_word_count=~1497, prose_minutes=6.8, hands_on_minutes=28`. Same Gate 11 heuristic issue documented for L-003 and L-006: 2 minutes per fenced code block is an over-count for one-line `cat` / `less` / `more` / `printf` exchanges that run in under 15 seconds each. Twelve of the fourteen code blocks are single-line commands or their short output; only two (the `1..30 > notes-long.txt` generator and the pager interaction) take more than 30 seconds of reader time.
+**Suggested fix:** No article change needed. Same recalibration recommendation: weight single-command blocks at 15 seconds, multi-line at 2 minutes. Lesson ships per the soft-warning rule.
+**Status:** open
+
 ### [2026-04-19] L-006 — gate 10 reading-time sanity
 
 **Lesson:** Move around with cd and relative paths
