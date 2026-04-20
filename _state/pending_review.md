@@ -20,19 +20,30 @@ Each entry follows this structure:
 
 ## Open items
 
-### [2026-04-20] Housekeeping — published_index.md out of date
+### [2026-04-20] Housekeeping — published_index.md out of date (L-010 + L-011 missing)
 
-**Lesson:** L-010 (and now L-011)
-**Flagged at:** research phase (selection sanity check for L-011)
+**Lesson:** L-010, L-011 (and L-012 will land on top of these)
+**Flagged at:** research phase (selection sanity check for L-011, re-flagged for L-012)
 **Severity:** warning
-**Issue:** `_state/published_index.md` still lists L-009 as the most recent publication, but L-010 was merged into `main` as commit `ce07351` via PR #16 on 2026-04-20. The index append for L-010 did not run after that merge, which means Gate 8 cannot verify the L-010 prerequisite for L-011 against the index alone. The prerequisite is in fact satisfied: L-010 is present on `main` under `modules/M02-.../lessons/` and is referenced in the curriculum spine.
-**Evidence:** `git log --oneline main -- _state/published_index.md` shows the last content change was `91104ae chore: record L-007 publication in published_index`. L-008, L-009, and L-010 merges all landed without an index append (the L-009 entry at line 23 predates the L-010 merge). See also commit `b51091a` (Merge PR #16 from AriesEmber/drafts/L-010).
-**Suggested fix:** One housekeeping commit on `main` that appends three lines to `_state/published_index.md`, mirroring the existing format:
+**Issue:** `_state/published_index.md` still lists L-009 as the most recent publication, but L-010 was merged into `main` as commit `ce07351` via PR #16 on 2026-04-20 and L-011 was merged as commit `4892f72` on 2026-04-20 as well. Neither index append ran after the merges, so Gate 8 cannot verify the L-011 prerequisite for L-012 against the index alone. The prerequisite is in fact satisfied: L-011 is present on `main` under `modules/M02-.../lessons/L-011-install-a-package-manager.md`, referenced in the curriculum spine, and shipped with its `_deliverables/L-011-post.docx`.
+**Evidence:** `git log --oneline main -- _state/published_index.md` shows the last content change was `91104ae chore: record L-007 publication in published_index`. L-008, L-009, L-010, and L-011 merges all landed without an index append. See `4892f72` for the most recent merge ahead of this run.
+**Suggested fix:** One housekeeping commit on `main` that appends three lines to `_state/published_index.md`, mirroring the existing format, and updates the three completion counts at the bottom to `12` / `159` / `7.0%` once L-012 lands:
 ```
 - L-010 | M02 | D01 | Understand file paths, extensions, and hidden files | 2026-04-20 | ce07351
-- L-011 | M02 | D01 | Install a package manager | <merge date> | <merge SHA>
+- L-011 | M02 | D01 | Install a package manager | 2026-04-20 | 4892f72
+- L-012 | M02 | D01 | Install your first tool with a package manager | <merge date> | <merge SHA>
 ```
-and updates the completion counts at the bottom. The L-011 run proceeded because the prerequisite is verifiably satisfied by the repo state even if the index lags.
+The L-012 run proceeded because the prerequisite is verifiably satisfied by the repo state even if the index lags.
+**Status:** open
+
+### [2026-04-20] L-012 — gate 11 reading-time sanity
+
+**Lesson:** Install your first tool with a package manager
+**Flagged at:** quality_gates
+**Severity:** warning
+**Issue:** Computed reading time ~40.7 minutes vs spine estimate 13 minutes; delta 27.7 minutes exceeds the 5-minute band.
+**Evidence:** `gate11_code_blocks=17, prose_word_count=1467, prose_minutes=6.7, hands_on_minutes=34`. Same Gate 11 heuristic issue documented for L-003, L-006, L-007, L-008, and L-009: 2 minutes per fenced code block is an over-count for one-line `winget --version`, `brew --version`, `mkdir`, `tree --version`, and `jq --version` exchanges that run in under 15 seconds each. Only the `winget install -e --id GnuWin32.Tree` and `brew install tree` steps consume real seconds (the install can take a minute or two while the package downloads).
+**Suggested fix:** No article change needed. Same recalibration recommendation as prior lessons: weight single-command blocks at 15 seconds, multi-line blocks at 2 minutes, package-install blocks at 90 seconds. Lesson ships per the soft-warning rule.
 **Status:** open
 
 ### [2026-04-19] L-009 — gate 11 reading-time sanity
