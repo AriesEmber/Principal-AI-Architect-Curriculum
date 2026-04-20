@@ -1,0 +1,37 @@
+{
+  "lesson_id": "L-012",
+  "module_id": "M02",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "primary_shell": "powershell",
+  "assets": [
+    {
+      "file": "L-012-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side PowerShell (left, primary) and Bash (right) panel showing the 6 exchanges: confirm the package manager, install tree (winget install GnuWin32.Tree on PowerShell, brew install tree on Bash), verify the new binary, make a practice-cli folder with a src subfolder, drop a README.md inside, and run tree on the result",
+      "bytes": 10066,
+      "sha256": "1f26964af10339467a514e14ffeb6cc755e8df7f1244af1ce8b9ad04f26f4352"
+    },
+    {
+      "file": "L-012-terminal.png",
+      "role": "scene",
+      "description": "PNG render of the same 6-exchange side-by-side panel. The PowerShell column uses winget install -e --id GnuWin32.Tree and invokes the new binary as tree.exe so the built-in tree.com in System32 does not win the PATH lookup; the Bash column uses brew install tree and invokes it as tree. The note strip under each window records the same cross-shell story",
+      "bytes": 151590,
+      "sha256": "9d2e345c198f872a1db06c2551ead1bf9b879f224e89659a52a5230456e8016c"
+    },
+    {
+      "file": "L-012-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the 6-exchange PowerShell-primary walkthrough. Rendered with a 48-colour adaptive palette and typing_step=2 to stay well under the 2 MB gate",
+      "bytes": 100374,
+      "sha256": "ee408ffdc5e34e4fc3ad2b74cbb1a3bad03d414f11f8635d601242bcf3ca91af"
+    },
+    {
+      "file": "L-012-transcript.md",
+      "role": "transcript",
+      "description": "PowerShell-first screen-reader transcript of the full 6-exchange session, plus the cross-shell takeaway that names why tree.exe is required on Windows when the built-in tree.com in System32 also exists on PATH",
+      "bytes": 2546,
+      "sha256": "6941cce3a38c7ce57138db39ca6087749eb4d2c681533ed4ae14e672dd12096d"
+    }
+  ]
+}
