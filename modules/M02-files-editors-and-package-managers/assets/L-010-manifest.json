@@ -1,0 +1,37 @@
+{
+  "lesson_id": "L-010",
+  "module_id": "M02",
+  "capture_mode": "terminal_auto",
+  "capture_mode_handler": "terminal_auto",
+  "primary_shell": "powershell",
+  "assets": [
+    {
+      "file": "L-010-terminal.svg",
+      "role": "scene",
+      "description": "Side-by-side PowerShell (left, primary) and Bash (right) panel showing the 7 exchanges: print home path, write note.txt, read it with a relative path, read it with an absolute path, rename to note.md, read the renamed file, then list the directory with dotfiles revealed",
+      "bytes": 10474,
+      "sha256": "5a06f72cf0ac0c7d2e1ab1f2096bfed4ae48b1bb0ffd8c7efa3a9c252061be25"
+    },
+    {
+      "file": "L-010-terminal.png",
+      "role": "scene",
+      "description": "PNG render of the same 7-exchange side-by-side panel. The PowerShell column uses Get-Location, Rename-Item, and Get-ChildItem -Force; the Bash column uses pwd, mv, and ls -a. The note strip under each window summarises how that shell treats dotfiles and the -Force or -a flag",
+      "bytes": 128366,
+      "sha256": "05aad09407c78084319ad41f316bb0a4d2b271db4376d0c94cc7f95471d636a9"
+    },
+    {
+      "file": "L-010-terminal.gif",
+      "role": "animation",
+      "description": "Typewriter animation of the 7-exchange PowerShell-primary walkthrough. Rendered with a 48-colour adaptive palette and typing_step=2 to stay well under the 2 MB gate",
+      "bytes": 90570,
+      "sha256": "c770938b2a38ad84c77194d0fffb316ab06ed855e91878dd309be24d470198a7"
+    },
+    {
+      "file": "L-010-transcript.md",
+      "role": "transcript",
+      "description": "PowerShell-first screen-reader transcript with the full 7-exchange session (home path, write, read relative, read absolute, rename extension, read renamed, reveal dotfiles) plus the cross-shell takeaway explaining the PowerShell-attribute vs Bash-dot convention difference",
+      "bytes": 4599,
+      "sha256": "8b29f19b8336aed7d2e598d4a21c16a83841b3e4e58fe76e3e1de682b44bf187"
+    }
+  ]
+}
