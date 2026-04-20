@@ -20,6 +20,16 @@ Each entry follows this structure:
 
 ## Open items
 
+### [2026-04-19] L-009 — gate 11 reading-time sanity
+
+**Lesson:** Edit a file with nano
+**Flagged at:** quality_gates
+**Severity:** warning
+**Issue:** Computed reading time ~31 minutes vs spine estimate 13 minutes; delta 18 minutes exceeds the 5-minute band.
+**Evidence:** `gate11_code_blocks=13, prose_word_count=1167, prose_minutes=5.3, hands_on_minutes=26`. Same Gate 11 heuristic issue documented for L-003, L-006, L-007 and L-008: 2 minutes per fenced code block is an over-count for one-line `nano hello.txt`, `cat hello.txt`, and the single-key editor keystroke blocks (`^O`, `<Enter> ^X`) that take under 15 seconds each. Ten of the thirteen blocks are one-line commands or their short output; only two (the typed three-line buffer and the `winget install GNU.Nano` block followed by the `Y` agreement prompt) consume any real time.
+**Suggested fix:** No article change needed. Same recalibration recommendation as prior lessons: weight single-command blocks at 15 seconds, multi-line at 2 minutes. Lesson ships per the soft-warning rule.
+**Status:** open
+
 ### [2026-04-19] L-008 — gate 11 reading-time sanity
 
 **Lesson:** Read a file's contents with cat and less
