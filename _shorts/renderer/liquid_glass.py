@@ -154,7 +154,8 @@ def render_liquid_glass(
     tint_rgba: tuple[int, int, int, int] = (255, 255, 255, 30),
     rim_alpha: int = 200,
     corner_specular_alpha: int = 90,
-    lensing_shift_px: int = 3,
+    lensing_shift_px: int = 6,
+    chromatic_aberration_px: int = 2,
     ripple_alpha: int = 9,
 ) -> Image.Image:
     """Produce a single liquid-glass panel tile (RGBA, size w x h) ready to
@@ -184,20 +185,33 @@ def render_liquid_glass(
     punch = rgb.convert("RGBA")
 
     # ---- Layer 3: fake lensing — displace rim pixels inward ----
+    # Stronger shift + per-channel split for chromatic aberration ("rainbow
+    # fringe" at the edge that gives glass its physical feel).
     if lensing_shift_px > 0:
         punch_arr = np.asarray(punch, dtype=np.uint8).copy()
-        shifted = np.roll(punch_arr, shift=(-lensing_shift_px, 0), axis=(0, 1))
-        shifted_h = np.roll(punch_arr, shift=(lensing_shift_px, 0), axis=(0, 1))
-        # Pick displacement per-pixel: top half uses down-shift, bottom uses
-        # up-shift. Weight by rim mask.
-        rim = _rim_mask((w, h), radius, rim_px=16)[..., None]
+        # Base vertical shift for top/bottom halves.
+        shifted_down = np.roll(punch_arr, shift=(-lensing_shift_px, 0), axis=(0, 1))
+        shifted_up = np.roll(punch_arr, shift=(lensing_shift_px, 0), axis=(0, 1))
+        rim = _rim_mask((w, h), radius, rim_px=20)[..., None]
         half_mask = np.zeros((h, w, 1), dtype=np.float32)
-        half_mask[:h // 2] = 1.0  # top half flag
+        half_mask[:h // 2] = 1.0
         blended = punch_arr.astype(np.float32) * (1 - rim)
-        pick_top = shifted.astype(np.float32) * rim * half_mask
-        pick_bot = shifted_h.astype(np.float32) * rim * (1 - half_mask)
-        punch_arr = (blended + pick_top + pick_bot).clip(0, 255).astype(np.uint8)
-        punch = Image.fromarray(punch_arr, mode="RGBA")
+        pick_top = shifted_down.astype(np.float32) * rim * half_mask
+        pick_bot = shifted_up.astype(np.float32) * rim * (1 - half_mask)
+        lensed = (blended + pick_top + pick_bot).clip(0, 255)
+
+        # Chromatic aberration: shift R one way and B the other, weighted by
+        # rim. This is the "rainbow fringe" real glass produces.
+        if chromatic_aberration_px > 0:
+            ca = chromatic_aberration_px
+            # Red channel: pull toward rim
+            red_shift = np.roll(lensed[..., 0], shift=(ca, 0), axis=(0, 1))
+            blue_shift = np.roll(lensed[..., 2], shift=(-ca, 0), axis=(0, 1))
+            rim_flat = rim[..., 0]
+            lensed[..., 0] = lensed[..., 0] * (1 - rim_flat) + red_shift * rim_flat
+            lensed[..., 2] = lensed[..., 2] * (1 - rim_flat) + blue_shift * rim_flat
+
+        punch = Image.fromarray(lensed.astype(np.uint8), mode="RGBA")
 
     # Rounded-rect mask (all subsequent layers clip to this).
     mask = Image.new("L", (w, h), 0)

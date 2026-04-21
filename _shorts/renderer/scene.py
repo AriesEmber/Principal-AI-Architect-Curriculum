@@ -262,10 +262,15 @@ def _draw_lane_labels(img: Image.Image, sb: Storyboard, lane_y: dict[str, int],
         w = x1 - x0
         h = 76
         LG.compose_liquid_glass(img, x0, y - h // 2, (w, h), radius=20,
-                                blur_radius=12,
-                                saturation=1.6,
-                                tint_rgba=(210, 220, 240, 28),
-                                shadow_blur=18, shadow_opacity=140,
+                                blur_radius=14,
+                                saturation=1.7,
+                                tint_rgba=(220, 228, 242, 30),
+                                rim_alpha=210,
+                                corner_specular_alpha=90,
+                                lensing_shift_px=5,
+                                chromatic_aberration_px=1,
+                                ripple_alpha=0,
+                                shadow_blur=18, shadow_opacity=150,
                                 shadow_offset=(0, 8))
         dd = ImageDraw.Draw(img)
         dd.text(((x0 + x1) // 2, y), lane,
@@ -284,39 +289,63 @@ def _draw_lifelines(img: Image.Image, sb: Storyboard, lane_y: dict[str, int]):
 
 def _draw_flow_pulse(base: Image.Image, x: int, y1: int, y2: int,
                      phase: float, color: tuple[int, int, int]):
-    """Overlay a moving cosine pulse on a completed arrow (y1 -> y2).
-    `phase` in [0, 1) — position of the pulse center along the line.
-    Draws an outer soft glow + a sharp core on top (blur + sample)."""
+    """Overlay a bright moving pulse on a completed arrow (y1 -> y2).
+    Three layers: wide outer glow (blur 12) + mid-width blurred core (blur 4)
+    + sharp hot-white core. Plus a decaying trailing streak behind the pulse
+    that reads as energy still flowing past."""
     length = y2 - y1  # signed
     abs_len = abs(length)
     if abs_len < 20:
         return
-    pulse_len = abs_len * 0.18
+    pulse_len = abs_len * 0.22
+    tail_len = abs_len * 0.35
     pulse_center_y = y1 + length * phase
     direction = 1 if length > 0 else -1
-    core_rgb = tuple(min(255, int(c * 0.5 + 255 * 0.5)) for c in color)
+    brighter = tuple(min(255, int(c * 0.45 + 255 * 0.55)) for c in color)
+    hot = (255, 255, 255)
 
-    # Outer soft glow (width=6, blurred), then sharp core (width=2).
     glow = Image.new("RGBA", (base.width, base.height), (0, 0, 0, 0))
     gd = ImageDraw.Draw(glow)
+    mid = Image.new("RGBA", (base.width, base.height), (0, 0, 0, 0))
+    md = ImageDraw.Draw(mid)
     core = Image.new("RGBA", (base.width, base.height), (0, 0, 0, 0))
     cd = ImageDraw.Draw(core)
 
-    n = 20
+    # Main pulse (cosine window).
+    n = 28
     for i in range(n):
         u = i / (n - 1)
         dy = (u - 0.5) * pulse_len * direction
         py = int(pulse_center_y + dy)
-        if py < -4 or py > base.height + 4:
+        if py < -6 or py > base.height + 6:
             continue
-        # Cosine window for brightness envelope
         window = 0.5 * (1 + math.cos((u - 0.5) * 2 * math.pi))
-        a_glow = int(window * 90)
-        a_core = int(window * 235)
-        gd.ellipse([x - 5, py - 5, x + 5, py + 5], fill=(*core_rgb, a_glow))
-        cd.ellipse([x - 2, py - 2, x + 2, py + 2], fill=(*core_rgb, a_core))
-    glow = glow.filter(ImageFilter.GaussianBlur(6))
+        a_glow = int(window * 180)
+        a_mid = int(window * 230)
+        a_core = int(window * 255)
+        gd.ellipse([x - 8, py - 8, x + 8, py + 8], fill=(*brighter, a_glow))
+        md.ellipse([x - 4, py - 4, x + 4, py + 4], fill=(*brighter, a_mid))
+        cd.ellipse([x - 2, py - 2, x + 2, py + 2], fill=(*hot, a_core))
+
+    # Trail (behind the pulse, fading).
+    m = 16
+    for i in range(m):
+        u = i / (m - 1)  # 0 = just behind pulse, 1 = far behind
+        back = -direction * (pulse_len / 2 + u * tail_len)
+        py = int(pulse_center_y + back)
+        if py < -6 or py > base.height + 6:
+            continue
+        # Quadratic fade
+        fade = (1 - u) ** 2
+        a_glow = int(fade * 110)
+        a_mid = int(fade * 150)
+        gd.ellipse([x - 6, py - 6, x + 6, py + 6], fill=(*brighter, a_glow))
+        md.ellipse([x - 3, py - 3, x + 3, py + 3], fill=(*brighter, a_mid))
+
+    glow = glow.filter(ImageFilter.GaussianBlur(12))
+    mid = mid.filter(ImageFilter.GaussianBlur(3))
     base.alpha_composite(glow)
+    base.alpha_composite(mid)
     base.alpha_composite(core)
 
 
@@ -485,15 +514,16 @@ def _draw_commands_panel(img: Image.Image, sb: Storyboard, t: float):
     w = C.CANVAS_W - 100
     h = COMMANDS_Y[1] - COMMANDS_Y[0] - 10
     LG.compose_liquid_glass(img, x0, y0, (w, h), radius=32,
-                            blur_radius=32,
-                            saturation=1.7,
-                            tint_rgba=(210, 220, 240, 32),
-                            rim_alpha=210,
-                            corner_specular_alpha=95,
-                            lensing_shift_px=3,
+                            blur_radius=28,
+                            saturation=1.85,
+                            tint_rgba=(220, 228, 242, 30),
+                            rim_alpha=220,
+                            corner_specular_alpha=120,
+                            lensing_shift_px=8,
+                            chromatic_aberration_px=2,
                             ripple_alpha=0,
-                            shadow_blur=26, shadow_opacity=170,
-                            shadow_offset=(0, 14))
+                            shadow_blur=32, shadow_opacity=180,
+                            shadow_offset=(0, 16))
 
 
 def _draw_mini_input(img: Image.Image, dd: ImageDraw.ImageDraw,
@@ -679,12 +709,16 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
         cap_h = max(130, len(shown) * line_h + 46)
         cap_y = CAPTION_Y[0] + (CAPTION_Y[1] - CAPTION_Y[0] - cap_h) // 2
         LG.compose_liquid_glass(base, cap_x0, cap_y, (cap_w, cap_h), radius=28,
-                                blur_radius=30,
-                                saturation=1.6,
-                                tint_rgba=(210, 220, 240, 32),
+                                blur_radius=26,
+                                saturation=1.7,
+                                tint_rgba=(220, 228, 242, 30),
+                                rim_alpha=210,
+                                corner_specular_alpha=110,
+                                lensing_shift_px=7,
+                                chromatic_aberration_px=2,
                                 ripple_alpha=0,
-                                shadow_blur=22, shadow_opacity=170,
-                                shadow_offset=(0, 12))
+                                shadow_blur=26, shadow_opacity=180,
+                                shadow_offset=(0, 14))
         dd = ImageDraw.Draw(base)
         text_y = cap_y + (cap_h - len(shown) * line_h) // 2 + 4
         for i, line in enumerate(shown):
