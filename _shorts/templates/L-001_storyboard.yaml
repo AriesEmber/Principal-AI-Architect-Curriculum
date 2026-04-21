@@ -1,0 +1,50 @@
+lesson_id: L-001
+day_number: 1
+learning_title: "the command line"
+lesson_title: "Open the terminal"
+hook_text: "Your very first keystroke into the world of engineering."
+finale_hold: 3.5
+
+lanes:
+  - "Desktop"
+  - "OS Search"
+  - "Terminal"
+
+beats:
+  - kind: open
+    to_lane: "Desktop"
+    narration: "Day one of learning the command line. Your first task — open the terminal. Every command in this course will live inside that window."
+    min_duration: 2.0
+
+  - kind: self
+    from_lane: "Desktop"
+    label: "press shortcut"
+    narration: "Start at your desktop. Press the shortcut on your keyboard. Command plus Space on Mac, the Windows key on Windows, Super on Linux."
+    min_duration: 2.0
+
+  - kind: call
+    from_lane: "Desktop"
+    to_lane: "OS Search"
+    label: "open search"
+    narration: "A small search panel appears on top of everything else."
+    min_duration: 1.6
+
+  - kind: self
+    from_lane: "OS Search"
+    label: "type: terminal"
+    narration: "Type the word: terminal. The top result is the built-in app."
+    min_duration: 1.8
+
+  - kind: call
+    from_lane: "OS Search"
+    to_lane: "Terminal"
+    label: "press enter"
+    narration: "Press enter, and your operating system launches it for you."
+    min_duration: 1.6
+
+  - kind: return
+    from_lane: "Terminal"
+    to_lane: "Desktop"
+    label: "window opens"
+    narration: "A new window appears. Blinking cursor. That is your workshop from here on."
+    min_duration: 1.8

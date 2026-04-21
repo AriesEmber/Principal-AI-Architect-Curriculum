@@ -1,0 +1,4 @@
+# Transient render artifacts — frames, per-beat audio, master audio.
+# Keep these out of git; they are regenerated every build.
+_work/
+audio/test/
