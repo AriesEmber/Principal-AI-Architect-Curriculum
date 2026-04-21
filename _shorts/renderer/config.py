@@ -21,20 +21,22 @@ ROBOT_SCREEN_X = 540
 
 PIXELS_PER_SECOND = 220
 
-# Default palette (Palette B "Warm Chrome" - placeholder until mascot locked)
-COLOR_BG = (18, 24, 36)
-COLOR_LANE_LINE = (58, 70, 88)
-COLOR_LANE_LABEL_BG = (44, 62, 77)
-COLOR_LANE_LABEL_TEXT = (240, 228, 211)
-COLOR_ACCENT = (133, 220, 176)
-COLOR_PRIMARY = (232, 168, 124)
-COLOR_OUTLINE = (26, 31, 43)
-COLOR_TEXT = (240, 228, 211)
+# Locked palette: Industrial Workshop (from Crate-Bot mascot pick).
+# Saturated terracotta does the heavy lifting; amber is the sparing accent;
+# slate carries the UI chrome so the mascot stays the loudest thing on screen.
+COLOR_BG = (14, 19, 28)                  # very dark slate, cooler than outline
+COLOR_LANE_LINE = (62, 76, 94)           # #3E4C5E slate
+COLOR_LANE_LABEL_BG = (46, 58, 74)       # slate, one notch darker than lanes
+COLOR_LANE_LABEL_TEXT = (242, 230, 209)  # warm cream
+COLOR_ACCENT = (244, 211, 94)            # #F4D35E safety amber
+COLOR_PRIMARY = (210, 105, 59)           # #D2693B terracotta
+COLOR_OUTLINE = (31, 36, 48)             # #1F2430
+COLOR_TEXT = (242, 230, 209)             # warm cream
 COLOR_TEXT_DIM = (170, 160, 145)
-COLOR_ARROW = (232, 168, 124)
-COLOR_SHADOW = (184, 116, 80)
-COLOR_USER_SKIN = (240, 210, 170)
-COLOR_USER_SHIRT = (100, 130, 180)
+COLOR_ARROW = (210, 105, 59)             # same as primary (returns)
+COLOR_SHADOW = (138, 79, 46)             # #8A4F2E burnt sienna
+COLOR_USER_SKIN = (236, 198, 164)        # slightly warmer skin tone
+COLOR_USER_SHIRT = (82, 108, 156)        # cool blue — complementary to terracotta
 
 FONT_CAPTION = r"C:\Windows\Fonts\segoeui.ttf"
 FONT_CAPTION_BOLD = r"C:\Windows\Fonts\segoeuib.ttf"
