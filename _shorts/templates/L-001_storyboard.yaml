@@ -13,38 +13,58 @@ lanes:
 beats:
   - kind: open
     to_lane: "Desktop"
-    narration: "Day one of learning the command line. Your first task — open the terminal. Every command in this course will live inside that window."
+    narration: "Hey, welcome to day one! Today we're doing something small but kind of magical together — we're opening the terminal, the little window where every single command in this whole journey is going to live."
     min_duration: 2.0
 
   - kind: self
     from_lane: "Desktop"
     label: "press shortcut"
-    narration: "Start at your desktop. Press the shortcut on your keyboard. Command plus Space on Mac, the Windows key on Windows, Super on Linux."
+    narration: "Alright, look at your desktop, take a breath, and press the shortcut. Command plus Space if you're on a Mac, the Windows key on Windows, or Super on Linux. Go ahead."
     min_duration: 2.0
+    input_display:
+      type: keycaps
+      rows:
+        - platform: "Mac"
+          keys: ["Cmd", "Space"]
+        - platform: "Win"
+          keys: ["Win"]
+        - platform: "Linux"
+          keys: ["Super"]
 
   - kind: call
     from_lane: "Desktop"
     to_lane: "OS Search"
     label: "open search"
-    narration: "A small search panel appears on top of everything else."
+    narration: "See that? A little search bar just slides in over everything else — that's your quick-open."
     min_duration: 1.6
 
   - kind: self
     from_lane: "OS Search"
     label: "type: terminal"
-    narration: "Type the word: terminal. The top result is the built-in app."
+    narration: "Now type the word terminal — just those eight letters — and watch the top result light up with the app we actually want."
     min_duration: 1.8
+    input_display:
+      type: text_input
+      placeholder: "type to search..."
+      text: "terminal"
 
   - kind: call
     from_lane: "OS Search"
     to_lane: "Terminal"
     label: "press enter"
-    narration: "Press enter, and your operating system launches it for you."
+    narration: "Hit Enter, and your computer is already reaching over to grab it for you."
     min_duration: 1.6
+    input_display:
+      type: key
+      label: "Enter"
 
   - kind: return
     from_lane: "Terminal"
     to_lane: "Desktop"
     label: "window opens"
-    narration: "A new window appears. Blinking cursor. That is your workshop from here on."
+    narration: "And there it is! A fresh window, a blinking cursor, quietly waiting for you. Congratulations — you just opened your workshop. This is where everything happens from here on."
     min_duration: 1.8
+    input_display:
+      type: command
+      prompt: "$"
+      text: "_"
