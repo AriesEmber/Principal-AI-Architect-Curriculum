@@ -32,6 +32,7 @@ from .storyboard import Storyboard, Beat
 from .input_display import draw_input_display
 from . import liquid_glass as LG
 from . import electron as E
+from . import smoke_bg
 
 
 # -------------------- Layout constants (static) --------------------
@@ -246,33 +247,26 @@ def _get_font(path: str, size: int) -> ImageFont.FreeTypeFont:
 
 # -------------------- Backdrop --------------------
 
-_BACKDROP_CACHE: dict[tuple[int, int], Image.Image] = {}
-
-
-def _backdrop() -> Image.Image:
-    key = (C.CANVAS_W, C.CANVAS_H)
-    if key not in _BACKDROP_CACHE:
-        inner = (28, 38, 62)
-        outer = (6, 9, 16)
-        _BACKDROP_CACHE[key] = LG.radial_gradient(
-            key, inner, outer, center=(0.5, 0.25), falloff=1.25)
-    return _BACKDROP_CACHE[key].copy()
+def _backdrop(t: float = 0.0) -> Image.Image:
+    """Animated smoke/nebula backdrop at time t."""
+    return smoke_bg.render_backdrop(t)
 
 
 # -------------------- Event drawing --------------------
 
 def _draw_lane_labels(img: Image.Image, sb: Storyboard, lane_y: dict[str, int],
-                      backdrop: Image.Image, label_font):
+                      label_font):
     for lane in sb.lanes:
         y = lane_y[lane]
         x0, x1 = LANE_LABEL_X
         w = x1 - x0
         h = 76
-        LG.compose_apple_tile(img, x0, y - h // 2, (w, h), radius=20,
-                              tint=(130, 150, 190),
-                              shadow_blur=18, shadow_opacity=140,
-                              shadow_offset=(0, 8),
-                              backdrop=backdrop)
+        LG.compose_liquid_glass(img, x0, y - h // 2, (w, h), radius=20,
+                                blur_radius=12,
+                                saturation=1.6,
+                                tint_rgba=(210, 220, 240, 28),
+                                shadow_blur=18, shadow_opacity=140,
+                                shadow_offset=(0, 8))
         dd = ImageDraw.Draw(img)
         dd.text(((x0 + x1) // 2, y), lane,
                 fill=(240, 246, 252), font=label_font, anchor="mm")
@@ -288,114 +282,186 @@ def _draw_lifelines(img: Image.Image, sb: Storyboard, lane_y: dict[str, int]):
             dd.line([x, y, x + 8, y], fill=(78, 98, 128, 220), width=2)
 
 
-def _draw_event_call(dd: ImageDraw.ImageDraw, beat: Beat, lane_y: dict[str, int],
-                     progress: float, step_no: int, show_step: bool,
-                     arrow_label_font):
-    """Draw the (possibly partial) vertical arrow for a call/return beat.
-    progress 0..1 = how much of the arrow to draw."""
+def _draw_flow_pulse(base: Image.Image, x: int, y1: int, y2: int,
+                     phase: float, color: tuple[int, int, int]):
+    """Overlay a moving cosine pulse on a completed arrow (y1 -> y2).
+    `phase` in [0, 1) — position of the pulse center along the line.
+    Draws an outer soft glow + a sharp core on top (blur + sample)."""
+    length = y2 - y1  # signed
+    abs_len = abs(length)
+    if abs_len < 20:
+        return
+    pulse_len = abs_len * 0.18
+    pulse_center_y = y1 + length * phase
+    direction = 1 if length > 0 else -1
+    core_rgb = tuple(min(255, int(c * 0.5 + 255 * 0.5)) for c in color)
+
+    # Outer soft glow (width=6, blurred), then sharp core (width=2).
+    glow = Image.new("RGBA", (base.width, base.height), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    core = Image.new("RGBA", (base.width, base.height), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(core)
+
+    n = 20
+    for i in range(n):
+        u = i / (n - 1)
+        dy = (u - 0.5) * pulse_len * direction
+        py = int(pulse_center_y + dy)
+        if py < -4 or py > base.height + 4:
+            continue
+        # Cosine window for brightness envelope
+        window = 0.5 * (1 + math.cos((u - 0.5) * 2 * math.pi))
+        a_glow = int(window * 90)
+        a_core = int(window * 235)
+        gd.ellipse([x - 5, py - 5, x + 5, py + 5], fill=(*core_rgb, a_glow))
+        cd.ellipse([x - 2, py - 2, x + 2, py + 2], fill=(*core_rgb, a_core))
+    glow = glow.filter(ImageFilter.GaussianBlur(6))
+    base.alpha_composite(glow)
+    base.alpha_composite(core)
+
+
+def _draw_event_lines(base: Image.Image, beat: Beat, lane_y: dict[str, int],
+                      progress: float):
+    """Lines-only pass for a beat. Labels and step chips come later, on top of
+    liquid-glass panels."""
     if progress <= 0:
         return
+    dd = ImageDraw.Draw(base)
     x = beat.event_world_x
-    y1 = lane_y[beat.from_lane]
-    y2 = lane_y[beat.to_lane]
-    color = (90, 190, 255) if beat.kind == "call" else (236, 140, 96)  # cyan / amber-red
-    y_cur = y1 + (y2 - y1) * progress
-    dd.line([x, y1, x, y_cur], fill=color, width=4)
-    # Arrowhead only when fully drawn
-    if progress >= 0.98:
-        head = 12
-        if y2 > y1:
-            dd.polygon([(x - head, y2 - head), (x + head, y2 - head),
-                        (x, y2)], fill=color)
-        else:
-            dd.polygon([(x - head, y2 + head), (x + head, y2 + head),
-                        (x, y2)], fill=color)
-    # Label after arrow is complete.
-    # Calls: label at midpoint, to the RIGHT of the arrow.
-    # Returns: label at 25% from destination toward source (so it sits in the
-    #   gap above the nearest lane instead of on a lane row), to the LEFT.
-    if progress >= 0.95 and beat.label:
-        pad = 10
-        bbox = dd.textbbox((0, 0), beat.label, font=arrow_label_font)
-        lw = bbox[2] - bbox[0]
-        lh = bbox[3] - bbox[1]
+    if beat.kind in ("call", "return"):
+        y1 = lane_y[beat.from_lane]
+        y2 = lane_y[beat.to_lane]
+        color = (90, 190, 255) if beat.kind == "call" else (236, 140, 96)
+        y_cur = y1 + (y2 - y1) * progress
+        # Base line — dim. The flow pulse overlay is the "alive" element.
+        dd.line([x, y1, x, y_cur], fill=(*color, 130), width=3)
+        if progress >= 0.98:
+            head = 12
+            if y2 > y1:
+                dd.polygon([(x - head, y2 - head), (x + head, y2 - head),
+                            (x, y2)], fill=color)
+            else:
+                dd.polygon([(x - head, y2 + head), (x + head, y2 + head),
+                            (x, y2)], fill=color)
+    elif beat.kind == "self":
+        y = lane_y[beat.from_lane]
+        ring_alpha = min(1.0, progress / 0.8)
+        ring_r = 14
+        color = (244, 211, 94)
+        ring = Image.new("RGBA", (ring_r * 2 + 4, ring_r * 2 + 4), (0, 0, 0, 0))
+        rd = ImageDraw.Draw(ring)
+        rd.ellipse([2, 2, ring_r * 2 + 1, ring_r * 2 + 1],
+                   outline=(*color, int(220 * ring_alpha)), width=3)
+        rd.ellipse([8, 8, ring_r * 2 - 5, ring_r * 2 - 5],
+                   fill=(*color, int(180 * ring_alpha)))
+        base.alpha_composite(ring, (int(x - ring_r - 2), int(y - ring_r - 2)))
+
+
+def _beat_label_placement(beat: Beat, lane_y: dict[str, int]) -> tuple[int, int, int]:
+    """Return (cx, cy, color_tag) for the beat's label center.
+    color_tag is 0 for call (cyan), 1 for return (amber), 2 for self (amber)."""
+    x = int(beat.event_world_x)
+    if beat.kind in ("call", "return"):
+        y1 = lane_y[beat.from_lane]
+        y2 = lane_y[beat.to_lane]
         if beat.kind == "return":
-            # Place return label high in the gap between the destination lane
-            # and the nearest intermediate lane, so it doesn't share a y-row
-            # with other calls' midpoint labels.
             label_y = int(y2 + (y1 - y2) * 0.15)
-            bx1 = x - 18
-            bx0 = bx1 - (lw + pad * 2)
-        else:
-            label_y = (y1 + y2) // 2
-            bx0 = x + 18
-            bx1 = bx0 + lw + pad * 2
-        dd.rounded_rectangle([bx0, label_y - lh // 2 - pad // 2,
-                              bx1, label_y + lh // 2 + pad // 2],
-                             radius=8, fill=(20, 26, 40, 230),
-                             outline=color, width=2)
-        dd.text((bx0 + pad, label_y), beat.label,
-                fill=(232, 240, 248), font=arrow_label_font, anchor="lm")
-    # Step number circle (only when finale step-reveal is active AND this
-    # beat has a commands-panel step number). Place it near the label so they
-    # read as a unit.
-    if show_step and progress >= 0.95 and step_no is not None:
-        if beat.kind == "return":
-            scn_x = x + 48  # opposite side of label (label is LEFT, circle RIGHT)
-            scn_y = int(y2 + (y1 - y2) * 0.15)
-        else:
-            scn_x = x - 48
-            scn_y = (y1 + y2) // 2
-        dd.ellipse([scn_x - 20, scn_y - 20, scn_x + 20, scn_y + 20],
-                   fill=(28, 36, 54), outline=(244, 211, 94), width=2)
-        dd.text((scn_x, scn_y), str(step_no),
-                fill=(244, 211, 94),
-                font=_get_font(C.FONT_CAPTION_BOLD, 28), anchor="mm")
-
-
-def _draw_event_self(dd: ImageDraw.ImageDraw, beat: Beat, lane_y: dict[str, int],
-                     progress: float, step_no: int, show_step: bool,
-                     arrow_label_font):
-    """Self-beat: a small ring marker + label appears as the orbit completes."""
-    if progress <= 0:
-        return
-    x = beat.event_world_x
+            # Label will be drawn to the LEFT of the arrow; center placed so
+            # the right edge of the label ends at x-18.
+            return (x - 18, label_y, 1)
+        return (x + 18, (y1 + y2) // 2, 0)
+    # self
     y = lane_y[beat.from_lane]
-    # Ring marker grows from 0 to full at progress=0.8
-    ring_alpha = min(1.0, progress / 0.8)
-    ring_r = 14
-    color = (244, 211, 94)  # amber
-    ring = Image.new("RGBA", (ring_r * 2 + 4, ring_r * 2 + 4), (0, 0, 0, 0))
-    rd = ImageDraw.Draw(ring)
-    rd.ellipse([2, 2, ring_r * 2 + 1, ring_r * 2 + 1],
-               outline=(*color, int(220 * ring_alpha)), width=3)
-    rd.ellipse([8, 8, ring_r * 2 - 5, ring_r * 2 - 5],
-               fill=(*color, int(180 * ring_alpha)))
-    # Composite centered on (x, y)
-    dd._image.alpha_composite(ring, (int(x - ring_r - 2), int(y - ring_r - 2)))
+    return (x + 28, y, 2)
 
-    # Label pops in after 0.75 progress
-    if progress >= 0.75 and beat.label:
-        pad = 10
+
+def _draw_event_labels(base: Image.Image, sb: Storyboard, t: float, lane_y,
+                       arrow_label_font, show_step: bool):
+    """Render arrow/self labels as mini liquid-glass tiles ON TOP of lines.
+    Also renders the step-number chips when show_step is true."""
+    dd = ImageDraw.Draw(base)
+    CALL_C = (90, 190, 255)
+    RET_C = (236, 140, 96)
+    SELF_C = (244, 211, 94)
+    color_map = [CALL_C, RET_C, SELF_C]
+
+    for beat in sb.beats:
+        if beat.kind == "open":
+            continue
+        prog = _beat_progress(beat, t)
+        reveal_thresh = 0.75 if beat.kind == "self" else 0.95
+        if prog < reveal_thresh or not beat.label:
+            continue
+        anchor_x, anchor_y, color_tag = _beat_label_placement(beat, lane_y)
+        color = color_map[color_tag]
+
+        # Measure label
+        pad_x, pad_y = 14, 10
         bbox = dd.textbbox((0, 0), beat.label, font=arrow_label_font)
         lw = bbox[2] - bbox[0]
         lh = bbox[3] - bbox[1]
-        bx0 = x + 28
-        bx1 = bx0 + lw + pad * 2
-        dd.rounded_rectangle([bx0, y - lh // 2 - pad // 2,
-                              bx1, y + lh // 2 + pad // 2],
-                             radius=8, fill=(20, 26, 40, 230),
-                             outline=color, width=2)
-        dd.text((bx0 + pad, y), beat.label,
-                fill=(232, 240, 248), font=arrow_label_font, anchor="lm")
-    if show_step and progress >= 0.95 and step_no is not None:
-        scn_x = x - 48
-        scn_y = y
-        dd.ellipse([scn_x - 20, scn_y - 20, scn_x + 20, scn_y + 20],
-                   fill=(28, 36, 54), outline=(244, 211, 94), width=2)
-        dd.text((scn_x, scn_y), str(step_no),
-                fill=(244, 211, 94),
-                font=_get_font(C.FONT_CAPTION_BOLD, 28), anchor="mm")
+        tile_w = lw + pad_x * 2
+        tile_h = lh + pad_y * 2
+
+        if beat.kind == "return":
+            # anchor_x is right edge
+            tx = anchor_x - tile_w
+            ty = anchor_y - tile_h // 2
+        elif beat.kind == "self":
+            tx = anchor_x
+            ty = anchor_y - tile_h // 2
+        else:
+            tx = anchor_x
+            ty = anchor_y - tile_h // 2
+
+        # Mini liquid-glass tile with colored edge.
+        LG.compose_liquid_glass(base, tx, ty, (tile_w, tile_h),
+                                radius=8,
+                                blur_radius=6,
+                                saturation=1.4,
+                                tint_rgba=(230, 240, 255, 28),
+                                rim_alpha=180,
+                                corner_specular_alpha=45,
+                                lensing_shift_px=1,
+                                ripple_alpha=5,
+                                shadow_blur=10, shadow_opacity=90,
+                                shadow_offset=(0, 4))
+        # Colored border stroke
+        dd = ImageDraw.Draw(base)
+        dd.rounded_rectangle([tx, ty, tx + tile_w - 1, ty + tile_h - 1],
+                             radius=8, outline=(*color, 220), width=2)
+        # Label text
+        dd.text((tx + tile_w // 2, ty + tile_h // 2), beat.label,
+                fill=(240, 246, 252), font=arrow_label_font, anchor="mm")
+
+    # Step number chips (finale only)
+    if show_step:
+        for beat in sb.beats:
+            step_no = getattr(beat, "_step_no", None)
+            prog = _beat_progress(beat, t)
+            if step_no is None or prog < 0.95:
+                continue
+            if beat.kind == "open":
+                continue
+            x = int(beat.event_world_x)
+            if beat.kind == "return":
+                y1 = lane_y[beat.from_lane]
+                y2 = lane_y[beat.to_lane]
+                scn_x = x + 48
+                scn_y = int(y2 + (y1 - y2) * 0.15)
+            elif beat.kind == "call":
+                y1 = lane_y[beat.from_lane]
+                y2 = lane_y[beat.to_lane]
+                scn_x = x - 48
+                scn_y = (y1 + y2) // 2
+            else:
+                scn_x = x - 48
+                scn_y = lane_y[beat.from_lane]
+            dd.ellipse([scn_x - 20, scn_y - 20, scn_x + 20, scn_y + 20],
+                       fill=(28, 36, 54), outline=(244, 211, 94), width=2)
+            dd.text((scn_x, scn_y), str(step_no),
+                    fill=(244, 211, 94),
+                    font=_get_font(C.FONT_CAPTION_BOLD, 28), anchor="mm")
 
 
 def _beat_progress(beat: Beat, t: float) -> float:
@@ -412,47 +478,22 @@ def _beat_progress(beat: Beat, t: float) -> float:
 
 # -------------------- Commands panel --------------------
 
-def _draw_commands_panel(img: Image.Image, sb: Storyboard, t: float,
-                         backdrop: Image.Image):
+def _draw_commands_panel(img: Image.Image, sb: Storyboard, t: float):
+    """Draw the glass tile only — the rows are drawn by
+    _draw_commands_panel_rows after the tile, so they sit on top."""
     x0, y0 = 50, COMMANDS_Y[0]
     w = C.CANVAS_W - 100
     h = COMMANDS_Y[1] - COMMANDS_Y[0] - 10
-    LG.compose_apple_tile(img, x0, y0, (w, h), radius=32,
-                          tint=(150, 175, 210),
-                          shadow_blur=26, shadow_opacity=170,
-                          shadow_offset=(0, 14),
-                          backdrop=backdrop)
-
-    dd = ImageDraw.Draw(img)
-    title_font = _get_font(C.FONT_CAPTION_BOLD, 28)
-    dd.text((x0 + w // 2, y0 + 26), "COMMANDS ENTERED",
-            fill=(244, 211, 94), font=title_font, anchor="mt")
-
-    # Row geometry — 4 possible slots.
-    slot_top = y0 + 72
-    slot_h = (h - 90) // 4
-    inputs = [b for b in sb.beats if b.input_display]
-    step_font = _get_font(C.FONT_CAPTION_BOLD, 22)
-
-    for i, beat in enumerate(inputs):
-        # Reveal as soon as the beat starts (even while it's active).
-        appear_t = beat.start_time
-        if t < appear_t:
-            continue
-        # Fade in over 0.35s
-        alpha_scale = min(1.0, (t - appear_t) / 0.35)
-        row_y = slot_top + i * slot_h + slot_h // 2
-        # Step number chip on the left
-        cn = x0 + 36
-        dd.ellipse([cn - 16, row_y - 16, cn + 16, row_y + 16],
-                   fill=(244, 211, 94))
-        dd.text((cn, row_y), str(i + 1),
-                fill=(18, 22, 32), font=step_font, anchor="mm")
-        # Fade-in overlay for the whole row (cheap approximation — reuse alpha)
-        _draw_mini_input(img, dd, beat.input_display,
-                         (x0 + 64, row_y - slot_h // 2 + 4,
-                          x0 + w - 20, row_y + slot_h // 2 - 4),
-                         alpha_scale=alpha_scale)
+    LG.compose_liquid_glass(img, x0, y0, (w, h), radius=32,
+                            blur_radius=32,
+                            saturation=1.7,
+                            tint_rgba=(210, 220, 240, 32),
+                            rim_alpha=210,
+                            corner_specular_alpha=95,
+                            lensing_shift_px=3,
+                            ripple_alpha=0,
+                            shadow_blur=26, shadow_opacity=170,
+                            shadow_offset=(0, 14))
 
 
 def _draw_mini_input(img: Image.Image, dd: ImageDraw.ImageDraw,
@@ -550,8 +591,8 @@ def _draw_mini_input(img: Image.Image, dd: ImageDraw.ImageDraw,
 # -------------------- Main compose_frame --------------------
 
 def compose_frame(sb: Storyboard, t: float) -> Image.Image:
-    base = _backdrop().convert("RGBA")
-    backdrop_snapshot = base.copy()
+    # 1. Animated smoke backdrop
+    base = _backdrop(t).convert("RGBA")
 
     header_font = _get_font(C.FONT_CAPTION_BOLD, 60)
     sub_font = _get_font(C.FONT_CAPTION, 36)
@@ -560,7 +601,7 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
     caption_font = _get_font(C.FONT_CAPTION_BOLD, 42)
     watermark_font = _get_font(C.FONT_ITALIC, 26)
 
-    # ---- Header ----
+    # ---- 2. Header text (just type, no glass) ----
     LG.accent_glow(base, C.CANVAS_W // 2 - 200, 20, (400, 100),
                    radius=48, color=(244, 211, 94), alpha=45, blur=22)
     dd = ImageDraw.Draw(base)
@@ -569,17 +610,11 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
     dd.text((C.CANVAS_W // 2, 96), sb.learning_title.upper(),
             fill=(232, 240, 248), font=sub_font, anchor="mt")
 
-    # ---- Commands panel ----
-    _draw_commands_panel(base, sb, t, backdrop_snapshot)
-
-    # ---- Sequence diagram: lane labels + lifelines ----
+    # ---- 3. Diagram geometry ----
     lane_y = _lane_y_map(sb)
-    _draw_lane_labels(base, sb, lane_y, backdrop_snapshot, lane_font)
     _draw_lifelines(base, sb, lane_y)
 
-    # ---- Events (progressively drawn) ----
-    dd = ImageDraw.Draw(base)
-    # Determine whether to show step numbers (only during finale hold).
+    # ---- 4. Arrow LINES only (no labels yet) — goes BEHIND panels ----
     last = sb.beats[-1]
     last_end = last.start_time + last.duration
     show_step_numbers = t >= last_end + 0.4
@@ -587,15 +622,23 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
         prog = _beat_progress(beat, t)
         if prog <= 0:
             continue
-        step_no = getattr(beat, "_step_no", None)
-        if beat.kind in ("call", "return"):
-            _draw_event_call(dd, beat, lane_y, prog, step_no,
-                             show_step_numbers, arrow_label_font)
-        elif beat.kind == "self":
-            _draw_event_self(dd, beat, lane_y, prog, step_no,
-                             show_step_numbers, arrow_label_font)
+        _draw_event_lines(base, beat, lane_y, prog)
 
-    # ---- Electron trail + core ----
+    # ---- 5. Flowing pulse overlay on every completed call/return arrow ----
+    for beat in sb.beats:
+        prog = _beat_progress(beat, t)
+        if prog < 0.98 or beat.kind not in ("call", "return"):
+            continue
+        # Each arrow has its own phase offset so pulses don't line up.
+        x = int(beat.event_world_x)
+        y1 = lane_y[beat.from_lane]
+        y2 = lane_y[beat.to_lane]
+        color = (90, 190, 255) if beat.kind == "call" else (236, 140, 96)
+        phase_offset = (hash(beat.label or "") % 100) / 100.0
+        phase = ((t / 1.6) + phase_offset) % 1.0
+        _draw_flow_pulse(base, x, y1, y2, phase, color)
+
+    # ---- 6. Electron trail + core (the active drawing agent) ----
     ex, ey, intensity = electron_xy_at(sb, t)
     if intensity > 0.02:
         trail = electron_trail_positions(sb, t)
@@ -604,7 +647,17 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
         E.paste_electron(base, ex, ey, size=66, core_r=5,
                          intensity=intensity)
 
-    # ---- Caption ----
+    # ---- 7. LIQUID GLASS panels ON TOP of lines ----
+    _draw_commands_panel(base, sb, t)
+    _draw_lane_labels(base, sb, lane_y, lane_font)
+
+    # Commands-panel content (rows) — draw on top of the glass tile
+    _draw_commands_panel_rows(base, sb, t)
+
+    # ---- 8. Event labels (mini glass tiles) + step chips ----
+    _draw_event_labels(base, sb, t, lane_y, arrow_label_font, show_step_numbers)
+
+    # ---- 9. Caption panel ----
     current = None
     for beat in sb.beats:
         if beat.start_time <= t < beat.start_time + beat.duration:
@@ -625,23 +678,57 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
         shown = lines[:4]
         cap_h = max(130, len(shown) * line_h + 46)
         cap_y = CAPTION_Y[0] + (CAPTION_Y[1] - CAPTION_Y[0] - cap_h) // 2
-        LG.compose_apple_tile(base, cap_x0, cap_y, (cap_w, cap_h), radius=28,
-                              tint=(150, 175, 210),
-                              shadow_blur=22, shadow_opacity=170,
-                              shadow_offset=(0, 12),
-                              backdrop=backdrop_snapshot)
+        LG.compose_liquid_glass(base, cap_x0, cap_y, (cap_w, cap_h), radius=28,
+                                blur_radius=30,
+                                saturation=1.6,
+                                tint_rgba=(210, 220, 240, 32),
+                                ripple_alpha=0,
+                                shadow_blur=22, shadow_opacity=170,
+                                shadow_offset=(0, 12))
         dd = ImageDraw.Draw(base)
         text_y = cap_y + (cap_h - len(shown) * line_h) // 2 + 4
         for i, line in enumerate(shown):
             dd.text((C.CANVAS_W // 2, text_y + i * line_h), line,
                     fill=(240, 246, 252), font=caption_font, anchor="mt")
 
-    # ---- Watermark ----
+    # ---- 10. Watermark ----
     dd = ImageDraw.Draw(base)
     dd.text((C.CANVAS_W - 24, C.CANVAS_H - 24), "by Elvis Jones",
             fill=(210, 210, 215), font=watermark_font, anchor="rb")
 
     return base.convert("RGB")
+
+
+def _draw_commands_panel_rows(img: Image.Image, sb: Storyboard, t: float):
+    """Render the numbered rows ON TOP of the commands glass tile."""
+    x0, y0 = 50, COMMANDS_Y[0]
+    w = C.CANVAS_W - 100
+    h = COMMANDS_Y[1] - COMMANDS_Y[0] - 10
+
+    dd = ImageDraw.Draw(img)
+    title_font = _get_font(C.FONT_CAPTION_BOLD, 28)
+    dd.text((x0 + w // 2, y0 + 26), "COMMANDS ENTERED",
+            fill=(244, 211, 94), font=title_font, anchor="mt")
+
+    slot_top = y0 + 72
+    slot_h = (h - 90) // 4
+    inputs = [b for b in sb.beats if b.input_display]
+    step_font = _get_font(C.FONT_CAPTION_BOLD, 22)
+
+    for i, beat in enumerate(inputs):
+        if t < beat.start_time:
+            continue
+        alpha_scale = min(1.0, (t - beat.start_time) / 0.35)
+        row_y = slot_top + i * slot_h + slot_h // 2
+        cn = x0 + 36
+        dd.ellipse([cn - 16, row_y - 16, cn + 16, row_y + 16],
+                   fill=(244, 211, 94))
+        dd.text((cn, row_y), str(i + 1),
+                fill=(18, 22, 32), font=step_font, anchor="mm")
+        _draw_mini_input(img, dd, beat.input_display,
+                         (x0 + 64, row_y - slot_h // 2 + 4,
+                          x0 + w - 20, row_y + slot_h // 2 - 4),
+                         alpha_scale=alpha_scale)
 
 
 def compose_finale_frame(sb: Storyboard, phase_u: float) -> Image.Image:
