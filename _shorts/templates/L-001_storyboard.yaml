@@ -21,6 +21,15 @@ beats:
     label: "press shortcut"
     narration: "Start at your desktop. Press the shortcut on your keyboard. Command plus Space on Mac, the Windows key on Windows, Super on Linux."
     min_duration: 2.0
+    input_display:
+      type: keycaps
+      rows:
+        - platform: "Mac"
+          keys: ["Cmd", "Space"]
+        - platform: "Win"
+          keys: ["Win"]
+        - platform: "Linux"
+          keys: ["Super"]
 
   - kind: call
     from_lane: "Desktop"
@@ -34,6 +43,10 @@ beats:
     label: "type: terminal"
     narration: "Type the word: terminal. The top result is the built-in app."
     min_duration: 1.8
+    input_display:
+      type: text_input
+      placeholder: "type to search..."
+      text: "terminal"
 
   - kind: call
     from_lane: "OS Search"
@@ -41,6 +54,9 @@ beats:
     label: "press enter"
     narration: "Press enter, and your operating system launches it for you."
     min_duration: 1.6
+    input_display:
+      type: key
+      label: "Enter"
 
   - kind: return
     from_lane: "Terminal"
@@ -48,3 +64,7 @@ beats:
     label: "window opens"
     narration: "A new window appears. Blinking cursor. That is your workshop from here on."
     min_duration: 1.8
+    input_display:
+      type: command
+      prompt: "$"
+      text: "_"
