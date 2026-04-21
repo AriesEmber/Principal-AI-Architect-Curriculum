@@ -18,19 +18,21 @@ def main():
     out_dir = C.CHARACTER_DIR / "robot"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Individual 48x48 PNGs
+    prefix = "johnny5-32bit"
+    # Individual native-resolution PNGs
     for name in FRAMES:
         img = placeholder_robot(name)
-        img.save(out_dir / f"crate-bot-{name}.png")
+        img.save(out_dir / f"{prefix}-{name}.png")
 
-    # Upscaled individual sheets
+    # Upscaled individual sheets (4x = 384 px)
     for name in FRAMES:
-        img = upscale_pixel(placeholder_robot(name), 8)
-        img.save(out_dir / f"crate-bot-{name}-x8.png")
+        img = upscale_pixel(placeholder_robot(name), 4)
+        img.save(out_dir / f"{prefix}-{name}-x4.png")
 
     # Contact sheet (all 4 frames, upscaled, with labels)
-    scale = 8
-    tile = 48 * scale
+    from .sprite import SPRITE_SIZE
+    scale = 4
+    tile = SPRITE_SIZE * scale
     pad = 40
     w = len(FRAMES) * tile + (len(FRAMES) + 1) * pad
     h = tile + pad * 3
@@ -49,7 +51,7 @@ def main():
                     outline=(80, 80, 90), width=2)
         d.text((x + tile // 2, y + tile + 8), name,
                fill=(40, 40, 55), font=label_font, anchor="mt")
-    sheet.save(out_dir / "crate-bot-sheet.png")
+    sheet.save(out_dir / f"{prefix}-sheet.png")
 
     print(f"wrote {len(FRAMES) * 2 + 1} files to {out_dir}")
 

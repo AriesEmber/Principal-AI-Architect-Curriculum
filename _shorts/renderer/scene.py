@@ -271,7 +271,7 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
     # 6. Robot sprite (centered, y follows state)
     moving = is_robot_moving(sb, t)
     robot_frame = robot_walk_frame(t, moving)
-    robot_scale = 5
+    robot_scale = 3  # 96x96 sprite * 3 = 288 on-screen (keeps footprint similar to old 48*5)
     robot_img = upscale_pixel(placeholder_robot(robot_frame), robot_scale)
     ry = robot_y_at(sb, t)
     rx = C.ROBOT_SCREEN_X - robot_img.width // 2
