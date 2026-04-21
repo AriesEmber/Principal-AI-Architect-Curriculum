@@ -177,3 +177,145 @@ def accent_glow(base: Image.Image, x: int, y: int, size: tuple[int, int],
                         radius=radius + 2, outline=(*color, alpha), width=4)
     glow = glow.filter(ImageFilter.GaussianBlur(blur))
     base.alpha_composite(glow, (x - pad, y - pad))
+
+
+# -------------------- Apple-style liquid glass tile --------------------
+
+def apple_glass_tile(size: tuple[int, int], *, radius: int = 28,
+                     tint: tuple[int, int, int] = (200, 220, 240),
+                     tint_alpha_top: int = 48,
+                     tint_alpha_bot: int = 90,
+                     rim_alpha: int = 180,
+                     inner_glow_alpha: int = 70,
+                     specular: bool = True) -> Image.Image:
+    """Return an RGBA tile (size w x h) styled like iOS 26 / macOS Tahoe liquid
+    glass — translucent top-light gradient + bright rim + subtle inner glow +
+    a soft specular highlight in the upper-left quadrant.
+
+    Compose this ON TOP of a blurred background patch to complete the
+    frosted/refractive feel (see `frosted_under`).
+    """
+    w, h = size
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+
+    # ---- Rounded-rect mask for clipping ----
+    mask = Image.new("L", (w, h), 0)
+    md = ImageDraw.Draw(mask)
+    md.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, fill=255)
+
+    # ---- Vertical tint gradient (top lighter, bottom slightly deeper) ----
+    grad = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(grad)
+    for y in range(h):
+        t = y / max(h - 1, 1)
+        a = int(tint_alpha_top + (tint_alpha_bot - tint_alpha_top) * t)
+        gd.line([(0, y), (w, y)], fill=(*tint, a))
+    img.paste(grad, (0, 0), mask)
+
+    # ---- Inner glow (bright ring just inside the edge) ----
+    if inner_glow_alpha > 0:
+        glow_layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        glow_draw = ImageDraw.Draw(glow_layer)
+        glow_draw.rounded_rectangle(
+            [2, 2, w - 3, h - 3], radius=max(1, radius - 2),
+            outline=(255, 255, 255, inner_glow_alpha), width=3)
+        glow_layer = glow_layer.filter(ImageFilter.GaussianBlur(2.5))
+        # Clip glow to the rounded rect
+        img.paste(glow_layer, (0, 0), mask)
+
+    # ---- Rim highlight (sharp, bright top/left edge) ----
+    rim = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    rd = ImageDraw.Draw(rim)
+    rd.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius,
+                         outline=(255, 255, 255, rim_alpha), width=2)
+    # Keep only top-left ~50% of the rim (emphasizes light direction)
+    rim_mask = Image.new("L", (w, h), 0)
+    rmd = ImageDraw.Draw(rim_mask)
+    # Gradient mask that fades from full on top-left to nothing on bottom-right.
+    for y in range(h):
+        for x in range(w):
+            d = 1.0 - ((x / w) + (y / h)) / 2
+            rmd.point((x, y), fill=max(0, int(d * 255 * 0.9)))
+    # Too slow per-pixel; replace with a simpler alpha mask.
+    rim_mask = Image.new("L", (w, h), 0)
+    rmd = ImageDraw.Draw(rim_mask)
+    # Top edge: full bright. Fades down to 40% by bottom.
+    for y in range(h):
+        fade = int(255 - (255 - 80) * (y / max(h - 1, 1)))
+        rmd.line([(0, y), (w, y)], fill=fade)
+    rim_clipped = Image.composite(rim,
+                                   Image.new("RGBA", (w, h), (0, 0, 0, 0)),
+                                   rim_mask)
+    img.alpha_composite(rim_clipped)
+
+    # ---- Specular highlight (elongated soft gleam on upper-left) ----
+    if specular:
+        spec = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        sd = ImageDraw.Draw(spec)
+        sx = int(w * 0.28)
+        sy = int(h * 0.30)
+        sw = int(w * 0.38)
+        sh = int(h * 0.14)
+        sd.ellipse([sx - sw // 2, sy - sh // 2, sx + sw // 2, sy + sh // 2],
+                   fill=(255, 255, 255, 80))
+        spec = spec.filter(ImageFilter.GaussianBlur(18))
+        # Clip to the panel
+        img.paste(spec, (0, 0), mask)
+
+    # ---- Final outer stroke (very faint, for definition on dark bg) ----
+    od = ImageDraw.Draw(img)
+    od.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius,
+                         outline=(255, 255, 255, 50), width=1)
+
+    return img
+
+
+def frosted_under(backdrop: Image.Image, x: int, y: int,
+                  size: tuple[int, int], *, radius: int = 28,
+                  blur: float = 14.0) -> Image.Image:
+    """Create a frosted backdrop patch for an Apple-glass tile. Extract the
+    region of `backdrop` under where the tile will sit, blur it, and mask it
+    with the rounded-rect shape.
+    """
+    w, h = size
+    # Clamp to canvas
+    bx0 = max(0, x)
+    by0 = max(0, y)
+    bx1 = min(backdrop.width, x + w)
+    by1 = min(backdrop.height, y + h)
+    region = backdrop.crop((bx0, by0, bx1, by1))
+    if region.mode != "RGBA":
+        region = region.convert("RGBA")
+    region = region.filter(ImageFilter.GaussianBlur(blur))
+    # Enhance: bump brightness slightly so the frosted area feels lit
+    region = Image.blend(region,
+                         Image.new("RGBA", region.size, (255, 255, 255, 255)),
+                         0.12)
+    mask = Image.new("L", (w, h), 0)
+    md = ImageDraw.Draw(mask)
+    md.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, fill=255)
+    # Align region inside a full-size transparent tile
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    out.paste(region, (bx0 - x, by0 - y))
+    out.putalpha(mask)
+    return out
+
+
+def compose_apple_tile(base: Image.Image, x: int, y: int,
+                       size: tuple[int, int], *, radius: int = 28,
+                       tint: tuple[int, int, int] = (200, 220, 240),
+                       shadow_blur: int = 24, shadow_opacity: int = 150,
+                       shadow_offset: tuple[int, int] = (0, 12),
+                       backdrop: Image.Image | None = None):
+    """Drop shadow + frosted backdrop + Apple-glass tile — all in one call."""
+    w, h = size
+    if shadow_opacity > 0:
+        sh, off = drop_shadow(size, radius=radius, blur=shadow_blur,
+                              opacity=shadow_opacity, offset=shadow_offset)
+        base.alpha_composite(sh, (x + off[0], y + off[1]))
+    if backdrop is not None:
+        frosted = frosted_under(backdrop, x, y, size, radius=radius, blur=14.0)
+        base.alpha_composite(frosted, (x, y))
+    tile = apple_glass_tile(size, radius=radius, tint=tint)
+    base.alpha_composite(tile, (x, y))
+
