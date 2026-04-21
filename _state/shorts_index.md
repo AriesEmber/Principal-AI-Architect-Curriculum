@@ -11,4 +11,4 @@ Tracks which published lessons have a vertical short produced under `_deliverabl
 <!-- Format, one per line:
 - L-### | M## | D## | <title> | <published date ISO8601> | <commit SHA>
 -->
-- L-001 | M01 | D01 | Open the terminal with a keyboard shortcut | 2026-04-21 | pending-merge
+- L-001 | M01 | D01 | Open the terminal with a keyboard shortcut | 2026-04-21 | eff4dbf
