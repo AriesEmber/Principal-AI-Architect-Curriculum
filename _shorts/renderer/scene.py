@@ -55,21 +55,54 @@ BEAT_RIGHT_PAD = 80
 # -------------------- Plan (beat -> screen coordinates) --------------------
 
 def build_plan(sb: Storyboard) -> None:
-    """Annotate each beat with static `event_world_x` = screen X position.
-    In v4 there's no world vs screen — the "world_x" IS the screen x.
-    Also assigns a fixed electron start/end (x, y) for each beat.
+    """Annotate each beat with:
+      - `event_world_x` = its screen X (static — no camera).
+      - `_e_start`, `_e_end` = electron positions for the beat.
+      - `_step_no` = numbering that MATCHES the commands panel (1..N for the
+         N beats with input_display, None for beats without).
+
+    X positions are chosen so the *visible* events (non-open beats) are
+    centered inside the diagram canvas, not the raw beat list — otherwise
+    skipping beat 1 (open) shifts the whole diagram right.
     """
-    lane_y = _lane_y_map(sb)
-    usable = (LIFELINE_X_END - BEAT_RIGHT_PAD) - (LIFELINE_X_START + BEAT_LEFT_PAD)
-    n = len(sb.beats)
-    if n == 0:
+    if not sb.beats:
         return
-    step = usable / max(n, 1)
+    lane_y = _lane_y_map(sb)
+
+    # Commands-panel step numbers: only beats with input_display count.
+    input_step = 0
+    for beat in sb.beats:
+        if beat.input_display:
+            input_step += 1
+            beat._step_no = input_step
+        else:
+            beat._step_no = None
+
+    # Figure out which beats actually render an event on the diagram.
+    visible = [b for b in sb.beats if b.kind != "open"]
+    nv = len(visible)
+
+    usable = (LIFELINE_X_END - BEAT_RIGHT_PAD) - (LIFELINE_X_START + BEAT_LEFT_PAD)
+    if nv > 0:
+        step = usable / nv
+        for i, beat in enumerate(visible):
+            beat.event_world_x = LIFELINE_X_START + BEAT_LEFT_PAD + step * (i + 0.5)
+
+    # Open beats take the x of the next visible beat (so the electron enters
+    # the diagram at the same lane-column where the first event happens).
+    next_visible_x = visible[0].event_world_x if visible else (
+        LIFELINE_X_START + usable / 2)
     for i, beat in enumerate(sb.beats):
-        beat.event_world_x = LIFELINE_X_START + BEAT_LEFT_PAD + step * (i + 0.5)
+        if beat.kind == "open":
+            # Find the next visible beat after this one.
+            for j in range(i + 1, len(sb.beats)):
+                if sb.beats[j].kind != "open":
+                    next_visible_x = sb.beats[j].event_world_x
+                    break
+            beat.event_world_x = next_visible_x
 
     # Precompute start/end (x,y) for electron for each beat.
-    for i, beat in enumerate(sb.beats):
+    for beat in sb.beats:
         bx = beat.event_world_x
         if beat.kind == "open":
             ly = lane_y[beat.to_lane]
@@ -303,9 +336,10 @@ def _draw_event_call(dd: ImageDraw.ImageDraw, beat: Beat, lane_y: dict[str, int]
                              outline=color, width=2)
         dd.text((bx0 + pad, label_y), beat.label,
                 fill=(232, 240, 248), font=arrow_label_font, anchor="lm")
-    # Step number circle (only when finale step-reveal is active). Place it
-    # near the label so they read as a unit.
-    if show_step and progress >= 0.95:
+    # Step number circle (only when finale step-reveal is active AND this
+    # beat has a commands-panel step number). Place it near the label so they
+    # read as a unit.
+    if show_step and progress >= 0.95 and step_no is not None:
         if beat.kind == "return":
             scn_x = x + 48  # opposite side of label (label is LEFT, circle RIGHT)
             scn_y = int(y2 + (y1 - y2) * 0.15)
@@ -354,7 +388,7 @@ def _draw_event_self(dd: ImageDraw.ImageDraw, beat: Beat, lane_y: dict[str, int]
                              outline=color, width=2)
         dd.text((bx0 + pad, y), beat.label,
                 fill=(232, 240, 248), font=arrow_label_font, anchor="lm")
-    if show_step and progress >= 0.95:
+    if show_step and progress >= 0.95 and step_no is not None:
         scn_x = x - 48
         scn_y = y
         dd.ellipse([scn_x - 20, scn_y - 20, scn_x + 20, scn_y + 20],
@@ -549,15 +583,16 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
     last = sb.beats[-1]
     last_end = last.start_time + last.duration
     show_step_numbers = t >= last_end + 0.4
-    for i, beat in enumerate(sb.beats):
+    for beat in sb.beats:
         prog = _beat_progress(beat, t)
         if prog <= 0:
             continue
+        step_no = getattr(beat, "_step_no", None)
         if beat.kind in ("call", "return"):
-            _draw_event_call(dd, beat, lane_y, prog, i + 1,
+            _draw_event_call(dd, beat, lane_y, prog, step_no,
                              show_step_numbers, arrow_label_font)
         elif beat.kind == "self":
-            _draw_event_self(dd, beat, lane_y, prog, i + 1,
+            _draw_event_self(dd, beat, lane_y, prog, step_no,
                              show_step_numbers, arrow_label_font)
 
     # ---- Electron trail + core ----
