@@ -7,7 +7,7 @@ length of the synthesized narration audio.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any
 import yaml
 
 BEAT_KINDS = {"open", "call", "return", "self", "finale"}
@@ -27,6 +27,12 @@ class Beat:
     start_time: float = 0.0
     duration: float = 0.0
     event_world_x: float = 0.0
+    # Optional dynamic top-area display. Shape depends on the `type` key:
+    #   {type: "keycaps", rows: [{platform: "Mac", keys: ["⌘","Space"]}, ...]}
+    #   {type: "command", prompt: "$", text: "echo hello"}
+    #   {type: "text_input", placeholder: "search...", text: "terminal"}
+    # None (default) means the top area shows only the title.
+    input_display: Optional[dict[str, Any]] = None
 
     def __post_init__(self):
         if self.kind not in BEAT_KINDS:

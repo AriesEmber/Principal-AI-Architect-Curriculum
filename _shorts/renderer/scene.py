@@ -14,6 +14,7 @@ from .sprite import (
     placeholder_robot, placeholder_user, upscale_pixel, SPRITE_SIZE,
 )
 from .storyboard import Storyboard, Beat
+from .input_display import draw_input_display, current_input_display
 
 
 def lane_y_positions(n_lanes: int) -> list[int]:
@@ -255,17 +256,13 @@ def compose_frame(sb: Storyboard, t: float) -> Image.Image:
             draw.text(((x0 + x1) // 2, y_start + i * line_h), line,
                       fill=C.COLOR_LANE_LABEL_TEXT, font=label_font, anchor="mm")
 
-    # 5. User sprite at top-center
-    user_scale = 5
-    user_img = upscale_pixel(placeholder_user(), user_scale)
-    user_x = C.CANVAS_W // 2 - user_img.width // 2
-    user_y = C.USER_Y[0] + 20
-    img.paste(user_img, (user_x, user_y), user_img)
-    draw.text((C.CANVAS_W // 2, user_y + user_img.height + 8), "YOU",
-              fill=C.COLOR_TEXT, font=label_font, anchor="mt")
+    # 5. Top area: dynamic input display for the current beat (keycaps, command,
+    # text input, etc.) replacing the old user sprite.
+    display = current_input_display(sb, t)
+    draw_input_display(img, draw, display, t)
 
-    # Connector line from user to top lane
-    connector_top = user_y + user_img.height + 48
+    # Connector line from the input-display zone down to the top lane
+    connector_top = C.USER_Y[1] - 10
     connector_bot = ys[0] - 42
     if connector_bot > connector_top:
         draw.line([C.CANVAS_W // 2, connector_top, C.CANVAS_W // 2, connector_bot],
@@ -377,14 +374,16 @@ def compose_finale_frame(sb: Storyboard, phase_u: float) -> Image.Image:
             draw.text(((x0 + x1) // 2, y_start + i * line_h), line,
                       fill=C.COLOR_LANE_LABEL_TEXT, font=label_font, anchor="mm")
 
-    # User at top-center
-    user_scale = 5
-    user_img = upscale_pixel(placeholder_user(), user_scale)
-    user_x = C.CANVAS_W // 2 - user_img.width // 2
-    user_y = C.USER_Y[0] + 20
-    img.paste(user_img, (user_x, user_y), user_img)
-    draw.text((C.CANVAS_W // 2, user_y + user_img.height + 8), "YOU",
-              fill=C.COLOR_TEXT, font=label_font, anchor="mt")
+    # Top area: "ALL STEPS" badge instead of the old user sprite.
+    badge_y = C.USER_Y[0] + (C.USER_Y[1] - C.USER_Y[0]) // 2
+    badge_w = 340
+    bx0 = C.CANVAS_W // 2 - badge_w // 2
+    bx1 = C.CANVAS_W // 2 + badge_w // 2
+    draw.rounded_rectangle([bx0, badge_y - 44, bx1, badge_y + 44], radius=14,
+                           fill=C.COLOR_OUTLINE, outline=C.COLOR_ACCENT, width=3)
+    check_font = _get_font(C.FONT_CAPTION_BOLD, 44)
+    draw.text((C.CANVAS_W // 2, badge_y), "ALL STEPS \u2713",
+              fill=C.COLOR_ACCENT, font=check_font, anchor="mm")
 
     # Final caption
     final_text = sb.lesson_title.rstrip(".") + "."
