@@ -48,6 +48,13 @@ def main() -> None:
     objs = _scene.build_scene(descriptor)
     _anim.apply_animation(objs, descriptor)
 
+    # Debug: scene inventory
+    print(f"[blender] scene objects: {len(bpy.data.objects)}")
+    keycap_n = sum(1 for o in bpy.data.objects if o.name.startswith("Keycap"))
+    txt_n = sum(1 for o in bpy.data.objects if o.name.startswith("KeycapTxt") or o.name.startswith("KeycapPlat"))
+    disp_n = sum(1 for o in bpy.data.objects if o.name.startswith("InputDisp"))
+    print(f"[blender] keycaps={keycap_n} keycap_text={txt_n} input_display_empties={disp_n}")
+
     scene = bpy.context.scene
     os.makedirs(args.frames_dir, exist_ok=True)
     # Blender writes to <filepath><frame_number>.png. Use frame_ prefix.
