@@ -182,96 +182,83 @@ def keyframe_trail(trail_orbs: list, electron: bpy.types.Object,
 # -------------------- Camera --------------------
 
 def keyframe_camera(camera: bpy.types.Object, descriptor: dict) -> None:
-    """Camera smoothly follows electron through beats, then pulls back and
-    straightens for the finale overview.
+    """Static centered 3/4 wide shot through the flow, then a dramatic
+    pull-back + straighten for the finale hold.
+
+    The camera does NOT horizontally follow the electron — every element of
+    the diagram (including far-left lane labels) must stay in frame the
+    whole time. The electron and flow pulses do all the motion the eye
+    needs to track.
     """
     total_duration = descriptor["total_duration"]
     finale_hold = descriptor.get("finale_hold", 3.0)
-    beats = descriptor["beats"]
 
-    # Offsets from the electron position — the camera stays back in -Y and up
-    # in +Z, giving a 3/4 view that tracks horizontally with the electron.
-    CAM_Y = -14.5
-    CAM_Z_BASE = 0.7
+    # Anchor: wide enough to fit the full diagram (lane labels at x≈-3.55,
+    # step badges up to z≈3.6, caption at z≈-5.3). The 3/4 angle comes from
+    # a slight -X offset and a slight +Z tilt so the glass pills catch
+    # highlights from the KeyLight.
+    start_loc = (0.9, -18.2, 1.1)
+    start_target = (0.0, 0.0, 0.25)
 
-    # Initial — at the first beat, slightly offset for lead-in.
-    if beats:
-        first = beats[0]
-        cam_x0 = first["world_x"] * 0.20
-    else:
-        cam_x0 = 0.0
-    camera.location = (cam_x0, CAM_Y, CAM_Z_BASE)
-    camera.rotation_euler = _lookat_euler(camera.location,
-                                           target=(0.0, 0.0, 0.4))
+    camera.location = start_loc
+    camera.rotation_euler = _lookat_euler(start_loc, target=start_target)
     camera.keyframe_insert(data_path="location", frame=1)
     camera.keyframe_insert(data_path="rotation_euler", frame=1)
 
-    # Per-beat: track electron X lightly, stay centered in Z.
-    # Gentle follow (0.25x) so lane labels on the far left edge stay in frame.
-    for i, b in enumerate(beats):
-        mid_t = b["start_time"] + b["duration"] / 2.0
-        mid_f = sec_to_frame(mid_t)
-        mid_x = b["world_x"]
-        mid_z = (b["z_from"] + b["z_to"]) / 2.0
-        cam_x = mid_x * 0.25
-        cam_z = CAM_Z_BASE + mid_z * 0.12
-        cam_y = CAM_Y
-        camera.location = (cam_x, cam_y, cam_z)
-        target = (mid_x * 0.2, 0.0, mid_z * 0.35 + 0.4)
-        camera.rotation_euler = _lookat_euler(camera.location, target=target)
-        camera.keyframe_insert(data_path="location", frame=mid_f)
-        camera.keyframe_insert(data_path="rotation_euler", frame=mid_f)
+    # Mid-flow drift: subtle horizontal ease so the scene isn't totally
+    # locked — a ~0.3 unit sway over the beat section, no X follow.
+    mid_t = max(0.0, (total_duration - finale_hold) / 2.0)
+    mid_f = sec_to_frame(mid_t)
+    mid_loc = (0.6, -18.2, 1.15)
+    camera.location = mid_loc
+    camera.rotation_euler = _lookat_euler(mid_loc, target=start_target)
+    camera.keyframe_insert(data_path="location", frame=mid_f)
+    camera.keyframe_insert(data_path="rotation_euler", frame=mid_f)
 
-    # Pre-finale: align to center before pull-back.
+    # Pre-finale: straighten toward center.
     finale_start_t = max(0.0, total_duration - finale_hold)
     approach_f = sec_to_frame(max(0.0, finale_start_t - 0.4))
-    camera.location = (0.0, -16.0, 0.6)
-    camera.rotation_euler = _lookat_euler(camera.location,
-                                           target=(0.0, 0.0, 0.4))
+    approach_loc = (0.15, -18.5, 0.9)
+    camera.location = approach_loc
+    camera.rotation_euler = _lookat_euler(approach_loc,
+                                           target=(0.0, 0.0, 0.1))
     camera.keyframe_insert(data_path="location", frame=approach_f)
     camera.keyframe_insert(data_path="rotation_euler", frame=approach_f)
 
-    # Finale start: pull back, straighten (dead-on).
+    # Finale: dead-on, slight pull-back so the entire diagram fits with
+    # generous breathing room but nothing shrinks to unreadable sizes.
     finale_f = sec_to_frame(finale_start_t)
-    camera.location = (0.0, -20.5, 0.0)
-    camera.rotation_euler = _lookat_euler(camera.location,
-                                           target=(0.0, 0.0, 0.0))
+    finale_loc = (0.0, -20.0, 0.1)
+    camera.location = finale_loc
+    camera.rotation_euler = _lookat_euler(finale_loc, target=(0.0, 0.0, 0.1))
     camera.keyframe_insert(data_path="location", frame=finale_f)
     camera.keyframe_insert(data_path="rotation_euler", frame=finale_f)
 
-    # Hold slight drift during finale.
+    # Finale hold: very slight push-in so it breathes.
     end_f = sec_to_frame(total_duration)
-    camera.location = (0.0, -21.2, 0.05)
-    camera.rotation_euler = _lookat_euler(camera.location,
-                                           target=(0.0, 0.0, 0.0))
+    end_loc = (0.0, -19.6, 0.12)
+    camera.location = end_loc
+    camera.rotation_euler = _lookat_euler(end_loc, target=(0.0, 0.0, 0.1))
     camera.keyframe_insert(data_path="location", frame=end_f)
     camera.keyframe_insert(data_path="rotation_euler", frame=end_f)
 
-    # DOF focus follows subject distance (approximate — camera Y distance to target).
     _keyframe_camera_focus(camera, descriptor)
-
     _set_bezier(camera)
 
 
 def _keyframe_camera_focus(camera: bpy.types.Object, descriptor: dict) -> None:
-    beats = descriptor["beats"]
     total_duration = descriptor["total_duration"]
     finale_hold = descriptor.get("finale_hold", 3.0)
 
-    camera.data.dof.focus_distance = 15.0
+    camera.data.dof.focus_distance = 18.2
     camera.data.dof.keyframe_insert(data_path="focus_distance", frame=1)
 
-    for b in beats:
-        mid_f = sec_to_frame(b["start_time"] + b["duration"] / 2.0)
-        camera.data.dof.focus_distance = 15.0
-        camera.data.dof.keyframe_insert(data_path="focus_distance", frame=mid_f)
-
     finale_f = sec_to_frame(max(0.0, total_duration - finale_hold))
-    camera.data.dof.focus_distance = 21.0
+    camera.data.dof.focus_distance = 20.0
     camera.data.dof.keyframe_insert(data_path="focus_distance", frame=finale_f)
 
     end_f = sec_to_frame(total_duration)
-    camera.data.dof.focus_distance = 21.5
+    camera.data.dof.focus_distance = 19.6
     camera.data.dof.keyframe_insert(data_path="focus_distance", frame=end_f)
 
 
@@ -342,24 +329,30 @@ def keyframe_displays(display_objects: list, descriptor: dict) -> None:
 
 # -------------------- Liquid-glass backdrop drift --------------------
 
-def keyframe_liquid_layers(layers: list, total_duration: float) -> None:
-    """Slow horizontal + slight vertical drift of each layer across the run.
-    Gives the "layered liquid glass slowly moving" effect.
+def keyframe_aurora_backdrop(backdrop_mat: bpy.types.Material,
+                               total_duration: float) -> None:
+    """Slowly translate + rotate the backdrop noise warp so the 4-corner
+    gradient appears to flow gently over the duration of the short.
     """
-    if not layers:
+    if backdrop_mat is None or not backdrop_mat.node_tree:
         return
     end_f = sec_to_frame(total_duration)
-    for i, layer in enumerate(layers):
-        start_loc = layer.location.copy()
-        # Each layer drifts in a different direction at different speed.
-        dx = 1.8 * (1 if i % 2 == 0 else -1) * (0.7 + 0.3 * (i % 3))
-        dz = 0.9 * ((i + 1) % 2 - 0.5) * 2.0
-        layer.location = start_loc
-        layer.keyframe_insert(data_path="location", frame=1)
-        layer.location = (start_loc.x + dx, start_loc.y, start_loc.z + dz)
-        layer.keyframe_insert(data_path="location", frame=end_f)
-        # Linear-ish: set bezier with soft handles.
-        _set_bezier(layer)
+    nt = backdrop_mat.node_tree
+    mapping = nt.nodes.get("BackdropMapping_Flow")
+    if mapping is None:
+        return
+    start_loc = list(mapping.inputs["Location"].default_value)
+    mapping.inputs["Location"].keyframe_insert("default_value", frame=1)
+    mapping.inputs["Rotation"].keyframe_insert("default_value", index=2,
+                                                 frame=1)
+    mapping.inputs["Location"].default_value = (
+        start_loc[0] + 0.9,
+        start_loc[1] + 0.6,
+        start_loc[2] + 0.4)
+    mapping.inputs["Rotation"].default_value[2] = math.radians(35)
+    mapping.inputs["Location"].keyframe_insert("default_value", frame=end_f)
+    mapping.inputs["Rotation"].keyframe_insert("default_value", index=2,
+                                                 frame=end_f)
 
 
 # -------------------- Entrypoint --------------------
@@ -379,4 +372,4 @@ def apply_animation(objs: dict, descriptor: dict) -> None:
     keyframe_arrows(objs["arrow_objects"], descriptor)
     keyframe_captions(objs["caption_texts"], descriptor)
     keyframe_displays(objs["display_objects"], descriptor)
-    keyframe_liquid_layers(objs["liquid_layers"], total_duration)
+    keyframe_aurora_backdrop(objs["backdrop_mat"], total_duration)

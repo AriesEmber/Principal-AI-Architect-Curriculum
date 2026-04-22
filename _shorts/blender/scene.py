@@ -34,14 +34,17 @@ FPS = 30
 # -------------------- Layout --------------------
 
 # Lane z-spread — farther apart reads more clearly as a UML sequence.
-LANE_SPREAD = 2.3
-BEAT_X_MIN = -4.2
-BEAT_X_MAX = 4.2
+LANE_SPREAD = 2.2
+# Beat x range tightened so all beats + lane labels fit in the camera FOV
+# with zero horizontal follow. Nothing should EVER clip out of frame.
+BEAT_X_MIN = -3.1
+BEAT_X_MAX = 3.1
 
 COMMANDS_Z = 5.8
-COMMANDS_TITLE_Z = COMMANDS_Z + 1.05      # title near top of commands pill
-COMMANDS_SUBTITLE_Z = COMMANDS_Z + 0.65   # subtitle below title
-COMMANDS_INPUT_Z = COMMANDS_Z - 0.55      # input-display rows lower half
+COMMANDS_TITLE_Z = COMMANDS_Z + 1.10
+COMMANDS_SUBTITLE_Z = COMMANDS_Z + 0.55
+# Input display sits below the subtitle — lower half of the commands pill.
+COMMANDS_INPUT_Z = COMMANDS_Z - 0.95
 CAPTION_Z = -5.3
 
 Y_FRONT = -0.9       # electron + arrows pop just in front of lane plane
@@ -82,16 +85,26 @@ def configure_render():
     if hasattr(ev, "bloom_intensity"):
         ev.bloom_intensity = 0.08
 
-    # Color management — AgX gives Apple-like soft highlights.
-    scene.view_settings.view_transform = 'AgX'
-    for look in ("AgX - Medium High Contrast",
-                 "Medium High Contrast",
-                 "AgX - Base Contrast"):
+    # Color management — AgX with Base Contrast look. Keeps pastels visible
+    # while tone-mapping HDR emission (step badges, electron, arrow pulses)
+    # so they bloom instead of clipping to white. Standard view clipped all
+    # the amber/blue emissive accents to pure white.
+    try:
+        scene.view_settings.view_transform = 'AgX'
+    except TypeError:
+        pass
+    for look in ("AgX - Base Contrast", "AgX - Medium High Contrast",
+                 "Base Contrast", "None"):
         try:
             scene.view_settings.look = look
             break
         except TypeError:
             continue
+    try:
+        scene.view_settings.exposure = 0.3   # slight lift so pastels pop
+        scene.view_settings.gamma = 1.0
+    except (AttributeError, TypeError):
+        pass
 
     _setup_compositor_bloom()
 
@@ -138,10 +151,18 @@ def _setup_compositor_bloom():
                 break
         if type_attr is not None:
             prop = glare.bl_rna.properties[type_attr]
-            enum_items = {item.identifier for item in prop.enum_items}
-            value = 'BLOOM' if 'BLOOM' in enum_items else (
-                'FOG_GLOW' if 'FOG_GLOW' in enum_items
-                else next(iter(enum_items), None))
+            # enum_items only on EnumProperty. StringProperty on Blender 5+.
+            enum_items = set()
+            try:
+                enum_items = {item.identifier for item in prop.enum_items}
+            except AttributeError:
+                pass
+            if enum_items:
+                value = 'BLOOM' if 'BLOOM' in enum_items else (
+                    'FOG_GLOW' if 'FOG_GLOW' in enum_items
+                    else next(iter(enum_items), None))
+            else:
+                value = 'BLOOM'  # string-typed: try a sensible default
             if value is not None:
                 try:
                     setattr(glare, type_attr, value)
@@ -236,42 +257,23 @@ def _build_world(scene):
     nt.links.new(bg.outputs[0], out.inputs[0])
 
 
-def _build_backdrop_wall():
-    """Pure white flat backdrop behind everything — clean canvas."""
-    plane = _add_plane("Backdrop", size=80,
+def _build_flowing_backdrop():
+    """Large plane with a shader-driven aurora of layered pastel color waves.
+
+    This IS the "layered liquid glass slowly moving background" — four
+    slow-moving noise fields (peach / mint / lilac / sky) blended through
+    color ramps produce soft flowing colored regions against a white base.
+    Animation.py drives the Mapping nodes so the whole field flows over the
+    duration of the short.
+
+    Returns (plane_obj, material) so animation.py can drive the mapping.
+    """
+    plane = _add_plane("Backdrop", size=120,
                         location=(0, Y_BACKDROP, 0),
                         rotation=(math.radians(90), 0, 0))
-    mat = M.white_shell_material("BackdropMat", emission_strength=0.9)
+    mat = M.flowing_aurora_backdrop_material("BackdropAuroraMat")
     plane.data.materials.append(mat)
-    return plane
-
-
-def _build_liquid_glass_layers():
-    """Large pastel blobs drifting in front of the white backdrop.
-
-    Positions + colors chosen for soft Apple-ish tones. The blobs are XZ-
-    oriented pills facing the camera (-Y), with a small Y-axis tilt applied so
-    they feel hand-placed rather than paper-flat. Returns the list of root
-    objects so animation.py can keyframe their drift.
-    """
-    blobs = []
-    specs = [
-        # (name, color, (sx, sz), location, tilt_y_deg)
-        ("LG_Peach", (1.0, 0.78, 0.66),  (9.5,  6.0), (-3.5, 20.5,  2.0), 8),
-        ("LG_Mint",  (0.72, 0.95, 0.86), (11.0, 5.5), ( 2.5, 19.5, -1.5), -6),
-        ("LG_Lilac", (0.86, 0.80, 1.0),  ( 8.0, 7.0), ( 4.0, 21.0,  3.5), 12),
-        ("LG_Sky",   (0.74, 0.90, 1.0),  (10.5, 5.2), (-2.8, 20.2, -3.0), -3),
-    ]
-    for name, color, (sw, sh), loc, tilt_deg in specs:
-        mat = M.liquid_blob_material(f"{name}Mat", color=color)
-        obj = _add_glass_pill(name, sx=sw, sy=0.35, sz=sh,
-                               location=loc, material=mat,
-                               pill_factor=0.48, segments=8)
-        # Small tilt around Y (yaw) for hand-placed feel. Face normal remains
-        # close to -Y so the blob always reads to the camera.
-        obj.rotation_euler = (0, 0, math.radians(tilt_deg))
-        blobs.append(obj)
-    return blobs
+    return plane, mat
 
 
 # -------------------- Scene build --------------------
@@ -293,16 +295,15 @@ def build_scene(descriptor: dict) -> dict:
     scene = bpy.context.scene
     _build_world(scene)
 
-    backdrop = _build_backdrop_wall()
-    liquid_layers = _build_liquid_glass_layers()
+    backdrop, backdrop_mat = _build_flowing_backdrop()
 
     # -------- Lanes — thin slabs, legible from camera distance --------
     lane_line_mat = M.lane_line_material("LaneLineMat")
     lane_objects = {}
     for lane, z in lane_z.items():
         line = _add_cube_slab(
-            f"Lane_{lane}", sx=9.4, sy=0.12, sz=0.09,
-            location=(0, Y_LANE, z), bevel=0.03, bevel_segs=3)
+            f"Lane_{lane}", sx=7.2, sy=0.12, sz=0.09,
+            location=(0.3, Y_LANE, z), bevel=0.03, bevel_segs=3)
         line.data.materials.append(lane_line_mat)
         lane_objects[lane] = line
 
@@ -332,9 +333,9 @@ def build_scene(descriptor: dict) -> dict:
         "CommandsTitle",
         body=title_body,
         location=(0, -0.55, COMMANDS_TITLE_Z),
-        size=0.42,
-        extrude=0.012,
-        bevel=0.003,
+        size=0.75,
+        extrude=0.02,
+        bevel=0.005,
         font_path=T.FONT_SEMIBOLD,
         material=text_dark)
 
@@ -344,10 +345,10 @@ def build_scene(descriptor: dict) -> dict:
         "CommandsSubtitle",
         body=subtitle_body,
         location=(0, -0.55, COMMANDS_SUBTITLE_Z),
-        size=0.22,
-        extrude=0.008,
-        bevel=0.002,
-        font_path=T.FONT_REGULAR,
+        size=0.40,
+        extrude=0.014,
+        bevel=0.003,
+        font_path=T.FONT_SEMIBOLD,
         material=text_accent)
 
     # -------- Lane labels --------
@@ -360,20 +361,21 @@ def build_scene(descriptor: dict) -> dict:
         blended=False)
     label_objs = {}
     label_texts = {}
+    LABEL_X = -3.55  # moved inward so the label never clips at frame edge
     for lane, z in lane_z.items():
         pill = _add_glass_pill(
-            f"Label_{lane}", sx=2.15, sy=0.4, sz=0.62,
-            location=(-4.3, -0.3, z), material=label_glass_mat,
+            f"Label_{lane}", sx=1.9, sy=0.4, sz=0.6,
+            location=(LABEL_X, -0.3, z), material=label_glass_mat,
             pill_factor=0.48)
         label_objs[lane] = pill
         # Text on front face of pill.
         txt = T.make_text(
             f"LabelTxt_{lane}",
             body=lane,
-            location=(-4.3, -0.52, z),
-            size=0.26,
-            extrude=0.01,
-            bevel=0.002,
+            location=(LABEL_X, -0.52, z),
+            size=0.36,
+            extrude=0.014,
+            bevel=0.003,
             font_path=T.FONT_SEMIBOLD,
             material=text_dark)
         label_texts[lane] = txt
@@ -396,14 +398,15 @@ def build_scene(descriptor: dict) -> dict:
     for i, b in enumerate(beats):
         label = b.get("label") or ""
         if not label and b.get("kind") == "open":
-            label = f"start · {b.get('to_lane', '')}"
+            # Intro beat: caption shows the to_lane as the starting point.
+            label = f"start at {b.get('to_lane', '')}"
         ct = T.make_text(
             f"Caption_{i}",
             body=label,
             location=(0, -0.5, CAPTION_Z),
-            size=0.36,
-            extrude=0.01,
-            bevel=0.002,
+            size=0.58,
+            extrude=0.015,
+            bevel=0.003,
             font_path=T.FONT_SEMIBOLD,
             material=text_dark)
         # Start hidden — animation.py toggles visibility.
@@ -561,7 +564,7 @@ def build_scene(descriptor: dict) -> dict:
 
     return {
         "backdrop": backdrop,
-        "liquid_layers": liquid_layers,
+        "backdrop_mat": backdrop_mat,
         "lanes": lane_objects,
         "lane_z": lane_z,
         "commands": commands,
