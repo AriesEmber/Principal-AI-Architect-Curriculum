@@ -105,6 +105,87 @@ def frosted_glass_material(name: str,
 
 # -------------------- Liquid-glass backdrop blobs --------------------
 
+def flowing_aurora_backdrop_material(name: str) -> bpy.types.Material:
+    """Multi-stop pastel gradient rotated slowly to give an Apple-style
+    colored-glass backdrop that flows during the short.
+
+    Implementation: Gradient texture (LINEAR) → ColorRamp with peach /
+    apricot / mint / sky / lilac stops. A Mapping node rotates the
+    gradient over time so the colored bands flow across the plane.
+
+    Exposed for animation:
+        BackdropMapping_Flow   (rotates the gradient)
+    """
+    mat = _new_mat(name)
+    nt = mat.node_tree
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    out.location = (900, 0)
+
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.location = (650, 0)
+    em.inputs["Strength"].default_value = 3.5
+
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    tc.location = (-900, 0)
+
+    mapping = nt.nodes.new("ShaderNodeMapping")
+    mapping.name = "BackdropMapping_Flow"
+    mapping.location = (-650, 0)
+    # No location offset — let the gradient's 0-1 range cover the plane.
+    # A ~35deg starting rotation so the gradient runs diagonally, which
+    # brings multiple colors into the camera's rectangular framing.
+    mapping.inputs["Location"].default_value = (0.0, 0.0, 0.0)
+    mapping.inputs["Rotation"].default_value = (0.0, 0.0, math.radians(35))
+    mapping.inputs["Scale"].default_value = (2.4, 2.4, 1.0)
+
+    grad = nt.nodes.new("ShaderNodeTexGradient")
+    grad.gradient_type = 'LINEAR'
+    grad.location = (-400, 0)
+
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.location = (-100, 0)
+    cr = ramp.color_ramp
+    cr.interpolation = 'B_SPLINE'
+    # Seed stops: peach → apricot → mint → sky → lilac → peach (cyclic).
+    # More saturated than true pastel so AgX tone-mapping keeps some color.
+    stops = [
+        (0.00, (1.00, 0.68, 0.48, 1.0)),   # peach
+        (0.22, (1.00, 0.80, 0.55, 1.0)),   # apricot
+        (0.45, (0.52, 0.94, 0.70, 1.0)),   # mint
+        (0.66, (0.52, 0.82, 1.00, 1.0)),   # sky
+        (0.85, (0.82, 0.62, 1.00, 1.0)),   # lilac
+        (1.00, (1.00, 0.68, 0.48, 1.0)),   # back to peach
+    ]
+    cr.elements[0].position = stops[0][0]
+    cr.elements[0].color = stops[0][1]
+    cr.elements[1].position = stops[-1][0]
+    cr.elements[1].color = stops[-1][1]
+    for p, c in stops[1:-1]:
+        e = cr.elements.new(p)
+        e.color = c
+
+    # Soften with a gentle mix toward warm white so the gradient stays
+    # aesthetic rather than psychedelic.
+    white = nt.nodes.new("ShaderNodeRGB")
+    white.outputs[0].default_value = (0.99, 0.97, 0.94, 1.0)
+    white.location = (100, 250)
+
+    mix_white = nt.nodes.new("ShaderNodeMix")
+    mix_white.data_type = 'RGBA'
+    mix_white.blend_type = 'MIX'
+    mix_white.inputs["Factor"].default_value = 0.10
+    mix_white.location = (350, 0)
+
+    nt.links.new(tc.outputs["Generated"], mapping.inputs["Vector"])
+    nt.links.new(mapping.outputs["Vector"], grad.inputs["Vector"])
+    nt.links.new(grad.outputs["Color"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], mix_white.inputs[6])
+    nt.links.new(white.outputs[0], mix_white.inputs[7])
+    nt.links.new(mix_white.outputs[2], em.inputs["Color"])
+    nt.links.new(em.outputs[0], out.inputs[0])
+    return mat
+
+
 def liquid_blob_material(name: str, color=(1.0, 0.85, 0.78)) -> bpy.types.Material:
     """Soft pastel blob for layered moving background — opaque enough to
     read as a distinct colored shape against the white world, with a mild
@@ -124,7 +205,7 @@ def liquid_blob_material(name: str, color=(1.0, 0.85, 0.78)) -> bpy.types.Materi
     # Emission gives the blob its glow — strong so the pastel reads against
     # the white world + bloom pass.
     _set_input(bsdf, "Emission Color", (*color, 1.0))
-    _set_input(bsdf, "Emission Strength", 6.5)
+    _set_input(bsdf, "Emission Strength", 9.5)
     _set_input(bsdf, "Coat Weight", 0.35)
     _set_input(bsdf, "Coat Roughness", 0.1)
     _set_input(bsdf, "Coat IOR", 1.55)
