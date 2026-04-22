@@ -1,16 +1,16 @@
-# Blender shorts pipeline (v2)
+# Blender shorts pipeline — production build
 
-Net-new solution running in parallel with the PIL-based `_shorts/renderer` pipeline. Built so shorts generation can migrate to true 3D rendering once this reaches the quality bar. Until then, the PIL pipeline stays the production path and this one is the work-in-progress alternative.
+Net-new solution running in parallel with the PIL-based `_shorts/renderer` pipeline. Produces fully-rendered 3D liquid-glass UML sequence flow MP4s with thin-film iridescent glass, emissive electron path + trail, animated flow arrows, and Apple-style 3D typography — no placeholders, no human recording, no post-production required.
 
 ## Why this exists
 
 The PIL pipeline hit a ceiling on "looks like Apple liquid glass." Pure 2D compositing can approximate the look but can't deliver:
-- True refraction + chromatic dispersion through glass
-- Real reflections / HDRI lighting
-- Camera moves through a 3D scene (follow-cam, zoom-out finale)
-- Iridescent material with physically-based sheen
+- True refraction + thin-film iridescence through glass
+- Real reflections / soft area-light interaction
+- Camera that follows the electron through the sequence flow and pulls back for a dead-on finale
+- Layered translucent glass blobs drifting in the background
 
-Blender 5 (Eevee Next) on the local RTX 4070 SUPER can do all of this at ~2 s/frame — faster than the PIL v5 pipeline AND with higher fidelity.
+Blender 5.0.1 (Eevee Next) on the RTX 4070 SUPER delivers all of the above.
 
 ## How it runs
 
@@ -21,15 +21,38 @@ python -m _shorts.blender.build \
 ```
 
 This command:
-1. Loads the storyboard YAML (same schema the PIL pipeline uses).
-2. Generates per-beat narration audio via Kokoro on GPU, reusing `_shorts.renderer.tts` so voice is identical between pipelines.
+1. Loads the storyboard YAML (same schema as the PIL pipeline).
+2. Generates per-beat narration audio via Kokoro on GPU, reusing `_shorts.renderer.tts`.
 3. Computes beat start times + durations from audio length.
 4. Writes a JSON descriptor to `_shorts/_work/blender/<lesson_id>/descriptor.json`.
-5. Launches Blender headless, pointed at `render_runner.py`. Blender builds the 3D scene, keyframes the electron path + camera, renders frame_0001.png..frame_NNNN.png.
-6. Mixes audio via `_shorts.renderer.encode.concat_audio_with_timing`.
+5. Launches Blender 5 headless with `render_runner.py`, which builds the 3D scene, keyframes every animated element, and renders the PNG frame sequence.
+6. Mixes narration audio via `_shorts.renderer.encode.concat_audio_with_timing`.
 7. Encodes frames + audio → MP4 via ffmpeg.
 
 Both pipelines use the same YAML storyboard format, the same TTS, the same audio mix. Only the frame generator differs.
+
+## Visual system
+
+**Backdrop.** Pure white world plane. Four large translucent pastel liquid-glass blobs (peach / mint / lilac / sky) drift slowly in the deep background over the duration of the short — the "layered liquid glass slowly moving" look.
+
+**Commands panel.** Large iridescent glass pill at the top. Contains:
+- Lesson title in Segoe UI Semibold (SF Pro analogue).
+- "Day N · <learning_title>" subtitle in accent blue.
+- Per-beat input display — keycaps, text_input, command, or single key — realized as 3D glass tiles with front-facing Segoe UI text. Visibility is keyframed per beat.
+
+**Lanes.** Thin hairline slabs running horizontally with lane-label glass pills on the left edge. Lane label text is 3D extruded, sits on the front face of each pill.
+
+**Flow arrows.** For each `call` / `return` beat, a cylinder + cone arrow runs from (world_x, z_from) to (world_x, z_to) with an animated `Wave Texture`-based pulse scrolling along its length during the beat's time window. Arrows reveal at beat start and persist.
+
+**Step badges.** Amber emissive circular badges with 3D-extruded Segoe UI Bold step numbers, positioned above the top lane at each visible beat's world_x. Reveal at beat start and persist.
+
+**Electron.** Emissive blue sphere with a halo and an 8-orb delayed trail. Drives the entire flow. Keyframed per beat from (world_x, z_from) to (world_x, z_to).
+
+**Caption.** Glass pill at the bottom with per-beat 3D text (beat label). Visibility keyframed per beat.
+
+**Camera.** Starts 3/4 angle, loosely follows the electron horizontally through each beat (camera_x = electron_x × 0.45), then pulls back and straightens to a dead-on wide shot for the finale hold.
+
+**Post.** Compositor Glare (Bloom) node — makes the electron, step badges, and arrow pulses glow against the white world.
 
 ## File layout
 
@@ -38,33 +61,23 @@ Both pipelines use the same YAML storyboard format, the same TTS, the same audio
 | `__init__.py` | regular | package marker + top-level doc |
 | `build.py` | regular Python | orchestrator; CLI entry |
 | `render_runner.py` | Blender subprocess | reads descriptor JSON, builds scene, animates, renders |
-| `scene.py` | Blender | 3D geometry (lanes, glass panels, electron, lights, camera) |
-| `animation.py` | Blender | keyframes electron + camera + backdrop from beat list |
-| `materials.py` | Blender | glass / emission / iridescent backdrop shaders |
-
-## Known gaps (the migration checklist)
-
-The pipeline currently renders a working MP4, but the visual isn't production-ready yet. Remaining work before this can replace the PIL pipeline:
-
-- [ ] **Text on panels.** Commands panel / lane labels / caption need actual text — currently the panels are glass shells with nothing written on them. Options: (a) Blender `Text` objects extruded in 3D, (b) pre-rendered text as image textures on a plane floating above each pill.
-- [ ] **Flow-pulse arrows.** PIL v5 has animated pulses flowing along arrows. Blender version currently has no arrow geometry at all — need to add cylinder arrows between lane Z positions at each beat's world_x, with an emissive pulse shader that scrolls along the arrow (shader node `Wave Texture` or keyframed gradient UV offset).
-- [ ] **Commands panel rows (keycap/search/command tiles).** The PIL version accumulates input displays inside the commands panel. In 3D we need smaller pills/plates inside the big commands glass.
-- [ ] **Step numbers.** Amber circle-with-number on each beat — 3D extruded numbers or baked text textures.
-- [ ] **Electron trail.** Currently just a point emitter; could use Geometry Nodes particle trail or a screen-space post effect.
-- [ ] **Finale: all-events-visible overview.** Camera zoom-out hits a dead-on view but doesn't do anything beyond that. Could trigger all input_display tiles to light up, or animate a camera orbit.
-- [ ] **Materials tuning.** Iridescent backdrop is a gradient placeholder. Real Apple-style glass needs thin-film with view-dependent color shift; should iterate on the shader graph in Blender's UI and export.
-- [ ] **Bloom / post.** Eevee's bloom pass would make the emissive electron read much more brightly; needs enabling + tuning.
-- [ ] **Render speed.** Currently ~2 s/frame in Eevee. 38 s video → ~40 min. Acceptable but can be dropped further by reducing samples on static frames.
-
-## Migration plan
-
-1. Ship this PR as-is — pipeline scaffolding, running end-to-end, producing a baseline MP4 at `_deliverables/shorts/blender/L-001-short.mp4`.
-2. Iterate on the gaps above in follow-up PRs. Each iteration keeps the PIL pipeline untouched so production isn't blocked.
-3. When Blender output beats PIL output by subjective quality on the test lesson, update the `short-author` skill's `render_phase.md` to invoke `_shorts.blender.build` instead of `_shorts.renderer.build`. That's the migration.
-4. At that point, `_shorts/renderer/` can be retired (or kept as a fallback).
+| `scene.py` | Blender | 3D geometry (lanes, pills, liquid-glass backdrop, electron, trail, step badges, arrows, input displays, lights, camera) |
+| `animation.py` | Blender | keyframes electron + trail + camera + backdrop drift + arrows + badges + captions + input-display visibility |
+| `materials.py` | Blender | thin-film iridescent glass, frosted glass, liquid-blob pastel, emission, amber badge, arrow-pulse shader graph, text materials |
+| `text.py` | Blender | 3D text helpers (Segoe UI) + visibility keyframing |
+| `arrows.py` | Blender | cylinder + cone arrow construction + pulse + reveal keyframing |
+| `input_display.py` | Blender | per-beat commands-panel tiles: keycaps / text_input / command / single key |
 
 ## Requirements
 
-- **Blender 5.0.1** installed at `C:\Program Files\Blender Foundation\Blender 5.0\`. If you install a newer Blender, update `BLENDER_EXE` in `build.py`.
-- **Python 3.12** env with the same deps as the PIL pipeline (Kokoro, PyYAML, ffmpeg on PATH).
-- **CUDA GPU** for Eevee Next's raytracing (currently assumes RTX 4070 SUPER).
+- **Blender 5.0.1** at `C:\Program Files\Blender Foundation\Blender 5.0\`. Update `BLENDER_EXE` in `build.py` if you install elsewhere. Compatible with Blender 5's new compositor node group API (`scene.compositing_node_group`) with automatic fallback to 4.x `scene.node_tree`.
+- **Python 3.12** with the PIL pipeline's deps (Kokoro, PyYAML, ffmpeg on PATH).
+- **Windows 11** font set (Segoe UI Regular / Semibold / Bold) at `C:\Windows\Fonts\`.
+- **CUDA GPU** for Eevee Next raytracing.
+
+## Migration plan
+
+1. Ship this PR — production visuals on `main`.
+2. Iterate on remaining polish (per-lesson storyboard tweaks, richer finale, per-beat camera choreography hand-tuning) in follow-up PRs. PIL pipeline keeps running in production the whole time.
+3. When the short-author skill's operators agree the Blender output beats PIL subjectively, flip `render_phase.md` to invoke `_shorts.blender.build`. That's the migration.
+4. `_shorts/renderer/` then retires or stays as a fallback.

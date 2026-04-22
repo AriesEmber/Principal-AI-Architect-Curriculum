@@ -1,42 +1,52 @@
-"""3D scene builder for a short. Blender-only (imports bpy).
-
-Reads a JSON scene descriptor (written by build.py) and produces the scene:
-    - Iridescent backdrop plane
-    - Three dark lane slabs at Z-heights
-    - Glass commands panel above the top lane
-    - Small glass lane-label pill on the left edge of each lane
-    - Glass caption panel below the bottom lane
-    - Emissive "electron" sphere (initial position = first beat start)
-    - Key / fill / rim lighting
-    - 3/4 angle camera
+"""3D scene builder — production-quality UML sequence flow.
 
 World convention:
     +X right, +Z up, +Y into scene (away from camera)
     Camera sits at -Y looking toward +Y
+
+Aesthetic targets:
+    - Pure white world base
+    - Layered translucent "liquid glass" blobs drifting in the deep background
+    - Thin-film iridescent glass panels (commands + caption + lane labels)
+    - Hairline lanes with clear lane-label pills on the left
+    - Amber step-number badges on each beat
+    - Emissive electron w/ trail
+    - Emissive flow arrows with scrolling pulse per beat
+    - Commands panel with 3D keycap / text / command tiles per beat
 """
 import math
+
 import bpy
 from mathutils import Vector
 
 from . import materials as M
+from . import text as T
+from . import arrows as A
+from . import input_display as IDisp
 
 
-# -------------------- Scene constants --------------------
+# -------------------- Render / canvas --------------------
 
 CANVAS_W = 1080
 CANVAS_H = 1920
 FPS = 30
 
-# Vertical Z positions for a 3-lane diagram. More lanes → spread them further.
-DEFAULT_LANE_Z = [2.2, 0.0, -2.2]
+# -------------------- Layout --------------------
 
-# World X span used to lay out beats across the diagram.
-BEAT_X_MIN = -4.0
-BEAT_X_MAX = 4.0
+# Lane z-spread — farther apart reads more clearly as a UML sequence.
+LANE_SPREAD = 2.3
+BEAT_X_MIN = -4.2
+BEAT_X_MAX = 4.2
 
-# Commands / caption Z positions.
-COMMANDS_Z = 5.2
-CAPTION_Z = -4.8
+COMMANDS_Z = 5.8
+COMMANDS_TITLE_Z = COMMANDS_Z + 1.05      # title near top of commands pill
+COMMANDS_SUBTITLE_Z = COMMANDS_Z + 0.65   # subtitle below title
+COMMANDS_INPUT_Z = COMMANDS_Z - 0.55      # input-display rows lower half
+CAPTION_Z = -5.3
+
+Y_FRONT = -0.9       # electron + arrows pop just in front of lane plane
+Y_LANE = 0.0
+Y_BACKDROP = 22.0    # deep background for blobs
 
 
 # -------------------- Scene reset --------------------
@@ -56,27 +66,102 @@ def configure_render():
     scene.render.fps = FPS
     scene.render.image_settings.file_format = 'PNG'
     scene.render.image_settings.color_mode = 'RGBA'
+    scene.render.film_transparent = False
 
     ev = scene.eevee
+    # Env var override for fast smoke tests: BLENDER_TAA_SAMPLES=16 runs quick.
+    import os as _os
+    _samples = int(_os.environ.get("BLENDER_TAA_SAMPLES", "128"))
     if hasattr(ev, "taa_render_samples"):
-        ev.taa_render_samples = 64
+        ev.taa_render_samples = _samples
     if hasattr(ev, "use_raytracing"):
         ev.use_raytracing = True
+    # Bloom is replaced in Eevee Next by compositor glare; set up below.
     if hasattr(ev, "use_bloom"):
         ev.use_bloom = True
+    if hasattr(ev, "bloom_intensity"):
+        ev.bloom_intensity = 0.08
 
+    # Color management — AgX gives Apple-like soft highlights.
     scene.view_settings.view_transform = 'AgX'
-    try:
-        scene.view_settings.look = 'AgX - Medium High Contrast'
-    except TypeError:
-        # Some Blender builds expose 'Medium High Contrast' without the AgX prefix.
+    for look in ("AgX - Medium High Contrast",
+                 "Medium High Contrast",
+                 "AgX - Base Contrast"):
         try:
-            scene.view_settings.look = 'Medium High Contrast'
+            scene.view_settings.look = look
+            break
         except TypeError:
-            pass  # Leave at default; not fatal.
+            continue
+
+    _setup_compositor_bloom()
 
 
-# -------------------- Helpers --------------------
+def _setup_compositor_bloom():
+    """Enable compositor → Render Layers → Glare → Composite for a soft bloom.
+
+    Works on Blender 4.x (scene.node_tree) and Blender 5.x (scene.compositing_node_group).
+    Silent no-op if the compositor API isn't available.
+    """
+    scene = bpy.context.scene
+    try:
+        scene.use_nodes = True
+    except AttributeError:
+        pass
+
+    nt = None
+    # Blender 4.x path
+    nt = getattr(scene, "node_tree", None)
+    if nt is None:
+        # Blender 5.x path — new compositing system.
+        nt = getattr(scene, "compositing_node_group", None)
+    if nt is None:
+        # Try to create a fresh compositing node group on Blender 5.
+        try:
+            ng = bpy.data.node_groups.new("SceneComposite", "CompositorNodeTree")
+            scene.compositing_node_group = ng
+            nt = ng
+        except Exception:
+            return  # no compositor available; skip bloom entirely
+
+    try:
+        nt.nodes.clear()
+        rl = nt.nodes.new("CompositorNodeRLayers")
+        rl.location = (-400, 0)
+        glare = nt.nodes.new("CompositorNodeGlare")
+        glare.location = (0, 0)
+        # Discover which enum attribute Blender exposes — 'glare_type' on 4.x,
+        # renamed to 'type' or similar on 5.x. Walk properties.
+        type_attr = None
+        for candidate in ("glare_type", "type"):
+            if candidate in glare.bl_rna.properties:
+                type_attr = candidate
+                break
+        if type_attr is not None:
+            prop = glare.bl_rna.properties[type_attr]
+            enum_items = {item.identifier for item in prop.enum_items}
+            value = 'BLOOM' if 'BLOOM' in enum_items else (
+                'FOG_GLOW' if 'FOG_GLOW' in enum_items
+                else next(iter(enum_items), None))
+            if value is not None:
+                try:
+                    setattr(glare, type_attr, value)
+                except (TypeError, AttributeError):
+                    pass
+        for attr, val in (("quality", 'HIGH'), ("mix", -0.75),
+                          ("threshold", 0.85), ("size", 7)):
+            try:
+                setattr(glare, attr, val)
+            except (AttributeError, TypeError):
+                pass
+        comp = nt.nodes.new("CompositorNodeComposite")
+        comp.location = (400, 0)
+        nt.links.new(rl.outputs["Image"], glare.inputs["Image"])
+        nt.links.new(glare.outputs["Image"], comp.inputs["Image"])
+    except Exception as e:
+        print(f"[scene] compositor bloom skipped: {e}")
+
+
+# -------------------- Primitives --------------------
 
 def _add_cube_slab(name, sx, sy, sz, location, bevel=0.1, bevel_segs=4):
     bpy.ops.mesh.primitive_cube_add(size=1, location=location)
@@ -91,17 +176,18 @@ def _add_cube_slab(name, sx, sy, sz, location, bevel=0.1, bevel_segs=4):
     return obj
 
 
-def _add_glass_pill(name, sx, sy, sz, location, material, pill_factor=0.48):
-    """Rounded-pill glass mesh. pill_factor controls how round."""
+def _add_glass_pill(name, sx, sy, sz, location, material, pill_factor=0.48,
+                     segments=10):
     obj = _add_cube_slab(name, sx, sy, sz, location,
-                         bevel=min(sy, sz) * pill_factor, bevel_segs=10)
+                         bevel=min(sy, sz) * pill_factor,
+                         bevel_segs=segments)
     obj.data.materials.append(material)
     return obj
 
 
-def _add_sphere(name, radius, location, material):
+def _add_sphere(name, radius, location, material, segments=48, rings=24):
     bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=location,
-                                          segments=32, ring_count=16)
+                                          segments=segments, ring_count=rings)
     obj = bpy.context.active_object
     obj.name = name
     bpy.ops.object.shade_smooth()
@@ -109,154 +195,447 @@ def _add_sphere(name, radius, location, material):
     return obj
 
 
-def _add_plane(name, size, location, rotation=(0, 0, 0)):
+def _add_plane(name, size, location, rotation=(0, 0, 0), material=None):
     bpy.ops.mesh.primitive_plane_add(size=size, location=location)
     obj = bpy.context.active_object
     obj.name = name
     obj.rotation_euler = rotation
+    if material:
+        obj.data.materials.append(material)
     return obj
 
 
-# -------------------- Scene build --------------------
+# -------------------- Lane layout --------------------
 
 def lane_z_positions(n_lanes: int) -> list[float]:
     if n_lanes <= 1:
         return [0.0]
     half = (n_lanes - 1) / 2.0
-    spread = 2.2
-    return [half * spread - i * spread for i in range(n_lanes)]
+    return [half * LANE_SPREAD - i * LANE_SPREAD for i in range(n_lanes)]
 
 
-def beat_x_position(beat_index_visible: int, n_visible: int) -> float:
-    """Distribute `n_visible` beats evenly across [BEAT_X_MIN, BEAT_X_MAX]."""
-    if n_visible <= 0:
+def beat_x_position(idx: int, total: int) -> float:
+    if total <= 0:
         return 0.0
-    step = (BEAT_X_MAX - BEAT_X_MIN) / n_visible
-    return BEAT_X_MIN + (beat_index_visible + 0.5) * step
+    step = (BEAT_X_MAX - BEAT_X_MIN) / total
+    return BEAT_X_MIN + step * (idx + 0.5)
 
+
+# -------------------- World + backdrop --------------------
+
+def _build_world(scene):
+    world = bpy.data.worlds.new("World")
+    scene.world = world
+    world.use_nodes = True
+    nt = world.node_tree
+    nt.nodes.clear()
+    out = nt.nodes.new("ShaderNodeOutputWorld")
+    bg = nt.nodes.new("ShaderNodeBackground")
+    bg.inputs["Color"].default_value = (1.0, 1.0, 1.0, 1.0)
+    bg.inputs["Strength"].default_value = 1.0
+    nt.links.new(bg.outputs[0], out.inputs[0])
+
+
+def _build_backdrop_wall():
+    """Pure white flat backdrop behind everything — clean canvas."""
+    plane = _add_plane("Backdrop", size=80,
+                        location=(0, Y_BACKDROP, 0),
+                        rotation=(math.radians(90), 0, 0))
+    mat = M.white_shell_material("BackdropMat", emission_strength=0.9)
+    plane.data.materials.append(mat)
+    return plane
+
+
+def _build_liquid_glass_layers():
+    """Large pastel blobs drifting in front of the white backdrop.
+
+    Positions + colors chosen for soft Apple-ish tones. The blobs are XZ-
+    oriented pills facing the camera (-Y), with a small Y-axis tilt applied so
+    they feel hand-placed rather than paper-flat. Returns the list of root
+    objects so animation.py can keyframe their drift.
+    """
+    blobs = []
+    specs = [
+        # (name, color, (sx, sz), location, tilt_y_deg)
+        ("LG_Peach", (1.0, 0.78, 0.66),  (9.5,  6.0), (-3.5, 20.5,  2.0), 8),
+        ("LG_Mint",  (0.72, 0.95, 0.86), (11.0, 5.5), ( 2.5, 19.5, -1.5), -6),
+        ("LG_Lilac", (0.86, 0.80, 1.0),  ( 8.0, 7.0), ( 4.0, 21.0,  3.5), 12),
+        ("LG_Sky",   (0.74, 0.90, 1.0),  (10.5, 5.2), (-2.8, 20.2, -3.0), -3),
+    ]
+    for name, color, (sw, sh), loc, tilt_deg in specs:
+        mat = M.liquid_blob_material(f"{name}Mat", color=color)
+        obj = _add_glass_pill(name, sx=sw, sy=0.35, sz=sh,
+                               location=loc, material=mat,
+                               pill_factor=0.48, segments=8)
+        # Small tilt around Y (yaw) for hand-placed feel. Face normal remains
+        # close to -Y so the blob always reads to the camera.
+        obj.rotation_euler = (0, 0, math.radians(tilt_deg))
+        blobs.append(obj)
+    return blobs
+
+
+# -------------------- Scene build --------------------
 
 def build_scene(descriptor: dict) -> dict:
-    """Build the 3D scene from a descriptor. Returns references to key objects
-    (the caller will keyframe these in animation.py)."""
+    """Build the whole 3D scene. Returns a dict of references animation.py
+    needs to keyframe."""
     reset_scene()
     configure_render()
 
     lanes = descriptor["lanes"]
     beats = descriptor["beats"]
+    lesson_title = descriptor.get("lesson_title", "")
+    day_number = descriptor.get("day_number", 0)
+    learning_title = descriptor.get("learning_title", "")
 
     lane_z = {lane: z for lane, z in zip(lanes, lane_z_positions(len(lanes)))}
 
-    # World env — neutral warm for glass reflections.
     scene = bpy.context.scene
-    world = bpy.data.worlds.new("World")
-    scene.world = world
-    world.use_nodes = True
-    wnt = world.node_tree
-    wnt.nodes.clear()
-    wout = wnt.nodes.new("ShaderNodeOutputWorld")
-    wbg = wnt.nodes.new("ShaderNodeBackground")
-    wbg.inputs["Color"].default_value = (0.97, 0.95, 0.92, 1.0)
-    wbg.inputs["Strength"].default_value = 0.9
-    wnt.links.new(wbg.outputs[0], wout.inputs[0])
+    _build_world(scene)
 
-    # Backdrop — large plane behind everything.
-    backdrop = _add_plane("Backdrop", size=80, location=(0, 18, 0),
-                          rotation=(math.radians(90), 0, 0))
-    bmat = M.iridescent_backdrop_material("BackdropMat")
-    backdrop.data.materials.append(bmat)
+    backdrop = _build_backdrop_wall()
+    liquid_layers = _build_liquid_glass_layers()
 
-    # Lanes
-    lane_mat = M.matte_lane_material("LaneMat")
+    # -------- Lanes — thin slabs, legible from camera distance --------
+    lane_line_mat = M.lane_line_material("LaneLineMat")
     lane_objects = {}
     for lane, z in lane_z.items():
-        slab = _add_cube_slab(f"Lane_{lane}", sx=9.0, sy=0.25, sz=0.35,
-                              location=(0, 0, z), bevel=0.1)
-        slab.data.materials.append(lane_mat)
-        lane_objects[lane] = slab
+        line = _add_cube_slab(
+            f"Lane_{lane}", sx=9.4, sy=0.12, sz=0.09,
+            location=(0, Y_LANE, z), bevel=0.03, bevel_segs=3)
+        line.data.materials.append(lane_line_mat)
+        lane_objects[lane] = line
 
-    # Commands panel — big glass pill above top lane.
-    commands_mat = M.glass_material("CommandsMat")
+    # -------- Commands panel --------
+    # DITHERED instead of BLENDED so opaque keycap tiles in front of the pill
+    # sort correctly against the glass (BLENDED breaks z-ordering in Eevee Next).
+    commands_mat = M.glass_material(
+        "CommandsMat",
+        tint=(0.98, 0.99, 1.0, 1.0),
+        roughness=0.06,
+        thin_film_nm=540.0,
+        blended=False)
     commands = _add_glass_pill(
-        "Commands", sx=7.5, sy=0.5, sz=2.4,
-        location=(0, -0.2, COMMANDS_Z), material=commands_mat,
+        "Commands", sx=8.4, sy=0.55, sz=2.8,
+        location=(0, -0.25, COMMANDS_Z), material=commands_mat,
         pill_factor=0.42)
 
-    # Lane label glass pills on the left of each lane.
-    label_objs = {}
-    for lane, z in lane_z.items():
-        mat = M.pill_label_material(f"LabelMat_{lane}")
-        p = _add_glass_pill(f"Label_{lane}", sx=2.0, sy=0.35, sz=0.55,
-                            location=(-4.0, -0.3, z), material=mat,
-                            pill_factor=0.48)
-        label_objs[lane] = p
+    # -------- Commands title + subtitle --------
+    text_dark = M.text_material("TextDark", color=(0.08, 0.10, 0.14, 1.0))
+    text_accent = M.text_material_accent("TextAccent",
+                                          color=(0.12, 0.45, 0.95))
+    text_subtle = M.text_material("TextSubtle",
+                                    color=(0.35, 0.38, 0.44, 1.0))
 
-    # Caption panel — below bottom lane.
-    caption_mat = M.glass_material("CaptionMat")
+    title_body = lesson_title if lesson_title else "Lesson"
+    title = T.make_text(
+        "CommandsTitle",
+        body=title_body,
+        location=(0, -0.55, COMMANDS_TITLE_Z),
+        size=0.42,
+        extrude=0.012,
+        bevel=0.003,
+        font_path=T.FONT_SEMIBOLD,
+        material=text_dark)
+
+    subtitle_body = f"Day {day_number} · {learning_title}" if learning_title \
+        else f"Day {day_number}"
+    subtitle = T.make_text(
+        "CommandsSubtitle",
+        body=subtitle_body,
+        location=(0, -0.55, COMMANDS_SUBTITLE_Z),
+        size=0.22,
+        extrude=0.008,
+        bevel=0.002,
+        font_path=T.FONT_REGULAR,
+        material=text_accent)
+
+    # -------- Lane labels --------
+    label_glass_mat = M.glass_material(
+        "LabelGlassMat",
+        tint=(0.96, 0.98, 1.0, 1.0),
+        roughness=0.10,
+        coat=0.4,
+        thin_film_nm=500.0,
+        blended=False)
+    label_objs = {}
+    label_texts = {}
+    for lane, z in lane_z.items():
+        pill = _add_glass_pill(
+            f"Label_{lane}", sx=2.15, sy=0.4, sz=0.62,
+            location=(-4.3, -0.3, z), material=label_glass_mat,
+            pill_factor=0.48)
+        label_objs[lane] = pill
+        # Text on front face of pill.
+        txt = T.make_text(
+            f"LabelTxt_{lane}",
+            body=lane,
+            location=(-4.3, -0.52, z),
+            size=0.26,
+            extrude=0.01,
+            bevel=0.002,
+            font_path=T.FONT_SEMIBOLD,
+            material=text_dark)
+        label_texts[lane] = txt
+
+    # -------- Caption panel --------
+    caption_mat = M.glass_material(
+        "CaptionMat",
+        tint=(0.97, 0.99, 1.0, 1.0),
+        roughness=0.09,
+        thin_film_nm=560.0,
+        blended=False)
     caption = _add_glass_pill(
-        "Caption", sx=7.2, sy=0.45, sz=1.6,
-        location=(0, -0.2, CAPTION_Z), material=caption_mat,
+        "Caption", sx=7.4, sy=0.45, sz=1.4,
+        location=(0, -0.25, CAPTION_Z), material=caption_mat,
         pill_factor=0.48)
 
-    # Electron — emissive sphere. Start at first beat's location (set later
-    # by animation.py via keyframes).
-    electron_mat = M.emission_material("ElectronMat", color=(0.45, 0.85, 1.0),
-                                        strength=80.0)
-    # Initial location: top lane, leftmost x. Animation keyframes take over.
+    # Per-beat caption texts — all in the same screen position, visibility
+    # keyframed per-beat.
+    caption_texts: list[bpy.types.Object] = []
+    for i, b in enumerate(beats):
+        label = b.get("label") or ""
+        if not label and b.get("kind") == "open":
+            label = f"start · {b.get('to_lane', '')}"
+        ct = T.make_text(
+            f"Caption_{i}",
+            body=label,
+            location=(0, -0.5, CAPTION_Z),
+            size=0.36,
+            extrude=0.01,
+            bevel=0.002,
+            font_path=T.FONT_SEMIBOLD,
+            material=text_dark)
+        # Start hidden — animation.py toggles visibility.
+        ct.hide_viewport = True
+        ct.hide_render = True
+        caption_texts.append(ct)
+
+    # -------- Electron --------
+    electron_mat = M.emission_material(
+        "ElectronMat", color=(0.42, 0.78, 1.0), strength=120.0)
     electron_start_x = BEAT_X_MIN
     electron_start_z = lane_z[lanes[0]]
-    electron = _add_sphere("Electron", radius=0.22,
-                            location=(electron_start_x, -0.9, electron_start_z),
-                            material=electron_mat)
+    electron = _add_sphere(
+        "Electron", radius=0.26,
+        location=(electron_start_x, Y_FRONT, electron_start_z),
+        material=electron_mat)
 
-    # Lighting
-    bpy.ops.object.light_add(type='AREA', location=(3, -6, 6))
+    # Electron halo — larger, softer emission for bloom.
+    halo_mat = M.emission_material(
+        "ElectronHalo", color=(0.48, 0.82, 1.0), strength=22.0)
+    halo = _add_sphere(
+        "ElectronHalo", radius=0.52,
+        location=(electron_start_x, Y_FRONT, electron_start_z),
+        material=halo_mat, segments=24, rings=12)
+
+    # -------- Electron trail (small spheres, fade via hide keyframes) --------
+    trail_mat = M.emission_material(
+        "ElectronTrail", color=(0.42, 0.78, 1.0), strength=35.0)
+    trail_orbs: list[bpy.types.Object] = []
+    TRAIL_COUNT = 8
+    for k in range(TRAIL_COUNT):
+        r = 0.14 - k * 0.011
+        ob = _add_sphere(
+            f"Trail_{k}", radius=max(0.03, r),
+            location=(electron_start_x, Y_FRONT, electron_start_z),
+            material=trail_mat, segments=16, rings=8)
+        ob.hide_viewport = True
+        ob.hide_render = True
+        trail_orbs.append(ob)
+
+    # -------- Step number badges --------
+    step_mat = M.step_number_material(
+        "StepMat", color=(1.0, 0.64, 0.2))
+    # Step numbers: pure white with subtle emission so they pop on the amber
+    # badge even with bloom.
+    text_amber = M.text_material_white("StepNumTxtMat", emission_strength=3.2)
+    step_badges: list[bpy.types.Object] = []
+    visible_beats = [b for b in beats if b.get("kind") != "open"]
+    n_visible = len(visible_beats)
+    for i, b in enumerate(beats):
+        if b.get("kind") == "open":
+            step_badges.append(None)
+            continue
+        # Choose Z slightly above the top lane to keep badges out of the flow.
+        top_lane_z = max(lane_z.values())
+        badge_z = top_lane_z + 1.15
+        # world_x assigned later in assign_beat_positions, but we need it now.
+        # Replicate that math:
+        vi = visible_beats.index(b)
+        bx = beat_x_position(vi, n_visible)
+        b["world_x_preview"] = bx
+
+        # Flat circle-ish badge (cylinder flipped thin).
+        bpy.ops.mesh.primitive_cylinder_add(
+            radius=0.42, depth=0.16,
+            vertices=32, location=(bx, Y_FRONT + 0.1, badge_z))
+        badge = bpy.context.active_object
+        badge.name = f"StepBadge_{i}"
+        badge.rotation_euler = (math.radians(90), 0, 0)
+        bpy.ops.object.shade_smooth()
+        badge.data.materials.append(step_mat)
+
+        num_txt = T.make_text(
+            f"StepNum_{i}",
+            body=str(vi + 1),
+            location=(bx, Y_FRONT - 0.04, badge_z),
+            size=0.34, extrude=0.008, bevel=0.002,
+            font_path=T.FONT_BOLD,
+            material=text_amber)
+
+        # Parent text to badge for easy handling — preserve world transform.
+        num_txt.parent = badge
+        num_txt.matrix_parent_inverse = badge.matrix_world.inverted()
+        # Start hidden.
+        badge.hide_viewport = True
+        badge.hide_render = True
+        num_txt.hide_viewport = True
+        num_txt.hide_render = True
+        step_badges.append({"badge": badge, "num": num_txt})
+
+    # -------- Arrows (call/return beats) --------
+    arrow_objects: list = []  # parallel to beats; None for open/self
+    for i, b in enumerate(beats):
+        kind = b.get("kind")
+        if kind not in ("call", "return"):
+            arrow_objects.append(None)
+            continue
+        vi = visible_beats.index(b)
+        bx = beat_x_position(vi, n_visible)
+        z_from = lane_z[b["from_lane"]]
+        z_to = lane_z[b["to_lane"]]
+        arrow_mat = M.arrow_pulse_material(
+            f"ArrowMat_{i}", color=(0.4, 0.78, 1.0), strength=24.0)
+        arrow = A.build_arrow(
+            f"Arrow_{i}",
+            from_pos=(bx, Y_FRONT + 0.05, z_from),
+            to_pos=(bx, Y_FRONT + 0.05, z_to),
+            material=arrow_mat)
+        # Start hidden — animation.py reveals per beat.
+        arrow["shaft"].hide_viewport = True
+        arrow["shaft"].hide_render = True
+        arrow["head"].hide_viewport = True
+        arrow["head"].hide_render = True
+        arrow_objects.append(arrow)
+
+    # -------- Input-display materials (shared) --------
+    # Opaque tile (not glass) so the small UI pills read clearly against the
+    # big glass commands pill + white world.
+    key_glass_mat = M.ui_tile_material(
+        "KeyTileMat", tint=(0.93, 0.95, 1.0, 1.0))
+    pill_glass_mat = M.ui_tile_material(
+        "PillTileMat", tint=(0.91, 0.94, 0.99, 1.0))
+    pill_dark_mat = M.ui_tile_dark_material("PillDarkMat")
+    text_white_mat = M.text_material_white("TextWhite", emission_strength=2.4)
+
+    disp_mats = {
+        "key_glass": key_glass_mat,
+        "pill_glass": pill_glass_mat,
+        "pill_dark": pill_dark_mat,
+        "text_dark": text_dark,
+        "text_white": text_white_mat,
+        "text_accent": text_accent,
+        "text_platform": text_subtle,
+    }
+
+    # Commands-panel inputs — one per beat (empty if no spec).
+    display_objects: list = []
+    for i, b in enumerate(beats):
+        spec = b.get("input_display")
+        disp = IDisp.build_for_beat(spec, panel_center_z=COMMANDS_INPUT_Z,
+                                     mats=disp_mats)
+        display_objects.append(disp)
+        if disp is not None:
+            disp.hide_viewport = True
+            disp.hide_render = True
+            for child in IDisp._descendants(disp):
+                child.hide_viewport = True
+                child.hide_render = True
+
+    # -------- Lighting --------
+    _build_lighting()
+
+    # -------- Camera --------
+    cam = _build_camera()
+
+    return {
+        "backdrop": backdrop,
+        "liquid_layers": liquid_layers,
+        "lanes": lane_objects,
+        "lane_z": lane_z,
+        "commands": commands,
+        "commands_title": title,
+        "commands_subtitle": subtitle,
+        "caption": caption,
+        "caption_texts": caption_texts,
+        "labels": label_objs,
+        "label_texts": label_texts,
+        "electron": electron,
+        "electron_halo": halo,
+        "trail_orbs": trail_orbs,
+        "step_badges": step_badges,
+        "arrow_objects": arrow_objects,
+        "display_objects": display_objects,
+        "camera": cam,
+    }
+
+
+# -------------------- Lighting --------------------
+
+def _build_lighting():
+    # Soft Apple-ish key from upper-left.
+    bpy.ops.object.light_add(type='AREA', location=(3.5, -6.5, 5.5))
     key = bpy.context.active_object
     key.name = "KeyLight"
-    key.data.size = 6
-    key.data.energy = 1800
-    key.data.color = (1.0, 0.95, 0.88)
-    key.rotation_euler = (math.radians(55), 0, math.radians(20))
+    key.data.size = 7
+    key.data.energy = 2100
+    key.data.color = (1.0, 0.96, 0.92)
+    key.rotation_euler = (math.radians(55), 0, math.radians(25))
 
-    bpy.ops.object.light_add(type='AREA', location=(-4, -5, -1))
+    # Cool fill from lower-right behind lane.
+    bpy.ops.object.light_add(type='AREA', location=(-4.5, -4.5, -1.5))
     fill = bpy.context.active_object
     fill.name = "FillLight"
-    fill.data.size = 5
-    fill.data.energy = 500
-    fill.data.color = (0.82, 0.9, 1.0)
-    fill.rotation_euler = (math.radians(75), 0, math.radians(-35))
+    fill.data.size = 6
+    fill.data.energy = 700
+    fill.data.color = (0.82, 0.90, 1.0)
+    fill.rotation_euler = (math.radians(75), 0, math.radians(-30))
 
-    bpy.ops.object.light_add(type='AREA', location=(0, 8, 4))
+    # Warm rim from behind to pop glass edges.
+    bpy.ops.object.light_add(type='AREA', location=(0, 11, 3))
     rim = bpy.context.active_object
     rim.name = "RimLight"
-    rim.data.size = 8
-    rim.data.energy = 700
-    rim.data.color = (0.95, 0.88, 1.0)
-    rim.rotation_euler = (math.radians(-60), 0, 0)
+    rim.data.size = 10
+    rim.data.energy = 900
+    rim.data.color = (1.0, 0.92, 0.82)
+    rim.rotation_euler = (math.radians(-65), 0, 0)
 
-    # Camera.
-    bpy.ops.object.camera_add(location=(1.5, -15.0, 0.8))
+    # Soft top from directly above for the commands panel surface highlight.
+    bpy.ops.object.light_add(type='AREA', location=(0, -2, 9))
+    top = bpy.context.active_object
+    top.name = "TopLight"
+    top.data.size = 6
+    top.data.energy = 600
+    top.data.color = (1.0, 1.0, 1.0)
+    top.rotation_euler = (math.radians(0), 0, 0)
+
+
+# -------------------- Camera --------------------
+
+def _build_camera():
+    bpy.ops.object.camera_add(location=(1.6, -14.5, 0.7))
     cam = bpy.context.active_object
     cam.name = "MainCam"
-    target = Vector((0.0, 0.0, 0.5))
+    target = Vector((0.0, 0.0, 0.4))
     direction = target - cam.location
     cam.rotation_mode = 'QUATERNION'
     cam.rotation_quaternion = direction.to_track_quat('-Z', 'Y')
     cam.rotation_mode = 'XYZ'
-    cam.data.lens = 42
+    cam.data.lens = 40
     cam.data.sensor_width = 36
     cam.data.dof.use_dof = True
-    cam.data.dof.focus_distance = 15.0
-    cam.data.dof.aperture_fstop = 4.5
-    scene.camera = cam
-
-    return {
-        "backdrop": backdrop,
-        "backdrop_mat": bmat,
-        "lanes": lane_objects,
-        "lane_z": lane_z,
-        "commands": commands,
-        "caption": caption,
-        "labels": label_objs,
-        "electron": electron,
-        "camera": cam,
-    }
+    cam.data.dof.focus_distance = 14.8
+    cam.data.dof.aperture_fstop = 4.0
+    bpy.context.scene.camera = cam
+    return cam
